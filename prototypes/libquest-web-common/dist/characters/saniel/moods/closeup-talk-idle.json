@@ -1,0 +1,20 @@
+{
+  "filename": "closeup-talk-idle.svg",
+  "default-delay": 100,
+  "frames": [
+    "0 5000-10000",
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "height": 740,
+  "width": 500
+}

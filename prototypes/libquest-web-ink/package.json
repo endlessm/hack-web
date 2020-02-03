@@ -1,0 +1,17 @@
+{
+  "name": "libquest-inkjs",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "inkjs": "^1.10.2"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}

@@ -1,0 +1,57 @@
+{
+    "app-id": "com.hack_computer.Ink",
+    "branch": "stable",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "18.08",
+    "sdk": "org.freedesktop.Sdk",
+    "sdk-extensions": ["org.freedesktop.Sdk.Extension.mono5"],
+    "command": "inklecate.sh",
+    "finish-args": [
+        "--filesystem=home",
+        "--share=ipc",
+        "--share=network",
+        "--socket=wayland",
+        "--socket=pulseaudio",
+        "--socket=x11"
+    ],
+    "build-options" : {
+        "append-path": "/usr/lib/sdk/mono5/bin",
+        "append-ld-library-path": "/usr/lib/sdk/mono5/lib",
+        "env": {
+            "PKG_CONFIG_PATH": "/app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/mono5/lib/pkgconfig"
+        }
+    },
+    "cleanup": [ "/lib/monodoc", "/lib/pkgconfig" ],
+    "modules": [
+        {
+            "name": "ink",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -D inklecate.exe /app/data/ink/inklecate.exe",
+                "install -D ink_compiler.dll /app/data/ink/ink_compiler.dll",
+                "install -D ink-engine-runtime.dll /app/data/ink/ink-engine-runtime.dll",
+                "install -D ink-engine-runtime.xml /app/data/ink/ink-engine-runtime.xml"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/inkle/ink/releases/download/0.9.0/inklecate_windows_and_linux.zip",
+                    "sha256": "c2d9d042f15379730c93a2af0807534d11bc1ff22e5e99a5f9c216d1c15db8da"
+                }
+            ]
+        },
+        {
+            "name": "inklecate.sh",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -D inklecate.sh /app/bin/inklecate.sh"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "inklecate.sh"
+                }
+            ]
+        }
+    ]
+}
