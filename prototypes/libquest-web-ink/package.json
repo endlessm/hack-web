@@ -1,6 +1,7 @@
 {
   "name": "libquest-inkjs",
   "version": "1.0.0",
+  "private": true,
   "license": "MIT",
   "dependencies": {
     "inkjs": "^1.10.2"
