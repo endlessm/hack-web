@@ -1,0 +1,4 @@
+[submodule "prototypes/libquest-web-fizzics/hack-toy-apps"]
+	path = prototypes/libquest-web-common/hack-toy-apps
+	url = git@github.com:endlessm/hack-toy-apps.git
+	branch = fizzics-phaser-port-container

@@ -9,6 +9,7 @@ brief](https://docs.google.com/document/d/1_zLZbd6rDNVLRa2OJoBO4jyIsPspFDIrJ8mLB
 - [libquest-web-ink](./libquest-web-ink) — Trying the Ink DSL for web quests.
 - [libquest-web-yarn](./libquest-web-yarn) — Trying the Yarn DSL for web quests.
 - [libquest-web-common](./libquest-web-common) — Common files for the two prototypes above.
+- [web-fizzics](./web-fizzics) — Trying modularization and bundling Fizzics side-by-side with dialogue.
 - [ink-flatpak](./ink-flatpak) — Flatpak wrapper of the Ink compiler.
 
 ## Installing NodeJS in Endless OS:
