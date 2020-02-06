@@ -1,7 +1,13 @@
 # Bundling Fizzics side-by-side with dialogue
 
-Goal: Bundle a toy app (Fizzics) without modifications. This prototype
-is about figuring out how modularization and bundling can work on web.
+Goal: Bundle a toy app (Fizzics) without (or with minimal)
+modifications. This prototype is about figuring out how modularization
+and bundling can work on the web.
+
+- **material-ui** as UI framework. It uses React and implements
+  Material Design.
+
+- **dat.GUI** for quick-and-dirty toolbox.
 
 ## Setup:
 

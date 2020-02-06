@@ -108,20 +108,38 @@ const useStyles = makeStyles(theme => ({
         }),
         marginRight: 0,
     },
-    toyApp: {
+    flipBox: {
         zIndex: 0,
+        perspective: '1000px',
+        width: '100%',
+        height: '100%',
+    },
+    flipBoxInner: {
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        textAlign: 'center',
+        transition: 'transform 0.8s',
+        transformStyle: 'preserve-3d',
+    },
+    flipBoxInnerWhenFlipped: {
+        transform: 'rotateY(180deg)',
+    },
+    toyApp: {
+        position: 'absolute',
     },
     toyAppWhenFlipped: {
-        // opacity: '60%',
+        pointerEvents: 'none',
     },
     toolbox: {
+        background: 'rgba(13, 17, 64, 0.5)',
+        transform: 'rotateY(180deg)',
+        backfaceVisibility: 'hidden',
         position: 'absolute',
-        top: 0,
-        left: '58px',
-        display: 'none',
+        width: '100%',
+        height: '100%',
     },
     toolboxWhenFlipped: {
-        display: 'block',
     }
 }));
 
@@ -161,6 +179,13 @@ export default function PersistentDrawerRight() {
             })}
             >
 
+            <div className={classes.flipBox}>
+            <div className={clsx(classes.flipBoxInner, flipped && classes.flipBoxInnerWhenFlipped)}>
+            <div id="toolbox-container" className={clsx(classes.toolbox, flipped && classes.toolboxWhenFlipped)}></div>
+            <div id="toy-app-container" className={clsx(classes.toyApp, flipped && classes.toyAppWhenFlipped)}></div>
+            </div>
+            </div>
+
             <IconButton
             color="primary"
             aria-label="open dialogue"
@@ -180,9 +205,6 @@ export default function PersistentDrawerRight() {
             >
             {flipped ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
-
-            <div id="toy-app-container" className={clsx(classes.toyApp, flipped && classes.toyAppWhenFlipped)}></div>
-            <div id="toolbox-container" className={clsx(classes.toolbox, flipped && classes.toolboxWhenFlipped)}></div>
 
             </main>
             <Drawer

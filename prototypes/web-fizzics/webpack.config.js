@@ -31,6 +31,7 @@ module.exports = {
         new CopyPlugin([
             { from: path.join(FIZZICS_APP_PATH, 'main.js'), to: 'main.js' },
             { from: path.join(FIZZICS_APP_PATH, 'assets/'), to: 'assets/' },
+            { from: 'node_modules/dat.gui/build/dat.gui.js', to: 'dat.gui.js' },
         ]),
     ],
 };
