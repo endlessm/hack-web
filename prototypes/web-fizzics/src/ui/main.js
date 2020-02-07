@@ -9,8 +9,8 @@ import Layout from './layout';
 function Main() {
     return (
         <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Layout />
+            <CssBaseline />
+            <Layout />
         </ThemeProvider>
     );
 }

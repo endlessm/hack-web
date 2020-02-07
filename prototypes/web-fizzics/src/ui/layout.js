@@ -1,19 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-
-import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
-
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -120,16 +113,11 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const FizzicControls = function () {
-    
-}
-
 export default function Layout() {
     useScript('main.js');
     useScript('app.js');
 
     const classes = useStyles();
-    const theme = useTheme();
     const [open, setOpen] = React.useState(true);
     const [flipped, setFlipped] = React.useState(false);
 
@@ -141,74 +129,66 @@ export default function Layout() {
         setFlipped(!flipped);
     };
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
-
     return (
         <div className={classes.root}>
-          <main
-            className={clsx(classes.content, {
-                [classes.contentShift]: open,
-            })}
+            <main
+                className={clsx(classes.content, {
+                    [classes.contentShift]: open,
+                })}
             >
 
-            <IconButton
-              variant="contained"
-              color="primary"
-              aria-label="open dialogue"
-              edge="start"
-              onClick={handleDrawerToggle}
-              className={classes.dialogueToggleButton}
-              >
-              {open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
+                <IconButton
+                    variant="contained"
+                    color="primary"
+                    aria-label="open dialogue"
+                    edge="start"
+                    onClick={handleDrawerToggle}
+                    className={classes.dialogueToggleButton}
+                >
+                    {open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                </IconButton>
 
-            <IconButton
-              color="primary"
-              aria-label="open toolbox"
-              edge="end"
-              onClick={handleFlipToggle}
-              className={classes.toolboxToggleButton}
-              >
-              {flipped ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-            </IconButton>
+                <IconButton
+                    color="primary"
+                    aria-label="open toolbox"
+                    edge="end"
+                    onClick={handleFlipToggle}
+                    className={classes.toolboxToggleButton}
+                >
+                    {flipped ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                </IconButton>
 
-            <div id="toy-app-container" className={clsx(classes.toyApp, flipped && classes.toyAppWhenFlipped)}></div>
-            <div id="toolbox-container" className={clsx(classes.toolbox, flipped && classes.toolboxWhenFlipped)}></div>
+                <div id="toy-app-container" className={clsx(classes.toyApp, flipped && classes.toyAppWhenFlipped)}></div>
+                <div id="toolbox-container" className={clsx(classes.toolbox, flipped && classes.toolboxWhenFlipped)}></div>
 
-          </main>
-          <Drawer
-            className={classes.drawer}
-            variant="persistent"
-            anchor="right"
-            open={open}
-            classes={{
-                paper: classes.drawerPaper,
-            }}
+            </main>
+            <Drawer
+                className={classes.drawer}
+                variant="persistent"
+                anchor="right"
+                open={open}
+                classes={{
+                    paper: classes.drawerPaper,
+                }}
             >
-            <List>
-              {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text}></ListItemText>
-                  </ListItem>
-              ))}
-            </List>
-            <Divider />
-            <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                  <ListItemText primary={text}></ListItemText>
-                </ListItem>
-            ))}
-            </List>
-          </Drawer>
+                <List>
+                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                        <ListItem button key={text}>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemText primary={text}></ListItemText>
+                        </ListItem>
+                    ))}
+                </List>
+                <Divider />
+                <List>
+                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                        <ListItem button key={text}>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemText primary={text}></ListItemText>
+                        </ListItem>
+                    ))}
+                </List>
+            </Drawer>
         </div>
     );
 }
