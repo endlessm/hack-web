@@ -7,11 +7,12 @@ import Layout from './layout';
 //import Layout from './layoutFTH';
 
 function Main() {
-    return (<ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Layout />
-            </ThemeProvider>
-           );
+    return (
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout />
+        </ThemeProvider>
+    );
 }
 
 export default function renderDOM() {

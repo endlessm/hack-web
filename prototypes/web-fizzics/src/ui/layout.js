@@ -149,39 +149,40 @@ export default function Layout() {
         setOpen(false);
     };
 
-    return (<div className={classes.root}>
-            <main
+    return (
+        <div className={classes.root}>
+          <main
             className={clsx(classes.content, {
                 [classes.contentShift]: open,
             })}
             >
 
             <IconButton
-            variant="contained"
-            color="primary"
-            aria-label="open dialogue"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.dialogueToggleButton}
-            >
-            {open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+              variant="contained"
+              color="primary"
+              aria-label="open dialogue"
+              edge="start"
+              onClick={handleDrawerToggle}
+              className={classes.dialogueToggleButton}
+              >
+              {open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
 
             <IconButton
-            color="primary"
-            aria-label="open toolbox"
-            edge="end"
-            onClick={handleFlipToggle}
-            className={classes.toolboxToggleButton}
-            >
-            {flipped ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+              color="primary"
+              aria-label="open toolbox"
+              edge="end"
+              onClick={handleFlipToggle}
+              className={classes.toolboxToggleButton}
+              >
+              {flipped ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
 
             <div id="toy-app-container" className={clsx(classes.toyApp, flipped && classes.toyAppWhenFlipped)}></div>
             <div id="toolbox-container" className={clsx(classes.toolbox, flipped && classes.toolboxWhenFlipped)}></div>
 
-            </main>
-            <Drawer
+          </main>
+          <Drawer
             className={classes.drawer}
             variant="persistent"
             anchor="right"
@@ -191,23 +192,23 @@ export default function Layout() {
             }}
             >
             <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
+              {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                  <ListItem button key={text}>
                     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
-                    </ListItem>
-            ))}
+                    <ListItemText primary={text}></ListItemText>
+                  </ListItem>
+              ))}
             </List>
             <Divider />
             <List>
             {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
-                    </ListItem>
+                <ListItem button key={text}>
+                  <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                  <ListItemText primary={text}></ListItemText>
+                </ListItem>
             ))}
             </List>
-            </Drawer>
-            </div>
-           );
+          </Drawer>
+        </div>
+    );
 }
