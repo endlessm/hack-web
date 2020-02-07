@@ -4,7 +4,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -52,25 +51,23 @@ const useStyles = makeStyles(theme => ({
     dialogueToggleButton: {
         zIndex: 10,
         position: 'absolute',
-        // FIXME theme with MUI
-        background: 'rgb(77, 204, 174)',
+        background: theme.palette.common.hackGreen,
         borderRadius: '50% 0 0 50%',
-        top: 'calc(50% - 23px)',
-        right: '12px',
+        top: `calc(50% - ${theme.spacing(3)}px)`,
+        right: 0,
         '&:hover': {
-            background: 'rgb(77, 204, 174)',
+            background: theme.palette.common.hackGreen,
         },
     },
     toolboxToggleButton: {
         zIndex: 10,
         position: 'absolute',
-        // FIXME theme with MUI
-        background: 'rgb(77, 204, 174)',
+        background: theme.palette.common.hackGreen,
         borderRadius: '0 50% 50% 0',
-        top: 'calc(50% - 23px)',
+        top: `calc(50% - ${theme.spacing(3)}px)`,
         left: '0',
         '&:hover': {
-            background: 'rgb(77, 204, 174)',
+            background: theme.palette.common.hackGreen,
         },
     },
     drawer: {
@@ -91,7 +88,6 @@ const useStyles = makeStyles(theme => ({
         overflow: 'hidden',
         position: 'relative',
         flexGrow: 1,
-        // padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -99,7 +95,6 @@ const useStyles = makeStyles(theme => ({
         width: `calc(100% - ${drawerWidth}px)`,
         height: '100%',
         marginRight: -drawerWidth,
-        background: 'rgb(13, 17, 64)',
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -117,7 +112,7 @@ const useStyles = makeStyles(theme => ({
     toolbox: {
         position: 'absolute',
         top: 0,
-        left: '58px',
+        left: `${theme.spacing(7)}px`,
         display: 'none',
     },
     toolboxWhenFlipped: {
@@ -129,7 +124,7 @@ const FizzicControls = function () {
     
 }
 
-export default function PersistentDrawerRight() {
+export default function Layout() {
     useScript('main.js');
     useScript('app.js');
 
@@ -162,9 +157,10 @@ export default function PersistentDrawerRight() {
             >
 
             <IconButton
+            variant="contained"
             color="primary"
             aria-label="open dialogue"
-            edge="end"
+            edge="start"
             onClick={handleDrawerToggle}
             className={classes.dialogueToggleButton}
             >

@@ -4,7 +4,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -20,6 +19,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 // import * as dat from 'dat.gui';
 
@@ -52,25 +53,24 @@ const useStyles = makeStyles(theme => ({
     dialogueToggleButton: {
         zIndex: 10,
         position: 'absolute',
-        // FIXME theme with MUI
-        background: 'rgb(77, 204, 174)',
+        background: theme.palette.common.hackGreen,
         borderRadius: '50% 0 0 50%',
-        top: 'calc(50% - 23px)',
-        right: '12px',
+        top: `calc(50% - ${theme.spacing(3)}px)`,
+        right: 0,
+        // right: 0,
         '&:hover': {
-            background: 'rgb(77, 204, 174)',
+            background: theme.palette.common.hackGreen,
         },
     },
     toolboxToggleButton: {
         zIndex: 10,
         position: 'absolute',
-        // FIXME theme with MUI
-        background: 'rgb(77, 204, 174)',
+        background: theme.palette.common.hackGreen,
         borderRadius: '0 50% 50% 0',
-        top: 'calc(50% - 23px)',
+        top: `calc(50% - ${theme.spacing(3)}px)`,
         left: '0',
         '&:hover': {
-            background: 'rgb(77, 204, 174)',
+            background: theme.palette.common.hackGreen,
         },
     },
     drawer: {
@@ -99,7 +99,6 @@ const useStyles = makeStyles(theme => ({
         width: `calc(100% - ${drawerWidth}px)`,
         height: '100%',
         marginRight: -drawerWidth,
-        background: 'rgb(13, 17, 64)',
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -132,7 +131,7 @@ const useStyles = makeStyles(theme => ({
         pointerEvents: 'none',
     },
     toolbox: {
-        background: 'rgba(13, 17, 64, 0.5)',
+        background: fade(theme.palette.primary.main, 0.4),
         transform: 'rotateY(180deg)',
         backfaceVisibility: 'hidden',
         position: 'absolute',
@@ -147,12 +146,13 @@ const FizzicControls = function () {
     
 }
 
-export default function PersistentDrawerRight() {
+export default function Layout() {
     useScript('main.js');
     useScript('app.js');
 
     const classes = useStyles();
     const theme = useTheme();
+    console.log(theme);
     const [open, setOpen] = React.useState(true);
     const [flipped, setFlipped] = React.useState(false);
 
@@ -189,7 +189,7 @@ export default function PersistentDrawerRight() {
             <IconButton
             color="primary"
             aria-label="open dialogue"
-            edge="end"
+            edge="start"
             onClick={handleDrawerToggle}
             className={classes.dialogueToggleButton}
             >
