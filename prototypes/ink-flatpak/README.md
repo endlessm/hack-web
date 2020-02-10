@@ -12,7 +12,7 @@ Build the flatpak:
 
 Play a `.ink` file in the command line:
 
-    play.sh TheIntercept.ink
+    ./play.sh TheIntercept.ink
 
 Convert a `.ink` file to the JSON bytecode-like format, suitable for
 loading it with an engine (like the inkjs web engine):

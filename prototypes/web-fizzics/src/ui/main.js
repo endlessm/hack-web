@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 import Layout from './layout';
-//import Layout from './layoutFTH';
+// import Layout from './layoutFTH';
 
 function Main() {
     return (

@@ -24,3 +24,30 @@ way we reuse the toy app:
     yarn start
 
 Then navigate to http://localhost:8082/ .
+
+## References
+
+- [Playthrough video](https://youtu.be/4ZafSRwyuFQ?list=PLEu964sQt372gkHvJF3Vk7gKcSDlGalsZ&t=1490) showing the original quest.
+
+- Code of the original quest: [fizzics1.py](https://github.com/endlessm/clubhouse/blob/hack1/eosclubhouse/quests/episode1/fizzics1.py).
+
+## Development
+
+Get Ink variable from javascript:
+
+    quest.story.variablesState['current_level'];
+
+Set Ink variable from javascript:
+
+    quest.story.variablesState['current_level'] = 2;
+
+Observe Ink variable from javascript:
+
+    quest.story.ObserveVariable("current_level", (varName, newValue) => {
+        console.log(`${varName} changed to: ${newValue}`);
+    });
+
+Jump to Ink knot:
+
+    quest.story.ChoosePathString("check_level");
+    quest.story.Continue();
