@@ -24,3 +24,24 @@ way we reuse the toy app:
     yarn start
 
 Then navigate to http://localhost:8082/ .
+
+## Development
+
+Get Ink variable from javascript:
+
+    quest.story.variablesState['current_level'];
+
+Set Ink variable from javascript:
+
+    quest.story.variablesState['current_level'] = 2;
+
+Observe Ink variable from javascript:
+
+    quest.story.ObserveVariable("current_level", (varName, newValue) => {
+        console.log(`${varName} changed to: ${newValue}`);
+    });
+
+Jump to Ink knot:
+
+    quest.story.ChoosePathString("check_level");
+    quest.story.Continue();

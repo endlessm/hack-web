@@ -8,6 +8,11 @@ const colors = {
 
 // Create a theme instance.
 const theme = createMuiTheme({
+    transitions: {
+        duration: {
+          complex: 1000,
+        },
+    },
     palette: {
         common: colors,
         primary: {
