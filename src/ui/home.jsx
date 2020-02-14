@@ -3,34 +3,24 @@ import {
   Container, Typography, ButtonGroup, Button,
 } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import pathwaysType from './types';
+export default () => {
+  const pathways = useSelector((state) => state.pathways);
 
-const Home = ({ pathways }) => (
-  <Container>
-    <Typography variant="h2" component="h1">
-      Hack
-    </Typography>
-    <ButtonGroup
-      orientation="vertical"
-      size="large"
-      color="primary"
-      variant="contained"
-    >
-      {pathways.map((p) => <Button component={RouterLink} to={`/${p.slug}`}>{p.name}</Button>)}
-    </ButtonGroup>
-  </Container>
-);
-
-Home.propTypes = {
-  pathways: pathwaysType.isRequired,
+  return (
+    <Container>
+      <Typography variant="h2" component="h1">
+        Hack
+      </Typography>
+      <ButtonGroup
+        orientation="vertical"
+        size="large"
+        color="primary"
+        variant="contained"
+      >
+        {pathways.map((p) => <Button component={RouterLink} to={`/${p.slug}`}>{p.name}</Button>)}
+      </ButtonGroup>
+    </Container>
+  );
 };
-
-const mapStateToProps = (state) => (
-  {
-    pathways: state.pathways,
-  }
-);
-
-export default connect(mapStateToProps)(Home);
