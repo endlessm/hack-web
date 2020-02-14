@@ -1,0 +1,14 @@
+{
+  "name": "collect-email",
+  "description": "Function to collect user emails",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {},
+  "lambda": {
+    "memorySize": 512,
+    "handler": "index.handler",
+    "role": "arn:aws:iam::912362317370:role/hack-web"
+  },
+  "author": ""
+}

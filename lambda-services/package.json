@@ -1,0 +1,24 @@
+{
+  "name": "hack-web-lambda-services",
+  "version": "0.0.1",
+  "description": "",
+  "lambdaFunctions": [
+    "collect-email"
+  ],
+  "dependencies": {
+    "archiver": "^3.0.0",
+    "aws-sdk": "^2.460.0",
+    "commander": "^2.8.1",
+    "express": "^4.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:endlessm/hack-web"
+  },
+  "scripts": {
+    "test": "./bin/testModules.sh",
+    "deploy": "node bin/deploy.js",
+    "mock-server": "node bin/mockServer.js",
+    "start": "node bin/mockServer.js"
+  }
+}
