@@ -19,6 +19,7 @@
     "prop-types": "^15",
     "react": "^16",
     "react-dom": "^16",
+    "react-facebook-login": "^4.1.1",
     "react-hot-loader": "^4",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",

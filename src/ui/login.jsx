@@ -5,6 +5,7 @@ import {
 import { Link as RouterLink, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import FacebookLogin from 'react-facebook-login';
 
 import { actions } from '../store';
 
@@ -26,7 +27,9 @@ const RequireAuth = ({ children }) => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" style={styles}>
-            Hack Web
+            Hack Web (
+            {auth.username}
+            )
           </Typography>
           <Button color="inherit" onClick={() => dispatch(actions.logout())}>Logout</Button>
         </Toolbar>
@@ -42,9 +45,20 @@ RequireAuth.propTypes = {
 };
 
 const Login = () => {
+  const auth = useSelector((state) => state.auth);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+
+  if (auth.authenticated) {
+    return <Redirect to="/" />;
+  }
+
+  const facebookResponse = (resp) => {
+    if (resp.email) {
+      dispatch(actions.auth(resp.email));
+    }
+  };
 
   return (
     <Container>
@@ -65,6 +79,8 @@ const Login = () => {
           </Grid>
         </Grid>
       </form>
+
+      <FacebookLogin appId="1385025365013417" fields="name,email,picture" callback={facebookResponse} />
 
     </Container>
   );
