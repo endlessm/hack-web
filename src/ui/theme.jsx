@@ -27,6 +27,9 @@ const theme = createMuiTheme({
       // default: colors.deepBlue,
     },
   },
+  custom: {
+    flipToHackPerspective: 1000,
+  },
 });
 
 export default theme;
