@@ -1,0 +1,12 @@
+#!/bin/sh
+source_dir="$(git rev-parse --show-toplevel)"
+build_dir="${source_dir}/tools/.inklecate-build"
+
+if [ ! -d $build_dir/.flatpak-builder/ ]; then
+    $build_dir/build.sh
+fi
+
+flatpak-builder \
+    --run $build_dir/build-dir \
+    $build_dir/inklecate-flatpak/com.inklestudios.inklecate.json \
+    inklecate-wrapper $@
