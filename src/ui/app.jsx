@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import './app.css';
 import 'typeface-roboto';
 
 import theme from './theme';
