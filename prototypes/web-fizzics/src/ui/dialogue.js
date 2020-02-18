@@ -21,162 +21,186 @@ const debugQuest = false || true;
 
 export default function Dialogue(props) {
 
-    /* useEffect(() => {
-     *     // Update the document title using the browser API
-     *     if (window === undefined) return;
-     *     if (window.globalParameters === undefined) return;
-     *     if (window.manuqsetup === undefined) {
-     *         console.log('WINDOW SETUP');
-     *         window.manuqsetup = true;
-     *         window.globalParameters._listeners.push((prop, val) => {
-     *             if (prop == 'currentLevel') {
-     *                 console.log('LEVEL CHANGED', prop, val);
-     *             }
-     *         });
-     *     }
-     * }, []);
-     */
+  /* useEffect(() => {
+   *     // Update the document title using the browser API
+   *     if (window === undefined) return;
+   *     if (window.globalParameters === undefined) return;
+   *     if (window.manuqsetup === undefined) {
+   *         console.log('WINDOW SETUP');
+   *         window.manuqsetup = true;
+   *         window.globalParameters._listeners.push((prop, val) => {
+   *             if (prop == 'currentLevel') {
+   *                 console.log('LEVEL CHANGED', prop, val);
+   *             }
+   *         });
+   *     }
+   * }, []);
+   */
 
-    const onToyAppChanged = (prop, value) => {
-        // console.log('CHANGED', prop, value);
-        if (prop == 'currentLevel') {
-            const questValue = value + 1;
-            if (quest.story.variablesState['current_level'] != questValue) {
-                quest.story.variablesState['current_level'] = questValue;
-                jumpStory();
+  const onToyAppChanged = (prop, value) => {
+    // console.log('CHANGED', prop, value);
+    if (prop == 'currentLevel') {
+      const questValue = value + 1;
+      if (quest.story.variablesState['current_level'] != questValue) {
+        quest.story.variablesState['current_level'] = questValue;
+        // FIXME check hidden option
+        let commandChoice;
+        choices.forEach((c) => {
+          if (isCommandChoice(c)) {
+            const r = c.text.match(/\(wait for: (.*)\)/);
+            if (r === null) {
+              return;
+            } else {
+              if (r[1] === 'current_level') {
+                setCurrentChoice(c);
+              }
+              return;
             }
-        }
-    };
+          }
+        });
+        // jumpStory();
+      }
+    }
+  };
 
-    const onLoad = function () {
-        // Go to level 7
-        window.globalParameters.preset = 6;
+  const onLoad = function () {
+    // Go to level 7
+    window.globalParameters.preset = 6;
 
-        // Connect to game changes
-        window.globalParameters._listeners.push(onToyAppChanged);
+    // Connect to game changes
+    window.globalParameters._listeners.push(onToyAppChanged);
 
-        const gui = new dat.GUI({ autoPlace: false });
+    const gui = new dat.GUI({ autoPlace: false });
 
-        const guiContainer = document.getElementById('toolbox-container');
-        guiContainer.appendChild(gui.domElement);
+    const guiContainer = document.getElementById('toolbox-container');
+    guiContainer.appendChild(gui.domElement);
 
-        for (let i = 0; i <=4; i++) {
-            var folder = gui.addFolder(`Ball ${i}`);
+    for (let i = 0; i <=4; i++) {
+      var folder = gui.addFolder(`Ball ${i}`);
 
-            folder.add(window.globalParameters, `radius_${i}`, window.globalParameters.minRadius, window.globalParameters.maxRadius).listen();
-            folder.add(window.globalParameters, `gravity_${i}`, window.globalParameters.minGravity, window.globalParameters.maxGravity).listen();
-            folder.add(window.globalParameters, `collision_${i}`, window.globalParameters.minCollision, window.globalParameters.maxCollision).listen();
-            folder.add(window.globalParameters, `friction_${i}`, window.globalParameters.minFriction, window.globalParameters.maxFriction).listen();
-            folder.add(window.globalParameters, `usePhysics_${i}`);
-        }
-
-        // minSocialForce: -30.0,
-        // maxSocialForce: 30.0,
-
-        // socialForce_0_0
-        // socialForce_0_1
-        // socialForce_0_2
-        // socialForce_0_3
-        // socialForce_0_4
-
-        // touchDeath_0_0
-        // touchDeath_0_1
-        // touchDeath_0_2
-        // touchDeath_0_3
-        // touchDeath_0_4
-        // deathVisualGood_0
-        // deathVisualBad_0
-        // deathSoundGood_0
-        // deathSoundBad_0
-        // imageIndex_0
+      folder.add(window.globalParameters, `radius_${i}`, window.globalParameters.minRadius, window.globalParameters.maxRadius).listen();
+      folder.add(window.globalParameters, `gravity_${i}`, window.globalParameters.minGravity, window.globalParameters.maxGravity).listen();
+      folder.add(window.globalParameters, `collision_${i}`, window.globalParameters.minCollision, window.globalParameters.maxCollision).listen();
+      folder.add(window.globalParameters, `friction_${i}`, window.globalParameters.minFriction, window.globalParameters.maxFriction).listen();
+      folder.add(window.globalParameters, `usePhysics_${i}`);
     }
 
-    window.addEventListener('load', () => {
+    // minSocialForce: -30.0,
+    // maxSocialForce: 30.0,
 
-        window.ToyApp = {
-            isHackMode: false,
-            runningQuest: '',
+    // socialForce_0_0
+    // socialForce_0_1
+    // socialForce_0_2
+    // socialForce_0_3
+    // socialForce_0_4
 
-            hideToolbox() {
-                // FIXME
-            },
+    // touchDeath_0_0
+    // touchDeath_0_1
+    // touchDeath_0_2
+    // touchDeath_0_3
+    // touchDeath_0_4
+    // deathVisualGood_0
+    // deathVisualBad_0
+    // deathSoundGood_0
+    // deathSoundBad_0
+    // imageIndex_0
+  }
 
-            requestState() {
-                // FIXME
-            },
+  window.addEventListener('load', () => {
 
-            loadNotify() {
-                onLoad();
-            },
+    window.ToyApp = {
+      isHackMode: false,
+      runningQuest: '',
 
-            setHackable(state) {
-                // FIXME
-            },
+      hideToolbox() {
+        // FIXME
+      },
 
-            setAspectRatio(ratio) {
-                // FIXME
-            },
+      requestState() {
+        // FIXME
+      },
 
-            saveState(state) {
-                var string = JSON.stringify(state, (key, value) => {
-                }, 2);
-                // FIXME
-            },
+      loadNotify() {
+        onLoad();
+      },
 
-            quit(msFadeOut = 0) {
-                // FIXME
-            },
+      setHackable(state) {
+        // FIXME
+      },
 
-            showClubhouse(characterName = 'ada') {
-                // FIXME
-            },
-        };
+      setAspectRatio(ratio) {
+        // FIXME
+      },
 
-        window.Sounds = {
-            play(id) {
-                // FIXME
-                console.log(`Sounds.play(${id})`);
-            },
+      saveState(state) {
+        var string = JSON.stringify(state, (key, value) => {
+        }, 2);
+        // FIXME
+      },
 
-            playLoop(id) {
-                // FIXME
-                console.log(`Sounds.playLoop(${id})`);
-            },
+      quit(msFadeOut = 0) {
+        // FIXME
+      },
 
-            updateSound(id, time_ms, props) {
-                // FIXME
-                console.log(`Sounds.updateSound(${id}, ${time_ms}, ${props})`);
-            },
-
-            stop(id) {
-                // FIXME
-                console.log(`Sounds.stop(${id})`);
-            },
-
-            terminate(id) {
-                // FIXME
-                console.log(`Sounds.terminate(${id})`);
-            },
-        };
-
-    });
-
-    const classes = useStyles();
-    const [quest, setQuest] = React.useState();
-    const [dialogues, setDialogues] = React.useState([]);
-    const [choices, setChoices] = React.useState([]);
-    const [currentChoice, setCurrentChoice] = React.useState(null);
-    
-    let messagesEnd;
-
-    const setDialogueChoices = (q = quest) => {
-        const {dialogues, choices} = q.continueStory();
-        setDialogues(oldDialogues => [...oldDialogues, ...dialogues]);
-        setChoices(choices);
+      showClubhouse(characterName = 'ada') {
+        // FIXME
+      },
     };
 
-    useEffect(() => {
-        console.log('quest changed');
+    window.Sounds = {
+      play(id) {
+        // FIXME
+        console.log(`Sounds.play(${id})`);
+      },
+
+      playLoop(id) {
+        // FIXME
+        console.log(`Sounds.playLoop(${id})`);
+      },
+
+      updateSound(id, time_ms, props) {
+        // FIXME
+        console.log(`Sounds.updateSound(${id}, ${time_ms}, ${props})`);
+      },
+
+      stop(id) {
+        // FIXME
+        console.log(`Sounds.stop(${id})`);
+      },
+
+      terminate(id) {
+        // FIXME
+        console.log(`Sounds.terminate(${id})`);
+      },
+    };
+
+  });
+
+  const classes = useStyles();
+  const [quest, setQuest] = React.useState();
+  const [dialogues, setDialogues] = React.useState([]);
+  const [choices, setChoices] = React.useState([]);
+  const [currentChoice, setCurrentChoice] = React.useState(null);
+  
+  let messagesEnd;
+
+  const isCommandChoice = (choice) => {
+    return (choice.text.charAt(0) === '(' &&
+            choice.text.charAt(choice.text.length-1) === ')');
+  }
+
+  const setDialogueChoices = (q = quest) => {
+    const {dialogues, choices} = q.continueStory();
+    setDialogues(oldDialogues => [...oldDialogues, ...dialogues]);
+    if (debugQuest) {
+      setChoices(choices);
+    } else {
+      setChoices(choices.filter(c => !isCommandChoice(c)));
+    }
+  };
+
+  useEffect(() => {
+    console.log('quest changed');
         async function setupQuest() {
             console.log('quest setup');
             const quest = new Quest('fizzics1.ink.json');
@@ -220,10 +244,10 @@ export default function Dialogue(props) {
 
     useEffect(scrollToBottom, [dialogues]);
 
-    const jumpStory = () => {
-        quest.story.ChoosePathString("check_level");
-        setDialogueChoices();
-        setCurrentChoice(null);
+    const jumpStory = (nextPathString = "check_level") => {
+        // quest.story.ChoosePathString(nextPathString);
+        // setDialogueChoices();
+        // setCurrentChoice(null);
     };
 
     useEffect(() => {
