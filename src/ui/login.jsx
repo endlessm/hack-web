@@ -98,6 +98,7 @@ const Login = () => {
       </form>
 
       <Button component={RouterLink} to="/signup">Sign up</Button>
+      <Button component={RouterLink} to="/reset-password">Forgot password</Button>
 
     </Container>
   );

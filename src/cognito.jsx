@@ -94,9 +94,31 @@ function logout() {
   }
 }
 
+function resetPassword(username) {
+  const user = getUser(username);
+  return new Promise((resolve, reject) => {
+    user.forgotPassword({
+      onSuccess: (result) => resolve(result),
+      onFailure: (err) => reject(err),
+    });
+  });
+}
+
+function confirmPassword(username, verificationCode, newPassword) {
+  const user = getUser(username);
+  return new Promise((resolve, reject) => {
+    user.confirmPassword(verificationCode, newPassword, {
+      onSuccess: (result) => resolve(result),
+      onFailure: (err) => reject(err),
+    });
+  });
+}
+
 export {
   signup,
   login,
   logout,
   getUser,
+  resetPassword,
+  confirmPassword,
 };
