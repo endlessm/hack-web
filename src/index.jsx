@@ -9,6 +9,7 @@ import store from './store';
 
 import App from './ui/app';
 // import App from './ui/test/flip-to-hack.test';
+// import App from './ui/test/quest-fth-view.test';
 
 render(
   <Provider store={store}>
