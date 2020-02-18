@@ -14,6 +14,7 @@ import theme from './theme';
 import Home from './home';
 import Pathway from './pathway';
 import Login, { RequireAuth } from './login';
+import SignUp from './signup';
 
 const App = () => {
   const pathways = useSelector((state) => state.pathways);
@@ -25,6 +26,9 @@ const App = () => {
         <Switch>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
           </Route>
           {pathways.map((p) => (
             <Route path={`/${p.slug}`}>

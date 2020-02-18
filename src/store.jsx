@@ -15,10 +15,18 @@ function authReducer(state = {}, action) {
   switch (action.type) {
     case 'AUTH': {
       const { username } = action.payload;
-      return { ...state, authenticated: true, username };
+      return {
+        ...state,
+        authenticated: true,
+        username,
+      };
     }
     case 'LOGOUT':
-      return { ...state, authenticated: false, username: false };
+      return {
+        ...state,
+        authenticated: false,
+        username: null,
+      };
     default:
       return state;
   }
