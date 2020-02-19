@@ -1,0 +1,3 @@
+[submodule "tools/inklecate-flatpak"]
+	path = tools/.inklecate-build/inklecate-flatpak
+	url = git@github.com:manuq/inklecate-flatpak.git

@@ -108,3 +108,7 @@ dist
 
 # Neutrino build directory
 build
+
+# Flatpak build directory
+.flatpak-builder/
+/tools/.inklecate-build/build-dir/
