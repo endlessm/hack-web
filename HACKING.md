@@ -103,3 +103,12 @@ with:
 
 The `-f` is because we use git submodules, and by default git prevents
 removing worktrees with submodules inside.
+
+## Settings for Development Mode
+
+You can pass environment variables to `yarn start` to try different
+things.
+
+### Testing login
+
+    TEST_AUTH=true yarn start

@@ -16,6 +16,12 @@ const RequireAuth = ({ children }) => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  const fakeAuth = process.env.NODE_ENV === 'development' && !(CONFIG.testAuth);
+
+  if (!auth.authenticated && fakeAuth) {
+    dispatch(actions.auth('test user'));
+  }
+
   const callback = () => {
     logout(auth.username);
     dispatch(actions.logout());
