@@ -10,7 +10,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
-    "test": "jest",
+    "test": "jest --rootDir test/",
     "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test"
   },
   "dependencies": {
