@@ -7,10 +7,9 @@ import {
   Route,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
-import './app.css';
 import 'typeface-roboto';
 
+import './app.css';
 import theme from './theme';
 import Home from './home';
 import Pathway from './pathway';
