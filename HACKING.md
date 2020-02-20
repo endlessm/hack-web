@@ -67,3 +67,39 @@ You can also fix linting problems with:
 To run the test suite:
 
     yarn test
+
+## Tip: working with multiple branches
+
+If you switch branches often, you will find that the `node_modules/`
+directory gets inconsistent, and you have to run `yarn install` over
+and over again. Luckily, git has a feature that supports this use
+case, called `git worktree`. It allows you to have multiple checkouts
+in different directories (called working trees). For instance, at one
+point you could have:
+
+    hack-web/        # the main working tree, in master
+    hack-web-wip/    # a linked working tree with a WIP branch
+    hack-web-T29373/ # a linked working tree for testing the remote branch T29373
+
+To add a working tree, pass the new directory name and the branch
+name. For example, this will create a working tree for testing the
+remote branch `origin/T29373`:
+
+    git worktree add ../hack-web-T29373 origin/T29373
+    cd ../hack-web-T29373
+    yarn install
+
+With working trees, you can even run two versions of the app in
+parallel, passing the port to `yarn start`:
+
+    cd ../hack-web-T29373
+    yarn start --port 5001
+
+Once you are done with the linked working tree, you can remove it
+with:
+
+    cd ../hack-web
+    git worktree remove -f ../hack-web-T29373
+
+The `-f` is because we use git submodules, and by default git prevents
+removing worktrees with submodules inside.
