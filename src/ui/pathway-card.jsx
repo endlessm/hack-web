@@ -3,10 +3,10 @@ import { Link as RouterLink } from 'react-router-dom';
 import {
   Typography, Button, Card, CardContent, CardActionArea, CardMedia, CardActions,
 } from '@material-ui/core';
-
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import theme from './theme';
+
+import { pathwayType } from './types';
 
 const useStyles = makeStyles({
   root: {
@@ -101,11 +101,7 @@ const PathwayCard = ({ pathway }) => {
 };
 
 PathwayCard.propTypes = {
-  pathway: PropTypes.shape({
-    slug: PropTypes.string,
-    name: PropTypes.string,
-    description: PropTypes.string,
-  }).isRequired,
+  pathway: pathwayType.isRequired,
 };
 
 export default PathwayCard;
