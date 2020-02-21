@@ -14,6 +14,9 @@ module.exports = {
       eslint: {
         baseConfig: {
           plugins: ['unused-imports'],
+          globals: {
+            CONFIG: true,
+          },
           rules: {
             'no-unused-vars': 'off',
             'unused-imports/no-unused-imports': 2,
