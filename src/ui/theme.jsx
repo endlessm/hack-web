@@ -30,6 +30,17 @@ const theme = createMuiTheme({
   custom: {
     flipToHackPerspective: 1000,
   },
+  difficultyBar: {
+    easy: {
+      colors: ['#37DCB1', '#00E718'],
+    },
+    medium: {
+      colors: ['#EFBE2D', '#FF6B00'],
+    },
+    hard: {
+      colors: ['#F92781', '#FF0000'],
+    },
+  },
 });
 
 export default theme;

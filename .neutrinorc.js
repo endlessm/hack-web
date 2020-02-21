@@ -37,6 +37,10 @@ module.exports = {
           from: 'src/pathways',
           to: 'assets/pathways',
         },
+        {
+          from: 'src/quests',
+          to: 'assets/quests',
+        },
       ],
     }),
   ],

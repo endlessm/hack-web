@@ -36,7 +36,7 @@ const App = () => {
           </Route>
           {pathways.map((p) => (
             <Route path={`/${p.slug}`}>
-              <RequireAuth><Pathway name={p.name} /></RequireAuth>
+              <RequireAuth><Pathway slug={p.slug} /></RequireAuth>
             </Route>
           ))}
           <Route path="/">
