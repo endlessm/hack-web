@@ -4587,6 +4587,11 @@ ini@^1.3.4, ini@^1.3.5:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
 
+inkjs@^1.10.3:
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/inkjs/-/inkjs-1.10.3.tgz#7604eda1925cecc545c13aa9661a9a7ac8fb4082"
+  integrity sha512-ArK+G80G/k+ONVuZY5pY72pyGN7Ro5vSkk8nbM45dlkYX0v9bSH0tvYPYeychV6Q2EbFWHDJU45a7uUeLI1Tyg==
+
 inquirer@^7.0.0:
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.0.4.tgz#99af5bde47153abca23f5c7fc30db247f39da703"
