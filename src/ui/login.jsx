@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Container, Typography, Button, TextField, Grid, AppBar, Toolbar,
+  Container, Typography, Button, TextField, Grid, AppBar, Toolbar, Box,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { Link as RouterLink, Redirect } from 'react-router-dom';
@@ -12,7 +12,7 @@ import { login, logout, getUser } from '../cognito';
 import { actions } from '../store';
 
 export
-const RequireAuth = ({ children }) => {
+const RequireAuth = ({ children, inner }) => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -42,22 +42,30 @@ const RequireAuth = ({ children }) => {
 
   return (
     <div>
-      <AppBar position="static">
+      <AppBar>
         <Toolbar>
           <Typography variant="h6" style={styles}>
             Hack Web
           </Typography>
           <Button color="inherit" onClick={callback}>Logout</Button>
         </Toolbar>
+        <Box>
+          {inner}
+        </Box>
       </AppBar>
-
+      <Toolbar />
       {children}
     </div>
   );
 };
 
+RequireAuth.defaultProps = {
+  inner: (<></>),
+};
+
 RequireAuth.propTypes = {
   children: PropTypes.instanceOf(Object).isRequired,
+  inner: PropTypes.element,
 };
 
 const Login = () => {
