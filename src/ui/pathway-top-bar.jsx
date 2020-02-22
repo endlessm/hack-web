@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: '100% auto',
   },
   toolbar: {
-    height: '12em',
+    minHeight: '12em',
   },
   topBarSpace: {
     flexGrow: 1,

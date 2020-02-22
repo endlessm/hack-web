@@ -37,14 +37,16 @@ const RequireAuth = ({ children, inner }) => {
   }
 
   const styles = {
-    flexGrow: 1,
+    title: { flexGrow: 1 },
+    wrapper: { height: '100%', display: 'flex', flexDirection: 'column' },
   };
 
+
   return (
-    <div>
+    <div style={styles.wrapper}>
       <AppBar>
         <Toolbar>
-          <Typography variant="h6" style={styles}>
+          <Typography variant="h6" style={styles.title}>
             Hack Web
           </Typography>
           <Button color="inherit" onClick={callback}>Logout</Button>
