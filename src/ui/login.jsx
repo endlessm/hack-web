@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {
-  Container, Typography, Button, TextField, Grid, AppBar, Toolbar,
+  Container, Typography, Button, TextField, Grid,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { Link as RouterLink, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { login, logout, getUser } from '../cognito';
+import { login, getUser } from '../cognito';
 
 import { actions } from '../store';
 
@@ -22,11 +22,6 @@ const RequireAuth = ({ children }) => {
     dispatch(actions.auth('test user'));
   }
 
-  const callback = () => {
-    logout(auth.username);
-    dispatch(actions.logout());
-  };
-
   const user = getUser();
   if (!auth.authenticated) {
     if (user) {
@@ -36,24 +31,7 @@ const RequireAuth = ({ children }) => {
     }
   }
 
-  const styles = {
-    flexGrow: 1,
-  };
-
-  return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" style={styles}>
-            Hack Web
-          </Typography>
-          <Button color="inherit" onClick={callback}>Logout</Button>
-        </Toolbar>
-      </AppBar>
-
-      {children}
-    </div>
-  );
+  return children;
 };
 
 RequireAuth.propTypes = {

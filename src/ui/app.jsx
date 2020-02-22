@@ -17,6 +17,7 @@ import Login, { RequireAuth } from './login';
 import SignUp from './signup';
 import ResetPassword from './reset';
 
+
 const App = () => {
   const pathways = useSelector((state) => state.pathways);
 
@@ -36,7 +37,9 @@ const App = () => {
           </Route>
           {pathways.map((p) => (
             <Route path={`/${p.slug}`}>
-              <RequireAuth><Pathway slug={p.slug} /></RequireAuth>
+              <RequireAuth>
+                <Pathway slug={p.slug} />
+              </RequireAuth>
             </Route>
           ))}
           <Route path="/">
