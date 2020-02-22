@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: '100% auto',
   },
   toolbar: {
-    height: '14em',
+    minHeight: '14em',
   },
   titleBox: {
     height: '10em',

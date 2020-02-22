@@ -14,7 +14,7 @@ import QuestCard from './quest-card';
 const useStyles = makeStyles({
   grid: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
 });
 

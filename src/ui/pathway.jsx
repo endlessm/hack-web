@@ -14,6 +14,12 @@ import ImageMainBg from './home-background-main.jpg';
 
 const useStyles = makeStyles({
   root: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  content: {
+    flex: 1,
     maxWidth: '100%',
     margin: 0,
     padding: 0,
@@ -44,6 +50,7 @@ const useStyles = makeStyles({
     backgroundSize: 'cover',
     padding: '4em 0',
     display: 'flex',
+    flex: 1,
   },
 });
 
@@ -53,16 +60,16 @@ const Pathway = ({ slug }) => {
   const pathway = pathways.find((p) => slug === p.slug);
 
   return (
-    <>
+    <Box className={classes.root}>
       <PathwayTopBar pathway={pathway} />
-      <Container className={classes.root}>
+      <Container className={classes.content}>
         <Box className={classes.cardsBox}>
           <Container fixed>
             <QuestCardGrid pathway={pathway} quests={pathway.quests} />
           </Container>
         </Box>
       </Container>
-    </>
+    </Box>
   );
 };
 
