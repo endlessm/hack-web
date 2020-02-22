@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Box, Toolbar } from '@material-ui/core';
 import PropTypes from 'prop-types';
@@ -24,6 +25,19 @@ const useStyles = makeStyles((theme) => ({
   },
   topBarSpace: {
     flexGrow: 1,
+    position: 'relative',
+  },
+  characterBg: {
+    backgroundImage: ({ pathway }) => `url('/assets/pathways/${pathway.slug}-header.png')`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'right',
+    backgroundSize: 'auto 100%',
+    margin: '0 1.5em',
+    left: 0,
+    bottom: 0,
+    right: 0,
+    top: 0,
+    position: 'absolute',
   },
   titleBox: {
     height: '10em',
@@ -38,11 +52,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PathwayTopBar = ({ children, pathway }) => {
-  const classes = useStyles();
+  const classes = useStyles({ pathway });
 
   const innerBar = () => (
     <Box className={classes.topBarBox}>
-      <Box className={classes.topBarSpace} />
+      <Box className={classes.topBarSpace}>
+        <div className={classes.characterBg} />
+      </Box>
       <Box className={classes.titleBox}>
         <Typography variant="h3">
           <Box fontWeight="fontWeightMedium">
