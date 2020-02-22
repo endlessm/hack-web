@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar, Typography, Box, Toolbar,
@@ -20,6 +21,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `linear-gradient(270deg, ${fade(theme.palette.primary.main, 0.5)}, ${fade(theme.palette.secondary.main, 0.5)})`,
     backgroundSize: '100% auto',
   },
+  characterBg: {
+    backgroundImage: ({ pathway }) => `url('/assets/pathways/${pathway.slug}-header.png')`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'right',
+    backgroundSize: 'auto 100%',
+    margin: '0 1.5em',
+    width: 142,
+  },
   toolbar: {
     minHeight: '14em',
   },
@@ -36,12 +45,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PathwayTopBar = ({ pathway }) => {
-  const classes = useStyles();
+  const classes = useStyles({ pathway });
 
   return (
     <>
       <AppBar>
         <Box className={classes.topBarBox}>
+          <div className={classes.characterBg} />
           <Box className={classes.titleBox}>
             <Typography variant="h3">
               <Box fontWeight="fontWeightMedium">
