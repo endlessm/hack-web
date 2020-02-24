@@ -83,7 +83,7 @@ const initialState = {
       slug: 'os',
       name: 'OS',
       description: 'This is a category description.',
-      quests: dummyQuestList,
+      quests: dummyQuestList.slice(0, 5),
     },
   ],
 };

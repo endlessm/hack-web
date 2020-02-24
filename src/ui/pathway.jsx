@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 import PathwayTopBar from './pathway-top-bar';
 import QuestCardGrid from './quest-card-grid';
+import PathwayOSIFrame from './pathway-os-iframe';
 import ImageHeaderBg from './home-background-header.jpg';
 import ImageMainBg from './home-background-main.jpg';
 
@@ -68,6 +69,7 @@ const Pathway = ({ slug }) => {
             <QuestCardGrid pathway={pathway} quests={pathway.quests} />
           </Container>
         </Box>
+        {pathway.slug === 'os' && <PathwayOSIFrame />}
       </Container>
     </Box>
   );
