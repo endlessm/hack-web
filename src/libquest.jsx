@@ -47,8 +47,12 @@ export default class Quest {
         text: this.story.Continue(),
         character: extractLineCharacter(this.story.currentTags) || this.mainCharacter,
       };
-      dialogue = [...dialogue, d];
-      this.dialogueId += 1;
+
+      // avoid empty dialogue messages
+      if (d.text.trim()) {
+        dialogue = [...dialogue, d];
+        this.dialogueId += 1;
+      }
     }
 
     let choices = [];
