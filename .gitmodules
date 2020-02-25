@@ -1,3 +1,7 @@
 [submodule "tools/inklecate-flatpak"]
 	path = tools/.inklecate-build/inklecate-flatpak
 	url = git@github.com:manuq/inklecate-flatpak.git
+[submodule "hack-toy-apps"]
+	path = hack-toy-apps
+	url = git@github.com:endlessm/hack-toy-apps.git
+	branch = fizzics-phaser-port-container

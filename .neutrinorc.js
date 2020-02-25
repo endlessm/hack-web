@@ -43,6 +43,10 @@ module.exports = {
           from: 'src/quests',
           to: 'assets/quests',
         },
+        {
+          from: 'hack-toy-apps/com.hack_computer.Fizzics/app',
+          to: 'apps/com.hack_computer.Fizzics/',
+        },
       ],
     }),
     (neutrino) => {
