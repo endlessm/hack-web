@@ -31,11 +31,13 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     opacity: 0,
+    pointerEvents: 'none',
     transition: `opacity ${theme.transitions.duration.complex / 2}ms`,
     transitionTimingFunction: 'steps(1, end)',
   },
   toolboxWhenFlipped: {
     opacity: 1,
+    pointerEvents: 'auto',
   },
   canvas: {
     position: 'absolute',
