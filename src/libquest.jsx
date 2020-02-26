@@ -1,29 +1,23 @@
 import { Story } from 'inkjs';
 
 const defaultCharacter = 'ada';
+const mainCharacterRegex = /main character: (.*)/;
+const lineCharacterRegex = /character: (.*)/;
 
-const extractMainCharacter = (globalTags) => {
-  if (!globalTags) return defaultCharacter;
-  for (let i = 0; i < globalTags.length; i += 1) {
-    const tag = globalTags[i];
-    const result = tag.match(/main character: (.*)/);
-    if (result) {
-      return result[1];
-    }
-  }
-  return defaultCharacter;
+const extractInfoFromTags = (tags, regex, defaultValue = null) => {
+  if (!tags) return defaultValue;
+  const tag = tags.find((t) => regex.test(t));
+  if (!tag) return defaultValue;
+  return tag.match(regex)[1];
 };
 
-const extractLineCharacter = (currentTags) => {
-  for (let i = 0; i < currentTags.length; i += 1) {
-    const tag = currentTags[i];
-    const result = tag.match(/character: (.*)/);
-    if (result) {
-      return result[1];
-    }
-  }
-  return null;
-};
+const extractMainCharacter = (globalTags) => (
+  extractInfoFromTags(globalTags, mainCharacterRegex, defaultCharacter)
+);
+
+const extractLineCharacter = (currentTags) => (
+  extractInfoFromTags(currentTags, lineCharacterRegex, null)
+);
 
 const extractWaitForVariables = (choiceText) => {
   const result = choiceText.match(/\(wait for: (.*)\)/);
