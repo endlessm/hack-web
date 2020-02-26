@@ -39,6 +39,16 @@ function pathwaysReducer(state = [], action) {
   }
 }
 
+// TODO: Fake data. Remove this later.
+const dummyQuest = {
+  slug: 'blender',
+  name: 'Sidetrack #1 - Robots and Pits',
+  description: 'Riley, one of your classmates, can\'t wait to meet you and tell you everything about the Academy.',
+  subtitle: 'What you\'ll do?',
+  difficulty: 'medium',
+};
+const dummyQuestList = [...Array(10).keys()].map(() => dummyQuest);
+
 const initialState = {
   auth: {
     authenticated: false,
@@ -49,28 +59,31 @@ const initialState = {
       slug: 'games',
       name: 'Games',
       description: 'This is a category description.',
+      quests: dummyQuestList,
     },
     {
       slug: 'art',
       name: 'Art',
       description: 'This is a category description.',
-
+      quests: dummyQuestList,
     },
     {
       slug: 'web',
       name: 'Web',
       description: 'This is a category description.',
-
+      quests: dummyQuestList,
     },
     {
       slug: 'maker',
       name: 'Maker',
       description: 'This is a category description.',
+      quests: dummyQuestList,
     },
     {
       slug: 'os',
       name: 'OS',
       description: 'This is a category description.',
+      quests: dummyQuestList.slice(0, 5),
     },
   ],
 };
