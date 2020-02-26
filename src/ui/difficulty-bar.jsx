@@ -21,12 +21,12 @@ const useStyles = makeStyles({
   bar: {
     flexGrow: ({ difficulty }) => barProportions[difficulty],
     backgroundImage: ({ difficulty }) => {
-      const { colors } = theme.difficultyBar[difficulty];
+      const { colors } = theme.custom.difficultyBar[difficulty];
       return `linear-gradient(to right, ${colors[0]}, ${colors[1]})`;
     },
   },
   space: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.paper,
     flexGrow: ({ difficulty }) => Object.keys(barProportions).length - barProportions[difficulty],
   },
   overlayBox: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles({
     height: '100%',
   },
   separator: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.paper,
     width: '0.2em',
   },
   empty: {

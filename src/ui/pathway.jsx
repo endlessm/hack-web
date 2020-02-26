@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import {
   Container, Box,
 } from '@material-ui/core';
@@ -9,11 +10,10 @@ import PropTypes from 'prop-types';
 import PathwayTopBar from './pathway-top-bar';
 import QuestCardGrid from './quest-card-grid';
 import PathwayOSIFrame from './pathway-os-iframe';
-import ImageHeaderBg from './home-background-header.jpg';
 import ImageMainBg from './home-background-main.jpg';
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
     display: 'flex',
@@ -26,9 +26,6 @@ const useStyles = makeStyles({
     padding: 0,
     display: 'flex',
     flexDirection: 'column',
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${ImageHeaderBg}')`,
-    backgroundSize: '100%',
-    backgroundPosition: 'bottom',
   },
   titleBox: {
     height: '10em',
@@ -38,14 +35,14 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-center',
-    color: 'white',
+    color: 'red',
   },
   pathwayCard: {
     margin: '0 1em',
   },
   cardsBox: {
     width: '100%',
-    background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${ImageMainBg}')`,
+    backgroundImage: `linear-gradient(${fade(theme.palette.common.black, 0.5)}, ${fade(theme.palette.common.black, 0.5)}), url('${ImageMainBg}')`,
     backgroundAttachment: 'fixed',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
@@ -53,7 +50,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flex: 1,
   },
-});
+}));
 
 const Pathway = ({ slug }) => {
   const classes = useStyles();

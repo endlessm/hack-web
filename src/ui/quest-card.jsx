@@ -20,13 +20,13 @@ const useStyles = makeStyles({
     backgroundSize: '100% 100%',
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    borderColor: 'white',
+    borderColor: theme.palette.common.white,
     borderStyle: 'solid',
     borderRadius: '1em',
     borderWidth: 0,
     position: 'relative',
     margin: '0.5em',
-    transition: 'margin 0.5s ease',
+    transition: `margin ${theme.transitions.duration.standard}ms ease`,
   },
   rootExpanded: {
     margin: '0 0.5em',
@@ -40,13 +40,13 @@ const useStyles = makeStyles({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    transition: 'transform 0.5s linear',
+    transition: `transform ${theme.transitions.duration.standard}ms linear`,
   },
   backgroundBoxExpanded: {
     transform: 'scale(1.2)',
   },
   cardContent: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.paper,
     zIndex: 1,
   },
   difficultyBar: {
@@ -62,7 +62,7 @@ const useStyles = makeStyles({
   collapsableBox: {
     display: 'flex',
     flexDirection: 'column',
-    transition: 'max-height 0.5s linear, padding 0.5s linear',
+    transition: `max-height ${theme.transitions.duration.standard}ms linear, padding ${theme.transitions.duration.standard}ms linear`,
     maxHeight: 0,
     overflow: 'hidden',
   },
@@ -71,11 +71,12 @@ const useStyles = makeStyles({
     maxHeight: '16em',
   },
   button: {
-    backgroundColor: theme.palette.primary.main,
     borderRadius: '1em',
     padding: '0 1em',
-    color: 'white',
+    // FIXME is changing from primary color to secondary colors on
+    // hover part of the spec?
     '&:hover': {
+      color: theme.palette.secondary.contrastText,
       backgroundColor: theme.palette.secondary.main,
     },
   },
@@ -92,7 +93,7 @@ const useStyles = makeStyles({
   },
   difficultySubBar: {
     backgroundImage: ({ quest }) => {
-      const { colors } = theme.difficultyBar[quest.difficulty];
+      const { colors } = theme.custom.difficultyBar[quest.difficulty];
       return `linear-gradient(to right, ${colors[0]}, ${colors[1]})`;
     },
     height: '0.5em',
@@ -121,7 +122,7 @@ const QuestCard = ({ pathway, quest }) => {
     >
       <Box className={clsx(classes.backgroundBox, expanded && classes.backgroundBoxExpanded)} />
       {!expanded
-        && <DifficultyBar difficulty={quest.difficulty} className={classes.difficultyBar} />}
+      && <DifficultyBar difficulty={quest.difficulty} className={classes.difficultyBar} />}
       <CardContent className={classes.cardContent}>
         <Typography className={classes.title} gutterBottom component="p">
           { `${quest.name}` }
@@ -140,7 +141,9 @@ const QuestCard = ({ pathway, quest }) => {
           <CardActions className={classes.cardActions}>
             <Button
               size="small"
+              variant="contained"
               color="primary"
+              disableElevation
               className={classes.button}
               component={RouterLink}
               to={`/${quest.slug}`}
