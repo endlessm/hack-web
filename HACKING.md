@@ -112,3 +112,15 @@ with:
 
 The `-f` is because we use git submodules, and by default git prevents
 removing worktrees with submodules inside.
+
+## Styling
+
+We rely on the theme as much as possible for styling the UI. Please
+see the [material-ui](https://material-ui.com/) documentation for
+further information. Here is a quick check-list:
+
+- [ ] Use `theme.pallete` for [colors](https://material-ui.com/customization/color/#color).
+- [ ] Use `theme.transitions` for [transitions](https://material-ui.com/components/transitions/#transitions).
+- [ ] Use `theme.spacing` for [spacing](https://material-ui.com/system/spacing/#spacing).
+- [ ] Use `theme.palette.common` for Hack-specific colors.
+- [ ] Use `theme.custom` for other Hack-specific values.
