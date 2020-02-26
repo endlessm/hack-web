@@ -47,6 +47,10 @@ module.exports = {
           from: 'hack-toy-apps/com.hack_computer.Fizzics/app',
           to: 'apps/com.hack_computer.Fizzics/',
         },
+        {
+          from: 'src/ui/toolbox/assets',
+          to: 'assets/toolbox',
+        },
       ],
     }),
     (neutrino) => {

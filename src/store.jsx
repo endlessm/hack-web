@@ -9,6 +9,14 @@ const actions = {
     },
   }),
   logout: () => ({ type: 'LOGOUT' }),
+  gameSet: (data) => ({
+    type: 'SET',
+    payload: data,
+  }),
+  gameSetParam: (key, value) => ({
+    type: 'SET-PARAM',
+    payload: { key, value },
+  }),
 };
 
 function authReducer(state = {}, action) {
@@ -34,6 +42,20 @@ function authReducer(state = {}, action) {
 
 function pathwaysReducer(state = [], action) {
   switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+function gameReducer(state = {}, action) {
+  switch (action.type) {
+    case 'SET': {
+      return { ...action.payload };
+    }
+    case 'SET-PARAM': {
+      const { key, value } = action.payload;
+      return { ...state, [key]: value };
+    }
     default:
       return state;
   }
@@ -86,11 +108,13 @@ const initialState = {
       quests: dummyQuestList.slice(0, 5),
     },
   ],
+  game: {},
 };
 
 const store = createStore(combineReducers({
   auth: authReducer,
   pathways: pathwaysReducer,
+  game: gameReducer,
 }), initialState);
 
 export default store;
