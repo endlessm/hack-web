@@ -1,10 +1,10 @@
 # Hacking hack-web
-
-## Setup
+## Development
+### Setup
 
     yarn install
 
-### Installing NodeJS in Endless OS:
+#### Installing NodeJS in Endless OS:
 
 Go to [the NodeJS download page](https://nodejs.org/en/download/) and
 download the correct "Linux Binaries" package for your system. Most
@@ -21,7 +21,7 @@ the following line to your `~/.bashrc` file:
 
 In the terminal, log in and log out for the changes to take effect.
 
-### Installing Yarn in Endless OS
+#### Installing Yarn in Endless OS
 
 Download the Yarn package:
 
@@ -44,7 +44,7 @@ Edit your `~/.bashrc` profile to add the following path:
 
 In the terminal, log in and log out for the changes to take effect.
 
-## Develop
+### Run, test, build
 
 To run the app locally in development mode:
 
@@ -68,7 +68,16 @@ To run the test suite:
 
     yarn test
 
-## Tip: working with multiple branches
+### Settings for Development Mode
+
+You can pass environment variables to `yarn start` to try different
+things.
+
+Testing login:
+
+    TEST_AUTH=true yarn start
+
+### Tip: working with multiple branches
 
 If you switch branches often, you will find that the `node_modules/`
 directory gets inconsistent, and you have to run `yarn install` over
@@ -103,12 +112,3 @@ with:
 
 The `-f` is because we use git submodules, and by default git prevents
 removing worktrees with submodules inside.
-
-## Settings for Development Mode
-
-You can pass environment variables to `yarn start` to try different
-things.
-
-### Testing login
-
-    TEST_AUTH=true yarn start
