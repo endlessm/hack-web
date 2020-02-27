@@ -16,6 +16,9 @@ const theme = createMuiTheme({
     common: colors,
     primary: {
       main: colors.hackGreen,
+      // FIXME: the computed contrast for our green is black, but we
+      // are setting it to white.
+      contrastText: '#fff',
     },
     secondary: {
       main: colors.deepBlue,
@@ -29,16 +32,17 @@ const theme = createMuiTheme({
   },
   custom: {
     flipToHackPerspective: 1000,
-  },
-  difficultyBar: {
-    easy: {
-      colors: ['#37DCB1', '#00E718'],
-    },
-    medium: {
-      colors: ['#EFBE2D', '#FF6B00'],
-    },
-    hard: {
-      colors: ['#F92781', '#FF0000'],
+    landingTitleGradientDirection: 270,
+    difficultyBar: {
+      easy: {
+        colors: ['#37DCB1', '#00E718'],
+      },
+      medium: {
+        colors: ['#EFBE2D', '#FF6B00'],
+      },
+      hard: {
+        colors: ['#F92781', '#FF0000'],
+      },
     },
   },
 });

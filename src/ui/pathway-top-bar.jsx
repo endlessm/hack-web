@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     margin: '2em 0',
-    backgroundImage: `linear-gradient(270deg, ${fade(theme.palette.primary.main, 0.5)}, ${fade(theme.palette.secondary.main, 0.5)})`,
+    backgroundImage: `linear-gradient(${theme.custom.landingTitleGradientDirection}deg, ${fade(theme.palette.primary.main, 0.5)}, ${fade(theme.palette.secondary.main, 0.5)})`,
     backgroundSize: '100% auto',
   },
   navButton: {
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-center',
-    color: 'white',
+    color: theme.palette.secondary.contrastText,
   },
 }));
 

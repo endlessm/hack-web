@@ -18,9 +18,10 @@ const useStyles = makeStyles({
       : `url('/assets/pathways/${pathway.slug}-card-unexpanded.png')`),
     backgroundRepeat: 'no reapeat',
     backgroundSize: '100% 100%',
-    borderColor: 'white',
+    borderColor: theme.palette.common.white,
     borderStyle: 'solid',
     borderRadius: '1em',
+    // FIXME this should be an asset:
     boxShadow: (
       'inset 0 0 0.6em gray,'
       + '0 0 0 0.15em gray,'
@@ -37,8 +38,10 @@ const useStyles = makeStyles({
     backgroundColor: theme.palette.primary.main,
     borderRadius: '1em',
     padding: '0 1em',
-    color: 'white',
+    // FIXME is changing from primary color to secondary colors on
+    // hover part of the spec?
     '&:hover': {
+      color: theme.palette.secondary.contrastText,
       backgroundColor: theme.palette.secondary.main,
     },
   },
@@ -86,7 +89,9 @@ const PathwayCard = ({ pathway }) => {
           <CardActions className={classes.actions}>
             <Button
               size="small"
+              variant="contained"
               color="primary"
+              disableElevation
               className={classes.button}
               component={RouterLink}
               to={`/${pathway.slug}`}

@@ -20,14 +20,15 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${ImageHeaderBg}')`,
+    // FIXME remove the linear-gradient, it should be part of the asset.
+    backgroundImage: `linear-gradient(${fade(theme.palette.common.black, 0.5)}, ${fade(theme.palette.common.black, 0.5)}), url('${ImageHeaderBg}')`,
     backgroundSize: '100%',
     backgroundPosition: 'bottom',
     width: '100%',
     height: '100%',
   },
   titleBox: {
-    backgroundImage: `linear-gradient(270deg, ${fade(theme.palette.primary.main, 0.5)} 75%, rgba(0, 0, 0, 0.0)), url('${ImageMainBg}')`,
+    backgroundImage: `linear-gradient(${theme.custom.landingTitleGradientDirection}deg, ${fade(theme.palette.primary.main, 0.5)} 75%, transparent), url('${ImageMainBg}')`,
     backgroundSize: '100% auto',
     width: '100%',
     height: '35em',
@@ -39,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: '2em 0',
     borderStyle: 'solid',
     borderColor: theme.palette.primary.main,
-    color: 'white',
+    color: theme.palette.secondary.contrastText,
     boxShadow:
-      'inset 0em 1em 1em -1em black,'
-      + 'inset 0 -1em 1em -1em black',
+           `inset 0em 1em 1em -1em ${theme.palette.common.black},`
+           + `inset 0 -1em 1em -1em ${theme.palette.common.black}`,
   },
   cardsBox: {
     display: 'flex',
