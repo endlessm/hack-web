@@ -67,7 +67,9 @@ const useStyles = makeStyles((theme) => {
 });
 
 
-const QuestFTHView = ({ toolbox, canvas, sidebar }) => {
+const QuestFTHView = ({
+  toolbox, canvas, sidebar, onFlipped,
+}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [flipped, setFlipped] = React.useState(false);
@@ -78,6 +80,9 @@ const QuestFTHView = ({ toolbox, canvas, sidebar }) => {
 
   const toggleFlip = () => {
     setFlipped(!flipped);
+    if (onFlipped) {
+      onFlipped(!flipped);
+    }
   };
 
   return (
@@ -132,6 +137,11 @@ QuestFTHView.propTypes = {
   toolbox: PropTypes.element.isRequired,
   canvas: PropTypes.element.isRequired,
   sidebar: PropTypes.element.isRequired,
+  onFlipped: PropTypes.func,
+};
+
+QuestFTHView.defaultProps = {
+  onFlipped: null,
 };
 
 export default QuestFTHView;
