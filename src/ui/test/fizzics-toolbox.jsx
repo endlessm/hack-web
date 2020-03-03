@@ -7,7 +7,6 @@ import {
   Box,
   Tab,
   Tabs,
-  TextField,
   Grid,
 } from '@material-ui/core';
 import {
@@ -18,9 +17,20 @@ import {
 } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
+import AceEditor from 'react-ace';
+import 'ace-builds/src-noconflict/mode-java';
+import 'ace-builds/src-noconflict/theme-terminal';
+
 import Checkbox from '../toolbox/checkbox';
 import TabPanel from '../toolbox/tab-panel';
 import Select from '../toolbox/select';
+
+const SPECIES = 5;
+const BACKGROUNDS = [
+  { key: '0', value: 'grid' },
+  { key: '1', value: 'space' },
+  { key: '2', value: 'grass' },
+];
 
 const useStyles = makeStyles({
   root: {
@@ -47,14 +57,6 @@ const useStyles = makeStyles({
     zIndex: -1,
     backgroundColor: '#f18c22',
   },
-  codeview: {
-    '& .MuiTextField-root': {
-      width: 400,
-      '& label': {
-        color: 'white',
-      },
-    },
-  },
   grid: {
     padding: 10,
     '& .MuiGrid-root': {
@@ -72,6 +74,102 @@ const useStyles = makeStyles({
     },
   },
 });
+
+function getPropsForGlobals() {
+  return {
+    background: 'backgroundImageIndex',
+    showDragTool: 'moveToolActive',
+    showFlingTool: 'flingToolActive',
+    showAddTool: 'createToolActive',
+    showDeleteTool: 'deleteToolActive',
+  };
+}
+
+function getPropsForIndex(index) {
+  return {
+    radius: `radius_${index}`,
+    gravity: `gravity_${index}`,
+    bounce: `collision_${index}`,
+    friction: `friction_${index}`,
+    frozen: `usePhysics_${index}`,
+    attraction0: `socialForce_${index}_0`,
+    attraction1: `socialForce_${index}_1`,
+    attraction2: `socialForce_${index}_2`,
+    attraction3: `socialForce_${index}_3`,
+    attraction4: `socialForce_${index}_4`,
+    skin: `imageIndex_${index}`,
+    vfxBad: `deathVisualBad_${index}`,
+    sfxBad: `deathSoundBad_${index}`,
+    vfxGood: `deathVisualGood_${index}`,
+    sfxGood: `deathSoundGood_${index}`,
+  };
+}
+
+
+function generateCodeForIndex(params, index) {
+  let code = `
+// ${index}
+`;
+  const props = getPropsForIndex(index);
+  Object.keys(props).forEach((prop) => {
+    const value = params[props[prop]];
+    code += `species[${index}].${prop} = ${value};\n`;
+  });
+  return code;
+}
+
+function regenerateCode(params) {
+  let code = `
+////////////////////////////
+// Globals
+////////////////////////////
+
+`;
+  const props = getPropsForGlobals();
+  Object.keys(props).forEach((prop) => {
+    const value = params[props[prop]];
+    code += `${prop} = ${value};\n`;
+  });
+  code += `
+////////////////////////////
+// Species
+////////////////////////////
+`;
+
+  Array.from({ length: SPECIES }).forEach((value, index) => {
+    code += `${generateCodeForIndex(params, index)}`;
+  });
+
+  return code;
+}
+
+function createScopeWithProps(props) {
+  const scope = {};
+  [BACKGROUNDS].forEach((names) => {
+    names.forEach((item) => {
+      scope[item.value] = item.key;
+    });
+  });
+  Object.keys(props).forEach((prop) => {
+    scope[prop] = null;
+  });
+
+  return scope;
+}
+
+function createScopeForObject(index) {
+  const props = getPropsForIndex(index);
+  return createScopeWithProps(props);
+}
+
+function createScope() {
+  const props = getPropsForGlobals();
+  const scope = createScopeWithProps(props);
+  scope.species = Array.from({ length: SPECIES }).map((value, index) => (
+    createScopeForObject(index)
+  ));
+  return scope;
+}
 
 const Toolbox = ({ updateApp }) => {
   const classes = useStyles();
@@ -92,18 +190,62 @@ const Toolbox = ({ updateApp }) => {
     updateApp(newValue);
   };
 
-  const bgItems = {
-    0: 'Blueprint',
-    1: 'Galaxy',
-    2: 'Grass',
-  };
-
   const toolsItems = [
     { label: 'Drag', key: 'moveToolActive', value: params.moveToolActive },
     { label: 'Fling', key: 'flingToolActive', value: params.flingToolActive },
     { label: 'Add', key: 'createToolActive', value: params.createToolActive },
     { label: 'Delete', key: 'deleteToolActive', value: params.deleteToolActive },
   ];
+
+  const codeValue = regenerateCode(params);
+
+  const updateAppWithCode = (scope) => {
+    const model = { ...params };
+    const updateModel = (s, props) => {
+      Object.keys(props).forEach((prop) => {
+        if (s[prop] === null) {
+          return;
+        }
+        const modelProp = props[prop];
+        const val = s[prop];
+        if (val === model[modelProp]) {
+          return;
+        }
+        model[modelProp] = val;
+      });
+    };
+
+    const updateModelFromObject = (object, index) => {
+      const props = getPropsForIndex(index);
+      updateModel(object, props);
+    };
+
+    updateModel(scope, getPropsForGlobals());
+    Array.from({ length: SPECIES }).forEach((v, index) => {
+      updateModelFromObject(scope.species[index], index);
+    });
+
+    updateApp(model);
+  };
+
+  const compileCode = (code) => {
+    if (code === '') {
+      return;
+    }
+
+    const scope = createScope();
+    try {
+      // eslint-disable-next-line no-new-func
+      const func = new Function('scope', `with(scope){\n${code}\n;}`);
+      func(scope);
+    } catch (e) {
+      // TODO: add annotations to editor
+      // [{ row: 0, column: 2, type: 'error', text: 'Some error.'}]
+      return;
+    }
+
+    updateAppWithCode(scope);
+  };
 
   return (
     <div className={classes.root}>
@@ -128,7 +270,7 @@ const Toolbox = ({ updateApp }) => {
             <Grid item xs={4}>
               <Select
                 title="Background"
-                items={bgItems}
+                items={BACKGROUNDS}
                 value={params.backgroundImageIndex}
                 onChange={(ev) => updateParams({
                   backgroundImageIndex: parseInt(ev.target.value, 10),
@@ -172,14 +314,16 @@ const Toolbox = ({ updateApp }) => {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <div id="codeview" className={classes.codeview}>
-          <TextField
-            label="Code"
-            placeholder="Placeholder"
-            multiline
-            variant="outlined"
+        <Box className={classes.grid}>
+          <AceEditor
+            mode="javascript"
+            theme="terminal"
+            value={codeValue}
+            onChange={compileCode}
+            name="editor"
+            editorProps={{ $blockScrolling: true }}
           />
-        </div>
+        </Box>
       </TabPanel>
     </div>
   );
