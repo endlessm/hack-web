@@ -3,6 +3,8 @@
 ### Setup
 
     yarn install
+    git submodule init
+    git submodule update
 
 #### Installing NodeJS in Endless OS:
 
