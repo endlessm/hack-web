@@ -2,19 +2,22 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
   makeStyles,
-  List,
-  ListItem,
-  ListItemText,
+  Box,
+  Button,
+
+
   Divider,
 } from '@material-ui/core';
+
+import ChatMessage from './chat-message';
 
 const useStyles = makeStyles(() => ({
   dialogue: {
     height: '100%',
+    backgroundColor: '#eee',
     overflowY: 'scroll',
   },
   choiceButton: {
-    textAlign: 'center',
   },
   scrollRef: {
     float: 'left',
@@ -34,43 +37,66 @@ const Dialogue = ({
     messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [dialogue]);
 
+  const pathwayByCharacter = {
+    ada: 'games',
+    riley: 'web',
+    saniel: 'os',
+    faber: 'maker',
+  };
+
   return (
     <>
-      <List className={classes.dialogue}>
-        {dialogue.map((d) => (
-          <ListItem key={d.id}>
-            <ListItemText
-              secondary={d.character}
-              primary={d.text}
-              primaryTypographyProps={{
-                variant: 'body2',
-              }}
+      <Box className={classes.dialogue} p={2}>
+        {/* <ChatMessage
+            avatar={''}
+            messages={[
+            'Hi Jenny, How r u today?',
+            'Did you train yesterday',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.',
+            ]}
             />
-          </ListItem>
+            <ChatMessage
+            side={'right'}
+            messages={[
+            "Great! What's about you?",
+            'Of course I did. Speaking of which check this out',
+            ]}
+            />
+            <ChatMessage avatar={''} messages={['Im good.', 'See u later.']} /> */}
+        {dialogue.map((d) => (
+          <ChatMessage
+            side={d.character === 'user' ? 'right' : 'left'}
+            key={d.id}
+            avatar={`/assets/pathways/${pathwayByCharacter[d.character]}-card-media.png`}
+            messages={[d.text]}
+          />
         ))}
         <div
           className={classes.scrollRef}
           ref={messagesEndRef}
         />
-      </List>
+      </Box>
       <Divider />
-      <List>
+      <Box
+        p={1}
+        display="flex"
+        bgcolor="secondary.main"
+        justifyContent="center"
+      >
         {choices.map((choice) => (
-          <ListItem
-            button
+          <Button
+            style={{ textTransform: 'none' }}
             key={choice.index}
+            variant="contained"
+            size="large"
+            color="primary"
+            className={classes.choiceButton}
             onClick={() => onChoiceSelected(choice)}
           >
-            <ListItemText
-              className={classes.choiceButton}
-              primary={choice.text}
-              primaryTypographyProps={{
-                color: 'secondary',
-              }}
-            />
-          </ListItem>
+            {choice.text}
+          </Button>
         ))}
-      </List>
+      </Box>
     </>
   );
 };

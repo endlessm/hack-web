@@ -1,48 +1,78 @@
 import React from 'react';
 import clsx from 'clsx';
 import {
-  makeStyles,
+  Box,
+  Button,
   Drawer,
-  IconButton,
+  Fab,
+  Grid,
+  makeStyles,
+  Paper,
+  withStyles,
 } from '@material-ui/core';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import {
+  ChevronLeft,
+  ChevronRight,
+} from '@material-ui/icons';
 
 import PropTypes from 'prop-types';
 
 import FlipToHack from './flip-to-hack';
 
+import HackIcon from './hack-icon.svg';
+
 const useStyles = makeStyles((theme) => {
-  const drawerWidth = theme.breakpoints.values.sm * 0.4;
+  // console.log(theme); // FIXME
+
+  // Fill 3 of 12 columns in XL screen size:
+  const drawerWidth = theme.breakpoints.values.xl * 0.25;
 
   return {
     root: {
       display: 'flex',
       height: '100%',
     },
-    toggleButton: {
-      zIndex: 10,
+    dialogueToggleButton: {
       position: 'absolute',
-      background: theme.palette.common.hackGreen,
-      top: `calc(50% - ${theme.spacing(3)}px)`,
-      '&:hover': {
-        background: theme.palette.common.hackGreen,
-      },
-    },
-    sidebarToggleButton: {
-      borderRadius: '50% 0 0 50%',
-      right: 0,
+      top: theme.spacing(2),
+      right: theme.spacing(2),
+      zIndex: theme.zIndex.drawer + 1,
     },
     toolboxToggleButton: {
+      position: 'absolute',
       borderRadius: '0 50% 50% 0',
-      left: 0,
+      top: `calc(50% - ${theme.spacing(3)}px)`,
     },
     drawer: {
+      // display: 'none', // FIXME
       width: drawerWidth,
-      flexShrink: 0,
+      whiteSpace: 'nowrap',
     },
-    drawerPaper: {
+    drawerOpen: {
       width: drawerWidth,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    drawerClose: {
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      overflowX: 'hidden',
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing(10) + 1,
+      },
+    },
+    sidebarWrapper: {
+      whiteSpace: 'normal',
+    },
+    toolbar: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-end',
+      padding: theme.spacing(1, 0),
     },
     content: {
       overflow: 'hidden',
@@ -54,17 +84,44 @@ const useStyles = makeStyles((theme) => {
       }),
       width: `calc(100% - ${drawerWidth}px)`,
       height: '100%',
-      marginRight: -drawerWidth,
     },
     contentShift: {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      marginRight: 0,
+    },
+    stickyBubble: {
+    },
+    stickyBubbleClosed: {
+      display: 'none',
     },
   };
 });
+
+
+const BubbleButton = withStyles({
+  textTransform: 'none',
+  root: {
+    textTransform: 'none',
+  },
+})((props) => {
+  const { children, ...other } = props;
+
+  return (
+    <Button
+      variant="contained"
+      color="primary"
+      {...other}
+    >
+      {children || 'my button'}
+    </Button>
+  );
+});
+
+BubbleButton.propTypes = {
+  children: PropTypes.node,
+};
 
 
 const QuestFTHView = ({
@@ -85,6 +142,8 @@ const QuestFTHView = ({
     }
   };
 
+  const testText = 'Welcome to Hack Web.';
+
   return (
     <div className={classes.root}>
       <main
@@ -97,37 +156,100 @@ const QuestFTHView = ({
           toolbox={toolbox}
           canvas={canvas}
         />
-        <IconButton
-          color="secondary"
-          aria-label="open dialogue"
-          edge="start"
-          onClick={toggleOpen}
-          className={clsx(classes.toggleButton, classes.sidebarToggleButton)}
-        >
-          {open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-        </IconButton>
-
-        <IconButton
+        <Fab
           color="secondary"
           aria-label="open toolbox"
           edge="end"
+          size="medium"
           onClick={toggleFlip}
-          className={clsx(classes.toggleButton, classes.toolboxToggleButton)}
+          className={clsx(classes.toolboxToggleButton)}
         >
-          {flipped ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-        </IconButton>
-
+          {flipped ? <ChevronLeft /> : <ChevronRight />}
+        </Fab>
       </main>
+      <Fab
+        color="primary"
+        aria-label="open / close dialogue"
+        size="medium"
+        onClick={toggleOpen}
+        className={clsx(classes.dialogueToggleButton)}
+      >
+        <img alt="Hack" src={HackIcon} />
+      </Fab>
       <Drawer
-        className={classes.drawer}
-        variant="persistent"
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        })}
+        classes={{
+          paper: clsx({
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          }),
+        }}
         anchor="right"
         open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
       >
-        {sidebar}
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="stretch"
+          height="100%"
+          className={classes.sidebarWrapper}
+          bgcolor="secondary.main"
+        >
+          <Box m={1} pb={2}>
+            <Paper
+              elevation={6}
+            >
+              <Box
+                display="flex"
+              >
+                <Box
+                  mr={7}
+                  width="100%"
+                  display="flex"
+                  flexDirection="column"
+                  className={clsx(classes.stickyBubble, {
+                    [classes.stickyBubbleClosed]: !open,
+                  })}
+                >
+                  <Box
+                    mt={2}
+                    ml={2}
+                    mb={1}
+                    height="100%"
+                  >
+                    {testText}
+                  </Box>
+                  <Box
+                    mb={-2}
+                  >
+                    <Grid
+                      container
+                      justify="flex-end"
+                      spacing={1}
+                    >
+                      <Grid item>
+                        <BubbleButton>Hint</BubbleButton>
+                      </Grid>
+                      <Grid item>
+                        <BubbleButton>Hint</BubbleButton>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                </Box>
+                <Box
+                  flexShrink={1}
+                  pt={10}
+                  pr={1}
+                />
+              </Box>
+            </Paper>
+          </Box>
+          {open ? sidebar : <Box />}
+        </Box>
       </Drawer>
     </div>
   );

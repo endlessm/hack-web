@@ -1,6 +1,7 @@
 import { Story } from 'inkjs';
 
 const defaultCharacter = 'ada';
+const userCharacter = 'user';
 const mainCharacterRegex = /main character: (.*)/;
 const lineCharacterRegex = /character: (.*)/;
 
@@ -35,18 +36,34 @@ export default class Quest {
 
   continueStory() {
     let dialogue = [];
-    while (this.story.canContinue) {
-      const d = {
-        id: this.dialogueId,
-        text: this.story.Continue(),
-        character: extractLineCharacter(this.story.currentTags) || this.mainCharacter,
-      };
 
-      // avoid empty dialogue messages
-      if (d.text.trim()) {
+    // User answer
+    if (this.dialogueId != 0 && this.story.canContinue) {
+      const t = this.story.Continue();
+      if (t.trim()) {
+        const d = {
+          id: this.dialogueId,
+          text: t,
+          character: userCharacter,
+        };
         dialogue = [...dialogue, d];
         this.dialogueId += 1;
       }
+    }
+
+    while (this.story.canContinue) {
+      const t = this.story.Continue();
+      if (!t.trim()) {
+        // continue;
+      }
+      const d = {
+        id: this.dialogueId,
+        text: t,
+        character: extractLineCharacter(this.story.currentTags) || this.mainCharacter,
+      };
+
+      dialogue = [...dialogue, d];
+      this.dialogueId += 1;
     }
 
     let choices = [];

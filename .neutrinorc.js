@@ -12,6 +12,8 @@ module.exports = {
   use: [
     airbnb({
       eslint: {
+        // emitWarning: true,
+        // failOnError: false,
         baseConfig: {
           plugins: ['unused-imports'],
           globals: {
@@ -27,8 +29,9 @@ module.exports = {
     }),
     react({
       html: {
-        title: 'Hack'
-      }
+        title: 'Hack',
+      },
+      // publicPath: '/web-test',
     }),
     jest(),
     copy({
