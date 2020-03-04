@@ -26,10 +26,11 @@ import TabPanel from '../toolbox/tab-panel';
 import Select from '../toolbox/select';
 
 const SPECIES = 5;
+const ASSETS = '/apps/com.hack_computer.Fizzics/assets';
 const BACKGROUNDS = [
-  { key: '0', value: 'grid' },
-  { key: '1', value: 'space' },
-  { key: '2', value: 'grass' },
+  { key: '0', value: 'grid', image: `${ASSETS}/images/background_0.png` },
+  { key: '1', value: 'space', image: `${ASSETS}/images/background_1.png` },
+  { key: '2', value: 'grass', image: `${ASSETS}/images/background_2.png` },
 ];
 
 const useStyles = makeStyles({
