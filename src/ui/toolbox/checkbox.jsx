@@ -59,4 +59,4 @@ ToolboxCheck.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default ToolboxCheck;
+export { ToolboxCheck as default, GreenCheckbox };

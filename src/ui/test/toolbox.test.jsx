@@ -11,9 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import TestWrapper from './test-wrapper';
 import QuestFTHView from '../quest-fth-view';
 
-import Toolbox from './fizzics-toolbox';
 import { actions } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
+import Toolbox from '../toolbox/fizzics';
 
 const useStyles = makeStyles({
   root: {
