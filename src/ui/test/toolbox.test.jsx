@@ -46,7 +46,7 @@ const App = () => {
   });
 
   const toolbox = (
-    <Toolbox updateApp={update} />
+    <Toolbox onChange={update} />
   );
 
   const canvas = (

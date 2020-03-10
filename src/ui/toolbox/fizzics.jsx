@@ -1,34 +1,11 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import {
-  Box,
-  Tab,
-  Tabs,
-  Grid,
-  Paper,
-  Card,
-  CardHeader,
-  CardContent,
-  TextField,
-  FormControlLabel,
-  Slider,
-} from '@material-ui/core';
+import React from 'react';
 import {
   Build,
   Code,
-  Remove,
-  Add,
 } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
-import AceEditor from 'react-ace';
-import 'ace-builds/src-noconflict/mode-java';
-import 'ace-builds/src-noconflict/theme-terminal';
-
-import Checkbox, { GreenCheckbox } from './checkbox';
-import TabPanel from './tab-panel';
-import Select from './select';
+import DynToolbox from './dynamic';
 
 const SPECIES = 5;
 const ASSETS = '/assets/toolbox/fizzics';
@@ -50,6 +27,11 @@ const SKINS = [
   'sphere',
   'diamond',
 ];
+
+const SKIN_IMAGES = SKINS.map((id, idx) => (
+  { key: idx.toString(), value: id, image: `${ASSETS}/skins/${idx}.png` }
+));
+
 const VFXS = [
   { key: '0', value: 'confetti' },
   { key: '1', value: 'explosion' },
@@ -71,57 +53,6 @@ const SFXS = [
   'gem',
   'win',
 ];
-
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-    display: 'flex',
-    height: '100vh',
-    width: '900px',
-    backgroundImage: `url('assets/toolbox/background.png'),
-                      radial-gradient(at -47% 158%,
-                                      rgba(197, 163, 93, 0.81) 0%,
-                                      rgba(208, 95, 52, 0.80) 14%,
-                                      rgba(32, 69, 108, 0.63) 66%,
-                                      #1C3753 100%)`,
-    boxShadow: '4px 0 3px 0 rgba(0, 0, 0, 0.3)',
-    overflowY: 'auto',
-    overflowX: 'hidden',
-  },
-  tabs: {
-    background: '#4a3a37',
-    boxShadow: '4px 0 5px 0 rgba(0, 0, 0, 0.5)',
-    opacity: '0.9',
-    minWidth: 200,
-    color: 'white',
-  },
-  smalltab: {
-    '& .MuiTab-root': {
-      minWidth: 80,
-    },
-  },
-  indicator: {
-    width: '100%',
-    zIndex: -1,
-    backgroundColor: '#f18c22',
-  },
-  grid: {
-    padding: 10,
-    '& .MuiGrid-root': {
-      color: 'white',
-    },
-    '& .MuiPaper-root': {
-      color: 'white',
-      backgroundColor: 'rgba(0,0,0,0.5)',
-    },
-    '& .MuiSelect-icon': {
-      color: 'white',
-    },
-    '& .MuiInputBase-root': {
-      color: 'white',
-    },
-  },
-});
 
 function getPropsForGlobals() {
   return {
@@ -219,359 +150,184 @@ function createScope() {
   return scope;
 }
 
-const getSpeciesImage = (params, index) => {
+const getSpeciesImage = (index, params) => {
   const idx = params[`imageIndex_${index}`];
   const image = `${ASSETS}/skins/${idx}.png`;
   return <img src={image} alt={index} />;
 };
 
-const PhysicsPanel = ({
-  onUpdate,
-  index,
-}) => {
-  const params = useSelector((state) => state.game);
-  const radiusKey = `radius_${index}`;
-  const bounceKey = `collision_${index}`;
-  const gravityKey = `gravity_${index}`;
-  const frictionKey = `friction_${index}`;
-  const frozenKey = `usePhysics_${index}`;
-
-  return (
-    <Card>
-      <CardHeader title="Physics" />
-      <CardContent>
-        <Box>
-          <Grid container spacing={3}>
-            <Grid item xs={4}>
-              <TextField
-                label="Radius"
-                type="number"
-                inputProps={{ min: 0, max: 300, step: 10 }}
-                value={params[radiusKey]}
-                onChange={(ev) => onUpdate({
-                  [radiusKey]: parseInt(ev.target.value, 10),
-                })}
-              />
-              <TextField
-                label="Gravity"
-                type="number"
-                inputProps={{ min: -50, max: 50, step: 5 }}
-                value={params[gravityKey]}
-                onChange={(ev) => onUpdate({
-                  [gravityKey]: parseFloat(ev.target.value, 10),
-                })}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <TextField
-                label="Bounce"
-                type="number"
-                inputProps={{ min: 0, max: 0.2, step: 0.05 }}
-                value={params[bounceKey]}
-                onChange={(ev) => onUpdate({
-                  [bounceKey]: parseFloat(ev.target.value, 10),
-                })}
-              />
-              <TextField
-                label="Friction"
-                type="number"
-                inputProps={{ min: 0, max: 100, step: 1 }}
-                value={params[frictionKey]}
-                onChange={(ev) => onUpdate({
-                  [frictionKey]: parseFloat(ev.target.value, 10),
-                })}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <FormControlLabel
-                control={(
-                  <GreenCheckbox
-                    checked={!params[frozenKey]}
-                    onChange={(ev) => onUpdate({ [frozenKey]: !ev.target.checked })}
-                  />
-                )}
-                label="Frozen"
-              />
-            </Grid>
-          </Grid>
-        </Box>
-      </CardContent>
-    </Card>
-  );
-};
-
-PhysicsPanel.propTypes = {
-  index: PropTypes.number.isRequired,
-  onUpdate: PropTypes.func.isRequired,
-};
-
-const AttractionsPanel = ({
-  index,
-  onUpdate,
-}) => {
-  const params = useSelector((state) => state.game);
-  const socialForceKeys = Array.from({ length: SPECIES }).map((value, i) => `socialForce_${index}_${i}`);
-
-  return (
-    <Card>
-      <CardHeader title="Attractions" />
-      <CardContent>
-        <Box>
-
-          {socialForceKeys.map((k, i) => (
-            <Grid key={k} container spacing={2}>
-              <Grid item>
-                {getSpeciesImage(params, i)}
-              </Grid>
-              <Grid item>
-                <Remove />
-              </Grid>
-              <Grid item xs>
-                <Slider
-                  min={-30}
-                  max={30}
-                  value={params[k]}
-                  onChange={(ev, val) => onUpdate({ [k]: parseInt(val, 10) })}
-                  valueLabelDisplay="on"
-                />
-              </Grid>
-              <Grid item>
-                <Add />
-              </Grid>
-            </Grid>
-          ))}
-
-        </Box>
-      </CardContent>
-    </Card>
-  );
-};
-
-AttractionsPanel.propTypes = {
-  index: PropTypes.number.isRequired,
-  onUpdate: PropTypes.func.isRequired,
-};
-
-const SpeciesPanel = ({
-  index,
-  onUpdate,
-  tab,
-}) => {
-  const params = useSelector((state) => state.game);
-  const images = SKINS.map((id, idx) => (
-    { key: idx.toString(), value: id, image: `${ASSETS}/skins/${idx}.png` }
-  ));
-
-  const imageKey = `imageIndex_${index}`;
-
-  return (
-    <TabPanel value={tab} index={index}>
-      <Box mt={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={4}>
-            <Select
-              title="Image"
-              items={images}
-              value={params[imageKey].toString()}
-              onChange={(ev) => onUpdate({
-                [imageKey]: parseInt(ev.target.value, 10),
-              })}
-            />
-          </Grid>
-          <Grid item xs={8}>
-            <PhysicsPanel index={index} onUpdate={onUpdate} />
-          </Grid>
-          <Grid item xs={12}>
-            <AttractionsPanel index={index} onUpdate={onUpdate} />
-          </Grid>
-          { /* TODO:
-             *  Animations? (Good / Bad)
-             *  Sound? (Good / Bad)
-          */ }
-        </Grid>
-      </Box>
-    </TabPanel>
-  );
-};
-
-SpeciesPanel.propTypes = {
-  tab: PropTypes.number.isRequired,
-  index: PropTypes.number.isRequired,
-  onUpdate: PropTypes.func.isRequired,
-};
-
-const PropertiesEditor = ({
-  onUpdate,
-}) => {
-  const [speciesTab, setSpeciesTab] = useState(0);
-  const params = useSelector((state) => state.game);
-  const classes = useStyles();
-
+const updateAppWithCode = (scope, params) => {
   const species = Array.from({ length: SPECIES }).map((value, index) => index);
-  const toolsItems = [
-    { label: 'Drag', key: 'moveToolActive', value: params.moveToolActive },
-    { label: 'Fling', key: 'flingToolActive', value: params.flingToolActive },
-    { label: 'Add', key: 'createToolActive', value: params.createToolActive },
-    { label: 'Delete', key: 'deleteToolActive', value: params.deleteToolActive },
-  ];
+  const model = { ...params };
+  const updateModel = (s, props) => {
+    Object.keys(props).forEach((prop) => {
+      if (s[prop] === null) {
+        return;
+      }
+      const modelProp = props[prop];
+      const val = s[prop];
+      if (val === model[modelProp]) {
+        return;
+      }
+      model[modelProp] = val;
+    });
+  };
 
-  return (
-    <Grid container spacing={3}>
-      <Grid item xs={4}>
-        <Select
-          title="Background"
-          items={BACKGROUNDS}
-          value={params.backgroundImageIndex.toString()}
-          onChange={(ev) => onUpdate({
-            backgroundImageIndex: parseInt(ev.target.value, 10),
-          })}
-        />
-      </Grid>
-      <Grid item xs={8}>
-        <Checkbox
-          title="Tools"
-          items={toolsItems}
-          onChange={onUpdate}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <Paper>
-          <Tabs
-            variant="fullWidth"
-            value={speciesTab}
-            className={classes.smalltab}
-            onChange={(ev, newValue) => setSpeciesTab(newValue)}
-            aria-label="Species tab"
-          >
+  const updateModelFromObject = (object, index) => {
+    const props = getPropsForIndex(index);
+    updateModel(object, props);
+  };
 
-            { species.map((index) => (
-              <Tab key={index} label={index} icon={getSpeciesImage(params, index)} />
-            ))}
-          </Tabs>
-        </Paper>
+  updateModel(scope, getPropsForGlobals());
+  species.forEach((index) => {
+    updateModelFromObject(scope.species[index], index);
+  });
 
-        { species.map((index) => (
-          <SpeciesPanel key={index} tab={speciesTab} onUpdate={onUpdate} index={index} />
-        ))}
-      </Grid>
-    </Grid>
-  );
+  return model;
 };
 
-PropertiesEditor.propTypes = {
-  onUpdate: PropTypes.func.isRequired,
-};
-
-const Toolbox = ({ updateApp }) => {
-  const classes = useStyles();
-  const [tab, setTab] = useState(0);
-
-  const params = useSelector((state) => state.game);
-
-  if (typeof params.backgroundImageIndex === 'undefined') {
-    return <></>;
+const compileCode = (code, params) => {
+  if (code === '') {
+    return null;
   }
 
-  const updateParams = (newParams) => {
-    const newValue = { ...params, ...newParams };
-    updateApp(newValue);
-  };
+  const scope = createScope();
+  try {
+    // eslint-disable-next-line no-new-func
+    const func = new Function('scope', `with(scope){\n${code}\n;}`);
+    func(scope);
+  } catch (e) {
+    // TODO: add annotations to editor
+    // [{ row: 0, column: 2, type: 'error', text: 'Some error.'}]
+    return null;
+  }
 
-  const species = Array.from({ length: SPECIES }).map((value, index) => index);
-
-  const codeValue = regenerateCode(params);
-
-  const updateAppWithCode = (scope) => {
-    const model = { ...params };
-    const updateModel = (s, props) => {
-      Object.keys(props).forEach((prop) => {
-        if (s[prop] === null) {
-          return;
-        }
-        const modelProp = props[prop];
-        const val = s[prop];
-        if (val === model[modelProp]) {
-          return;
-        }
-        model[modelProp] = val;
-      });
-    };
-
-    const updateModelFromObject = (object, index) => {
-      const props = getPropsForIndex(index);
-      updateModel(object, props);
-    };
-
-    updateModel(scope, getPropsForGlobals());
-    species.forEach((index) => {
-      updateModelFromObject(scope.species[index], index);
-    });
-
-    updateApp(model);
-  };
-
-  const compileCode = (code) => {
-    if (code === '') {
-      return;
-    }
-
-    const scope = createScope();
-    try {
-      // eslint-disable-next-line no-new-func
-      const func = new Function('scope', `with(scope){\n${code}\n;}`);
-      func(scope);
-    } catch (e) {
-      // TODO: add annotations to editor
-      // [{ row: 0, column: 2, type: 'error', text: 'Some error.'}]
-      return;
-    }
-
-    updateAppWithCode(scope);
-  };
-
-  return (
-    <div className={classes.root}>
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={tab}
-        onChange={(ev, newValue) => setTab(newValue)}
-        aria-label="Toolbox tabs"
-        className={classes.tabs}
-        classes={{
-          indicator: classes.indicator,
-        }}
-      >
-        <Tab label="Tools" icon={<Build />} />
-        <Tab label="Code" icon={<Code />} />
-      </Tabs>
-
-      <TabPanel value={tab} index={0}>
-        <Box className={classes.grid}>
-          <PropertiesEditor onUpdate={updateParams} />
-        </Box>
-      </TabPanel>
-
-      <TabPanel value={tab} index={1}>
-        <Box width="100%" className={classes.grid}>
-          <AceEditor
-            width="100%"
-            height="98vh"
-            mode="javascript"
-            theme="terminal"
-            value={codeValue}
-            onChange={compileCode}
-            name="editor"
-            editorProps={{ $blockScrolling: true }}
-          />
-        </Box>
-      </TabPanel>
-    </div>
-  );
+  return updateAppWithCode(scope, params);
 };
 
+const TOOLBOX = {
+  tabs: [
+    {
+      name: 'Tools',
+      icon: <Build />,
+      grid: [
+        {
+          title: 'Background',
+          type: 'select',
+          xs: 4,
+          items: BACKGROUNDS,
+          param: 'backgroundImageIndex',
+        },
+        {
+          title: 'Tools',
+          type: 'checkbox',
+          xs: 8,
+          items: [
+            { label: 'Drag', key: 'moveToolActive' },
+            { label: 'Fling', key: 'flingToolActive' },
+            { label: 'Add', key: 'createToolActive' },
+            { label: 'Delete', key: 'deleteToolActive' },
+          ],
+        },
+        {
+          type: 'tabs',
+          items: [
+            { label: '0', icon: getSpeciesImage.bind(this, 0) },
+            { label: '1', icon: getSpeciesImage.bind(this, 1) },
+            { label: '2', icon: getSpeciesImage.bind(this, 2) },
+            { label: '3', icon: getSpeciesImage.bind(this, 3) },
+            { label: '4', icon: getSpeciesImage.bind(this, 4) },
+          ],
+          // for each item we'll have the same panel
+          panel: (item) => [
+            {
+              title: 'Image',
+              type: 'select',
+              xs: 4,
+              items: SKIN_IMAGES,
+              param: `imageIndex_${item.label}`,
+            },
+            {
+              title: 'Physics',
+              type: 'panel',
+              xs: 8,
+              grid: [
+                {
+                  xs: 4,
+                  type: 'number',
+                  label: 'Radius',
+                  param: `radius_${item.label}`,
+                  inputProps: { min: 0, max: 300, step: 10 },
+                },
+                {
+                  xs: 4,
+                  type: 'number',
+                  label: 'Bounce',
+                  param: `collision_${item.label}`,
+                  inputProps: { min: 0, max: 0.2, step: 0.05 },
+                },
+                {
+                  xs: 4,
+                  type: 'bool',
+                  label: 'Frozen',
+                  param: `usePhysics_${item.label}`,
+                },
+                {
+                  xs: 4,
+                  type: 'number',
+                  label: 'Gravity',
+                  param: `gravity_${item.label}`,
+                  inputProps: { min: -50, max: 50, step: 5 },
+                },
+                {
+                  xs: 4,
+                  type: 'number',
+                  label: 'Friction',
+                  param: `friction_${item.label}`,
+                  inputProps: { min: 0, max: 100, step: 1 },
+                },
+              ],
+            },
+            {
+              title: 'Attractions',
+              type: 'panel',
+              xs: 12,
+              grid: Array.from({ length: SPECIES }).map((v, index) => (
+                {
+                  xs: 12,
+                  type: 'slider',
+                  icon: getSpeciesImage.bind(this, index),
+                  min: -30,
+                  max: 30,
+                  param: `socialForce_${item.label}_${index}`,
+                })),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'Code',
+      icon: <Code />,
+      grid: [
+        {
+          title: 'Code',
+          type: 'code',
+          xs: 12,
+          code: regenerateCode,
+          compile: compileCode,
+        },
+      ],
+    },
+  ],
+};
+
+const Toolbox = ({ onChange }) => (
+  <DynToolbox onChange={onChange} toolbox={TOOLBOX} />
+);
+
 Toolbox.propTypes = {
-  updateApp: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 
