@@ -32,28 +32,6 @@ const SKIN_IMAGES = SKINS.map((id, idx) => (
   { key: idx.toString(), value: id, image: `${ASSETS}/skins/${idx}.png` }
 ));
 
-const VFXS = [
-  { key: '0', value: 'confetti' },
-  { key: '1', value: 'explosion' },
-  { key: '2', value: 'level_down_red' },
-  { key: '3', value: 'level_down_dark' },
-  { key: '4', value: 'life_up' },
-  { key: '5', value: 'level_up_blue' },
-  { key: '6', value: 'level_up_dark' },
-  { key: '7', value: 'vaporized' },
-  { key: '8', value: 'rainbow' },
-  { key: '9', value: 'skull' },
-];
-const SFXS = [
-  'pop',
-  'horn',
-  'drum',
-  'beam',
-  'goal',
-  'gem',
-  'win',
-];
-
 function getPropsForGlobals() {
   return {
     background: 'backgroundImageIndex',
