@@ -6,9 +6,14 @@ import {
   CookieStorage,
 } from 'amazon-cognito-identity-js';
 
+import config from '../package.json';
+
 let CookieStorageClass = CookieStorage;
+let COOKIE_DOMAIN = config.domain;
 
 if (process.env.NODE_ENV === 'development') {
+  COOKIE_DOMAIN = null;
+
   // Custom cookie storage to be able to store in localhost
   class CustomCookieStorage extends CookieStorage {
     constructor(params = {}) {
@@ -27,7 +32,7 @@ const poolData = {
   ClientId: '44masd118639qq1te64dmnk2hf',
 };
 const userPool = new CognitoUserPool(poolData);
-const storage = new CookieStorageClass();
+const storage = new CookieStorageClass({ domain: COOKIE_DOMAIN });
 
 function getUser(username = '') {
   const name = username || storage.getItem('currentUser');
