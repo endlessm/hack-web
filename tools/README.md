@@ -17,3 +17,25 @@ To compile the `.ink` file to the JSON bytecode-like format:
 To play the `.ink` file in the command line:
 
     tools/inklecate -p TheIntercept.ink
+
+
+## Deploy
+
+The deploy.js upload the build directory to the AWS S3 bucket, to be able to
+deploy you should build before and you should have the deploy credentials.
+
+Add the AWS deploy credentials to a new `.env` file:
+
+```
+# File: .env
+KEY='xxxxxxxxxxxxxxxxxxxx'
+SECRET='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+```
+
+Then you can build and deploy using yarn or npm:
+
+```
+yarn install
+yarn build
+yarn deploy
+```

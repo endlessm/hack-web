@@ -12,7 +12,8 @@
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "test": "jest --rootDir test/",
-    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test"
+    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test",
+    "deploy": "node tools/deploy.js"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.2",
@@ -35,9 +36,12 @@
     "@neutrinojs/copy": "^9.1.0",
     "@neutrinojs/jest": "^9.1.0",
     "@neutrinojs/react": "^9.1.0",
+    "aws-sdk": "^2.637.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6",
     "eslint-plugin-unused-imports": "^0.1.2",
     "jest": "^25",
+    "mime-types": "^2.1.26",
     "neutrino": "^9.1.0",
     "redux-devtools": "^3.5.0",
     "webpack": "^4",
