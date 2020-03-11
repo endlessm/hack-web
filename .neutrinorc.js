@@ -1,3 +1,5 @@
+const path = require('path');
+
 const neutrino = require('neutrino');
 const airbnb = require('@neutrinojs/airbnb');
 const react = require('@neutrinojs/react');
@@ -43,5 +45,13 @@ module.exports = {
         },
       ],
     }),
+    (neutrino) => {
+      neutrino.config.module
+              .rule('ink')
+              .test(/\.ink$/)
+              .use('ink')
+              .loader(path.resolve('./webpack-loaders/ink-loader.js'))
+              .options({});
+    },
   ],
 };
