@@ -12,11 +12,11 @@ This tool can compile and play `.ink` files.
 
 To compile the `.ink` file to the JSON bytecode-like format:
 
-    tools/inklecate TheIntercept.ink
+    ./tools/inklecate TheIntercept.ink
 
 To play the `.ink` file in the command line:
 
-    tools/inklecate -p TheIntercept.ink
+    ./tools/inklecate -p TheIntercept.ink
 
 
 ## Deploy
