@@ -112,3 +112,6 @@ build
 # Flatpak build directory
 .flatpak-builder/
 /tools/.inklecate-build/build-dir/
+
+# Ink temp directory
+/temp/
