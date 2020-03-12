@@ -1,19 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { actions } from '../../../store';
 
 import Checkbox from '../checkbox';
 
 const CheckboxPanel = ({
   title,
   items,
-  onChange,
 }) => {
   const params = useSelector((state) => state.game);
+  const dispatch = useDispatch();
 
   if (typeof params[items[0].key] === 'undefined') {
     return <></>;
   }
+
+  const onChange = (changedValues) => {
+    Object.keys(changedValues).forEach((p) => {
+      dispatch(actions.gameSetParam([p], changedValues[p]));
+    });
+  };
 
   const customItems = items.map((item) => ({ ...item, value: params[item.key] }));
 
@@ -31,7 +38,6 @@ CheckboxPanel.propTypes = {
     key: PropTypes.string,
     value: PropTypes.bool,
   })).isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default CheckboxPanel;

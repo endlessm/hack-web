@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   Grid,
@@ -12,14 +12,16 @@ import {
   Add,
 } from '@material-ui/icons';
 
+import { actions } from '../../../store';
+
 const SliderPanel = ({
   icon,
   min,
   max,
   param,
-  onChange,
 }) => {
   const params = useSelector((state) => state.game);
+  const dispatch = useDispatch();
 
   if (typeof params[param] === 'undefined') {
     return <></>;
@@ -43,7 +45,7 @@ const SliderPanel = ({
           min={min}
           max={max}
           value={params[param]}
-          onChange={(ev, val) => onChange({ [param]: val })}
+          onChange={(ev, val) => dispatch(actions.gameSetParam([param], val))}
           valueLabelDisplay="on"
         />
       </Grid>
@@ -58,7 +60,6 @@ SliderPanel.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   param: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default SliderPanel;

@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { FormControlLabel } from '@material-ui/core';
 import { GreenCheckbox } from '../checkbox';
+import { actions } from '../../../store';
 
 const BoolPanel = ({
   label,
   param,
-  onChange,
 }) => {
   const params = useSelector((state) => state.game);
+  const dispatch = useDispatch();
 
   if (typeof params[param] === 'undefined') {
     return <></>;
@@ -21,7 +22,7 @@ const BoolPanel = ({
       control={(
         <GreenCheckbox
           checked={!params[param]}
-          onChange={(ev) => onChange({ [param]: !ev.target.checked })}
+          onChange={(ev) => dispatch(actions.gameSetParam([param], !ev.target.checked))}
         />
       )}
       label={label}
@@ -31,7 +32,6 @@ const BoolPanel = ({
 BoolPanel.propTypes = {
   label: PropTypes.string.isRequired,
   param: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default BoolPanel;

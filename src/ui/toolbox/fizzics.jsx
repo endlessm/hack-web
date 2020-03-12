@@ -3,7 +3,6 @@ import {
   Build,
   Code,
 } from '@material-ui/icons';
-import PropTypes from 'prop-types';
 
 import DynToolbox from './dynamic';
 
@@ -300,13 +299,9 @@ const TOOLBOX = {
   ],
 };
 
-const Toolbox = ({ onChange }) => (
-  <DynToolbox onChange={onChange} toolbox={TOOLBOX} />
+const Toolbox = () => (
+  <DynToolbox toolbox={TOOLBOX} />
 );
-
-Toolbox.propTypes = {
-  onChange: PropTypes.func.isRequired,
-};
 
 
 export default Toolbox;

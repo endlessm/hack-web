@@ -41,7 +41,6 @@ const useStyles = makeStyles({
 const Panel = ({
   title,
   grid,
-  onChange,
 }) => (
   <Card>
     <CardHeader title={title} />
@@ -49,7 +48,7 @@ const Panel = ({
       <Box width="100%">
         <Grid container spacing={3}>
           { grid.map((item, i) => ({ ...item, id: i })).map((item) => (
-            <GridItem key={item.id} panel={item} onChange={onChange} />
+            <GridItem key={item.id} panel={item} />
           ))}
         </Grid>
       </Box>
@@ -60,13 +59,11 @@ const Panel = ({
 Panel.propTypes = {
   title: PropTypes.string.isRequired,
   grid: PropTypes.arrayOf(PanelType).isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 const TabsPanel = ({
   items,
   panel,
-  onChange,
 }) => {
   const classes = useStyles();
   const [tab, setTab] = useState(0);
@@ -103,7 +100,7 @@ const TabsPanel = ({
           <Box width="100%">
             <Grid container spacing={3}>
               { p.grid.map((grid, i) => ({ ...grid, id: i })).map((grid) => (
-                <GridItem key={grid.id} panel={grid} onChange={onChange} />
+                <GridItem key={grid.id} panel={grid} />
               ))}
             </Grid>
           </Box>
@@ -122,7 +119,6 @@ TabsPanel.propTypes = {
     ]),
   })).isRequired,
   panel: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 const PANELS = {
@@ -138,13 +134,12 @@ const PANELS = {
 
 const GridItem = ({
   panel,
-  onChange,
 }) => {
   const xs = panel.xs || 12;
   let content = null;
 
   const klass = PANELS[panel.type] || EmptyPanel;
-  content = klass({ ...panel, onChange });
+  content = klass({ ...panel });
 
   return (
     <Grid item xs={xs}>
@@ -155,7 +150,6 @@ const GridItem = ({
 
 GridItem.propTypes = {
   panel: PanelType.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default GridItem;

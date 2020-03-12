@@ -15,13 +15,12 @@ const GridTabPanel = ({
   index,
   tab,
   grid,
-  onChange,
 }) => (
   <TabPanel value={tab} index={index}>
     <Box width="100%">
       <Grid container spacing={3}>
         { grid.map((item, i) => ({ ...item, id: i })).map((item) => (
-          <GridItem key={item.id} panel={item} onChange={onChange} />
+          <GridItem key={item.id} panel={item} />
         ))}
       </Grid>
     </Box>
@@ -32,7 +31,6 @@ GridTabPanel.propTypes = {
   tab: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
   grid: PropTypes.arrayOf(PanelType).isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default GridTabPanel;

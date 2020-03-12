@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { TextField } from '@material-ui/core';
+
+import { actions } from '../../../store';
 
 const NumberPanel = ({
   label,
   param,
   inputProps,
-  onChange,
 }) => {
   const params = useSelector((state) => state.game);
+  const dispatch = useDispatch();
 
   if (typeof params[param] === 'undefined') {
     return <></>;
@@ -22,9 +24,7 @@ const NumberPanel = ({
       type="number"
       inputProps={inputProps}
       value={params[param]}
-      onChange={(ev) => onChange({
-        [param]: ev.target.value,
-      })}
+      onChange={(ev) => dispatch(actions.gameSetParam([param], ev.target.value))}
     />
   );
 };
@@ -36,7 +36,6 @@ NumberPanel.propTypes = {
     max: PropTypes.number,
     step: PropTypes.number,
   }),
-  onChange: PropTypes.func.isRequired,
 };
 NumberPanel.defaultProps = {
   inputProps: {},

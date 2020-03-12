@@ -57,7 +57,6 @@ const useStyles = makeStyles({
 
 const DynToolbox = ({
   toolbox,
-  onChange,
 }) => {
   const classes = useStyles();
   const [tab, setTab] = useState(0);
@@ -79,7 +78,7 @@ const DynToolbox = ({
       </Tabs>
 
       { toolbox.tabs.map(({ name, grid }, index) => (
-        <GridTabPanel key={name} index={index} tab={tab} grid={grid} onChange={onChange} />
+        <GridTabPanel key={name} index={index} tab={tab} grid={grid} />
       ))}
     </div>
   );
@@ -87,7 +86,6 @@ const DynToolbox = ({
 
 DynToolbox.propTypes = {
   toolbox: PropTypes.shape({ tabs: PropTypes.arrayOf(TabType) }).isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default DynToolbox;

@@ -1,24 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-java';
 import 'ace-builds/src-noconflict/theme-terminal';
 
+import { actions } from '../../../store';
+
 const CodePanel = ({
   code,
   compile,
-  onChange,
 }) => {
   const params = useSelector((state) => state.game);
+  const dispatch = useDispatch();
   const text = code(params);
 
-  const build = (c) => {
+  let timeout = null;
+  const delayBuild = (c) => {
     const result = compile(c, params);
     if (result) {
-      onChange(result);
+      Object.keys(result).forEach((p) => {
+        dispatch(actions.gameSetParam([p], result[p]));
+      });
     }
+  };
+
+  const build = (c) => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+
+    timeout = setTimeout(() => delayBuild(c), 1000);
   };
 
   return (
@@ -37,7 +50,6 @@ const CodePanel = ({
 CodePanel.propTypes = {
   code: PropTypes.func.isRequired,
   compile: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default CodePanel;

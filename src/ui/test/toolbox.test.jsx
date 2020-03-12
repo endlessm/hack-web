@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TestWrapper from './test-wrapper';
 import QuestFTHView from '../quest-fth-view';
 
-import { actions } from '../../store';
+import store, { actions } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
 import Toolbox from '../toolbox/fizzics';
 
@@ -29,13 +29,6 @@ const App = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const update = (newParams) => {
-    // update the iframe with newParams
-    updateApp('globalParameters', newParams, (property, value) => {
-      dispatch(actions.gameSetParam(property, value));
-    });
-  };
-
   useEffect(() => {
     const changeCallback = (params) => {
       dispatch(actions.gameSet(params));
@@ -43,10 +36,15 @@ const App = () => {
 
     // Creates a proxy to track iframe globalParameters
     proxyApp('globalParameters', changeCallback);
+
+    const handleChange = () => {
+      updateApp('globalParameters', store.getState().game);
+    };
+    return store.subscribe(handleChange);
   });
 
   const toolbox = (
-    <Toolbox onChange={update} />
+    <Toolbox />
   );
 
   const canvas = (
