@@ -27,8 +27,25 @@ const SKINS = [
   'diamond',
 ];
 
+const VFXS = [
+  'confetti',
+  'explosion',
+  'level_down_red',
+  'level_down_dark',
+  'life_up',
+  'level_up_blue',
+  'level_up_dark',
+  'vaporized',
+  'rainbow',
+  'skull',
+];
+
 const SKIN_IMAGES = SKINS.map((id, idx) => (
   { key: idx.toString(), value: id, image: `${ASSETS}/skins/${idx}.png` }
+));
+
+const VFXS_ITEMS = VFXS.map((id, idx) => (
+  { key: idx, value: id }
 ));
 
 function getPropsForGlobals() {
@@ -225,9 +242,30 @@ const TOOLBOX = {
               param: `imageIndex_${item.label}`,
             },
             {
-              title: 'Physics',
+              title: 'Visual fx',
               type: 'panel',
               xs: 8,
+              grid: [
+                {
+                  xs: 6,
+                  type: 'select',
+                  title: 'Good',
+                  param: `deathVisualGood_${item.label}`,
+                  items: VFXS_ITEMS,
+                },
+                {
+                  xs: 6,
+                  type: 'select',
+                  title: 'Bad',
+                  param: `deathVisualBad_${item.label}`,
+                  items: VFXS_ITEMS,
+                },
+              ],
+            },
+            {
+              title: 'Physics',
+              type: 'panel',
+              xs: 12,
               grid: [
                 {
                   xs: 4,

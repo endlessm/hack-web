@@ -34,8 +34,8 @@ ToolboxSelect.propTypes = {
   title: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({
-    key: PropTypes.string,
-    value: PropTypes.string,
+    key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   })).isRequired,
   onChange: PropTypes.func.isRequired,
 };
