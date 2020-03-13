@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { FormControlLabel } from '@material-ui/core';
-import { GreenCheckbox } from '../checkbox';
+import { FormControlLabel, Checkbox } from '@material-ui/core';
 import { actions } from '../../../store';
 
 const BoolPanel = ({
@@ -20,7 +19,7 @@ const BoolPanel = ({
   return (
     <FormControlLabel
       control={(
-        <GreenCheckbox
+        <Checkbox
           checked={!params[param]}
           onChange={(ev) => dispatch(actions.gameSetParam([param], !ev.target.checked))}
         />

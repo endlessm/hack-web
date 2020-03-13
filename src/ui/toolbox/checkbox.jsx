@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { green } from '@material-ui/core/colors';
-import { withStyles } from '@material-ui/core/styles';
 
 import {
   Card,
@@ -10,17 +8,6 @@ import {
   FormControlLabel,
   Checkbox,
 } from '@material-ui/core';
-
-const GreenCheckbox = withStyles({
-  root: {
-    color: green[400],
-    '&$checked': {
-      color: green[600],
-    },
-  },
-  checked: {},
-// eslint-disable-next-line react/jsx-props-no-spreading
-})((props) => <Checkbox color="default" {...props} />);
 
 const ToolboxCheck = ({
   title,
@@ -31,7 +18,7 @@ const ToolboxCheck = ({
     <FormControlLabel
       key={item.key}
       control={(
-        <GreenCheckbox
+        <Checkbox
           checked={item.value}
           onChange={(ev) => onChange({ [item.key]: ev.target.checked })}
         />
@@ -59,4 +46,4 @@ ToolboxCheck.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export { ToolboxCheck as default, GreenCheckbox };
+export default ToolboxCheck;

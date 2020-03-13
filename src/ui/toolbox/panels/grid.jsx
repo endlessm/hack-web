@@ -12,7 +12,6 @@ import {
   CardHeader,
   CardContent,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { PanelType } from './types';
 
@@ -25,14 +24,6 @@ import BoolPanel from './bool';
 import CodePanel from './code';
 import SliderPanel from './slider';
 import CheckboxPanel from './checkbox';
-
-const useStyles = makeStyles({
-  smalltab: {
-    '& .MuiTab-root': {
-      minWidth: 80,
-    },
-  },
-});
 
 // Container panels, all panels that needs GridItem should be declared here
 //
@@ -65,7 +56,6 @@ const TabsPanel = ({
   items,
   panel,
 }) => {
-  const classes = useStyles();
   const [tab, setTab] = useState(0);
 
   const panels = items.map((item, i) => ({ ...item, id: i, grid: panel(item) }));
@@ -85,7 +75,6 @@ const TabsPanel = ({
         <Tabs
           variant="fullWidth"
           value={tab}
-          className={classes.smalltab}
           onChange={(ev, newValue) => setTab(newValue)}
         >
 
@@ -97,8 +86,8 @@ const TabsPanel = ({
 
       { panels.map((p, index) => (
         <TabPanel key={p.id} value={tab} index={index}>
-          <Box width="100%">
-            <Grid container spacing={3}>
+          <Box width="100%" pt={1}>
+            <Grid container spacing={1}>
               { p.grid.map((grid, i) => ({ ...grid, id: i })).map((grid) => (
                 <GridItem key={grid.id} panel={grid} />
               ))}

@@ -43,9 +43,7 @@ const App = () => {
     return store.subscribe(handleChange);
   });
 
-  const toolbox = (
-    <Toolbox />
-  );
+  const toolbox = <Toolbox />;
 
   const canvas = (
     <iframe
