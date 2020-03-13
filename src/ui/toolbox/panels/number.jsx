@@ -18,11 +18,23 @@ const NumberPanel = ({
     return <></>;
   }
 
+  const limits = { ...inputProps };
+  // String limits are getted from params
+  if (typeof limits.min === 'string') {
+    limits.min = params[limits.min];
+  }
+  if (typeof limits.max === 'string') {
+    limits.max = params[limits.max];
+  }
+  if (typeof limits.step === 'string') {
+    limits.step = params[limits.step];
+  }
+
   return (
     <TextField
       label={label}
       type="number"
-      inputProps={inputProps}
+      inputProps={limits}
       value={params[param]}
       onChange={(ev) => dispatch(actions.gameSetParam([param], ev.target.value))}
     />
@@ -32,9 +44,9 @@ NumberPanel.propTypes = {
   label: PropTypes.string.isRequired,
   param: PropTypes.string.isRequired,
   inputProps: PropTypes.shape({
-    min: PropTypes.number,
-    max: PropTypes.number,
-    step: PropTypes.number,
+    min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    step: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   }),
 };
 NumberPanel.defaultProps = {
