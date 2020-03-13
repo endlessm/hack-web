@@ -25,12 +25,14 @@ pipeline {
             }
         }
         stage('Publish') {
-            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                              credentialsId: 'hack-computer-iam-user-jenkins-hack-web',
-                              accessKeyVariable: 'KEY',
-                              secretKeyVariable: 'SECRET']]) {
-                sh 'npm run build'
-                sh 'npm run deploy'
+            steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+                                  credentialsId: 'hack-computer-iam-user-jenkins-hack-web',
+                                  accessKeyVariable: 'KEY',
+                                  secretKeyVariable: 'SECRET']]) {
+                    sh 'npm run build'
+                    sh 'npm run deploy'
+                }
             }
         }
     }
