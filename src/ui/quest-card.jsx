@@ -6,12 +6,11 @@ import {
 } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
-import theme from './theme';
 
 import { pathwayType, questType } from './types';
 import DifficultyBar from './difficulty-bar';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '16em',
     minHeight: '24em',
@@ -99,7 +98,7 @@ const useStyles = makeStyles({
     height: '0.5em',
     margin: '0.25em 0',
   },
-});
+}));
 
 const QuestCard = ({ pathway, quest }) => {
   const [expanded, setExpanded] = useState(false);
