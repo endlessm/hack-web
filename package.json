@@ -27,6 +27,7 @@
     "react": "^16",
     "react-ace": "^8.0.0",
     "react-dom": "^16",
+    "react-ga": "^2.7.0",
     "react-hot-loader": "^4",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
