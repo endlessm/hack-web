@@ -4,11 +4,10 @@ import {
   Typography, Button, Card, CardContent, CardActionArea, CardMedia, CardActions,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import theme from './theme';
 
 import { pathwayType } from './types';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '16em',
     minHeight: '24em',
@@ -53,7 +52,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     flexGrow: 1,
   },
-});
+}));
 
 const PathwayCard = ({ pathway }) => {
   const [expanded, setExpanded] = useState(false);

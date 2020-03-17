@@ -2,7 +2,6 @@ import React from 'react';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import theme from './theme';
 import { difficultyType } from './types';
 
 
@@ -12,7 +11,7 @@ const barProportions = {
   hard: 3,
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     zIndex: 1,
     height: '0.75em',
@@ -43,7 +42,7 @@ const useStyles = makeStyles({
   empty: {
     flexGrow: 1,
   },
-});
+}));
 
 const DifficultyBar = ({ difficulty }) => {
   const classes = useStyles({ difficulty });
