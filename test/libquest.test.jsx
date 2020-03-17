@@ -110,4 +110,14 @@ describe('libquest', () => {
 
     spyOnChoose.mockRestore();
   });
+
+  it('can choose option and identify user answer', () => {
+    const quest = new Quest(questContent);
+    quest.continueStory();
+    const { choices } = quest.continueStory();
+    expect(choices.length).toEqual(1);
+    quest.choose(choices[0]);
+    const { dialogue } = quest.continueStory();
+    expect(dialogue[0].character).toEqual('user');
+  });
 });

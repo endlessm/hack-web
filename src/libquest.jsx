@@ -1,6 +1,7 @@
 import { Story } from 'inkjs';
 
 const defaultCharacter = 'ada';
+const userCharacter = 'user';
 const mainCharacterRegex = /main character: (.*)/;
 const lineCharacterRegex = /character: (.*)/;
 
@@ -33,17 +34,36 @@ export default class Quest {
     this.waitFor = {};
   }
 
+  getNextDialogue(character = null) {
+    const text = this.story.Continue();
+    if (text.trim()) {
+      return {
+        id: this.dialogueId,
+        text,
+        character: character
+                || extractLineCharacter(this.story.currentTags)
+                || this.mainCharacter,
+      };
+    }
+    return null;
+  }
+
   continueStory() {
     let dialogue = [];
-    while (this.story.canContinue) {
-      const d = {
-        id: this.dialogueId,
-        text: this.story.Continue(),
-        character: extractLineCharacter(this.story.currentTags) || this.mainCharacter,
-      };
 
-      // avoid empty dialogue messages
-      if (d.text.trim()) {
+    // We assume that the next text is the user answer (except for
+    // the very first one):
+    if (this.dialogueId !== 0 && this.story.canContinue) {
+      const d = this.getNextDialogue(userCharacter);
+      if (d) {
+        dialogue = [...dialogue, d];
+        this.dialogueId += 1;
+      }
+    }
+
+    while (this.story.canContinue) {
+      const d = this.getNextDialogue();
+      if (d) {
         dialogue = [...dialogue, d];
         this.dialogueId += 1;
       }
