@@ -20,7 +20,7 @@ const SliderPanel = ({
   max,
   param,
 }) => {
-  const params = useSelector((state) => state.game);
+  const params = useSelector((state) => state.hackableApp);
   const dispatch = useDispatch();
 
   if (typeof params[param] === 'undefined') {
@@ -45,7 +45,7 @@ const SliderPanel = ({
           min={min}
           max={max}
           value={params[param]}
-          onChange={(ev, val) => dispatch(actions.gameSetParam([param], val))}
+          onChange={(ev, val) => dispatch(actions.hackableAppSetParam([param], val))}
           valueLabelDisplay="on"
         />
       </Grid>

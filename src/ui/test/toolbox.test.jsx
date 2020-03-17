@@ -31,14 +31,14 @@ const App = () => {
 
   useEffect(() => {
     const changeCallback = (params) => {
-      dispatch(actions.gameSet(params));
+      dispatch(actions.hackableAppSet(params));
     };
 
     // Creates a proxy to track iframe globalParameters
     proxyApp('globalParameters', changeCallback);
 
     const handleChange = () => {
-      updateApp('globalParameters', store.getState().game);
+      updateApp('globalParameters', store.getState().hackableApp);
     };
     return store.subscribe(handleChange);
   });

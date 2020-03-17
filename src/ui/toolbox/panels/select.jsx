@@ -10,7 +10,7 @@ const SelectPanel = ({
   items,
   param,
 }) => {
-  const params = useSelector((state) => state.game);
+  const params = useSelector((state) => state.hackableApp);
   const dispatch = useDispatch();
 
   if (typeof params[param] === 'undefined') {
@@ -22,7 +22,7 @@ const SelectPanel = ({
       title={title}
       items={items}
       value={params[param].toString()}
-      onChange={(ev) => dispatch(actions.gameSetParam([param], ev.target.value))}
+      onChange={(ev) => dispatch(actions.hackableAppSetParam([param], ev.target.value))}
     />
   );
 };

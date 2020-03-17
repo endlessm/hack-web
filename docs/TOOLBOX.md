@@ -10,7 +10,7 @@ in the APP iframe.
 ## Connecting to / synching with hackable-app changes
 
 There's a reducer in the store to track the state of the iframed APP, that
-reducer has the key 'game'.
+reducer has the key 'hackableApp'.
 
 There are two utility functions to sync the APP with this state in the store
 that are located in `src/ui/toolbox/tools.jsx`:
@@ -19,13 +19,13 @@ that are located in `src/ui/toolbox/tools.jsx`:
  * updateApp (param: string, newParams: { key: value }, callback: fn(key, value))
 
 The "proxyApp" creates a proxy for the iframe and calls the callback function
-everytime this object changes in the APP. It should be used to modify the game
+everytime this object changes in the APP. It should be used to modify the hackableApp
 reducer:
 
 ```
   useEffect(() => {
     const changeCallback = (params) => {
-      dispatch(actions.gameSet(params));
+      dispatch(actions.hackableAppSet(params));
     };
 
     // Creates a proxy to track iframe globalParameters
@@ -39,21 +39,21 @@ update the object in the APP with the data received:
 ```
   useEffect(() => {
     const handleChange = () => {
-      updateApp('globalParameters', store.getState().game);
+      updateApp('globalParameters', store.getState().hackableApp);
     };
     return store.subscribe(handleChange);
   });
 ```
 
-With the previous code, we are listening to every change in the game reducer
+With the previous code, we are listening to every change in the hackableApp reducer
 and we update the APP with that state.
 
-All the toolbox widgets can listen to the "game" reducer and stay in sync with
+All the toolbox widgets can listen to the "hackableApp" reducer and stay in sync with
 the real app.
 
 ## How to create a toolbox
 
-A toolbox is a custom component that will render the "store.game" and provide a
+A toolbox is a custom component that will render the "store.hackableApp" and provide a
 way to modify those values, so with the toolbox we can hack the app, modifying
 variables or methods defined there.
 
@@ -76,28 +76,28 @@ Take a look to the `src/ui/toolbox/fizzics.jsx` file to see an example.
   * select: A dropdown widget
     * title: The title of the panel
     * items: A list of objects with (key, value, image?)
-    * param: The name of the property in the game state to modify
+    * param: The name of the property in the hackableApp state to modify
 
   * checkbox: A multiple checkbox panel (true / false)
     * title: The title of the panel
     * items: A list of objects with (label, key) where the key is the name of
-      the property in the game state to modify
+      the property in the hackableApp state to modify
 
   * number: A number input picker
     * label: The label to show
-    * param: The name of the property in the game state to modify
+    * param: The name of the property in the hackableApp state to modify
     * inputProps: props to modify the input (min, max, step)
 
   * code: A javascript code editor
     * code: A function to generate the code to show. It receives the current
-      game state and should return a string with the code that will be placed
-      in the editor. This function is called everytime the game state changes.
+      hackableApp state and should return a string with the code that will be placed
+      in the editor. This function is called everytime the hackableApp state changes.
     * compile: A function to build the code. This function will be called when
-      the code in the editor changes and can trigger a game state update with
+      the code in the editor changes and can trigger a hackableApp state update with
       the return value.
 
       return null: Will do nothing
-      return object: Will update the game state with the object, for each key
+      return object: Will update the hackableApp state with the object, for each key
       in the object it will trigger a store update with the corresponding
       value.
 

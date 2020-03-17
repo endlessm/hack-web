@@ -9,11 +9,11 @@ const actions = {
     },
   }),
   logout: () => ({ type: 'LOGOUT' }),
-  gameSet: (data) => ({
+  hackableAppSet: (data) => ({
     type: 'SET',
     payload: data,
   }),
-  gameSetParam: (key, value) => ({
+  hackableAppSetParam: (key, value) => ({
     type: 'SET-PARAM',
     payload: { key, value },
   }),
@@ -47,7 +47,7 @@ function pathwaysReducer(state = [], action) {
   }
 }
 
-function gameReducer(state = {}, action) {
+function hackableAppReducer(state = {}, action) {
   switch (action.type) {
     case 'SET': {
       return { ...action.payload };
@@ -108,13 +108,13 @@ const initialState = {
       quests: dummyQuestList.slice(0, 5),
     },
   ],
-  game: {},
+  hackableApp: {},
 };
 
 const store = createStore(combineReducers({
   auth: authReducer,
   pathways: pathwaysReducer,
-  game: gameReducer,
+  hackableApp: hackableAppReducer,
 }), initialState);
 
 export default store;

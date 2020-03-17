@@ -59,7 +59,7 @@ const TabsPanel = ({
   const [tab, setTab] = useState(0);
 
   const panels = items.map((item, i) => ({ ...item, id: i, grid: panel(item) }));
-  const params = useSelector((state) => state.game);
+  const params = useSelector((state) => state.hackableApp);
 
   const calculateIcon = (icon) => {
     if (icon instanceof Function) {

@@ -12,7 +12,7 @@ const CodePanel = ({
   code,
   compile,
 }) => {
-  const params = useSelector((state) => state.game);
+  const params = useSelector((state) => state.hackableApp);
   const dispatch = useDispatch();
   const text = code(params);
 
@@ -21,7 +21,7 @@ const CodePanel = ({
     const result = compile(c, params);
     if (result) {
       Object.keys(result).forEach((p) => {
-        dispatch(actions.gameSetParam([p], result[p]));
+        dispatch(actions.hackableAppSetParam([p], result[p]));
       });
     }
   };

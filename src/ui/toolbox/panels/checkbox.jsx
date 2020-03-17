@@ -9,7 +9,7 @@ const CheckboxPanel = ({
   title,
   items,
 }) => {
-  const params = useSelector((state) => state.game);
+  const params = useSelector((state) => state.hackableApp);
   const dispatch = useDispatch();
 
   if (typeof params[items[0].key] === 'undefined') {
@@ -18,7 +18,7 @@ const CheckboxPanel = ({
 
   const onChange = (changedValues) => {
     Object.keys(changedValues).forEach((p) => {
-      dispatch(actions.gameSetParam([p], changedValues[p]));
+      dispatch(actions.hackableAppSetParam([p], changedValues[p]));
     });
   };
 

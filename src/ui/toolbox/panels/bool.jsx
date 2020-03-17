@@ -9,7 +9,7 @@ const BoolPanel = ({
   label,
   param,
 }) => {
-  const params = useSelector((state) => state.game);
+  const params = useSelector((state) => state.hackableApp);
   const dispatch = useDispatch();
 
   if (typeof params[param] === 'undefined') {
@@ -21,7 +21,7 @@ const BoolPanel = ({
       control={(
         <Checkbox
           checked={!params[param]}
-          onChange={(ev) => dispatch(actions.gameSetParam([param], !ev.target.checked))}
+          onChange={(ev) => dispatch(actions.hackableAppSetParam([param], !ev.target.checked))}
         />
       )}
       label={label}
