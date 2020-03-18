@@ -51,6 +51,9 @@ module.exports = {
           from: 'src/ui/toolbox/assets',
           to: 'assets/toolbox',
         },
+        {
+          from: 'node_modules/pdfjs-dist/build/pdf.worker.js',
+        },
       ],
     }),
     (neutrino) => {
