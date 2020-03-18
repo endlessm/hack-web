@@ -6,7 +6,6 @@ const pathwayType = PropTypes.shape({
   slug: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  difficulty: difficultyType.isRequired,
 });
 
 const questType = PropTypes.shape({
