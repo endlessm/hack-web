@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     textAlign: 'center',
     transition: `transform ${theme.transitions.duration.complex}ms`,
+    transitionTimingFunction: 'linear',
     transformStyle: 'preserve-3d',
   },
   flipBoxInnerWhenFlipped: {
@@ -29,8 +30,14 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     width: '100%',
     height: '100%',
+    opacity: 0,
+    pointerEvents: 'none',
+    transition: `opacity ${theme.transitions.duration.complex / 2}ms`,
+    transitionTimingFunction: 'steps(1, end)',
   },
   toolboxWhenFlipped: {
+    opacity: 1,
+    pointerEvents: 'auto',
   },
   canvas: {
     position: 'absolute',
@@ -49,11 +56,11 @@ const FlipToHack = ({ flipped, toolbox, canvas }) => {
   return (
     <div className={classes.flipBox}>
       <div className={clsx(classes.flipBoxInner, flipped && classes.flipBoxInnerWhenFlipped)}>
-        <div className={clsx(classes.toolbox, flipped && classes.toolboxWhenFlipped)}>
-          {toolbox}
-        </div>
         <div className={clsx(classes.canvas, flipped && classes.canvasWhenFlipped)}>
           {canvas}
+        </div>
+        <div className={clsx(classes.toolbox, flipped && classes.toolboxWhenFlipped)}>
+          {toolbox}
         </div>
       </div>
     </div>
