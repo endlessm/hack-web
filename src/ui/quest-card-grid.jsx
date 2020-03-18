@@ -25,7 +25,7 @@ const QuestCardGrid = ({ pathway, quests }) => {
     <div>
       <Grid container spacing={3} className={classes.grid}>
         {
-          quests.map((q) => (<QuestCard pathway={pathway} quest={q} />))
+          quests.map((q) => (<QuestCard key={q.slug} pathway={pathway} quest={q} />))
         }
       </Grid>
     </div>

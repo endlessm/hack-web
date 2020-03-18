@@ -40,14 +40,13 @@ function pathwaysReducer(state = [], action) {
 }
 
 // TODO: Fake data. Remove this later.
-const dummyQuest = {
-  slug: 'blender',
-  name: 'Sidetrack #1 - Robots and Pits',
+const dummyQuestList = [...Array(10).keys()].map((i) => ({
+  slug: `quest_${i}`,
+  name: `Quest #${i + 1} - Robots and Pits`,
   description: 'Riley, one of your classmates, can\'t wait to meet you and tell you everything about the Academy.',
   subtitle: 'What you\'ll do?',
-  difficulty: 'medium',
-};
-const dummyQuestList = [...Array(10).keys()].map(() => dummyQuest);
+  difficulty: ['easy', 'medium', 'hard'][i % 3],
+}));
 
 const initialState = {
   auth: {

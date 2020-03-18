@@ -36,7 +36,7 @@ const App = () => {
             <ResetPassword />
           </Route>
           {pathways.map((p) => (
-            <Route path={`/${p.slug}`}>
+            <Route key={p.slug} path={`/${p.slug}`}>
               <RequireAuth>
                 <Pathway slug={p.slug} />
               </RequireAuth>
