@@ -48,6 +48,10 @@ module.exports = {
           to: 'apps/com.hack_computer.Fizzics/',
         },
         {
+          from: 'apps',
+          to: 'apps/',
+        },
+        {
           from: 'src/ui/toolbox/assets',
           to: 'assets/toolbox',
         },

@@ -12,6 +12,7 @@ import App from './ui/app';
 // import App from './ui/test/quest-fth-view.test';
 // import App from './ui/test/dialogue.test';
 // import App from './ui/test/toolbox.test';
+// import App from './ui/test/p5.test';
 
 render(
   <Provider store={store}>
