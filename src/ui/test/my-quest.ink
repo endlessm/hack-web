@@ -24,14 +24,14 @@ Hey Ada! # character: riley
   - Activate the engines, then flip back.
   }
 }
-+ (hint) {hint < 2} [Give me {a|another} hint] -> in_toolbox
-+ [(wait for: flipped foo)] -> check_success -> in_canvas
++ (hint) {hint < 2} Give me a hint -> in_toolbox
++ [(wait for: flipped foo)](User flipped back the app) -> check_success -> in_canvas
 -> success
 
 === in_canvas ===
 {
 - in_canvas == 1: { stopping:
-  - To win, activate the two engines.
+  - OK user! There are two engines. To win this quest, activate them both. It is easier than it sounds.
   - You will have to hack the app.
   - Use the button on the left to Flip the app.
   }
@@ -41,8 +41,8 @@ Hey Ada! # character: riley
   - Then activate the engines and flip back.
   }
 }
-+ (hint) {hint < 2} [Give me a{|nother} hint] -> in_canvas
-+ [(wait for: flipped)] -> in_toolbox
++ (hint) {hint < 2} Give me a hint -> in_canvas
++ [(wait for: flipped)](User flipped the app) -> in_toolbox
 
 === check_success ===
 {
