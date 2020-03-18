@@ -7,7 +7,7 @@ import store from './store';
 // Switch commented lines to hot-load tests instead of the main
 // application:
 
-import App from './ui/app';
+import App from './ui/covid-demo/demo';
 // import App from './ui/test/flip-to-hack.test';
 // import App from './ui/test/quest-fth-view.test';
 // import App from './ui/test/dialogue.test';
