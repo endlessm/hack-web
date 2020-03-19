@@ -86,6 +86,13 @@ module.exports = {
                                { "inlineStyles": false },
                              ] },
                            });
+
+      neutrino.config.module
+              .rule('xml')
+              .test(/\.xml$/)
+              .use('xml')
+              .loader('text-loader')
+              .options({});
     },
   ],
 };

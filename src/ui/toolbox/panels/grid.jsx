@@ -24,6 +24,7 @@ import BoolPanel from './bool';
 import CodePanel from './code';
 import SliderPanel from './slider';
 import CheckboxPanel from './checkbox';
+import BlocklyPanel from './blockly';
 
 // Container panels, all panels that needs GridItem should be declared here
 //
@@ -119,6 +120,7 @@ const PANELS = {
   slider: SliderPanel,
   tabs: TabsPanel,
   panel: Panel,
+  blockly: BlocklyPanel,
 };
 
 const GridItem = ({

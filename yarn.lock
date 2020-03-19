@@ -2173,6 +2173,13 @@ bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
+blockly@^3.20200123.1:
+  version "3.20200123.1"
+  resolved "https://registry.yarnpkg.com/blockly/-/blockly-3.20200123.1.tgz#3c38c9e4ceae5bb275cabd2d5189bf26b497c07d"
+  integrity sha512-7GMGpILwTkWCUuttjKhFPQzp4P/A2MeT10JaV2q9xAR4EF6G72T8RvF3HUMq0Kkx0wUDyiFGT1F1BfINFgfMng==
+  dependencies:
+    jsdom "^15.1.1"
+
 bluebird@^3.5.5:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
@@ -8626,6 +8633,11 @@ test-exclude@^6.0.0:
     "@istanbuljs/schema" "^0.1.2"
     glob "^7.1.4"
     minimatch "^3.0.4"
+
+text-loader@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/text-loader/-/text-loader-0.0.1.tgz#8bf75d749b7c0579c939920051c69ea572ebddc1"
+  integrity sha1-i/dddJt8BXnJOZIAUcaepXLr3cE=
 
 text-table@^0.2.0:
   version "0.2.0"

@@ -1,0 +1,48 @@
+<xml>
+  <block type="p5_background" x="10" y="30">
+    <value name="COLOUR">
+      <block type="colour_picker">
+        <field name="COLOUR">#CCCCCC</field>
+      </block>
+    </value>
+    <next>
+      <block type="p5_fill">
+        <value name="COLOUR">
+          <block type="colour_picker">
+            <field name="COLOUR">#FFFF00</field>
+          </block>
+        </value>
+        <next>
+          <block type="p5_strokeWeight">
+            <value name="WEIGHT">
+              <block type="math_number">
+                <field name="NUM">5</field>
+              </block>
+            </value>
+            <next>
+              <block type="p5_circle">
+                <value name="RADIUS">
+                  <block type="math_number">
+                    <field name="NUM">200</field>
+                  </block>
+                </value>
+                <value name="X">
+                  <block type="math_number">
+                    <field name="NUM">200</field>
+                  </block>
+                </value>
+                <value name="Y">
+                  <block type="math_number">
+                    <field name="NUM">200</field>
+                  </block>
+                </value>
+                <next>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
