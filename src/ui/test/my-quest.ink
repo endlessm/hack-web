@@ -7,9 +7,9 @@ VAR flipped = false
 // -> in_toolbox
 
 === begin ===
-Hi Riley.
-Hey Ada! # character: riley
--> in_canvas
+- Hi Riley.
+- Hey Ada! # character: riley
+* [❯] -> in_canvas
 
 === in_toolbox ===
 {

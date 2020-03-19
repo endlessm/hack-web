@@ -140,7 +140,6 @@ const QuestFTHView = ({
           flexDirection="column"
           alignItems="stretch"
           height="100%"
-          bgcolor="secondary.main"
         >
           {sidebar}
         </Box>

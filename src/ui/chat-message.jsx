@@ -5,11 +5,13 @@ import {
   makeStyles,
   Avatar,
   Grid,
+  Paper,
   Typography,
 } from '@material-ui/core';
 
-const useStyles = makeStyles(({ palette, spacing, typography }) => {
-  const radius = spacing(2.5);
+const useStyles = makeStyles(({
+  custom, palette, spacing, typography,
+}) => {
   const size = spacing(6);
   return {
     avatar: {
@@ -22,7 +24,6 @@ const useStyles = makeStyles(({ palette, spacing, typography }) => {
     messageBox: {
       display: 'flex',
       alignItems: 'center',
-      marginBottom: spacing(0.25),
     },
     leftMessageBox: {
       textAlign: 'left',
@@ -32,26 +33,19 @@ const useStyles = makeStyles(({ palette, spacing, typography }) => {
       flexDirection: 'row-reverse',
     },
     message: {
-      maxWidth: '70%',
+      maxWidth: custom.chatMessageMaxWidth,
       padding: spacing(1, 2),
       display: 'inline-block',
       wordBreak: 'break-word',
       fontSize: typography.fontSize,
+      marginTop: spacing(3),
     },
     left: {
-      borderTopRightRadius: radius,
-      borderBottomRightRadius: radius,
-      borderBottomLeftRadius: radius,
-      backgroundColor: palette.grey[200],
+      borderTopLeftRadius: 0,
     },
     right: {
-      borderTopLeftRadius: radius,
-      borderBottomLeftRadius: radius,
-      borderBottomRightRadius: radius,
+      borderTopRightRadius: 0,
       backgroundColor: palette.primary.main,
-    },
-    leftFirst: {
-      marginTop: spacing(3),
     },
   };
 });
@@ -74,7 +68,7 @@ const ChatMessage = ({
   return (
     <Grid
       container
-      spacing={2}
+      spacing={1}
       justify={side === 'right' ? 'flex-end' : 'flex-start'}
       style={style}
     >
@@ -91,12 +85,15 @@ const ChatMessage = ({
             className={clsx(styles.row, styles[`${side}Row`])}
           >
             <div className={clsx(styles.messageBox, styles[`${side}MessageBox`])}>
-              <Typography
+              <Paper
+                elevation={3}
                 align="left"
                 className={clsx(styles.message, styles[side], attachClass(i))}
               >
-                {message}
-              </Typography>
+                <Typography>
+                  {message}
+                </Typography>
+              </Paper>
             </div>
           </div>
         ))}
