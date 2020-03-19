@@ -56,7 +56,9 @@ const useStyles = makeStyles(({ palette, spacing, typography }) => {
   };
 });
 
-const ChatMessage = ({ avatar, messages, side }) => {
+const ChatMessage = ({
+  avatar, messages, side, style,
+}) => {
   const styles = useStyles();
 
   const attachClass = (index) => {
@@ -74,6 +76,7 @@ const ChatMessage = ({ avatar, messages, side }) => {
       container
       spacing={2}
       justify={side === 'right' ? 'flex-end' : 'flex-start'}
+      style={style}
     >
       {side === 'left' && (
         <Grid item>
@@ -106,12 +109,16 @@ ChatMessage.propTypes = {
   avatar: PropTypes.string,
   messages: PropTypes.arrayOf(PropTypes.string),
   side: PropTypes.oneOf(['left', 'right']),
+  style: PropTypes.shape({
+    opacity: PropTypes.number,
+  }),
 };
 
 ChatMessage.defaultProps = {
   avatar: '',
   messages: [],
   side: 'left',
+  style: {},
 };
 
 export default ChatMessage;
