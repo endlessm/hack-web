@@ -41,11 +41,15 @@ function uploadToS3(bucketName, keyPrefix, filePath) {
   });
 }
 
+const exec = require('child_process').execSync;
+const branch = exec('git rev-parse --abbrev-ref HEAD').toString().trim();
+const bucket = branch === 'stable' ? 'hack-web-stable' : 'hack-web';
+
 getFiles('build')
   .then((files) => {
     files.forEach((f) => {
       const prefix = path.dirname(path.relative('build', f));
-      uploadToS3('hack-web', prefix, f);
+      uploadToS3(bucket, prefix, f);
     });
   })
   .catch((e) => console.error(e));
