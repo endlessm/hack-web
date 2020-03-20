@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import 'typeface-roboto';
+import ReactGA from 'react-ga';
+import PropTypes from 'prop-types';
 
 import './app.css';
 import theme from './theme';
@@ -17,6 +19,20 @@ import Login, { RequireAuth } from './login';
 import SignUp from './signup';
 import ResetPassword from './reset';
 
+ReactGA.initialize('UA-160877903-1');
+const GAWrapper = ({ children }) => {
+  const { location } = window;
+
+  if (process.env.NODE_ENV === 'production') {
+    ReactGA.pageview(location.pathname);
+  }
+
+  return children;
+};
+
+GAWrapper.propTypes = {
+  children: PropTypes.element.isRequired,
+};
 
 const App = () => {
   const pathways = useSelector((state) => state.pathways);
@@ -38,12 +54,14 @@ const App = () => {
           {pathways.map((p) => (
             <Route key={p.slug} path={`/${p.slug}`}>
               <RequireAuth>
-                <Pathway slug={p.slug} />
+                <GAWrapper><Pathway slug={p.slug} /></GAWrapper>
               </RequireAuth>
             </Route>
           ))}
           <Route path="/">
-            <RequireAuth><Home /></RequireAuth>
+            <RequireAuth>
+              <GAWrapper><Home /></GAWrapper>
+            </RequireAuth>
           </Route>
         </Switch>
       </Router>
