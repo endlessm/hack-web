@@ -16,9 +16,6 @@ const theme = createMuiTheme({
     common: colors,
     primary: {
       main: colors.hackGreen,
-      // FIXME: the computed contrast for our green is black, but we
-      // are setting it to white.
-      contrastText: '#fff',
     },
     secondary: {
       main: colors.deepBlue,
@@ -29,6 +26,9 @@ const theme = createMuiTheme({
     background: {
       // default: colors.deepBlue,
     },
+  },
+  shape: {
+    borderRadius: 16,
   },
   custom: {
     flipToHackPerspective: 1000,

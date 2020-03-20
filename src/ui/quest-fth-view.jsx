@@ -1,41 +1,42 @@
 import React from 'react';
 import clsx from 'clsx';
 import {
-  makeStyles,
+  Box,
   Drawer,
-  IconButton,
+  Fab,
+  makeStyles,
+  Paper,
 } from '@material-ui/core';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import {
+  ChevronLeft,
+  ChevronRight,
+} from '@material-ui/icons';
 
 import PropTypes from 'prop-types';
 
 import FlipToHack from './flip-to-hack';
 
+import HackIcon from './hack-icon.svg';
+
 const useStyles = makeStyles((theme) => {
-  const drawerWidth = theme.breakpoints.values.sm * 0.4;
+  // Fill 3 of 12 columns in XL screen size:
+  const drawerWidth = theme.breakpoints.values.xl * 0.25;
 
   return {
     root: {
       display: 'flex',
       height: '100%',
     },
-    toggleButton: {
-      zIndex: 10,
+    dialogueToggleButton: {
       position: 'absolute',
-      background: theme.palette.common.hackGreen,
-      top: `calc(50% - ${theme.spacing(3)}px)`,
-      '&:hover': {
-        background: theme.palette.common.hackGreen,
-      },
-    },
-    sidebarToggleButton: {
-      borderRadius: '50% 0 0 50%',
-      right: 0,
+      top: theme.spacing(2),
+      right: theme.spacing(2),
+      zIndex: theme.zIndex.drawer + 1,
     },
     toolboxToggleButton: {
+      position: 'absolute',
       borderRadius: '0 50% 50% 0',
-      left: 0,
+      top: `calc(50% - ${theme.spacing(3)}px)`,
     },
     drawer: {
       width: drawerWidth,
@@ -46,15 +47,13 @@ const useStyles = makeStyles((theme) => {
     },
     content: {
       overflow: 'hidden',
-      position: 'relative',
       flexGrow: 1,
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      width: `calc(100% - ${drawerWidth}px)`,
+      marginRight: theme.spacing(12) - drawerWidth,
       height: '100%',
-      marginRight: -drawerWidth,
     },
     contentShift: {
       transition: theme.transitions.create('margin', {
@@ -62,6 +61,9 @@ const useStyles = makeStyles((theme) => {
         duration: theme.transitions.duration.enteringScreen,
       }),
       marginRight: 0,
+    },
+    hackFabRoot: {
+      boxShadow: 'none',
     },
   };
 });
@@ -97,37 +99,51 @@ const QuestFTHView = ({
           toolbox={toolbox}
           canvas={canvas}
         />
-        <IconButton
-          color="secondary"
-          aria-label="open dialogue"
-          edge="start"
-          onClick={toggleOpen}
-          className={clsx(classes.toggleButton, classes.sidebarToggleButton)}
-        >
-          {open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-        </IconButton>
-
-        <IconButton
+        <Fab
           color="secondary"
           aria-label="open toolbox"
           edge="end"
+          size="medium"
           onClick={toggleFlip}
-          className={clsx(classes.toggleButton, classes.toolboxToggleButton)}
+          className={classes.toolboxToggleButton}
         >
-          {flipped ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-        </IconButton>
-
+          {flipped ? <ChevronLeft /> : <ChevronRight />}
+        </Fab>
       </main>
+      <Paper
+        elevation={6}
+        className={classes.dialogueToggleButton}
+      >
+        <Box m={1}>
+          <Fab
+            color="primary"
+            aria-label="open / close dialogue"
+            size="medium"
+            onClick={toggleOpen}
+            classes={{ root: classes.hackFabRoot }}
+          >
+            <img alt="Hack" src={HackIcon} />
+          </Fab>
+        </Box>
+      </Paper>
       <Drawer
-        className={classes.drawer}
         variant="persistent"
-        anchor="right"
-        open={open}
+        className={classes.drawer}
         classes={{
           paper: classes.drawerPaper,
         }}
+        anchor="right"
+        open={open}
       >
-        {sidebar}
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="stretch"
+          height="100%"
+          bgcolor="secondary.main"
+        >
+          {sidebar}
+        </Box>
       </Drawer>
     </div>
   );
