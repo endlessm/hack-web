@@ -26,6 +26,17 @@ again using a tag:
 In the case above, the main character will say "Hello", and Riley will
 say "Hey there!".
 
+## Using emojis in choices
+
+You can use the following Unicode emojis in choices. They will be
+displayed as icon buttons:
+
+    === emojis_test ===
+    * [❮] -> END
+    * [❯] -> END
+    * [👍] -> END
+    * [👎] -> END
+
 ## Waiting for variable changes
 
 You can add a special kind of choice to wait for variables. For
@@ -39,3 +50,7 @@ example:
 In this case, only the "Give me a hint" choice will be displayed. The
 other one will be hidden to the user, and will be automatically chosen
 when either the `flipped` or the `level_completed` variables change.
+## Recommendations
+
+- You should use at most 3 choices. The UI is optimized for that.
+- Emoji choices should go after "normal text" choices.
