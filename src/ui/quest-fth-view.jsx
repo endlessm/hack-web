@@ -122,7 +122,7 @@ const QuestFTHView = ({
             onClick={toggleOpen}
             classes={{ root: classes.hackFabRoot }}
           >
-            <img alt="Hack" src={HackIcon} />
+            <HackIcon />
           </Fab>
         </Box>
       </Paper>
