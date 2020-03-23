@@ -9,7 +9,7 @@ import TestWrapper from './test-wrapper';
 import Dialogue from '../dialogue';
 import QuestFTHView from '../quest-fth-view';
 import Quest from '../../libquest';
-import questContent from './my-quest.ink';
+import questContent from './big-test.ink';
 
 const App = () => {
   const [quest] = useState(new Quest(questContent));
