@@ -66,8 +66,9 @@ module.exports = {
                            .rule('image')
                            .get('test')
                            .toString()
-                           .replace('|svg', '')
-      neutrino.config.module.rule('image').test(test);
+                           .slice(1, -1)
+                           .replace('|svg', '');
+      neutrino.config.module.rule('image').test(new RegExp(test));
 
       // Handle SVG using svgr library:
       neutrino.config.module
