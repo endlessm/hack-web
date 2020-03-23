@@ -40,6 +40,7 @@
     "@neutrinojs/copy": "^9.1.0",
     "@neutrinojs/jest": "^9.1.0",
     "@neutrinojs/react": "^9.1.0",
+    "@svgr/webpack": "^5.2.0",
     "aws-sdk": "^2.637.0",
     "dotenv": "^8.2.0",
     "eslint": "^6",

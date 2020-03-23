@@ -3,6 +3,7 @@ import { red } from '@material-ui/core/colors';
 
 const colors = {
   hackGreen: '#37dcb1',
+  hackGreenGradient: '#4a90e2',
   deepBlue: '#181866',
 };
 
@@ -33,6 +34,8 @@ const theme = createMuiTheme({
   custom: {
     flipToHackPerspective: 1000,
     landingTitleGradientDirection: 270,
+    chatMessageMaxWidth: '90%',
+    hackButtonTextShadow: '0px 2px 2px rgba(0,0,0,0.2)',
     difficultyBar: {
       easy: {
         colors: ['#37DCB1', '#00E718'],

@@ -60,6 +60,27 @@ module.exports = {
               .use('ink')
               .loader(path.resolve('./webpack-loaders/ink-loader.js'))
               .options({});
+
+      // Remove default rule for SVG image:
+      const test = neutrino.config.module
+                           .rule('image')
+                           .get('test')
+                           .toString()
+                           .replace('|svg', '')
+      neutrino.config.module.rule('image').test(test);
+
+      // Handle SVG using svgr library:
+      neutrino.config.module
+                           .rule('svg')
+                           .test(/\.svg$/)
+                           .use('webpack')
+                           .loader('@svgr/webpack')
+                           .options({
+                             svgoConfig: { "plugins": [
+                               { "removeStyleElement": true },
+                               { "inlineStyles": false },
+                             ] },
+                           });
     },
   ],
 };

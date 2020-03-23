@@ -122,7 +122,7 @@ const QuestFTHView = ({
             onClick={toggleOpen}
             classes={{ root: classes.hackFabRoot }}
           >
-            <img alt="Hack" src={HackIcon} />
+            <HackIcon />
           </Fab>
         </Box>
       </Paper>
@@ -140,7 +140,6 @@ const QuestFTHView = ({
           flexDirection="column"
           alignItems="stretch"
           height="100%"
-          bgcolor="secondary.main"
         >
           {sidebar}
         </Box>
