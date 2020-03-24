@@ -30,8 +30,11 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const changeCallback = (params) => {
+    const changeCallback = (params, firstTime = false) => {
       dispatch(actions.hackableAppSet(params));
+      if (firstTime) {
+        dispatch(actions.originalHackableAppSet(params));
+      }
     };
 
     // Creates a proxy to track iframe globalParameters

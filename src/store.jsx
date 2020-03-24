@@ -9,6 +9,10 @@ const actions = {
     },
   }),
   logout: () => ({ type: 'LOGOUT' }),
+  originalHackableAppSet: (data) => ({
+    type: 'ORIG-SET',
+    payload: data,
+  }),
   hackableAppSet: (data) => ({
     type: 'SET',
     payload: data,
@@ -42,6 +46,16 @@ function authReducer(state = {}, action) {
 
 function pathwaysReducer(state = [], action) {
   switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+function originalHackableAppReducer(state = {}, action) {
+  switch (action.type) {
+    case 'ORIG-SET': {
+      return { ...action.payload };
+    }
     default:
       return state;
   }
@@ -108,12 +122,14 @@ const initialState = {
     },
   ],
   hackableApp: {},
+  originalHackableApp: {},
 };
 
 const store = createStore(combineReducers({
   auth: authReducer,
   pathways: pathwaysReducer,
   hackableApp: hackableAppReducer,
+  originalHackableApp: originalHackableAppReducer,
 }), initialState);
 
 export default store;
