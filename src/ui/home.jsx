@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundAttachment: 'fixed',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    padding: '4em 0',
+    padding: theme.spacing(4, 0),
   },
   pathwayCard: {
     margin: '0 1em',
