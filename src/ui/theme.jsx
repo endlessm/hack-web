@@ -5,6 +5,8 @@ const colors = {
   hackGreen: '#37dcb1',
   hackGreenGradient: '#4a90e2',
   deepBlue: '#181866',
+  messageCodeBlock: '#287A8C',
+  messageLink: '#3584E4',
 };
 
 const theme = createMuiTheme({

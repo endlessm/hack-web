@@ -24,6 +24,15 @@ const useStyles = makeStyles(({
     messageBox: {
       display: 'flex',
       alignItems: 'center',
+      '& tt': {
+        color: palette.common.messageCodeBlock,
+        backgroundColor: palette.grey[50],
+        border: `1px solid ${palette.grey[300]}`,
+        padding: '0 0.3em',
+      },
+      '& a': {
+        color: palette.common.messageLink,
+      },
     },
     leftMessageBox: {
       textAlign: 'left',
@@ -91,7 +100,8 @@ const ChatMessage = ({
                 className={clsx(styles.message, styles[side], attachClass(i))}
               >
                 <Typography>
-                  {message}
+                  {/* eslint-disable-next-line react/no-danger */}
+                  <div dangerouslySetInnerHTML={{ __html: message }} />
                 </Typography>
               </Paper>
             </div>
