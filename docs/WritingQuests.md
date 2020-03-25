@@ -37,6 +37,17 @@ displayed as icon buttons:
     * [👍] -> END
     * [👎] -> END
 
+## Rich text formatting
+
+The following HTML tags are allowed:
+
+    === markup_test_step ===
+    - We have <b>bold</b>, <i>italics</i>, <s>strikethrough</s>, <tt>code block</tt> and <u>underline</u>.
+    - And here is a <a href="https:\/\/hack-computer.com\/">test link</a>.
+
+Note: As you can see in the example above, the `/` in hyperlinks have
+to be escaped in Ink as: `\/`.
+
 ## Waiting for variable changes
 
 You can add a special kind of choice to wait for variables. For
