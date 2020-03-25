@@ -53,7 +53,7 @@ const App = () => {
       id="app"
       title="Fizzics App"
       className={classes.frame}
-      src="/apps/com.hack_computer.Fizzics/index.html"
+      src="/apps/hack-toy-apps/com.hack_computer.Fizzics/app/index.html"
     />
   );
 
