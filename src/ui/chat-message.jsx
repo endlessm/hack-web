@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import sanitizeHtml from 'sanitize-html';
 import {
   makeStyles,
   Avatar,
@@ -8,6 +9,13 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core';
+
+const sanitizeOptions = {
+  allowedTags: ['b', 'i', 's', 'tt', 'u', 'a'],
+  allowedAttributes: {
+    a: ['href'],
+  },
+};
 
 const useStyles = makeStyles(({
   custom, palette, spacing, typography,
@@ -74,6 +82,11 @@ const ChatMessage = ({
     return '';
   };
 
+  const sanitize = (message) => (
+    // FIXME: We should sanitize when converting the ink to json, not at run-time.
+    sanitizeHtml(message, sanitizeOptions)
+  );
+
   return (
     <Grid
       container
@@ -101,7 +114,7 @@ const ChatMessage = ({
               >
                 <Typography>
                   {/* eslint-disable-next-line react/no-danger */}
-                  <div dangerouslySetInnerHTML={{ __html: message }} />
+                  <div dangerouslySetInnerHTML={{ __html: sanitize(message) }} />
                 </Typography>
               </Paper>
             </div>
