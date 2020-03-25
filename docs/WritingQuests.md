@@ -61,6 +61,23 @@ example:
 In this case, only the "Give me a hint" choice will be displayed. The
 other one will be hidden to the user, and will be automatically chosen
 when either the `flipped` or the `level_completed` variables change.
+
+You can also wait for and check for a variable value with the following syntax:
+
+  * wait for: VARIABLE contains "text"
+  * wait for: VARIABLE not contains "text"
+  * wait for: VARIABLE is value
+  * wait for: VARIABLE is not value
+
+for example:
+
+    === step_playing ===
+    OK! Now play the level.
+    + [Give me a hint] -> hint
+    + [(wait for: code contains "console.log")] -> something_changed1
+    + [(wait for: code not contains "bug")] -> something_changed2
+    + [(wait for: level is 24)] -> something_changed3
+
 ## Recommendations
 
 - You should use at most 3 choices. The UI is optimized for that.
