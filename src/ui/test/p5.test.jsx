@@ -13,7 +13,7 @@ import QuestFTHView from '../quest-fth-view';
 
 import store, { actions } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
-import Toolbox from '../toolbox/fizzics';
+import Toolbox from '../toolbox/p5';
 
 const useStyles = makeStyles({
   root: {
@@ -41,7 +41,12 @@ const App = () => {
     proxyApp('globalParameters', changeCallback);
 
     const handleChange = () => {
-      updateApp('globalParameters', store.getState().hackableApp);
+      updateApp('globalParameters', store.getState().hackableApp, (prop) => {
+        if (prop === 'code') {
+          const app = document.querySelector('#app');
+          app.contentWindow.reload();
+        }
+      });
     };
     return store.subscribe(handleChange);
   });
@@ -51,9 +56,10 @@ const App = () => {
   const canvas = (
     <iframe
       id="app"
-      title="Fizzics App"
+      title="P5.js sandbox"
       className={classes.frame}
-      src="/apps/hack-toy-apps/com.hack_computer.Fizzics/app/index.html"
+      src="/apps/p5/index.html"
+      sandbox
     />
   );
 

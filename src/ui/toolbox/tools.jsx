@@ -22,7 +22,7 @@ const proxyApp = (param, changeCallback) => {
 
   const proxy = new Proxy(globalParameters, handler);
   app.contentWindow[param] = proxy;
-  changeCallback(globalParameters);
+  changeCallback(globalParameters, true);
 };
 
 const updateApp = (param, newParams, callback = () => {}) => {
