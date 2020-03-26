@@ -23,7 +23,57 @@ const extractLineCharacter = (currentTags) => (
 const extractWaitForVariables = (choiceText) => {
   const result = choiceText.match(/\(wait for: (.*)\)/);
   if (!result) return [];
-  return result[1].split(' ');
+
+  const checks = [
+    {
+      // wait for: code not contains "test"
+      match: /^([^ ]+) not contains "(.*)"$/,
+      fn: (variable, str) => !variable.includes(str),
+    },
+    {
+      // wait for: code contains "test"
+      match: /^([^ ]+) contains "(.*)"$/,
+      fn: (variable, str) => variable.includes(str),
+    },
+    {
+      // wait for: code is not 12
+      match: /^([^ ]+) is not (.*)$/,
+      fn: (variable, value) => {
+        if (value === 'true') {
+          return !Boolean(variable);
+        }
+        if (value === 'false') {
+          return Boolean(variable);
+        }
+
+        return String(variable) !== value;
+      },
+    },
+    {
+      // wait for: code is 12
+      match: /^([^ ]+) is (.*)$/,
+      fn: (variable, value) => {
+        if (value === 'true') {
+          return Boolean(variable);
+        }
+        if (value === 'false') {
+          return !Boolean(variable);
+        }
+
+        return String(variable) === value;
+      },
+    },
+  ];
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const c of checks) {
+    const match = result[1].match(c.match);
+    if (match) {
+      return [{ name: match[1], fn: c.fn, params: match.slice(2) }];
+    }
+  }
+
+  return result[1].split(' ').map((r) => ({ name: r }));
 };
 
 export default class Quest {
@@ -77,7 +127,11 @@ export default class Quest {
         choices = [...choices, c];
       }
       waitForVariables.forEach((variable) => {
-        this.waitFor = { ...this.waitFor, ...{ [variable]: c } };
+        const waitForContext = {
+          choice: c,
+          variable,
+        };
+        this.waitFor = { ...this.waitFor, [variable.name]: waitForContext };
       });
     });
 
@@ -91,7 +145,12 @@ export default class Quest {
   doUpdateStoryVariable(name, newValue) {
     this.story.variablesState[name] = newValue;
     if (name in this.waitFor) {
-      this.choose(this.waitFor[name]);
+      const { choice, variable } = this.waitFor[name];
+      const fn = variable.fn || (() => true);
+      const params = variable.params || [];
+      if (fn.apply(null, [newValue, ...params])) {
+        this.choose(choice);
+      }
     }
   }
 

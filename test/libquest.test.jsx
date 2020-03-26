@@ -84,7 +84,7 @@ describe('libquest', () => {
     expect(Object.keys(quest.waitFor).length).toEqual(0);
     const { choices } = quest.continueStory();
     expect(choices.length).toEqual(1);
-    expect(Object.keys(quest.waitFor).length).toEqual(2);
+    expect(Object.keys(quest.waitFor).length).toEqual(7);
     expect('flipped' in quest.waitFor).toBe(true);
     expect('radius' in quest.waitFor).toBe(true);
     expect('wrong_variable' in quest.waitFor).toBe(false);
@@ -105,8 +105,53 @@ describe('libquest', () => {
     quest.continueStory();
     quest.updateStoryVariable('radius', 85);
     expect(spyOnChoose).toHaveBeenCalledTimes(2);
-    const { dialogue: newDialogue } = quest.continueStory();
+    let { dialogue: newDialogue } = quest.continueStory();
     expect(newDialogue[0].text).toEqual('something changed! radius: 85 flipped: 1\n');
+
+    // Now we go back to the same step, to test contains:
+    quest.story.ChoosePathString('step_a');
+    quest.continueStory();
+    quest.updateStoryVariable('filter', 'this is a test filter string');
+    expect(spyOnChoose).toHaveBeenCalledTimes(3);
+    ({ dialogue: newDialogue } = quest.continueStory());
+    expect(newDialogue[0].text).toEqual('something changed! filter: this is a test filter string filter2: sample text\n');
+    quest.updateStoryVariable('filter', 'sample text');
+
+    quest.story.ChoosePathString('step_a');
+    quest.continueStory();
+    quest.updateStoryVariable('filter2', 'real text');
+    expect(spyOnChoose).toHaveBeenCalledTimes(4);
+    ({ dialogue: newDialogue } = quest.continueStory());
+    expect(newDialogue[0].text).toEqual('something changed! filter: sample text filter2: real text\n');
+    quest.updateStoryVariable('filter2', 'sample text');
+
+    // Now we go back to the same step, to test is:
+    quest.story.ChoosePathString('step_a');
+    quest.continueStory();
+    quest.updateStoryVariable('number', 27);
+    expect(spyOnChoose).toHaveBeenCalledTimes(4);
+    quest.updateStoryVariable('number', 28);
+    expect(spyOnChoose).toHaveBeenCalledTimes(5);
+    ({ dialogue: newDialogue } = quest.continueStory());
+    expect(newDialogue[0].text).toEqual('something changed! number: 28 number2: 0\n');
+    quest.updateStoryVariable('number', 0);
+
+    quest.story.ChoosePathString('step_a');
+    quest.continueStory();
+    quest.updateStoryVariable('number2', 28);
+    expect(spyOnChoose).toHaveBeenCalledTimes(6);
+    ({ dialogue: newDialogue } = quest.continueStory());
+    expect(newDialogue[0].text).toEqual('something changed! number: 0 number2: 28\n');
+    quest.updateStoryVariable('number2', 0);
+
+    quest.story.ChoosePathString('step_a');
+    quest.continueStory();
+    quest.updateStoryVariable('finished', false);
+    expect(spyOnChoose).toHaveBeenCalledTimes(6);
+    quest.updateStoryVariable('finished', true);
+    expect(spyOnChoose).toHaveBeenCalledTimes(7);
+    ({ dialogue: newDialogue } = quest.continueStory());
+    expect(newDialogue[0].text).toEqual('something changed! finished: 1\n');
 
     spyOnChoose.mockRestore();
   });
