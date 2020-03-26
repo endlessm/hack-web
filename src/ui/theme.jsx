@@ -50,4 +50,31 @@ const theme = createMuiTheme({
   },
 });
 
-export { theme as default, colors };
+const sectionTheme = createMuiTheme(theme, {
+  overrides: {
+    MuiExpansionPanelSummary: {
+      root: {
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
+  },
+  typography: {
+    subtitle1: {
+      fontSize: '2rem',
+      fontWeight: 400,
+    },
+    body1: {
+      fontSize: '1.4rem',
+      fontWeight: 300,
+    },
+  },
+  shape: {
+    borderRadius: 'unset',
+  },
+});
+
+export {
+  theme as default,
+  sectionTheme,
+  colors,
+};
