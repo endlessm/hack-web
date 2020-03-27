@@ -39,3 +39,13 @@ something changed! finished: {finished}
 
 == step_end
 Bye! -> END
+
+=== function snippet_webpage ===
+# language: html
+<h1>This is a header</h1>
+<p>And <b>this</b> is a paragraph.</p>
+
+== say_snippet
+- Check this out:
+- {snippet_webpage()}
+-> END

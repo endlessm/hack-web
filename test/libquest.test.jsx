@@ -165,4 +165,21 @@ describe('libquest', () => {
     const { dialogue } = quest.continueStory();
     expect(dialogue[0].character).toEqual('user');
   });
+
+  it('can get snippet', () => {
+    const quest = new Quest(questContent);
+
+    // This one doesn't have a code snippet:
+    quest.story.ChoosePathString('step_a');
+    const { dialogue: dialogueWithout } = quest.continueStory();
+    expect(dialogueWithout[0].codeSnippet).toBeUndefined();
+
+    // This one does have a code snippet:
+    quest.story.ChoosePathString('say_snippet');
+    const { dialogue } = quest.continueStory();
+    expect(dialogue.length).toEqual(1);
+    expect(dialogue[0].text).toEqual('Check this out:\n');
+    expect(dialogue[0].codeSnippet.language).toEqual('html');
+    expect(dialogue[0].codeSnippet.text).toMatch(/^<h1>This is a header<\/h1>/);
+  });
 });
