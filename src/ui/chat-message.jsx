@@ -8,7 +8,13 @@ import {
   Grid,
   Paper,
   Typography,
+  useTheme,
 } from '@material-ui/core';
+
+import AceEditor from 'react-ace';
+// Adds syntax highlighting for: javascript, css, html, xml
+import 'ace-builds/src-noconflict/mode-html';
+import 'ace-builds/src-noconflict/theme-monokai';
 
 const sanitizeOptions = {
   allowedTags: ['b', 'i', 's', 'tt', 'u', 'a'],
@@ -57,6 +63,9 @@ const useStyles = makeStyles(({
       fontSize: typography.fontSize,
       marginTop: spacing(3),
     },
+    messageWithSnippet: {
+      width: custom.chatMessageMaxWidth,
+    },
     left: {
       borderTopLeftRadius: 0,
     },
@@ -72,20 +81,12 @@ const ChatMessage = ({
 }) => {
   const styles = useStyles();
 
-  const attachClass = (index) => {
-    if (index === 0) {
-      return styles[`${side}First`];
-    }
-    if (index === messages.length - 1) {
-      return styles[`${side}Last`];
-    }
-    return '';
-  };
-
   const sanitize = (message) => (
     // FIXME: We should sanitize when converting the ink to json, not at run-time.
     sanitizeHtml(message, sanitizeOptions)
   );
+
+  const theme = useTheme();
 
   return (
     <Grid
@@ -100,22 +101,38 @@ const ChatMessage = ({
         </Grid>
       )}
       <Grid item xs>
-        {messages.map((message, i) => (
-          // eslint-disable-next-line react/no-array-index-key
+        {messages.map((message) => (
           <div
-            key={message.id || i}
+            key={message.id}
             className={clsx(styles.row, styles[`${side}Row`])}
           >
             <div className={clsx(styles.messageBox, styles[`${side}MessageBox`])}>
               <Paper
                 elevation={3}
                 align="left"
-                className={clsx(styles.message, styles[side], attachClass(i))}
+                className={clsx(
+                  styles.message,
+                  message.codeSnippet && styles.messageWithSnippet,
+                  styles[side],
+                )}
               >
-                <Typography>
-                  {/* eslint-disable-next-line react/no-danger */}
-                  <div dangerouslySetInnerHTML={{ __html: sanitize(message) }} />
-                </Typography>
+                {/* eslint-disable-next-line react/no-danger */}
+                <Typography dangerouslySetInnerHTML={{ __html: sanitize(message.text) }} />
+                {message.codeSnippet && (
+                  <AceEditor
+                    width="100%"
+                    height={theme.spacing(15)}
+                    mode={message.codeSnippet.language}
+                    theme="monokai"
+                    value={message.codeSnippet.text}
+                    name="editor"
+                    readOnly
+                    showGutter={false}
+                    highlightActiveLine={false}
+                    editorProps={{ $blockScrolling: true }}
+                    enableSnippets
+                  />
+                )}
               </Paper>
             </div>
           </div>
@@ -127,7 +144,9 @@ const ChatMessage = ({
 
 ChatMessage.propTypes = {
   avatar: PropTypes.string,
-  messages: PropTypes.arrayOf(PropTypes.string),
+  messages: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string,
+  })),
   side: PropTypes.oneOf(['left', 'right']),
   style: PropTypes.shape({
     opacity: PropTypes.number,

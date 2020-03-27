@@ -146,7 +146,7 @@ const Dialogue = ({
             <ChatMessage
               side={d.character === 'user' ? 'right' : 'left'}
               avatar={`/assets/pathways/${pathwayByCharacter[d.character]}-card-media.png`}
-              messages={[d.text]}
+              messages={[d]}
             />
           </Fade>
         ))}
