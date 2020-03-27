@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-java';
-import 'ace-builds/src-noconflict/theme-terminal';
+import 'ace-builds/src-noconflict/theme-monokai';
 
 import { actions } from '../../../store';
 
