@@ -41,7 +41,7 @@ const extractWaitForVariables = (choiceText) => {
       match: /^([^ ]+) is not (.*)$/,
       fn: (variable, value) => {
         if (value === 'true') {
-          return !Boolean(variable);
+          return !variable;
         }
         if (value === 'false') {
           return Boolean(variable);
@@ -58,7 +58,7 @@ const extractWaitForVariables = (choiceText) => {
           return Boolean(variable);
         }
         if (value === 'false') {
-          return !Boolean(variable);
+          return !variable;
         }
 
         return String(variable) === value;
