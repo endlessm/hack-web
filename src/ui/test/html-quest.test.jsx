@@ -7,7 +7,7 @@ import {
 
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-html';
-import 'ace-builds/src-noconflict/theme-terminal';
+import 'ace-builds/src-noconflict/theme-monokai';
 
 import TestWrapper from './test-wrapper';
 import Dialogue from '../dialogue';

@@ -4,6 +4,7 @@ const defaultCharacter = 'ada';
 const userCharacter = 'user';
 const mainCharacterRegex = /main character: (.*)/;
 const lineCharacterRegex = /character: (.*)/;
+const codeSnippetLanguageRegex = /language: (.*)/;
 
 const extractInfoFromTags = (tags, regex, defaultValue = null) => {
   if (!tags) return defaultValue;
@@ -40,7 +41,7 @@ const extractWaitForVariables = (choiceText) => {
       match: /^([^ ]+) is not (.*)$/,
       fn: (variable, value) => {
         if (value === 'true') {
-          return !Boolean(variable);
+          return !variable;
         }
         if (value === 'false') {
           return Boolean(variable);
@@ -57,7 +58,7 @@ const extractWaitForVariables = (choiceText) => {
           return Boolean(variable);
         }
         if (value === 'false') {
-          return !Boolean(variable);
+          return !variable;
         }
 
         return String(variable) === value;
@@ -76,6 +77,10 @@ const extractWaitForVariables = (choiceText) => {
   return result[1].split(' ').map((r) => ({ name: r }));
 };
 
+const extractCodeSnippetLanguage = (currentTags) => (
+  extractInfoFromTags(currentTags, codeSnippetLanguageRegex, null)
+);
+
 export default class Quest {
   constructor(questContent) {
     this.story = new Story(questContent);
@@ -84,8 +89,31 @@ export default class Quest {
     this.waitFor = {};
   }
 
-  getNextDialogue(character = null) {
-    const text = this.story.Continue();
+  codeSnippetBegins() {
+    return Boolean(this.story.state.currentPathString && /^snippet_.*$/.test(this.story.state.currentPathString));
+  }
+
+  stepBegins() {
+    return this.story.state.currentPathString !== null;
+  }
+
+  getCodeSnippet() {
+    const codeSnippet = {
+      language: extractCodeSnippetLanguage(this.story.currentTags),
+      text: '',
+    };
+    codeSnippet.text += this.story.currentText;
+    while (this.story.canContinue && (!(this.stepBegins()) || this.codeSnippetBegins())) {
+      this.story.Continue();
+      codeSnippet.text += this.story.currentText;
+    }
+
+    return codeSnippet;
+  }
+
+  getDialogue(character = null) {
+    const text = this.story.currentText;
+
     if (text.trim()) {
       return {
         id: this.dialogueId,
@@ -98,13 +126,18 @@ export default class Quest {
     return null;
   }
 
+  getDialogueOrSnippet(character = null) {
+    return this.codeSnippetBegins() ? this.getCodeSnippet() : this.getDialogue(character);
+  }
+
   continueStory() {
     let dialogue = [];
 
     // We assume that the next text is the user answer (except for
     // the very first one):
     if (this.dialogueId !== 0 && this.story.canContinue) {
-      const d = this.getNextDialogue(userCharacter);
+      this.story.Continue();
+      const d = this.getDialogue(userCharacter);
       if (d) {
         dialogue = [...dialogue, d];
         this.dialogueId += 1;
@@ -112,10 +145,17 @@ export default class Quest {
     }
 
     while (this.story.canContinue) {
-      const d = this.getNextDialogue();
+      this.story.Continue();
+      const d = this.getDialogueOrSnippet();
       if (d) {
-        dialogue = [...dialogue, d];
-        this.dialogueId += 1;
+        if (d.language) {
+          // It's a code snippet, append it to the previous dialogue:
+          dialogue[dialogue.length - 1].codeSnippet = d;
+        } else {
+          // It's a new dialogue:
+          dialogue = [...dialogue, d];
+          this.dialogueId += 1;
+        }
       }
     }
 
