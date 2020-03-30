@@ -48,6 +48,47 @@ The following HTML tags are allowed:
 Note: As you can see in the example above, the `/` in hyperlinks have
 to be escaped in Ink as: `\/`.
 
+## Adding code snippets
+
+You can add code snippets by defining Ink functions with only text,
+and then calling them from steps. Example:
+
+```
+-> say
+
+=== function snippet_css ===
+# language: css
+<style>
+p \{ color: pink \}
+b \{ color: blue \}
+u \{ color: "umber" \}
+</style>
+
+=== function snippet_html ===
+# language: html
+<h1>This is a header</h1>
+<p>And <b>this</b> is a paragraph.</p>
+
+=== say ===
+- See this CSS snippet:
+- {snippet_css()}
+* [❯] -> say_more
+
+=== say_more ===
+- See also this HTML snippet:
+- {snippet_html()}
+* [❯] -> END
+```
+
+The convention to identify the function as a code snippet is:
+- The function name must start with `snippet_`.
+- It should have a `# language: LANG` tag to enable syntax
+  highlighting. Available languages are:
+  * javascript
+  * html
+  * css
+  * xml
+
 ## Waiting for variable changes
 
 You can add a special kind of choice to wait for variables. For
