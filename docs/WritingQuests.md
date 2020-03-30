@@ -42,11 +42,21 @@ displayed as icon buttons:
 The following HTML tags are allowed:
 
     === markup_test_step ===
-    - We have <b>bold</b>, <i>italics</i>, <s>strikethrough</s>, <tt>code block</tt> and <u>underline</u>.
+    - We have <b>bold</b>, <i>italics</i>, <s>strikethrough</s>, <tt>inline code</tt> and <u>underline</u>.
     - And here is a <a href="https:\/\/hack-computer.com\/">test link</a>.
 
 Note: As you can see in the example above, the `/` in hyperlinks have
 to be escaped in Ink as: `\/`.
+
+Note: The markup is parsed as HTML directly (and limited to the HTML
+tags described above). So you should use HTML character literals if
+you want to add special characters. For example, use `&lt;` for `<`:
+
+    - Tags come in pairs - an <tt>&lt;opening tag&gt;</tt>, and a <tt>&lt;/closing tag&gt;</tt>.
+
+Note: Inline code is OK for small text like referencing variable names
+or language keywords. For more featured code, use [code
+snippets](#adding-code-snippets).
 
 ## Adding code snippets
 
