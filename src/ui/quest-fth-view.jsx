@@ -65,6 +65,12 @@ const useStyles = makeStyles((theme) => {
     hackFabRoot: {
       boxShadow: 'none',
     },
+    canvas: {
+      textAlign: 'center',
+      position: 'relative',
+      width: '100%',
+      height: '100%',
+    },
   };
 });
 
@@ -94,21 +100,25 @@ const QuestFTHView = ({
           [classes.contentShift]: open,
         })}
       >
-        <FlipToHack
-          flipped={flipped}
-          toolbox={toolbox}
-          canvas={canvas}
-        />
-        <Fab
-          color="secondary"
-          aria-label="open toolbox"
-          edge="end"
-          size="medium"
-          onClick={toggleFlip}
-          className={classes.toolboxToggleButton}
-        >
-          {flipped ? <ChevronLeft /> : <ChevronRight />}
-        </Fab>
+        {toolbox ? (
+          <FlipToHack
+            flipped={flipped}
+            toolbox={toolbox}
+            canvas={canvas}
+          />
+        ) : <div className={classes.canvas}>{canvas}</div>}
+        {toolbox && (
+          <Fab
+            color="secondary"
+            aria-label="open toolbox"
+            edge="end"
+            size="medium"
+            onClick={toggleFlip}
+            className={classes.toolboxToggleButton}
+          >
+            {flipped ? <ChevronLeft /> : <ChevronRight />}
+          </Fab>
+        )}
       </main>
       <Paper
         elevation={6}
@@ -149,7 +159,7 @@ const QuestFTHView = ({
 };
 
 QuestFTHView.propTypes = {
-  toolbox: PropTypes.element.isRequired,
+  toolbox: PropTypes.element,
   canvas: PropTypes.element.isRequired,
   sidebar: PropTypes.element.isRequired,
   onFlipped: PropTypes.func,
@@ -157,6 +167,7 @@ QuestFTHView.propTypes = {
 
 QuestFTHView.defaultProps = {
   onFlipped: null,
+  toolbox: null,
 };
 
 export default QuestFTHView;
