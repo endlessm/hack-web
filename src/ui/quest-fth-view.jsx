@@ -29,9 +29,12 @@ const useStyles = makeStyles((theme) => {
     },
     dialogueToggleButton: {
       position: 'absolute',
-      top: theme.spacing(2),
-      right: theme.spacing(2),
+      top: theme.spacing(1),
+      right: theme.spacing(1),
       zIndex: theme.zIndex.drawer + 1,
+    },
+    dialogueToggleButtonClosed: {
+      boxShadow: 'none',
     },
     toolboxToggleButton: {
       position: 'absolute',
@@ -52,7 +55,7 @@ const useStyles = makeStyles((theme) => {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      marginRight: theme.spacing(12) - drawerWidth,
+      marginRight: theme.spacing(10) - drawerWidth,
       height: '100%',
     },
     contentShift: {
@@ -122,7 +125,9 @@ const QuestFTHView = ({
       </main>
       <Paper
         elevation={6}
-        className={classes.dialogueToggleButton}
+        className={clsx(classes.dialogueToggleButton, {
+          [classes.dialogueToggleButtonClosed]: !open,
+        })}
       >
         <Box m={1}>
           <Fab
