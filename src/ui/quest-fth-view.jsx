@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import {
   Box,
+  Divider,
   Drawer,
   Fab,
   makeStyles,
@@ -79,7 +80,7 @@ const useStyles = makeStyles((theme) => {
 
 
 const QuestFTHView = ({
-  toolbox, canvas, sidebar, onFlipped,
+  toolbox, canvas, sidebar, controls, onFlipped,
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -140,6 +141,8 @@ const QuestFTHView = ({
             <HackIcon />
           </Fab>
         </Box>
+        {controls && <Divider />}
+        {controls}
       </Paper>
       <Drawer
         variant="persistent"
@@ -167,12 +170,14 @@ QuestFTHView.propTypes = {
   toolbox: PropTypes.element,
   canvas: PropTypes.element.isRequired,
   sidebar: PropTypes.element.isRequired,
+  controls: PropTypes.element,
   onFlipped: PropTypes.func,
 };
 
 QuestFTHView.defaultProps = {
   onFlipped: null,
   toolbox: null,
+  controls: null,
 };
 
 export default QuestFTHView;
