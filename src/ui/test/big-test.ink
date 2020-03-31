@@ -6,6 +6,7 @@ INCLUDE global-fxns.ink
 === begin ===
 + [HTML2 Original Version] -> html2orig
 + [HTML2 Interactivity Prototype] -> html2interactive
++ [P5JS Interactivity Prototype] -> p5jsproto
 + [Quit] -> END
 
 === html2orig ===
@@ -142,3 +143,8 @@ This time, though, we need a slightly different wording - `style="background-col
 - Niiice! Now that's going to turn some heads.
 So, how does it feel to have the tools to paint the whole internet? Come find me back in the Clubhouse to keep going!
 -> begin
+
+=== p5jsproto ===
+You find yourself in a maze of twisty passages, all alike.
+
++ [Get me out of here!] -> begin
