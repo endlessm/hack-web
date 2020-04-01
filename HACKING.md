@@ -1,27 +1,11 @@
 # Hacking hack-web
-## Development
-### Setup
-
-    yarn install
-    git submodule init
-    git submodule update
-    flatpak install org.freedesktop.Sdk.Extension.mono5//18.08
-
-You will need the following dependencies: NodeJS and Yarn. See tips
-below for installing [NodeJS](#tip-installing-nodejs-in-endless-os)
-and [Yarn](#tip-installing-yarn-in-endless-os) on Endless OS.
-
-### Run, test, build
+## Run, test, build
 
 To run the app locally in development mode:
 
     yarn start
 
 The page will refresh itself when the code changes.
-
-To build:
-
-    yarn build
 
 To run the linter only:
 
@@ -35,7 +19,7 @@ To run the test suite:
 
     yarn test
 
-### Settings for Development Mode
+## Settings for Development Mode
 
 You can pass environment variables to `yarn start` to try different
 things.
@@ -44,47 +28,19 @@ Testing login:
 
     TEST_AUTH=true yarn start
 
-### Tip: Installing NodeJS in Endless OS
+## Styling
 
-Go to [the NodeJS download page](https://nodejs.org/en/download/) and
-download the correct "Linux Binaries" package for your system. Most
-likely, you will want the "64-bit" package. Create a `.local` folder
-in your home directory and unzip the downloaded package there:
+We rely on the theme as much as possible for styling the UI. Please
+see the [material-ui](https://material-ui.com/) documentation for
+further information. Here is a quick check-list:
 
-    mkdir -p ~/.local
-    tar -C ~/.local -xJf node-v12.14.1-linux-x64.tar.xz --strip-components=1
+- [ ] Use `theme.pallete` for [colors](https://material-ui.com/customization/color/#color).
+- [ ] Use `theme.transitions` for [transitions](https://material-ui.com/components/transitions/#transitions).
+- [ ] Use `theme.spacing` for [spacing](https://material-ui.com/system/spacing/#spacing).
+- [ ] Use `theme.palette.common` for Hack-specific colors.
+- [ ] Use `theme.custom` for other Hack-specific values.
 
-Check if `~/.local/bin` is in your path (`echo $PATH`) and if not, add
-the following line to your `~/.bashrc` file:
-
-    export PATH="$HOME/.local/bin:$PATH"
-
-In the terminal, log in and log out for the changes to take effect.
-
-### Tip: Installing Yarn in Endless OS
-
-Download the Yarn package:
-
-    wget https://yarnpkg.com/latest.tar.gz
-
-Verify the package:
-
-    wget -qO- https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --import
-    wget https://yarnpkg.com/latest.tar.gz.asc
-    gpg --verify latest.tar.gz.asc
-
-Extract the package in your home directory:
-
-    mkdir -p ~/.yarn
-    tar zvxf latest.tar.gz -C ~/.yarn --strip-components 1
-
-Edit your `~/.bashrc` profile to add the following path:
-
-    export PATH="$HOME/.yarn/bin:$PATH"
-
-In the terminal, log in and log out for the changes to take effect.
-
-### Tip: working with multiple branches
+## Tip: working with multiple branches
 
 If you switch branches often, you will find that the `node_modules/`
 directory gets inconsistent, and you have to run `yarn install` over
@@ -119,15 +75,3 @@ with:
 
 The `-f` is because we use git submodules, and by default git prevents
 removing worktrees with submodules inside.
-
-## Styling
-
-We rely on the theme as much as possible for styling the UI. Please
-see the [material-ui](https://material-ui.com/) documentation for
-further information. Here is a quick check-list:
-
-- [ ] Use `theme.pallete` for [colors](https://material-ui.com/customization/color/#color).
-- [ ] Use `theme.transitions` for [transitions](https://material-ui.com/components/transitions/#transitions).
-- [ ] Use `theme.spacing` for [spacing](https://material-ui.com/system/spacing/#spacing).
-- [ ] Use `theme.palette.common` for Hack-specific colors.
-- [ ] Use `theme.custom` for other Hack-specific values.
