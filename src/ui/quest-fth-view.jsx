@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import {
   Box,
+  Divider,
   Drawer,
   Fab,
   makeStyles,
@@ -29,9 +30,12 @@ const useStyles = makeStyles((theme) => {
     },
     dialogueToggleButton: {
       position: 'absolute',
-      top: theme.spacing(2),
-      right: theme.spacing(2),
+      top: theme.spacing(1),
+      right: theme.spacing(1),
       zIndex: theme.zIndex.drawer + 1,
+    },
+    dialogueToggleButtonClosed: {
+      boxShadow: 'none',
     },
     toolboxToggleButton: {
       position: 'absolute',
@@ -52,7 +56,7 @@ const useStyles = makeStyles((theme) => {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      marginRight: theme.spacing(12) - drawerWidth,
+      marginRight: theme.spacing(10) - drawerWidth,
       height: '100%',
     },
     contentShift: {
@@ -65,12 +69,18 @@ const useStyles = makeStyles((theme) => {
     hackFabRoot: {
       boxShadow: 'none',
     },
+    canvas: {
+      textAlign: 'center',
+      position: 'relative',
+      width: '100%',
+      height: '100%',
+    },
   };
 });
 
 
 const QuestFTHView = ({
-  toolbox, canvas, sidebar, onFlipped,
+  toolbox, canvas, sidebar, controls, onFlipped,
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -94,25 +104,31 @@ const QuestFTHView = ({
           [classes.contentShift]: open,
         })}
       >
-        <FlipToHack
-          flipped={flipped}
-          toolbox={toolbox}
-          canvas={canvas}
-        />
-        <Fab
-          color="secondary"
-          aria-label="open toolbox"
-          edge="end"
-          size="medium"
-          onClick={toggleFlip}
-          className={classes.toolboxToggleButton}
-        >
-          {flipped ? <ChevronLeft /> : <ChevronRight />}
-        </Fab>
+        {toolbox ? (
+          <FlipToHack
+            flipped={flipped}
+            toolbox={toolbox}
+            canvas={canvas}
+          />
+        ) : <div className={classes.canvas}>{canvas}</div>}
+        {toolbox && (
+          <Fab
+            color="secondary"
+            aria-label="open toolbox"
+            edge="end"
+            size="medium"
+            onClick={toggleFlip}
+            className={classes.toolboxToggleButton}
+          >
+            {flipped ? <ChevronLeft /> : <ChevronRight />}
+          </Fab>
+        )}
       </main>
       <Paper
         elevation={6}
-        className={classes.dialogueToggleButton}
+        className={clsx(classes.dialogueToggleButton, {
+          [classes.dialogueToggleButtonClosed]: !open,
+        })}
       >
         <Box m={1}>
           <Fab
@@ -125,6 +141,8 @@ const QuestFTHView = ({
             <HackIcon />
           </Fab>
         </Box>
+        {controls && <Divider />}
+        {controls}
       </Paper>
       <Drawer
         variant="persistent"
@@ -149,14 +167,17 @@ const QuestFTHView = ({
 };
 
 QuestFTHView.propTypes = {
-  toolbox: PropTypes.element.isRequired,
+  toolbox: PropTypes.element,
   canvas: PropTypes.element.isRequired,
   sidebar: PropTypes.element.isRequired,
+  controls: PropTypes.element,
   onFlipped: PropTypes.func,
 };
 
 QuestFTHView.defaultProps = {
   onFlipped: null,
+  toolbox: null,
+  controls: null,
 };
 
 export default QuestFTHView;
