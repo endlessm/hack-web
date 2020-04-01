@@ -98,7 +98,7 @@ describe('libquest', () => {
     const { dialogue } = quest.continueStory();
     expect(dialogue.length).toEqual(1);
     expect(Object.keys(quest.waitFor).length).toEqual(0);
-    expect(dialogue[0].text).toEqual('something changed! radius: 30 flipped: 1\n');
+    expect(dialogue[0].text).toEqual('<p>something changed! radius: 30 flipped: 1</p>');
 
     // Now we go back to the same step, to test the other variable:
     quest.story.ChoosePathString('step_a');
@@ -106,7 +106,7 @@ describe('libquest', () => {
     quest.updateStoryVariable('radius', 85);
     expect(spyOnChoose).toHaveBeenCalledTimes(2);
     let { dialogue: newDialogue } = quest.continueStory();
-    expect(newDialogue[0].text).toEqual('something changed! radius: 85 flipped: 1\n');
+    expect(newDialogue[0].text).toEqual('<p>something changed! radius: 85 flipped: 1</p>');
 
     // Now we go back to the same step, to test contains:
     quest.story.ChoosePathString('step_a');
@@ -114,7 +114,7 @@ describe('libquest', () => {
     quest.updateStoryVariable('filter', 'this is a test filter string');
     expect(spyOnChoose).toHaveBeenCalledTimes(3);
     ({ dialogue: newDialogue } = quest.continueStory());
-    expect(newDialogue[0].text).toEqual('something changed! filter: this is a test filter string filter2: sample text\n');
+    expect(newDialogue[0].text).toEqual('<p>something changed! filter: this is a test filter string filter2: sample text</p>');
     quest.updateStoryVariable('filter', 'sample text');
 
     quest.story.ChoosePathString('step_a');
@@ -122,7 +122,7 @@ describe('libquest', () => {
     quest.updateStoryVariable('filter2', 'real text');
     expect(spyOnChoose).toHaveBeenCalledTimes(4);
     ({ dialogue: newDialogue } = quest.continueStory());
-    expect(newDialogue[0].text).toEqual('something changed! filter: sample text filter2: real text\n');
+    expect(newDialogue[0].text).toEqual('<p>something changed! filter: sample text filter2: real text</p>');
     quest.updateStoryVariable('filter2', 'sample text');
 
     // Now we go back to the same step, to test is:
@@ -133,7 +133,7 @@ describe('libquest', () => {
     quest.updateStoryVariable('number', 28);
     expect(spyOnChoose).toHaveBeenCalledTimes(5);
     ({ dialogue: newDialogue } = quest.continueStory());
-    expect(newDialogue[0].text).toEqual('something changed! number: 28 number2: 0\n');
+    expect(newDialogue[0].text).toEqual('<p>something changed! number: 28 number2: 0</p>');
     quest.updateStoryVariable('number', 0);
 
     quest.story.ChoosePathString('step_a');
@@ -141,7 +141,7 @@ describe('libquest', () => {
     quest.updateStoryVariable('number2', 28);
     expect(spyOnChoose).toHaveBeenCalledTimes(6);
     ({ dialogue: newDialogue } = quest.continueStory());
-    expect(newDialogue[0].text).toEqual('something changed! number: 0 number2: 28\n');
+    expect(newDialogue[0].text).toEqual('<p>something changed! number: 0 number2: 28</p>');
     quest.updateStoryVariable('number2', 0);
 
     quest.story.ChoosePathString('step_a');
@@ -151,7 +151,7 @@ describe('libquest', () => {
     quest.updateStoryVariable('finished', true);
     expect(spyOnChoose).toHaveBeenCalledTimes(7);
     ({ dialogue: newDialogue } = quest.continueStory());
-    expect(newDialogue[0].text).toEqual('something changed! finished: 1\n');
+    expect(newDialogue[0].text).toEqual('<p>something changed! finished: 1</p>');
 
     spyOnChoose.mockRestore();
   });
@@ -178,8 +178,20 @@ describe('libquest', () => {
     quest.story.ChoosePathString('say_snippet');
     const { dialogue } = quest.continueStory();
     expect(dialogue.length).toEqual(1);
-    expect(dialogue[0].text).toEqual('Check this out:\n');
+    expect(dialogue[0].text).toEqual('<p>Check this out:</p>');
     expect(dialogue[0].codeSnippet.language).toEqual('html');
     expect(dialogue[0].codeSnippet.text).toMatch(/^<h1>This is a header<\/h1>/);
+  });
+
+  it('groups messages by character', () => {
+    const quest = new Quest(questContent);
+
+    quest.story.ChoosePathString('all_said_by_the_same_character');
+    const { dialogue } = quest.continueStory();
+    expect(dialogue.length).toEqual(1);
+
+    quest.story.ChoosePathString('another_character_in_between');
+    const { dialogue: newDialogue } = quest.continueStory();
+    expect(newDialogue.length).toEqual(3);
   });
 });

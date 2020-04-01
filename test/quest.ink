@@ -49,3 +49,17 @@ Bye! -> END
 - Check this out:
 - {snippet_webpage()}
 -> END
+
+== all_said_by_the_same_character
+- a
+- b
+- c
+- d
+-> END
+
+== another_character_in_between
+- a
+- b # character: ada
+- c
+- d
+-> END
