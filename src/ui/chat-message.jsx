@@ -17,7 +17,7 @@ import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-monokai';
 
 const sanitizeOptions = {
-  allowedTags: ['b', 'i', 's', 'tt', 'u', 'a'],
+  allowedTags: ['b', 'i', 's', 'tt', 'u', 'a', 'p'],
   allowedAttributes: {
     a: ['href'],
   },

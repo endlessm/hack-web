@@ -117,7 +117,7 @@ export default class Quest {
     if (text.trim()) {
       return {
         id: this.dialogueId,
-        text,
+        text: `<p>${text.trim()}</p>`,
         character: character
                 || extractLineCharacter(this.story.currentTags)
                 || this.mainCharacter,
@@ -151,6 +151,10 @@ export default class Quest {
         if (d.language) {
           // It's a code snippet, append it to the previous dialogue:
           dialogue[dialogue.length - 1].codeSnippet = d;
+        } else if (this.dialogueId !== 0
+                   && d.character === dialogue[dialogue.length - 1].character) {
+          // It's dialogue coming from the same character:
+          dialogue[dialogue.length - 1].text += `</p><p>${d.text}`;
         } else {
           // It's a new dialogue:
           dialogue = [...dialogue, d];
