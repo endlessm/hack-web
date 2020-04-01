@@ -11,8 +11,9 @@ VAR code = ""
 ===function get_user_name===
     ~ return "DefaultUser"
 
-===function display_code(snip)===
-    ~ return "PLACEHOLDER: Displaying Code Snippet:  " + snip
+===function snippet_html(snip)===
+    # language html
+    ~ return "" + snip
 
 === begin ===
 -> htmlintro2_1
@@ -28,22 +29,21 @@ VAR code = ""
 If you did, though, all you'd have is boring black text on a white background. Let's spice that up a little by coloring the text.
 - Find an opening <tt>&lt;p&gt;</tt>tag in your code, and add <tt>style="color:blue"</tt>after the <tt>p</tt>.
 
-* [❯] CODE: Detect player adding style="color:blue"
+* [(wait for: code contains "<p style=\"color:blue\">")](Done)
 -> htmlintro2_3
-
 
 === htmlintro2_3 ===
 - Congratulations! You just <b>styled</b> some text! Now let's get even fancier - find another <tt>&lt;p&gt;</tt>tag and make <b>that</b> text orange.
 
-* [❯] CODE: Detect player adding style="color:orange"
+* [(wait for: code contains "<p style=\"color:orange\">")](Done)
 -> htmlintro2_4
 
 
 === htmlintro2_4 ===
-- I wonder what happens if you try that with an <tt>&lt;h1&gt;</tt>or <tt>&lt;h2&gt;</tt>tag? Try making one of those purple.
+- I wonder what happens if you try that with the <tt>&lt;h1&gt;</tt> tag? Try making that purple.
 
 + [Hints] -> htmlintro2_4hints
-* [❯] CODE: Detect player adding style="color:purple" to an H1 or H2 tag
+* [(wait for: code contains "<h1 style=\"color:purple\">")](Done)
 -> htmlintro2_5
 
 
@@ -53,10 +53,9 @@ If you did, though, all you'd have is boring black text on a white background. L
     - Remember how you just turned the text <b>orange</b>? Do the same thing, but with <b>purple</b>!
     - If you're getting an error, make sure your <b>carets</b> (&lt; and &gt;) match up. For each <b>&lt;</b> you need a <b>&gt;</b>!
     - Don't forget that after <tt>style=</tt>you need quotes ("") around <tt>color:purple</tt>!
-    - Your code should look like:
-    <tt>&lt;h1 style="color:purple"&gt;</tt>
-    or
-    <tt>&lt;h2 style="color:purple"&gt;</tt>
+    - Your code should look like one of these:
+    {snippet_html("&lt;h1 style=\"color:purple\"&gt;")}
+    {snippet_html("&lt;h2 style=\"color:purple\"&gt;")}
 }
 + [Hint] -> htmlintro2_4hints
 * [❯] CODE: Detect player adding style="color:purple" to an H1 or H2 tag
@@ -70,24 +69,22 @@ Here's an example hex color - <tt>\#76EECF</tt>
 
 === htmlintro2_6 ===
 - To use this hex color in your webpage, replace one of your color words with that hex code: <tt>\#76EECF<tt>
-(You need the "\#" in front of it to tell the browser "the next 6 letters or numbers are a hex color")
+(You need the \"\#\" in front of it to tell the browser \"the next 6 letters or numbers are a hex color\")
 Let's edit a <tt>&lt;p&gt;</tt>tag to make the text that hex color.
 
-+ [Hints] -> htmlintro2_6hints
-* [❯] CODE: Detect player adding style=\"color:\#76EECF\" to a &lt;p&gt; tag
+// + [Hints] -> htmlintro2_6hints
+* [(wait for: code contains "<p style=\"color:\#76EECF\">")](Done)
 -> htmlintro2_7
 
+// === htmlintro2_6hints ===
+// { cycle:
+//     - Remember, all you need to do is swap the color word for the hex color.
+//     - Your code should be <tt>&lt;p style=\"color:\#76EECF\"&gt;<tt>
+// }
 
-
-=== htmlintro2_6hints ===
-{ cycle:
-    - Remember, all you need to do is swap the color word for the hex color.
-    - Your code should be <tt>&lt;p style=\"color:\#76EECF\"&gt;<tt>
-}
-
-+ [Hint] -> htmlintro2_6hints
-* [❯] CODE: Detect player adding style=\"color:purple\" to an H1 or H2 tag
--> htmlintro2_7
+// + [Hint] -> htmlintro2_6hints
+// * [❯] CODE: Detect player adding style=\"color:purple\" to an H1 or H2 tag
+// -> htmlintro2_7
 
 === htmlintro2_7 ===
 - Cool color! Change the numbers around and see if you can create another color!
