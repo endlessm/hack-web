@@ -210,4 +210,15 @@ describe('libquest', () => {
     const { dialogue: newDialogue } = quest.continueStory();
     expect(newDialogue.length).toEqual(3);
   });
+
+  it('works with hints', () => {
+    const quest = new Quest(questContent);
+
+    quest.story.ChoosePathString('test_hints');
+    const { choices } = quest.continueStory();
+    quest.choose(choices[0]);
+    expect(() => {
+      quest.continueStory();
+    }).not.toThrow();
+  });
 });
