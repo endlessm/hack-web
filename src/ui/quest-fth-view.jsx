@@ -15,6 +15,7 @@ import {
 
 import PropTypes from 'prop-types';
 
+import SlideToHack from './slide-to-hack';
 import FlipToHack from './flip-to-hack';
 
 import HackIcon from './hack-icon.svg';
@@ -80,7 +81,7 @@ const useStyles = makeStyles((theme) => {
 
 
 const QuestFTHView = ({
-  toolbox, canvas, sidebar, controls, onFlipped,
+  toolbox, canvas, sidebar, controls, onFlipped, sideBySide,
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -105,11 +106,11 @@ const QuestFTHView = ({
         })}
       >
         {toolbox ? (
-          <FlipToHack
-            flipped={flipped}
-            toolbox={toolbox}
-            canvas={canvas}
-          />
+          <>
+            {sideBySide ? (
+              <SlideToHack flipped={flipped} toolbox={toolbox} canvas={canvas} />
+            ) : <FlipToHack flipped={flipped} toolbox={toolbox} canvas={canvas} />}
+          </>
         ) : <div className={classes.canvas}>{canvas}</div>}
         {toolbox && (
           <Fab
@@ -172,12 +173,14 @@ QuestFTHView.propTypes = {
   sidebar: PropTypes.element.isRequired,
   controls: PropTypes.element,
   onFlipped: PropTypes.func,
+  sideBySide: PropTypes.bool,
 };
 
 QuestFTHView.defaultProps = {
   onFlipped: null,
   toolbox: null,
   controls: null,
+  sideBySide: false,
 };
 
 export default QuestFTHView;

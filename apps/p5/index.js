@@ -66,6 +66,13 @@ function reload() {
 <html>
   <head>
     <script src="p5.min.js"></script>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <script>${globalParameters.code}</script>
