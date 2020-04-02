@@ -57,7 +57,7 @@ const App = () => {
     width: null,
     height: null,
     numPages: null,
-    fullscreen: false,
+    fullscreen: true,
     originalWidth: 0,
     originalHeight: 0,
     // FIXME remove these from state? I'm now passing them always from the ref
@@ -107,16 +107,17 @@ const App = () => {
 
   const getRefDimentions = () => ({
     availableWidth: ref.current.clientWidth,
-    availableHeight: ref.current.clientHeight - theme.spacing(2),
+    availableHeight: ref.current.clientHeight,
   });
 
   useLayoutEffect(() => {
     const dimentions = getRefDimentions();
-    setState((oldState) => ({
-      ...oldState,
-      ...dimentions,
-      ...fitPageToCanvas(dimentions),
-    }));
+    setState((oldState) => {
+      const scaleInfo = !oldState.fullscreen
+        ? fitPageToCanvas(dimentions)
+        : fitWidthToCanvas(dimentions);
+      return { ...oldState, ...dimentions, ...scaleInfo };
+    });
   }, []);
 
   const handleFlipped = (flipped) => {
