@@ -20,6 +20,8 @@ import {
 import { Document, Page } from 'react-pdf';
 
 import '../app.css';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+
 import 'typeface-roboto';
 import Dialogue from '../dialogue';
 import QuestFTHView from '../quest-fth-view';
@@ -38,9 +40,6 @@ const useStyles = makeStyles(({ palette, shadows }) => ({
     '& .react-pdf__Page canvas': {
       margin: '0 auto',
       boxShadow: shadows[12],
-    },
-    '& .react-pdf__Page__annotations': {
-      display: 'none',
     },
   },
 }));
@@ -154,6 +153,7 @@ const App = () => {
       <Document
         file={`/assets/covid-demo/${questName}.pdf`}
         onLoadSuccess={onDocumentLoadSuccess}
+        externalLinkTarget="_blank"
       >
         {Array.from(
           new Array(state.numPages),
