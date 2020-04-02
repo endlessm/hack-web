@@ -161,7 +161,7 @@ export default class Quest {
         if (d.language) {
           // It's a code snippet, append it to the previous dialogue:
           dialogue[dialogue.length - 1].codeSnippet = d;
-        } else if (this.dialogueId !== 0
+        } else if (dialogue.length > 0
                    && d.character === dialogue[dialogue.length - 1].character) {
           // It's dialogue coming from the same character:
           dialogue[dialogue.length - 1].text += `</p><p>${d.text}`;

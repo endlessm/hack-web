@@ -71,3 +71,12 @@ Bye! -> END
 - c
 - d
 -> END
+
+== test_hints
+{ cycle:
+    - hint 1
+    - hint 2
+    - hint 3
+}
++ [Hint] -> test_hints
+* [❯] -> END
