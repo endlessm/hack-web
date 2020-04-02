@@ -115,12 +115,14 @@ when either the `flipped` or the `level_completed` variables change.
 
 You can also wait for and check for a variable value with the following syntax:
 
-  * wait for: VARIABLE contains "text"
-  * wait for: VARIABLE not contains "text"
-  * wait for: VARIABLE is value
-  * wait for: VARIABLE is not value
+  * `wait for: VARIABLE contains "text"`
+  * `wait for: VARIABLE not contains "text"`
+  * `wait for: VARIABLE icontains "text"`: Like `contains` but ignoring case.
+  * `wait for: VARIABLE not icontains "text"`: Like `not contains` but ignoring case.
+  * `wait for: VARIABLE is value`
+  * `wait for: VARIABLE is not value`
 
-for example:
+For example:
 
     === step_playing ===
     OK! Now play the level.
