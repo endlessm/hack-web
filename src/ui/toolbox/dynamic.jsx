@@ -70,6 +70,7 @@ ToolBoxGrid.propTypes = {
 
 const DynToolbox = ({
   toolbox,
+  width,
 }) => {
   const params = useSelector((state) => state.originalHackableApp);
   const dispatch = useDispatch();
@@ -81,7 +82,7 @@ const DynToolbox = ({
   return (
     <ThemeProvider theme={ToolboxTheme}>
       <Grid container spacing={0}>
-        <Grid item xs={8}>
+        <Grid item xs={width}>
           <ToolBoxGrid toolbox={toolbox} />
         </Grid>
         <Grid item xs={1}>
@@ -98,6 +99,11 @@ const DynToolbox = ({
 
 DynToolbox.propTypes = {
   toolbox: PropTypes.shape({ tabs: PropTypes.arrayOf(TabType) }).isRequired,
+  width: PropTypes.number,
+};
+
+DynToolbox.defaultProps = {
+  width: 8,
 };
 
 export default DynToolbox;

@@ -83,6 +83,7 @@ const App = () => {
         toolbox={toolbox}
         canvas={canvas}
         sidebar={sidebar}
+        sideBySide
       />
     </TestWrapper>
   );
