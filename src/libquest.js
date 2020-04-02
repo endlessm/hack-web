@@ -32,9 +32,19 @@ const extractWaitForVariables = (choiceText) => {
       fn: (variable, str) => !variable.includes(str),
     },
     {
+      // wait for: code not icontains "test"
+      match: /^([^ ]+) not icontains "(.*)"$/,
+      fn: (variable, str) => !variable.toUpperCase().includes(str.toUpperCase()),
+    },
+    {
       // wait for: code contains "test"
       match: /^([^ ]+) contains "(.*)"$/,
       fn: (variable, str) => variable.includes(str),
+    },
+    {
+      // wait for: code icontains "test"
+      match: /^([^ ]+) icontains "(.*)"$/,
+      fn: (variable, str) => variable.toUpperCase().includes(str.toUpperCase()),
     },
     {
       // wait for: code is not 12

@@ -7,6 +7,8 @@ VAR number = 0
 VAR filter2 = "sample text"
 VAR number2 = 0
 VAR finished = false
+VAR filter3 = "sample text"
+VAR filter4 = "SaMpLe TeXt"
 
 -> step_a
 
@@ -20,6 +22,8 @@ This is the second line # character: riley
 + [(wait for: number is 28)] -> number_changed
 + [(wait for: number2 is not 0)] -> number_changed
 + [(wait for: finished is true)] -> finished_changed
++ [(wait for: filter3 icontains "IGNORE cAsE")] -> icase_changed
++ [(wait for: filter4 not icontains "sample text")] -> icase_changed
 
 == variables_changed
 something changed! radius: {radius} flipped: {flipped}
@@ -27,6 +31,10 @@ something changed! radius: {radius} flipped: {flipped}
 
 == filter_changed
 something changed! filter: {filter} filter2: {filter2}
+-> END
+
+== icase_changed
+something changed! filter3: {filter3} filter4: {filter4}
 -> END
 
 == number_changed

@@ -84,7 +84,7 @@ describe('libquest', () => {
     expect(Object.keys(quest.waitFor).length).toEqual(0);
     const { choices } = quest.continueStory();
     expect(choices.length).toEqual(1);
-    expect(Object.keys(quest.waitFor).length).toEqual(7);
+    expect(Object.keys(quest.waitFor).length).toEqual(9);
     expect('flipped' in quest.waitFor).toBe(true);
     expect('radius' in quest.waitFor).toBe(true);
     expect('wrong_variable' in quest.waitFor).toBe(false);
@@ -152,6 +152,22 @@ describe('libquest', () => {
     expect(spyOnChoose).toHaveBeenCalledTimes(7);
     ({ dialogue: newDialogue } = quest.continueStory());
     expect(newDialogue[0].text).toEqual('<p>something changed! finished: 1</p>');
+    quest.updateStoryVariable('finished', false);
+
+    quest.story.ChoosePathString('step_a');
+    quest.continueStory();
+    quest.updateStoryVariable('filter3', 'should iGNore Case');
+    expect(spyOnChoose).toHaveBeenCalledTimes(8);
+    ({ dialogue: newDialogue } = quest.continueStory());
+    expect(newDialogue[0].text).toEqual('<p>something changed! filter3: should iGNore Case filter4: SaMpLe TeXt</p>');
+    quest.updateStoryVariable('filter3', 'sample text');
+
+    quest.story.ChoosePathString('step_a');
+    quest.continueStory();
+    quest.updateStoryVariable('filter4', 'should iGNore Case');
+    expect(spyOnChoose).toHaveBeenCalledTimes(9);
+    ({ dialogue: newDialogue } = quest.continueStory());
+    expect(newDialogue[0].text).toEqual('<p>something changed! filter3: sample text filter4: should iGNore Case</p>');
 
     spyOnChoose.mockRestore();
   });
