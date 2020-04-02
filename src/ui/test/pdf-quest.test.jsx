@@ -151,7 +151,7 @@ const App = () => {
   const canvas = (
     <Box ref={ref} className={classes.documentContainer}>
       <Document
-        file={`/assets/covid-demo/${questName}.pdf`}
+        file={`/assets/articles/${questName}.pdf`}
         onLoadSuccess={onDocumentLoadSuccess}
         externalLinkTarget="_blank"
       >

@@ -44,16 +44,16 @@ module.exports = {
           to: 'assets/quests',
         },
         {
+          from: 'src/articles',
+          to: 'assets/articles',
+        },
+        {
           from: 'apps',
           to: 'apps/',
         },
         {
           from: 'src/ui/toolbox/assets',
           to: 'assets/toolbox',
-        },
-        {
-          from: 'src/ui/covid-demo/assets',
-          to: 'assets/covid-demo',
         },
         {
           from: 'node_modules/pdfjs-dist/build/pdf.worker.js',
