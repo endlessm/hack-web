@@ -13,7 +13,6 @@ import {
 
 import {
   Fullscreen,
-  FullscreenExit,
   ZoomIn,
   ZoomOut,
 } from '@material-ui/icons';
@@ -63,9 +62,6 @@ const App = () => {
     fullscreen: true,
     originalWidth: 0,
     originalHeight: 0,
-    // FIXME remove these from state? I'm now passing them always from the ref
-    availableWidth: 0,
-    availableHeight: 0,
   });
 
   const ref = useRef(null);
@@ -98,12 +94,6 @@ const App = () => {
     setCurrentChoice(null);
   }, [quest, choices, currentChoice]);
 
-  const fitPageToCanvas = ({ availableHeight }) => ({
-    // FIXME: use originalWidth originalHeight
-    // For now just fit to page height (it should fit to max(width, height).
-    width: null, height: availableHeight, scale: 1,
-  });
-
   const fitWidthToCanvas = ({ availableWidth }) => ({
     width: availableWidth, height: null, scale: 1,
   });
@@ -115,12 +105,8 @@ const App = () => {
 
   useLayoutEffect(() => {
     const dimentions = getRefDimentions();
-    setState((oldState) => {
-      const scaleInfo = !oldState.fullscreen
-        ? fitPageToCanvas(dimentions)
-        : fitWidthToCanvas(dimentions);
-      return { ...oldState, ...dimentions, ...scaleInfo };
-    });
+    const scaleInfo = fitWidthToCanvas(dimentions);
+    setState((oldState) => ({ ...oldState, ...scaleInfo }));
   }, []);
 
   const handleFlipped = (flipped) => {
@@ -142,21 +128,17 @@ const App = () => {
   };
 
   const onZoomIn = () => {
-    setState((oldState) => ({ ...oldState, scale: oldState.scale * 1.1 }));
+    setState((oldState) => ({ ...oldState, fullscreen: false, scale: oldState.scale * 1.1 }));
   };
 
   const onZoomOut = () => {
-    setState((oldState) => ({ ...oldState, scale: oldState.scale * 0.9 }));
+    setState((oldState) => ({ ...oldState, fullscreen: false, scale: oldState.scale * 0.9 }));
   };
 
   const onSwitchFullscreen = () => {
     const dimentions = getRefDimentions();
-    setState((oldState) => {
-      const scaleInfo = oldState.fullscreen
-        ? fitPageToCanvas(dimentions)
-        : fitWidthToCanvas(dimentions);
-      return { ...oldState, fullscreen: !oldState.fullscreen, ...scaleInfo };
-    });
+    const scaleInfo = fitWidthToCanvas(dimentions);
+    setState((oldState) => ({ ...oldState, fullscreen: true, ...scaleInfo }));
   };
 
   const sidebar = (
@@ -199,8 +181,9 @@ const App = () => {
           edge="end"
           size="medium"
           onClick={onSwitchFullscreen}
+          disabled={state.fullscreen}
         >
-          {state.fullscreen ? <FullscreenExit /> : <Fullscreen />}
+          <Fullscreen />
         </Fab>
       </Box>
       <Divider />
