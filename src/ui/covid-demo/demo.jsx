@@ -31,14 +31,17 @@ import theme from '../theme';
 import questContent from './maker-make-change.ink';
 const questName = 'maker-make-change';
 
-const useStyles = makeStyles(({ palette, shadows, spacing }) => ({
+const useStyles = makeStyles(({ palette, shadows }) => ({
   documentContainer: {
     height: '100%',
     overflowY: 'scroll',
     backgroundColor: palette.grey[500],
     '& .react-pdf__Page canvas': {
-      margin: `${spacing(1)}px auto`,
+      margin: '0 auto',
       boxShadow: shadows[12],
+    },
+    '& .react-pdf__Page__annotations': {
+      display: 'none',
     },
   },
 }));
