@@ -65,8 +65,7 @@ module.exports = {
               .rule('ink')
               .test(/\.ink$/)
               .use('ink')
-              .loader(path.resolve('./webpack-loaders/ink-loader.js'))
-              .options({});
+              .loader('inklecate-loader');
 
       // Remove default rule for SVG image:
       const test = neutrino.config.module
