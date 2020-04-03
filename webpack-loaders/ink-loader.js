@@ -6,20 +6,15 @@ const { execSync } = require('child_process');
 // flatpak wrapper can't read from the system:
 const tempDir = './temp';
 
-module.exports = function(source) {
+module.exports = function load() {
   if (!fs.existsSync(tempDir)) {
     fs.mkdirSync(tempDir);
   }
 
-  const tmpSource = tmp.fileSync({ dir: tempDir });
   const tmpDest = tmp.fileSync({ dir: tempDir });
 
-  fs.writeSync(tmpSource.fd, source);
-
-  // FIXME, the source path should be the original one, for ink
-  // includes to work.
   try {
-    execSync(`./tools/inklecate -o ${tmpDest.name} ${tmpSource.name}`);
+    execSync(`./tools/inklecate -o ${tmpDest.name} ${this.resourcePath}`);
   } catch (error) {
     this.emitError(error.stdout);
   }
@@ -27,7 +22,6 @@ module.exports = function(source) {
   const buffer = fs.readFileSync(tmpDest.name);
   const output = buffer.toString('utf8');
 
-  tmpSource.removeCallback();
   tmpDest.removeCallback();
 
   return `export default ${output}`;
