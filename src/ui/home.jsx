@@ -3,15 +3,11 @@ import {
   Typography,
   Box, Container,
 } from '@material-ui/core';
-
 import { useSelector } from 'react-redux';
-
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
-import PathwayCard from './pathway-card';
+import PathwayCardGrid from './pathway-card-grid';
 
 import ImageHeaderBg from './home-background-header.jpg';
 import ImageMainBg from './home-background-main.jpg';
@@ -50,16 +46,13 @@ const useStyles = makeStyles((theme) => ({
            + `inset 0 -1em 1em -1em ${theme.palette.common.black}`,
   },
   cardsBox: {
-    display: 'flex',
-    flex: 1,
-    alignItems: 'center',
-    padding: '4em 0',
     // FIXME remove the linear-gradient, it should be part of the asset.
     backgroundImage: `linear-gradient(${fade(theme.palette.common.black, 0.5)}, ${fade(theme.palette.common.black, 0.5)}), url('${ImageHeaderBg}')`,
     backgroundPosition: 'bottom',
     backgroundAttachment: 'fixed',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
+    padding: theme.spacing(4, 0),
   },
   pathwayCard: {
     margin: '0 1em',
@@ -86,15 +79,7 @@ export default () => {
           </Typography>
         </Box>
         <Box className={classes.cardsBox}>
-          <Grid container justify="center" className={classes.cardGrid}>
-            {pathways.map((p) => (
-              <Grid key={p.slug} item>
-                <Box className={classes.pathwayCard}>
-                  <PathwayCard pathway={p} />
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
+          <PathwayCardGrid pathways={pathways} />
         </Box>
       </Container>
     </Box>
