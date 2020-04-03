@@ -15,6 +15,7 @@ import App from './ui/app';
 // import App from './ui/test/p5-quest.test';
 // import App from './ui/test/html-quest.test';
 // import App from './ui/test/pdf-quest.test';
+// import App from './ui/test/sidetrack.test';
 
 render(
   <Provider store={store}>
