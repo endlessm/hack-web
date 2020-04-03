@@ -14,6 +14,7 @@ import App from './ui/app';
 // import App from './ui/test/toolbox.test';
 // import App from './ui/test/p5.test';
 // import App from './ui/test/html-quest.test';
+// import App from './ui/test/pdf-quest.test';
 
 render(
   <Provider store={store}>
