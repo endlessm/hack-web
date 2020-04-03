@@ -6,5 +6,5 @@
 ===function get_user_name===
     ~ return "DefaultUser"
 
-===function display_code(code)===
-    ~ return "PLACEHOLDER: Displaying Code Snippet:  " + code
+===function display_code(todisplay)===
+    ~ return "PLACEHOLDER: Displaying Code Snippet:  " + todisplay

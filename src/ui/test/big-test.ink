@@ -1,19 +1,12 @@
+INCLUDE global-fxns.ink
 # main character: riley
 -> begin
 
 VAR code = ""
-
-===function open_web_page(page)===
-    ~ return "PLACEHOLDER: Opening " + page
-
-===function get_user_name===
-    ~ return "DefaultUser"
-
-===function display_code(snip)===
-    ~ return "PLACEHOLDER: Displaying Code Snippet:  " + snip
+VAR goal_reached = ""
 
 === begin ===
-- Prototype Quest
+- Hello, {get_user_name()}! This is the Prototype Quest!
 + [Go] -> proto 
 + [Quit] -> END
 
