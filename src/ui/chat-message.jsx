@@ -47,6 +47,12 @@ const useStyles = makeStyles(({
       '& a': {
         color: palette.common.messageLink,
       },
+      '& p:first-child': {
+        marginBlockStart: 0,
+      },
+      '& p:last-child': {
+        marginBlockEnd: 0,
+      },
     },
     leftMessageBox: {
       textAlign: 'left',
