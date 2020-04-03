@@ -34,6 +34,31 @@ const poolData = {
 const userPool = new CognitoUserPool(poolData);
 const storage = new CookieStorageClass({ domain: COOKIE_DOMAIN });
 
+function fakeGetUser(username = '') {
+  const name = username || storage.getItem('currentUser');
+  if (!name) {
+    return null;
+  }
+
+  return {
+    authenticated: true,
+    username: name,
+  };
+}
+
+async function fakeLogin(username, password) {
+  // We check the password with a fixed string
+  return new Promise((resolve, reject) => {
+    if (password === 'ready to hack!') {
+      storage.setItem('currentUser', username);
+      resolve('fake token');
+    } else {
+      reject(new Error('Wrong password. If you are ready to hack you should know the password'));
+    }
+  });
+}
+
+// eslint-disable-next-line unused-imports/no-unused-vars
 function getUser(username = '') {
   const name = username || storage.getItem('currentUser');
   if (!name) {
@@ -68,6 +93,7 @@ async function signup(username, password) {
   });
 }
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 async function login(username, password) {
   const authenticationData = {
     Username: username,
@@ -121,9 +147,10 @@ function confirmPassword(username, verificationCode, newPassword) {
 
 export {
   signup,
-  login,
   logout,
-  getUser,
   resetPassword,
   confirmPassword,
+  // TODO: remove fakeLogin and fakeGetUser and replace with real login and getUser
+  fakeLogin as login,
+  fakeGetUser as getUser,
 };
