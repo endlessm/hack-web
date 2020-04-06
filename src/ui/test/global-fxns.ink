@@ -6,5 +6,9 @@
 ===function get_user_name===
     ~ return "DefaultUser"
 
+===function snippet_html(snip)===
+    # language html
+    ~ return "" + snip
+
 ===function display_code(todisplay)===
-    ~ return "PLACEHOLDER: Displaying Code Snippet:  " + todisplay
+    ~ return "DEPRECATED DO NOT USE"
