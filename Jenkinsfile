@@ -1,18 +1,10 @@
 pipeline {
     agent {
-        docker {
-            image 'node:slim'
-            // Need to run as root to install packages
-            args '-u 0:0'
+        dockerfile {
+            filename 'Dockerfile.build'
         }
     }
     stages {
-        stage('Dependencies') {
-            steps {
-                sh 'apt-get update'
-                sh 'apt-get -y install git flatpak-builder'
-            }
-        }
         stage('Build') {
             steps {
                 sh 'npm install'
