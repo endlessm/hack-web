@@ -12,7 +12,7 @@
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "test": "jest --rootDir test/",
-    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test",
+    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test webpack-loaders",
     "deploy": "node tools/deploy.js"
   },
   "dependencies": {
