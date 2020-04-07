@@ -4,11 +4,12 @@ INCLUDE global-fxns.ink
 
 VAR code = ""
 
+=== begin ===
+-> p5jsintro2_1
+
 === p5jsintro2_1 ===
 -Hi there! I'm glad you're back, <b>{get_user_name()}</b> - I've got something awesome to show you!
--First things first - let's get back to the p5.js code editor.
-{open_web_page("https:\/\/editor.p5js.org\/madetohack\/sketches/4Ko8JXYN")}
-* [❯] Wait for open webpage
+* [❯] Open https:\/\/editor.p5js.org\/madetohack/sketches/4Ko8JXYN
 -> p5jsintro2_2
 
 === p5jsintro2_2 ===

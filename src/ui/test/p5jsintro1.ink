@@ -4,6 +4,9 @@ INCLUDE global-fxns.ink
 
 VAR code = ""
 
+=== begin ===
+-> p5jsintro1_1
+
 === p5jsintro1_1 ===
 - Hey {get_user_name()}, I've got something <b>super</b> cool for you!
 I've been learning a new programming language for making interactive art - I think it's right up your alley!

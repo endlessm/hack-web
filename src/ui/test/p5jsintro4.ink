@@ -30,7 +30,7 @@ VAR code = ""
 -The first example just has a number in the parentheses - that's what we started off with in the very first quest, remember? I always wondered what it meant...
 -Oh, I see - it's a <b>grayscale</b> number, a value between 0 and 255 that tells you how dark or light the gray should be.
 -If you look down a few entries, you'll see <tt>background('red');</tt> - that's how we set the color the first time.
--A little ways down, there's <tt>background('#222222');</tt> - there's the hex color format we used later!
+-A little ways down, there's <tt>background('\#222222');</tt> - there's the hex color format we used later!
 -Wow, there's so many different ways to set the background color! Scrolling down even further, you can read about how it works.
 -Let's go back and check out another entry. Click the back button, then find <tt>circle()</tt> on the page.
 * [❯] User goes to circle() entry
