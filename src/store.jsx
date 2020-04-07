@@ -92,30 +92,35 @@ const initialState = {
   pathways: [
     {
       slug: 'games',
+      tempUrl: 'games/fixme-name-the-sidetrack-quest',
       name: 'Games',
       description: 'This is a category description.',
       quests: dummyQuestList,
     },
     {
       slug: 'art',
+      tempUrl: 'art/fixme-name-the-p5-quest',
       name: 'Art',
       description: 'This is a category description.',
       quests: dummyQuestList,
     },
     {
       slug: 'web',
+      tempUrl: 'web/fixme-name-the-html-quest',
       name: 'Web',
       description: 'This is a category description.',
       quests: dummyQuestList,
     },
     {
       slug: 'maker',
+      tempUrl: 'maker/make-change',
       name: 'Maker',
       description: 'This is a category description.',
       quests: dummyQuestList,
     },
     {
       slug: 'os',
+      tempUrl: 'os',
       name: 'OS',
       description: 'This is a category description.',
       quests: dummyQuestList.slice(0, 5),

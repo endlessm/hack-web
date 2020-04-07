@@ -80,7 +80,7 @@ const PathwayCard = ({ pathway }) => {
           <CardActionArea
             className={classes.actionArea}
             component={RouterLink}
-            to={`/${pathway.slug}`}
+            to={`/${pathway.tempUrl}` /* FIXME, should be pathway.slug */}
           >
             <CardMedia
               className={classes.media}
