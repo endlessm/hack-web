@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 import {
   Box,
+  CircularProgress,
   Divider,
   Fab,
   makeStyles,
@@ -38,6 +39,12 @@ const useStyles = makeStyles(({ palette, shadows }) => ({
       margin: '0 auto',
       boxShadow: shadows[12],
     },
+  },
+  spinnerContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
   },
 }));
 
@@ -142,9 +149,16 @@ const PdfQuest = () => {
     />
   );
 
+  const spinner = (
+    <Box className={classes.spinnerContainer}>
+      <CircularProgress />
+    </Box>
+  );
+
   const canvas = (
     <Box ref={ref} className={classes.documentContainer}>
       <Document
+        loading={spinner}
         file={`/assets/articles/${questName}.pdf`}
         onLoadSuccess={onDocumentLoadSuccess}
         externalLinkTarget="_blank"
