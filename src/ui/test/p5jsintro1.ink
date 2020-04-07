@@ -1,21 +1,8 @@
-// INCLUDE global-fxns.ink
-// includes broken as of 3/31
+INCLUDE global-fxns.ink
 # main character: riley
 -> begin
 
 VAR code = ""
-
-===function open_web_page(page)===
-    ~ return "PLACEHOLDER: Opening " + page
-
-===function get_user_name===
-    ~ return "DefaultUser"
-
-===function display_code(snip)===
-    ~ return "PLACEHOLDER: Displaying Code Snippet:  " + snip
-
-=== begin ===
--> p5jsintro1_1
 
 === p5jsintro1_1 ===
 - Hey {get_user_name()}, I've got something <b>super</b> cool for you!
@@ -36,7 +23,7 @@ To run the code, click the play button. Let's try that right now.
 Let's see if we can add something...
 - There are 2 different parts in this program - one called <tt>setup() and the other called <tt>draw()</tt>.
 <tt>setup()</tt> creates the place where everything gets drawn, and <tt>draw()</tt> is where the action happens.
-- OK, first, let's change that boring grey! Change the line with <tt>background</tt> to read <tt>background('green')</tt>. 
+- OK, first, let's change that boring grey! Change the line with <tt>background</tt> to read <tt>background('green')</tt>.
 + [❯] CODE: User changes background to green
 -> p5jsintro1_4
 + [E] CODE: User makes an error
@@ -77,7 +64,8 @@ Change the two numbers in the <tt>createCanvas()</tt> function - they control ho
 === p5jsintro1_7 ===
 - Nice, with that new canvas size, your bigger circle should show up now! I gotta run, but there's a ton more stuff to show you in <b>p5.js</b>!
 Next time, we'll add color to our circle, and make it move around the screen to follow the mouse. Catch you later!
-+ [❯] -> success
++ [❯]
+-> success
 
 === success ===
 -> END

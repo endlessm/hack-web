@@ -1,18 +1,8 @@
-// INCLUDE global-fxns.ink
-// includes broken as of 3/31
+INCLUDE global-fxns.ink
 # main character: riley
 -> begin
 
 VAR code = ""
-
-===function open_web_page(page)===
-~ return "PLACEHOLDER: Opening " + page
-
-===function get_user_name===
-~ return "DefaultUser"
-
-===function display_code(snip)===
-~ return "PLACEHOLDER: Displaying Code Snippet:  " + snip
 
 === begin ===
 -> p5jsintro4_1
@@ -25,8 +15,8 @@ VAR code = ""
 
 === p5jsintro4_2 ===
 -Let me show you the <b>p5.js</b> version of the Academy Archives - it's where I learned everything I know about it. To look at it, we need to open a new web page, let me get that really quick.
--{display_code("Open https:\/\/p5js.org\/reference\/")}
-* [❯] CODE: Wait for webpage to open
+-{open_web_page("https:\/\/p5js.org\/reference\/")}
+* [❯]
 -> p5jsintro4_3
 
 === p5jsintro4_3 ===
