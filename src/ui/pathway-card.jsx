@@ -77,7 +77,11 @@ const PathwayCard = ({ pathway }) => {
     <Card className={classes.root} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {expanded && (
         <>
-          <CardActionArea className={classes.actionArea}>
+          <CardActionArea
+            className={classes.actionArea}
+            component={RouterLink}
+            to={`/${pathway.slug}`}
+          >
             <CardMedia
               className={classes.media}
               image={`/assets/pathways/${pathway.slug}-card-media.png`}
@@ -90,20 +94,18 @@ const PathwayCard = ({ pathway }) => {
                 { pathway.description }
               </Typography>
             </CardContent>
+            <CardActions className={classes.actions}>
+              <Button
+                size="small"
+                variant="contained"
+                color="primary"
+                disableElevation
+                className={classes.button}
+              >
+                Play
+              </Button>
+            </CardActions>
           </CardActionArea>
-          <CardActions className={classes.actions}>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              disableElevation
-              className={classes.button}
-              component={RouterLink}
-              to={`/${pathway.slug}`}
-            >
-              Play
-            </Button>
-          </CardActions>
         </>
       )}
     </Card>
