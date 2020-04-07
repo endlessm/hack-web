@@ -28,6 +28,12 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     display: 'flex',
     flexDirection: 'column',
+    // FIXME remove the linear-gradient, it should be part of the asset.
+    backgroundImage: `linear-gradient(${fade(theme.palette.common.black, 0.5)}, ${fade(theme.palette.common.black, 0.5)}), url('${ImageHeaderBg}')`,
+    backgroundPosition: 'bottom',
+    backgroundAttachment: 'fixed',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
   },
   titleBox: {
     backgroundImage: `linear-gradient(${theme.custom.landingTitleGradientDirection}deg, ${fade(theme.palette.primary.main, 0.5)} 75%, transparent), url('${ImageMainBg}')`,
@@ -48,12 +54,6 @@ const useStyles = makeStyles((theme) => ({
            + `inset 0 -1em 1em -1em ${theme.palette.common.black}`,
   },
   cardsBox: {
-    // FIXME remove the linear-gradient, it should be part of the asset.
-    backgroundImage: `linear-gradient(${fade(theme.palette.common.black, 0.5)}, ${fade(theme.palette.common.black, 0.5)}), url('${ImageHeaderBg}')`,
-    backgroundPosition: 'bottom',
-    backgroundAttachment: 'fixed',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
     padding: theme.spacing(4, 0),
   },
   pathwayCard: {
