@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Box, makeStyles } from '@material-ui/core';
 
 import { difficultyType } from './types';
 

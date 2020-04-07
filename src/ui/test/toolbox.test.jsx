@@ -5,8 +5,8 @@ import {
   List,
   ListItem,
   ListItemText,
+  makeStyles,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 
 import TestWrapper from './test-wrapper';
 import QuestFTHView from '../quest-fth-view';

@@ -1,11 +1,13 @@
 import React from 'react';
-import {
-  Typography,
-  Box, Container,
-} from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+
+import {
+  Box,
+  Container,
+  fade,
+  makeStyles,
+  Typography,
+} from '@material-ui/core';
 
 import PathwayCardGrid from './pathway-card-grid';
 
