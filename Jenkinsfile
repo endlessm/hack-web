@@ -4,6 +4,17 @@ pipeline {
             filename 'Dockerfile.build'
         }
     }
+
+    environment {
+        // This defaults to /.npm since $HOME is /, but that's not
+        // writable by the unprivileged jenkins user.
+        NPM_CONFIG_CACHE = "${env.WORKSPACE}/.npm"
+
+        // NPM can't be updated unprivileged, so silence the
+        // notification.
+        NPM_CONFIG_UPDATE_NOTIFIER = 'false'
+    }
+
     stages {
         stage('Build') {
             steps {
