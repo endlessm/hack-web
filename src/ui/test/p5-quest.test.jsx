@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-const App = () => {
+const P5Quest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -89,4 +89,12 @@ const App = () => {
   );
 };
 
-export default hot(module)(App);
+const WrappedQuest = () => (
+  <TestWrapper>
+    <P5Quest />
+  </TestWrapper>
+);
+
+const App = hot(module)(WrappedQuest);
+
+export { App as default, P5Quest };

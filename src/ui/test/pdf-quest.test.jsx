@@ -4,11 +4,9 @@ import React, {
 } from 'react';
 import {
   Box,
-  CssBaseline,
   Divider,
   Fab,
   makeStyles,
-  ThemeProvider,
 } from '@material-ui/core';
 
 import {
@@ -19,14 +17,13 @@ import {
 
 import { Document, Page } from 'react-pdf';
 
-import '../app.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
 import 'typeface-roboto';
+import TestWrapper from './test-wrapper';
 import Dialogue from '../dialogue';
 import QuestFTHView from '../quest-fth-view';
 import Quest from '../../libquest';
-import theme from '../theme';
 
 // eslint-disable-next-line import/newline-after-import
 import questContent from './maker-make-change.ink';
@@ -44,7 +41,7 @@ const useStyles = makeStyles(({ palette, shadows }) => ({
   },
 }));
 
-const App = () => {
+const PdfQuest = () => {
   const classes = useStyles();
 
   const [quest] = useState(new Quest(questContent));
@@ -213,16 +210,21 @@ const App = () => {
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <QuestFTHView
-        canvas={canvas}
-        sidebar={sidebar}
-        controls={controls}
-        onFlipped={handleFlipped}
-      />
-    </ThemeProvider>
+    <QuestFTHView
+      canvas={canvas}
+      sidebar={sidebar}
+      controls={controls}
+      onFlipped={handleFlipped}
+    />
   );
 };
 
-export default hot(module)(App);
+const WrappedQuest = () => (
+  <TestWrapper>
+    <PdfQuest />
+  </TestWrapper>
+);
+
+const App = hot(module)(WrappedQuest);
+
+export { App as default, PdfQuest };
