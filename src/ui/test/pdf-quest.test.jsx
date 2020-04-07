@@ -105,16 +105,13 @@ const PdfQuest = () => {
     setState((oldState) => ({ ...oldState, ...scaleInfo }));
   }, []);
 
-  const handleFlipped = (flipped) => {
-    quest.updateStoryVariable('flipped', flipped);
-    setCurrentChoice(undefined);
-  };
-
   const handleChoiceSelected = (choice) => {
     setCurrentChoice(choice);
   };
 
   const onDocumentLoadSuccess = ({ numPages }) => {
+    quest.updateStoryVariable('loaded', true);
+    setCurrentChoice(undefined);
     setState((oldState) => ({ ...oldState, numPages }));
   };
 
@@ -214,7 +211,6 @@ const PdfQuest = () => {
       canvas={canvas}
       sidebar={sidebar}
       controls={controls}
-      onFlipped={handleFlipped}
     />
   );
 };
