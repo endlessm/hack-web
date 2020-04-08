@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 source_dir="$(git rev-parse --show-toplevel)"
 build_dir="${source_dir}/tools/.inklecate-build"
 
