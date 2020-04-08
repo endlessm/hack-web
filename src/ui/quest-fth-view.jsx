@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import {
   Box,
-  Divider,
   Drawer,
   Fab,
   makeStyles,
@@ -25,6 +24,16 @@ const useStyles = makeStyles((theme) => {
   // Fill 3 of 12 columns in XL screen size:
   const drawerWidth = theme.breakpoints.values.xl * 0.25;
 
+  const marginTransition = theme.transitions.create('margin', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  });
+
+  const marginTransitionShift = theme.transitions.create('margin', {
+    easing: theme.transitions.easing.easeOut,
+    duration: theme.transitions.duration.enteringScreen,
+  });
+
   return {
     root: {
       display: 'flex',
@@ -44,6 +53,17 @@ const useStyles = makeStyles((theme) => {
       borderRadius: '0 50% 50% 0',
       top: `calc(50% - ${theme.spacing(3)}px)`,
     },
+    controlsContainer: {
+      position: 'absolute',
+      top: theme.spacing(1),
+      right: 0,
+      marginRight: theme.spacing(12),
+      transition: marginTransition,
+    },
+    controlsContainerShift: {
+      transition: marginTransitionShift,
+      marginRight: drawerWidth + theme.spacing(2),
+    },
     drawer: {
       width: drawerWidth,
       flexShrink: 0,
@@ -54,18 +74,12 @@ const useStyles = makeStyles((theme) => {
     content: {
       overflow: 'hidden',
       flexGrow: 1,
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
+      transition: marginTransition,
       marginRight: theme.spacing(10) - drawerWidth,
       height: '100%',
     },
     contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
+      transition: marginTransitionShift,
       marginRight: 0,
     },
     hackFabRoot: {
@@ -129,6 +143,14 @@ const QuestFTHView = ({
             {flipped ? <ChevronLeft /> : <ChevronRight />}
           </Fab>
         )}
+        {controls && (
+          <Box className={clsx(classes.controlsContainer, {
+            [classes.controlsContainerShift]: open,
+          })}
+          >
+            {controls}
+          </Box>
+        )}
       </main>
       <Paper
         elevation={6}
@@ -151,8 +173,6 @@ const QuestFTHView = ({
             )}
           </Fab>
         </Box>
-        {controls && <Divider />}
-        {controls}
       </Paper>
       <Drawer
         variant="persistent"
