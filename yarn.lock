@@ -7518,6 +7518,11 @@ react-transition-group@^4.3.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-use-gesture@^7.0.11:
+  version "7.0.11"
+  resolved "https://registry.yarnpkg.com/react-use-gesture/-/react-use-gesture-7.0.11.tgz#a6c551c68e55cf6c7a081b0fe168b733be17d555"
+  integrity sha512-g3g4BsoRVsgtZwpR4dhlsuBUjU0k6B42NnrBDJ0grQ2t4rCvHdGS03NQeiX+4AwzoiZGJXLz8WT8Mmcwc02Juw==
+
 react@^16:
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.0.tgz#d046eabcdf64e457bbeed1e792e235e1b9934cf7"
