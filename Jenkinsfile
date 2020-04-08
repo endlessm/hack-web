@@ -33,6 +33,8 @@ pipeline {
                                   credentialsId: 'hack-computer-iam-user-jenkins-hack-web',
                                   accessKeyVariable: 'KEY',
                                   secretKeyVariable: 'SECRET']]) {
+                    sh 'git submodule init'
+                    sh 'git submodule update --remote'
                     sh 'npm run build'
                     sh 'npm run deploy'
                 }
