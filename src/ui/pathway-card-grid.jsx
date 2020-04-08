@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import withWidth from '@material-ui/core/withWidth';
 import {
   Box,
   Grid,
   IconButton,
+  makeStyles,
+  withWidth,
 } from '@material-ui/core';
-import NavigateNextRoundedIcon from '@material-ui/icons/NavigateNextRounded';
-import NavigateBeforeRoundedIcon from '@material-ui/icons/NavigateBeforeRounded';
+import {
+  NavigateBeforeRounded,
+  NavigateNextRounded,
+} from '@material-ui/icons';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { pathwayType } from './types';
 import PathwayCard from './pathway-card';
@@ -66,7 +68,7 @@ const PathwayCardGrid = ({ pathways, width }) => {
       { pageSize !== totalSize && (
         <Grid item>
           <IconButton className={classes.navButton} onClick={onBackButtonClicked}>
-            <NavigateBeforeRoundedIcon />
+            <NavigateBeforeRounded />
           </IconButton>
         </Grid>
       )}
@@ -86,7 +88,7 @@ const PathwayCardGrid = ({ pathways, width }) => {
       { pageSize !== totalSize && (
         <Grid item>
           <IconButton className={classes.navButton} onClick={onNextButtonClicked}>
-            <NavigateNextRoundedIcon />
+            <NavigateNextRounded />
           </IconButton>
         </Grid>
       )}

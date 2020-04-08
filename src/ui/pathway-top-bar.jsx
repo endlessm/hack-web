@@ -2,14 +2,20 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { makeStyles } from '@material-ui/core/styles';
 import {
-  AppBar, IconButton, Typography, Box, Toolbar,
+  AppBar,
+  Box,
+  fade,
+  makeStyles,
+  IconButton,
+  Toolbar,
+  Typography,
 } from '@material-ui/core';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 
-import NavigateNextRoundedIcon from '@material-ui/icons/NavigateNextRounded';
-import NavigateBeforeRoundedIcon from '@material-ui/icons/NavigateBeforeRounded';
+import {
+  NavigateBeforeRounded,
+  NavigateNextRounded,
+} from '@material-ui/icons';
 
 import { pathwayType } from './types';
 
@@ -73,7 +79,7 @@ const PathwayTopBar = ({ pathway }) => {
       <AppBar>
         <Box className={classes.topBarBox}>
           <IconButton className={classes.navButton} component={RouterLink} to={getPrevPathwayUrl}>
-            <NavigateBeforeRoundedIcon />
+            <NavigateBeforeRounded />
           </IconButton>
           <div className={classes.characterBg} />
           <Box className={classes.titleBox}>
@@ -89,7 +95,7 @@ const PathwayTopBar = ({ pathway }) => {
             </Typography>
           </Box>
           <IconButton className={classes.navButton} component={RouterLink} to={getNextPathwayUrl}>
-            <NavigateNextRoundedIcon />
+            <NavigateNextRounded />
           </IconButton>
         </Box>
       </AppBar>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core';
 
 
 const html = `

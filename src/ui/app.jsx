@@ -19,6 +19,10 @@ import Login, { RequireAuth } from './login';
 import SignUp from './signup';
 import ResetPassword from './reset';
 
+import { P5Quest } from './test/p5-quest.test';
+import { HtmlQuest } from './test/html-quest.test';
+import { PdfQuest } from './test/pdf-quest.test';
+
 ReactGA.initialize('UA-160877903-1');
 const GAWrapper = ({ children }) => {
   const { location } = window;
@@ -50,6 +54,21 @@ const App = () => {
           </Route>
           <Route path="/reset-password">
             <ResetPassword />
+          </Route>
+          <Route path="/art/fixme-name-the-p5-quest">
+            <RequireAuth>
+              <GAWrapper><P5Quest /></GAWrapper>
+            </RequireAuth>
+          </Route>
+          <Route path="/web/fixme-name-the-html-quest">
+            <RequireAuth>
+              <GAWrapper><HtmlQuest /></GAWrapper>
+            </RequireAuth>
+          </Route>
+          <Route path="/maker/make-change">
+            <RequireAuth>
+              <GAWrapper><PdfQuest /></GAWrapper>
+            </RequireAuth>
           </Route>
           {pathways.map((p) => (
             <Route key={p.slug} path={`/${p.slug}`}>

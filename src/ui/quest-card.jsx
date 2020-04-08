@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Link as RouterLink } from 'react-router-dom';
 import {
-  Typography, Button, Card, CardContent, Box, CardActions,
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  makeStyles,
+  Typography,
 } from '@material-ui/core';
-
-import { makeStyles } from '@material-ui/core/styles';
 
 import { pathwayType, questType } from './types';
 import DifficultyBar from './difficulty-bar';

@@ -4,11 +4,10 @@ import React, {
 } from 'react';
 import {
   Box,
-  CssBaseline,
+  CircularProgress,
   Divider,
   Fab,
   makeStyles,
-  ThemeProvider,
 } from '@material-ui/core';
 
 import {
@@ -19,14 +18,13 @@ import {
 
 import { Document, Page } from 'react-pdf';
 
-import '../app.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
 import 'typeface-roboto';
+import TestWrapper from './test-wrapper';
 import Dialogue from '../dialogue';
 import QuestFTHView from '../quest-fth-view';
 import Quest from '../../libquest';
-import theme from '../theme';
 
 // eslint-disable-next-line import/newline-after-import
 import questContent from './maker-make-change.ink';
@@ -42,9 +40,15 @@ const useStyles = makeStyles(({ palette, shadows }) => ({
       boxShadow: shadows[12],
     },
   },
+  spinnerContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+  },
 }));
 
-const App = () => {
+const PdfQuest = () => {
   const classes = useStyles();
 
   const [quest] = useState(new Quest(questContent));
@@ -108,16 +112,13 @@ const App = () => {
     setState((oldState) => ({ ...oldState, ...scaleInfo }));
   }, []);
 
-  const handleFlipped = (flipped) => {
-    quest.updateStoryVariable('flipped', flipped);
-    setCurrentChoice(undefined);
-  };
-
   const handleChoiceSelected = (choice) => {
     setCurrentChoice(choice);
   };
 
   const onDocumentLoadSuccess = ({ numPages }) => {
+    quest.updateStoryVariable('loaded', true);
+    setCurrentChoice(undefined);
     setState((oldState) => ({ ...oldState, numPages }));
   };
 
@@ -148,9 +149,16 @@ const App = () => {
     />
   );
 
+  const spinner = (
+    <Box className={classes.spinnerContainer}>
+      <CircularProgress />
+    </Box>
+  );
+
   const canvas = (
     <Box ref={ref} className={classes.documentContainer}>
       <Document
+        loading={spinner}
         file={`/assets/articles/${questName}.pdf`}
         onLoadSuccess={onDocumentLoadSuccess}
         externalLinkTarget="_blank"
@@ -213,16 +221,20 @@ const App = () => {
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <QuestFTHView
-        canvas={canvas}
-        sidebar={sidebar}
-        controls={controls}
-        onFlipped={handleFlipped}
-      />
-    </ThemeProvider>
+    <QuestFTHView
+      canvas={canvas}
+      sidebar={sidebar}
+      controls={controls}
+    />
   );
 };
 
-export default hot(module)(App);
+const WrappedQuest = () => (
+  <TestWrapper>
+    <PdfQuest />
+  </TestWrapper>
+);
+
+const App = hot(module)(WrappedQuest);
+
+export { App as default, PdfQuest };

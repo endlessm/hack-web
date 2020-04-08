@@ -18,7 +18,8 @@ import PropTypes from 'prop-types';
 import SlideToHack from './slide-to-hack';
 import FlipToHack from './flip-to-hack';
 
-import HackIcon from './hack-icon.svg';
+import HackIconOpen from './hack-icon-open.svg';
+import HackIconClose from './hack-icon-close.svg';
 
 const useStyles = makeStyles((theme) => {
   // Fill 3 of 12 columns in XL screen size:
@@ -69,6 +70,10 @@ const useStyles = makeStyles((theme) => {
     },
     hackFabRoot: {
       boxShadow: 'none',
+    },
+    hackIcon: {
+      width: `${theme.spacing(6)}px`,
+      height: `${theme.spacing(6)}px`,
     },
     canvas: {
       textAlign: 'center',
@@ -139,7 +144,11 @@ const QuestFTHView = ({
             onClick={toggleOpen}
             classes={{ root: classes.hackFabRoot }}
           >
-            <HackIcon />
+            {open ? (
+              <HackIconClose className={classes.hackIcon} />
+            ) : (
+              <HackIconOpen className={classes.hackIcon} />
+            )}
           </Fab>
         </Box>
         {controls && <Divider />}

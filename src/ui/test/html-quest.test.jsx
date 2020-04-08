@@ -15,7 +15,7 @@ import QuestFTHView from '../quest-fth-view';
 import Quest from '../../libquest';
 import questContent from './html1-quest.ink';
 
-const App = () => {
+const HtmlQuest = () => {
   const [quest] = useState(new Quest(questContent));
 
   const [dialogue, setDialogue] = useState([]);
@@ -118,15 +118,21 @@ const App = () => {
 
 
   return (
-    <TestWrapper>
-      <QuestFTHView
-        toolbox={toolbox}
-        canvas={canvas}
-        sidebar={sidebar}
-        onFlipped={handleFlipped}
-      />
-    </TestWrapper>
+    <QuestFTHView
+      toolbox={toolbox}
+      canvas={canvas}
+      sidebar={sidebar}
+      onFlipped={handleFlipped}
+    />
   );
 };
 
-export default hot(module)(App);
+const WrappedQuest = () => (
+  <TestWrapper>
+    <HtmlQuest />
+  </TestWrapper>
+);
+
+const App = hot(module)(WrappedQuest);
+
+export { App as default, HtmlQuest };
