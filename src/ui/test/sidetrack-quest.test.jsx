@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-const App = () => {
+const SidetrackQuest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -80,8 +80,12 @@ const App = () => {
       app.contentWindow.hideNeedHackScreen = () => {};
       app.contentWindow.clearSleepTimer = () => {};
 
+      // center vertically
+      app.contentDocument.body.style.height = '100vh';
+
       app.contentWindow.loadState();
 
+      // starting at level 7, just to show how to do that for the quest
       setTimeout(() => {
         app.contentWindow.globalParameters.highestAchievedLevel = 7;
         app.contentWindow.globalParameters.availableLevels = 23;
@@ -143,4 +147,12 @@ const App = () => {
   );
 };
 
-export default hot(module)(App);
+const WrappedQuest = () => (
+  <TestWrapper>
+    <SidetrackQuest />
+  </TestWrapper>
+);
+
+const App = hot(module)(WrappedQuest);
+
+export { App as default, SidetrackQuest };
