@@ -1,6 +1,6 @@
 import { hot } from 'react-hot-loader';
 import React, {
-  useEffect, useLayoutEffect, useRef, useState,
+  useLayoutEffect, useRef, useState,
 } from 'react';
 import {
   Box,
@@ -21,10 +21,9 @@ import { Document, Page } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
 import TestWrapper from './test-wrapper';
-import Dialogue from '../dialogue';
+import Dialogue, { useQuest } from '../dialogue';
 import QuestFTHView from '../quest-fth-view';
-import Quest from '../../libquest';
-import questContent from './maker-make-change.ink';
+import questContent from './pdf-quest.ink';
 
 const questName = 'maker-make-change';
 
@@ -49,11 +48,9 @@ const useStyles = makeStyles(({ palette, shadows }) => ({
 const PdfQuest = () => {
   const classes = useStyles();
 
-  const [quest] = useState(new Quest(questContent));
-
-  const [dialogue, setDialogue] = useState([]);
-  const [choices, setChoices] = useState([]);
-  const [currentChoice, setCurrentChoice] = useState(null);
+  const {
+    quest, dialogue, choices, setCurrentChoice,
+  } = useQuest(questContent);
 
   const [state, setState] = useState({
     scale: null,
@@ -66,34 +63,6 @@ const PdfQuest = () => {
   });
 
   const ref = useRef(null);
-
-  useEffect(() => {
-    // Initial setup of dialogue and choices.
-
-    if (quest === undefined) return;
-
-    const { dialogue: dia, choices: cho } = quest.continueStory();
-    setDialogue((oldDialogue) => [...oldDialogue, ...dia]);
-    setChoices(cho);
-  }, [quest]);
-
-  useEffect(() => {
-    // Update dialogue and choices when a choice is selected.
-
-    if (quest === undefined) return;
-    if (currentChoice === null) return;
-
-    if (currentChoice !== undefined) {
-      quest.choose(choices[currentChoice.index]);
-    }
-
-    // FIXME this is duplicated
-    const { dialogue: dia, choices: cho } = quest.continueStory();
-    setDialogue((oldDialogue) => [...oldDialogue, ...dia]);
-    setChoices(cho);
-
-    setCurrentChoice(null);
-  }, [quest, choices, currentChoice]);
 
   const fitWidthToCanvas = ({ availableWidth }) => ({
     width: availableWidth, height: null, scale: 1,
@@ -109,10 +78,6 @@ const PdfQuest = () => {
     const scaleInfo = fitWidthToCanvas(dimentions);
     setState((oldState) => ({ ...oldState, ...scaleInfo }));
   }, []);
-
-  const handleChoiceSelected = (choice) => {
-    setCurrentChoice(choice);
-  };
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     quest.updateStoryVariable('loaded', true);
@@ -143,7 +108,7 @@ const PdfQuest = () => {
     <Dialogue
       dialogue={dialogue}
       choices={choices}
-      onChoiceSelected={handleChoiceSelected}
+      onChoiceSelected={setCurrentChoice}
     />
   );
 

@@ -2,14 +2,13 @@ import { hot } from 'react-hot-loader';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  List,
-  ListItem,
-  ListItemText,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import TestWrapper from './test-wrapper';
+import Dialogue, { useQuest } from '../dialogue';
 import QuestFTHView from '../quest-fth-view';
+import questContent from './sidetrack-quest.ink';
 
 import store, { actions } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
@@ -28,6 +27,10 @@ const useStyles = makeStyles({
 const SidetrackQuest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const {
+    dialogue, choices, setCurrentChoice,
+  } = useQuest(questContent);
 
   useEffect(() => {
     const app = document.querySelector('#app');
@@ -123,17 +126,11 @@ const SidetrackQuest = () => {
   );
 
   const sidebar = (
-    <List>
-      <ListItem>
-        <ListItemText
-          primary="This is a line of dialogue."
-          secondary="Ada"
-          primaryTypographyProps={{
-            variant: 'body2',
-          }}
-        />
-      </ListItem>
-    </List>
+    <Dialogue
+      dialogue={dialogue}
+      choices={choices}
+      onChoiceSelected={setCurrentChoice}
+    />
   );
 
   return (

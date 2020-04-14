@@ -7,10 +7,9 @@ import {
 } from '@material-ui/core';
 
 import TestWrapper from './test-wrapper';
-import Dialogue from '../dialogue';
+import Dialogue, { useQuest } from '../dialogue';
 import QuestFTHView from '../quest-fth-view';
-import Quest from '../../libquest';
-import questContent from './html1-quest.ink';
+import questContent from './html-quest.ink';
 
 import store, { actions } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
@@ -29,40 +28,12 @@ const useStyles = makeStyles({
 const HtmlQuest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [quest] = useState(new Quest(questContent));
+
   const [firstTimeCode, setFirstTimeCode] = useState(true);
 
-  const [dialogue, setDialogue] = useState([]);
-  const [choices, setChoices] = useState([]);
-  const [currentChoice, setCurrentChoice] = useState(null);
-
-  useEffect(() => {
-    // Initial setup of dialogue and choices.
-
-    if (quest === undefined) return;
-
-    const { dialogue: dia, choices: cho } = quest.continueStory();
-    setDialogue((oldDialogue) => [...oldDialogue, ...dia]);
-    setChoices(cho);
-  }, [quest]);
-
-  useEffect(() => {
-    // Update dialogue and choices when a choice is selected.
-
-    if (quest === undefined) return;
-    if (currentChoice === null) return;
-
-    if (currentChoice !== undefined) {
-      quest.choose(choices[currentChoice.index]);
-    }
-
-    // FIXME this is duplicated
-    const { dialogue: dia, choices: cho } = quest.continueStory();
-    setDialogue((oldDialogue) => [...oldDialogue, ...dia]);
-    setChoices(cho);
-
-    setCurrentChoice(null);
-  }, [quest, choices, currentChoice]);
+  const {
+    quest, dialogue, choices, setCurrentChoice,
+  } = useQuest(questContent);
 
   useEffect(() => {
     const changeCallback = (params, firstTime = false) => {
@@ -89,11 +60,7 @@ const HtmlQuest = () => {
       });
     };
     return store.subscribe(handleChange);
-  }, [firstTimeCode, dispatch, quest]);
-
-  const handleChoiceSelected = (choice) => {
-    setCurrentChoice(choice);
-  };
+  }, [firstTimeCode, dispatch, quest, setCurrentChoice]);
 
   const toolbox = <Toolbox />;
 
@@ -101,7 +68,7 @@ const HtmlQuest = () => {
     <Dialogue
       dialogue={dialogue}
       choices={choices}
-      onChoiceSelected={handleChoiceSelected}
+      onChoiceSelected={setCurrentChoice}
     />
   );
 
