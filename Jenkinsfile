@@ -6,9 +6,9 @@ pipeline {
     }
 
     environment {
-        // This defaults to /.npm since $HOME is /, but that's not
-        // writable by the unprivileged jenkins user.
-        NPM_CONFIG_CACHE = "${env.WORKSPACE}/.npm"
+        // Use the workspace as $HOME since that's the only guaranteed
+        // writable place when running unprivileged.
+        HOME = "${env.WORKSPACE}"
 
         // NPM can't be updated unprivileged, so silence the
         // notification.
