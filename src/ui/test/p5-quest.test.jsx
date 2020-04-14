@@ -4,9 +4,6 @@ import { useDispatch } from 'react-redux';
 import {
   Box,
   Fab,
-  List,
-  ListItem,
-  ListItemText,
   makeStyles,
 } from '@material-ui/core';
 
@@ -15,7 +12,9 @@ import {
 } from '@material-ui/icons';
 
 import TestWrapper from './test-wrapper';
+import Dialogue, { useQuest } from '../dialogue';
 import QuestFTHView from '../quest-fth-view';
+import questContent from './p5-quest.ink';
 
 import store, { actions } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
@@ -34,6 +33,10 @@ const useStyles = makeStyles({
 const P5Quest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const {
+    dialogue, choices, setCurrentChoice,
+  } = useQuest(questContent);
 
   useEffect(() => {
     const changeCallback = (params, firstTime = false) => {
@@ -75,17 +78,11 @@ const P5Quest = () => {
   );
 
   const sidebar = (
-    <List>
-      <ListItem>
-        <ListItemText
-          primary="This is a line of dialogue."
-          secondary="Ada"
-          primaryTypographyProps={{
-            variant: 'body2',
-          }}
-        />
-      </ListItem>
-    </List>
+    <Dialogue
+      dialogue={dialogue}
+      choices={choices}
+      onChoiceSelected={setCurrentChoice}
+    />
   );
 
   const controls = (

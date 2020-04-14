@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -17,6 +17,7 @@ import ThumbsDownIcon from './icons/hack-thumbsdown-symbolic.svg';
 import NextIcon from './icons/hack-next-symbolic.svg';
 import PreviousIcon from './icons/hack-previous-symbolic.svg';
 
+import Quest from '../libquest';
 import ChatMessage from './chat-message';
 
 const iconsByEmoji = {
@@ -70,8 +71,8 @@ const Dialogue = ({
   dialogue, choices, onChoiceSelected,
 }) => {
   const classes = useStyles();
-  const [previousMessageLength, setPreviousMessageLength] = React.useState(dialogue.length);
-  const [newMessagesLength, setNewMessagesLength] = React.useState(0);
+  const [previousMessageLength, setPreviousMessageLength] = useState(dialogue.length);
+  const [newMessagesLength, setNewMessagesLength] = useState(0);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -184,4 +185,43 @@ Dialogue.defaultProps = {
   onChoiceSelected: null,
 };
 
-export default Dialogue;
+function useQuest(questContent) {
+  const [quest] = useState(new Quest(questContent));
+  const [dialogue, setDialogue] = useState([]);
+  const [choices, setChoices] = useState([]);
+  const [currentChoice, setCurrentChoice] = useState(null);
+
+  const updateDialogueChoices = () => {
+    const { dialogue: dia, choices: cho } = quest.continueStory();
+    setDialogue((oldDialogue) => [...oldDialogue, ...dia]);
+    setChoices(cho);
+  };
+
+  useEffect(() => {
+    // Initial setup of dialogue and choices.
+    if (quest === undefined) return;
+    updateDialogueChoices();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quest]);
+
+  useEffect(() => {
+    // Update dialogue and choices when a choice is selected.
+
+    if (quest === undefined) return;
+    if (currentChoice === null) return;
+
+    if (currentChoice !== undefined) {
+      quest.choose(choices[currentChoice.index]);
+    }
+
+    updateDialogueChoices();
+    setCurrentChoice(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quest, choices, currentChoice]);
+
+  return {
+    quest, dialogue, choices, setCurrentChoice,
+  };
+}
+
+export { Dialogue as default, useQuest };
