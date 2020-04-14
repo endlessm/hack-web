@@ -2,11 +2,17 @@ import { hot } from 'react-hot-loader';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
+  Box,
+  Fab,
   List,
   ListItem,
   ListItemText,
   makeStyles,
 } from '@material-ui/core';
+
+import {
+  SettingsBackupRestore,
+} from '@material-ui/icons';
 
 import TestWrapper from './test-wrapper';
 import QuestFTHView from '../quest-fth-view';
@@ -51,6 +57,11 @@ const P5Quest = () => {
     return store.subscribe(handleChange);
   });
 
+  const resetToolbox = () => {
+    const { originalHackableApp } = store.getState();
+    dispatch(actions.hackableAppSet(originalHackableApp));
+  };
+
   const toolbox = <Toolbox />;
 
   const canvas = (
@@ -77,15 +88,30 @@ const P5Quest = () => {
     </List>
   );
 
+  const controls = (
+    <Box m={1}>
+      <Fab
+        color="secondary"
+        aria-label="Reset toolbox"
+        edge="end"
+        size="medium"
+        onClick={resetToolbox}
+      >
+        <SettingsBackupRestore />
+      </Fab>
+    </Box>
+  );
+
+  /* p5.js captures all movements so we need to avoid to hide controls to make it visible */
   return (
-    <TestWrapper>
-      <QuestFTHView
-        toolbox={toolbox}
-        canvas={canvas}
-        sidebar={sidebar}
-        sideBySide
-      />
-    </TestWrapper>
+    <QuestFTHView
+      toolbox={toolbox}
+      canvas={canvas}
+      sidebar={sidebar}
+      controls={controls}
+      hideControls={false}
+      sideBySide
+    />
   );
 };
 

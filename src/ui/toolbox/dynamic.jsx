@@ -1,22 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
 
 import {
   Box,
-  Fab,
   Grid,
   Tab,
   Tabs,
   ThemeProvider,
   makeStyles,
 } from '@material-ui/core';
-
-import {
-  SettingsBackupRestore,
-} from '@material-ui/icons';
-
-import { actions } from '../../store';
 
 import GridTabPanel from './panels/gridtab';
 import { TabType } from './panels/types';
@@ -71,31 +63,15 @@ ToolBoxGrid.propTypes = {
 const DynToolbox = ({
   toolbox,
   width,
-}) => {
-  const params = useSelector((state) => state.originalHackableApp);
-  const dispatch = useDispatch();
-
-  const resetToolbox = () => {
-    dispatch(actions.hackableAppSet(params));
-  };
-
-  return (
-    <ThemeProvider theme={ToolboxTheme}>
-      <Grid container spacing={0}>
-        <Grid item xs={width}>
-          <ToolBoxGrid toolbox={toolbox} />
-        </Grid>
-        <Grid item xs={1}>
-          <Box mt={2}>
-            <Fab onClick={resetToolbox} variant="round" color="primary" aria-label="Restore">
-              <SettingsBackupRestore />
-            </Fab>
-          </Box>
-        </Grid>
+}) => (
+  <ThemeProvider theme={ToolboxTheme}>
+    <Grid container spacing={0}>
+      <Grid item xs={width}>
+        <ToolBoxGrid toolbox={toolbox} />
       </Grid>
-    </ThemeProvider>
-  );
-};
+    </Grid>
+  </ThemeProvider>
+);
 
 DynToolbox.propTypes = {
   toolbox: PropTypes.shape({ tabs: PropTypes.arrayOf(TabType) }).isRequired,

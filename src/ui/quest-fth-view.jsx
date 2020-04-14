@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => {
 
 
 const QuestFTHView = ({
-  toolbox, canvas, sidebar, controls, onFlipped, sideBySide,
+  toolbox, canvas, sidebar, controls, onFlipped, sideBySide, hideControls,
 }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
@@ -118,7 +118,7 @@ const QuestFTHView = ({
   const [flipped, setFlipped] = useState(sideBySide);
 
   const [movingTimeout, setMovingTimeout] = useState();
-  const [controlsVisible, setControlsVisible] = useState(false);
+  const [controlsVisible, setControlsVisible] = useState(!hideControls);
 
   const theme = useTheme();
 
@@ -247,6 +247,7 @@ QuestFTHView.propTypes = {
   controls: PropTypes.element,
   onFlipped: PropTypes.func,
   sideBySide: PropTypes.bool,
+  hideControls: PropTypes.bool,
 };
 
 QuestFTHView.defaultProps = {
@@ -254,6 +255,7 @@ QuestFTHView.defaultProps = {
   toolbox: null,
   controls: null,
   sideBySide: false,
+  hideControls: true,
 };
 
 export default QuestFTHView;
