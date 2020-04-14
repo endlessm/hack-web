@@ -13,6 +13,7 @@ const theme = createMuiTheme({
   transitions: {
     duration: {
       complex: 1000,
+      triggeredByMouse: 4000,
     },
   },
   palette: {

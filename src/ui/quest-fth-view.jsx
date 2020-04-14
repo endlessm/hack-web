@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  useState,
+} from 'react';
 import clsx from 'clsx';
 import {
   Box,
@@ -6,6 +8,7 @@ import {
   Fab,
   makeStyles,
   Paper,
+  useTheme,
 } from '@material-ui/core';
 import {
   ChevronLeft,
@@ -13,6 +16,8 @@ import {
 } from '@material-ui/icons';
 
 import PropTypes from 'prop-types';
+
+import { useMove } from 'react-use-gesture';
 
 import SlideToHack from './slide-to-hack';
 import FlipToHack from './flip-to-hack';
@@ -24,12 +29,12 @@ const useStyles = makeStyles((theme) => {
   // Fill 3 of 12 columns in XL screen size:
   const drawerWidth = theme.breakpoints.values.xl * 0.25;
 
-  const marginTransition = theme.transitions.create('margin', {
+  const marginTransition = theme.transitions.create(['opacity', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   });
 
-  const marginTransitionShift = theme.transitions.create('margin', {
+  const marginTransitionShift = theme.transitions.create(['opacity', 'margin'], {
     easing: theme.transitions.easing.easeOut,
     duration: theme.transitions.duration.enteringScreen,
   });
@@ -59,10 +64,15 @@ const useStyles = makeStyles((theme) => {
       right: 0,
       marginRight: theme.spacing(12),
       transition: marginTransition,
+      opacity: 0,
     },
     controlsContainerShift: {
       transition: marginTransitionShift,
       marginRight: drawerWidth + theme.spacing(2),
+    },
+    controlsContainerVisible: {
+      transition: marginTransitionShift,
+      opacity: 1,
     },
     drawer: {
       width: drawerWidth,
@@ -103,8 +113,28 @@ const QuestFTHView = ({
   toolbox, canvas, sidebar, controls, onFlipped, sideBySide,
 }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const [flipped, setFlipped] = React.useState(false);
+  const [open, setOpen] = useState(true);
+  const [flipped, setFlipped] = useState(false);
+
+  const [movingTimeout, setMovingTimeout] = useState();
+  const [controlsVisible, setControlsVisible] = useState(false);
+
+  const theme = useTheme();
+
+  const bind = useMove((state) => {
+    if (state.first) {
+      clearTimeout(movingTimeout);
+      setControlsVisible(true);
+    }
+    if (state.last) {
+      const timeout = setTimeout(() => {
+        setControlsVisible(false);
+      }, theme.transitions.duration.triggeredByMouse);
+      setMovingTimeout(timeout);
+    }
+  }, {
+    threshold: theme.spacing(6),
+  });
 
   const toggleOpen = () => {
     setOpen(!open);
@@ -117,6 +147,13 @@ const QuestFTHView = ({
     }
   };
 
+  const canvasWrap = (
+    <>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <div {...bind()}>{canvas}</div>
+    </>
+  );
+
   return (
     <div className={classes.root}>
       <main
@@ -127,10 +164,15 @@ const QuestFTHView = ({
         {toolbox ? (
           <>
             {sideBySide ? (
-              <SlideToHack flipped={flipped} toolbox={toolbox} canvas={canvas} />
-            ) : <FlipToHack flipped={flipped} toolbox={toolbox} canvas={canvas} />}
+              <SlideToHack flipped={flipped} toolbox={toolbox} canvas={canvasWrap} />
+            ) : <FlipToHack flipped={flipped} toolbox={toolbox} canvas={canvasWrap} />}
           </>
-        ) : <div className={classes.canvas}>{canvas}</div>}
+        ) : (
+          <>
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+            <div {...bind()} className={classes.canvas}>{canvas}</div>
+          </>
+        )}
         {toolbox && (
           <Fab
             color="secondary"
@@ -146,6 +188,7 @@ const QuestFTHView = ({
         {controls && (
           <Box className={clsx(classes.controlsContainer, {
             [classes.controlsContainerShift]: open,
+            [classes.controlsContainerVisible]: controlsVisible,
           })}
           >
             {controls}

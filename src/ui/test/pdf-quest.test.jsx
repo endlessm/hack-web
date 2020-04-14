@@ -20,14 +20,12 @@ import { Document, Page } from 'react-pdf';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
-import 'typeface-roboto';
 import TestWrapper from './test-wrapper';
 import Dialogue from '../dialogue';
 import QuestFTHView from '../quest-fth-view';
 import Quest from '../../libquest';
-
-// eslint-disable-next-line import/newline-after-import
 import questContent from './maker-make-change.ink';
+
 const questName = 'maker-make-change';
 
 const useStyles = makeStyles(({ palette, shadows }) => ({
