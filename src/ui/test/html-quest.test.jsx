@@ -121,7 +121,6 @@ const HtmlQuest = () => {
       canvas={canvas}
       sidebar={sidebar}
       sideBySide
-      initFlipped
     />
   );
 };
