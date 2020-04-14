@@ -30,7 +30,7 @@ const SlideToHack = ({ flipped, toolbox, canvas }) => {
 
   return (
     <div className={classes.root}>
-      <Slide direction="right" in={flipped} mountOnEnter unmountOnExit>
+      <Slide direction="right" in={flipped} appear={false} mountOnEnter unmountOnExit>
         <Box className={clsx(classes.toolbox, flipped && classes.toolboxWhenFlipped)}>
           {toolbox}
         </Box>
