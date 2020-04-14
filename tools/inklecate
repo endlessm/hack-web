@@ -1,12 +1,18 @@
 #!/bin/sh -e
-source_dir="$(git rev-parse --show-toplevel)"
-build_dir="${source_dir}/tools/.inklecate-build"
 
-if [ ! -d $build_dir/.flatpak-builder/ ]; then
-    $build_dir/build.sh
+# If inklecate is installed, use it. Otherwise, build it.
+if flatpak info com.inklestudios.inklecate//master >/dev/null 2>&1; then
+    exec flatpak run com.inklestudios.inklecate//master "$@"
+else
+    source_dir="$(git rev-parse --show-toplevel)"
+    build_dir="${source_dir}/tools/.inklecate-build"
+
+    if [ ! -d $build_dir/.flatpak-builder/ ]; then
+        $build_dir/build.sh
+    fi
+
+    exec flatpak-builder \
+        --run $build_dir/build-dir \
+        $build_dir/inklecate-flatpak/com.inklestudios.inklecate.json \
+        inklecate-wrapper "$@"
 fi
-
-flatpak-builder \
-    --run $build_dir/build-dir \
-    $build_dir/inklecate-flatpak/com.inklestudios.inklecate.json \
-    inklecate-wrapper $@
