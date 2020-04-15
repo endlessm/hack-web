@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   Box,
@@ -34,9 +34,20 @@ const P5Quest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const [open, setOpen] = useState(true);
+
+  const toggleOpen = () => {
+    setOpen(!open);
+  };
+
+  const onDialogueUpdated = () => {
+    console.log('UPDATE!');
+    setOpen(true);
+  };
+
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
-  } = useQuest(questContent);
+  } = useQuest(questContent, onDialogueUpdated);
 
   const updateQuestCode = (value) => {
     quest.updateStoryVariable('code', value);
@@ -123,6 +134,8 @@ const P5Quest = () => {
       controls={controls}
       hideControls={false}
       sideBySide
+      open={open}
+      toggleOpen={toggleOpen}
     />
   );
 };

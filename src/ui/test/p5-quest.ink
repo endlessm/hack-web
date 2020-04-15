@@ -1,7 +1,13 @@
 # main character: ada
 
+VAR code = ""
+
 -> begin
 
 === begin ===
-- This is a placeholder quest. Fix me!
-+ Ok! -> END
+- Fix the code!
+* [(wait for: code not contains "Hat")](Done)
+  -> in_html4
+
+=== in_html4 ===
++ Great! -> END

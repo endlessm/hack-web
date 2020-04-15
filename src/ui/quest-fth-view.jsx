@@ -110,10 +110,9 @@ const useStyles = makeStyles((theme) => {
 
 
 const QuestFTHView = ({
-  toolbox, canvas, sidebar, controls, onFlipped, sideBySide, hideControls,
+  toolbox, canvas, sidebar, controls, onFlipped, sideBySide, hideControls, open, toggleOpen,
 }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
   // When sideBySide is true we show the toolbox by default
   const [flipped, setFlipped] = useState(sideBySide);
 
@@ -136,10 +135,6 @@ const QuestFTHView = ({
   }, {
     threshold: theme.spacing(6),
   });
-
-  const toggleOpen = () => {
-    setOpen(!open);
-  };
 
   const toggleFlip = () => {
     setFlipped(!flipped);

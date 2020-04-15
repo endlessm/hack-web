@@ -218,7 +218,7 @@ Dialogue.defaultProps = {
   hasEnded: false,
 };
 
-function useQuest(questContent) {
+function useQuest(questContent, onDialogueUpdated) {
   const [quest] = useState(new Quest(questContent));
   const [dialogue, setDialogue] = useState([]);
   const [choices, setChoices] = useState([]);
@@ -232,6 +232,7 @@ function useQuest(questContent) {
     if (quest.hasEnded()) {
       setHasEnded(true);
     }
+    onDialogueUpdated();
   };
 
   useEffect(() => {
