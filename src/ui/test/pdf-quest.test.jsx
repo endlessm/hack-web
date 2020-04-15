@@ -49,7 +49,7 @@ const PdfQuest = () => {
   const classes = useStyles();
 
   const {
-    quest, dialogue, choices, setCurrentChoice,
+    quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
 
   const [state, setState] = useState({
@@ -104,11 +104,18 @@ const PdfQuest = () => {
     setState((oldState) => ({ ...oldState, fullscreen: true, ...scaleInfo }));
   };
 
+  const onRestartSelected = () => {
+    // FIXME, the replay keeps waiting for the 'loaded' variable to change.
+    restartQuest();
+  };
+
   const sidebar = (
     <Dialogue
       dialogue={dialogue}
       choices={choices}
       onChoiceSelected={setCurrentChoice}
+      onRestartSelected={onRestartSelected}
+      hasEnded={hasEnded}
     />
   );
 

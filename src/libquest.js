@@ -196,6 +196,15 @@ export default class Quest {
     this.story.ChooseChoiceIndex(choice.index);
   }
 
+  hasEnded() {
+    return !this.story.canContinue && !this.story.currentChoices.length;
+  }
+
+  restart() {
+    this.dialogueId = 0;
+    this.story.ResetState();
+  }
+
   doUpdateStoryVariable(name, newValue) {
     this.story.variablesState[name] = newValue;
     if (name in this.waitFor) {
