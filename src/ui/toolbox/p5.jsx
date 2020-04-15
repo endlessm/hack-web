@@ -32,7 +32,7 @@ const TOOLBOX = {
           xs: 12,
           code: regenerateCode,
           compile: compileCode,
-          buildDelay: 0,
+          buildDelay: 1000,
         },
       ],
     },
