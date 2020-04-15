@@ -21,14 +21,15 @@ describe('libquest', () => {
   it('can restart the story', () => {
     const quest = new Quest(questContent);
     const { dialogue: firstDialogue, choices } = quest.continueStory();
+    const name = 'radius';
     quest.choose(choices[0]);
-    expect(quest.story.variablesState['radius']).toEqual(30);
+    expect(quest.story.variablesState[name]).toEqual(30);
     quest.continueStory();
     expect(quest.hasEnded()).toBe(true);
-    quest.updateStoryVariable('radius', 55);
-    expect(quest.story.variablesState['radius']).toEqual(55);
+    quest.updateStoryVariable(name, 55);
+    expect(quest.story.variablesState[name]).toEqual(55);
     quest.restart();
-    expect(quest.story.variablesState['radius']).toEqual(30);
+    expect(quest.story.variablesState[name]).toEqual(30);
     const { dialogue: secondDialogue } = quest.continueStory();
     expect(secondDialogue).toEqual(firstDialogue);
   });
