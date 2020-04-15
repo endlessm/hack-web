@@ -32,7 +32,7 @@ const HtmlQuest = () => {
   const [firstTimeCode, setFirstTimeCode] = useState(true);
 
   const {
-    quest, dialogue, choices, setCurrentChoice,
+    quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
 
   useEffect(() => {
@@ -64,11 +64,18 @@ const HtmlQuest = () => {
 
   const toolbox = <Toolbox />;
 
+  const onRestartSelected = () => {
+    // TODO: Bring the app and toolbox to the initial state.
+    restartQuest();
+  };
+
   const sidebar = (
     <Dialogue
       dialogue={dialogue}
       choices={choices}
       onChoiceSelected={setCurrentChoice}
+      onRestartSelected={onRestartSelected}
+      hasEnded={hasEnded}
     />
   );
 

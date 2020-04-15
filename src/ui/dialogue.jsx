@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -11,6 +12,10 @@ import {
   SvgIcon,
   useTheme,
 } from '@material-ui/core';
+
+import {
+  Home, Refresh,
+} from '@material-ui/icons';
 
 import ThumbsUpIcon from './icons/hack-thumbsup-symbolic.svg';
 import ThumbsDownIcon from './icons/hack-thumbsdown-symbolic.svg';
@@ -68,7 +73,7 @@ const useStyles = makeStyles(({
 }));
 
 const Dialogue = ({
-  dialogue, choices, onChoiceSelected,
+  dialogue, choices, onChoiceSelected, onRestartSelected, hasEnded,
 }) => {
   const classes = useStyles();
   const [previousMessageLength, setPreviousMessageLength] = useState(dialogue.length);
@@ -132,6 +137,26 @@ const Dialogue = ({
     );
   };
 
+  const endChoices = (
+    <>
+      <IconButton
+        size="medium"
+        className={clsx(classes.choiceButton, classes.choiceButtonIcon)}
+        component={RouterLink}
+        to="/"
+      >
+        <Home />
+      </IconButton>
+      <IconButton
+        size="medium"
+        className={clsx(classes.choiceButton, classes.choiceButtonIcon)}
+        onClick={onRestartSelected}
+      >
+        <Refresh />
+      </IconButton>
+    </>
+  );
+
   return (
     <>
       <Box className={classes.dialogue} px={1} py={2}>
@@ -163,7 +188,11 @@ const Dialogue = ({
         flexWrap="wrap"
         justifyContent="flex-end"
       >
-        {choices.map((choice) => getChoiceButton(choice))}
+        {hasEnded ? (
+          endChoices
+        ) : (
+          choices.map((choice) => getChoiceButton(choice))
+        )}
       </Box>
     </>
   );
@@ -179,10 +208,14 @@ Dialogue.propTypes = {
     text: PropTypes.string,
   })).isRequired,
   onChoiceSelected: PropTypes.func,
+  onRestartSelected: PropTypes.func,
+  hasEnded: PropTypes.bool,
 };
 
 Dialogue.defaultProps = {
   onChoiceSelected: null,
+  onRestartSelected: null,
+  hasEnded: false,
 };
 
 function useQuest(questContent) {
@@ -190,11 +223,15 @@ function useQuest(questContent) {
   const [dialogue, setDialogue] = useState([]);
   const [choices, setChoices] = useState([]);
   const [currentChoice, setCurrentChoice] = useState(null);
+  const [hasEnded, setHasEnded] = useState(false);
 
   const updateDialogueChoices = () => {
     const { dialogue: dia, choices: cho } = quest.continueStory();
     setDialogue((oldDialogue) => [...oldDialogue, ...dia]);
     setChoices(cho);
+    if (quest.hasEnded()) {
+      setHasEnded(true);
+    }
   };
 
   useEffect(() => {
@@ -219,8 +256,17 @@ function useQuest(questContent) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quest, choices, currentChoice]);
 
+  const restartQuest = () => {
+    quest.restart();
+    setDialogue([]);
+    setChoices([]);
+    setCurrentChoice(null);
+    setHasEnded(false);
+    updateDialogueChoices();
+  };
+
   return {
-    quest, dialogue, choices, setCurrentChoice,
+    quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   };
 }
 

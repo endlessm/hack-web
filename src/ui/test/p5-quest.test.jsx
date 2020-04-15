@@ -35,7 +35,7 @@ const P5Quest = () => {
   const dispatch = useDispatch();
 
   const {
-    dialogue, choices, setCurrentChoice,
+    dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
 
   useEffect(() => {
@@ -77,11 +77,19 @@ const P5Quest = () => {
     />
   );
 
+  const onRestartSelected = () => {
+    restartQuest();
+    // FIXME, why this doesn't work?
+    resetToolbox();
+  };
+
   const sidebar = (
     <Dialogue
       dialogue={dialogue}
       choices={choices}
       onChoiceSelected={setCurrentChoice}
+      onRestartSelected={onRestartSelected}
+      hasEnded={hasEnded}
     />
   );
 

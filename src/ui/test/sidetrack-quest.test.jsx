@@ -29,7 +29,7 @@ const SidetrackQuest = () => {
   const dispatch = useDispatch();
 
   const {
-    dialogue, choices, setCurrentChoice,
+    dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
 
   useEffect(() => {
@@ -125,11 +125,18 @@ const SidetrackQuest = () => {
     />
   );
 
+  const onRestartSelected = () => {
+    // TODO: Bring the app and toolbox to the initial state.
+    restartQuest();
+  };
+
   const sidebar = (
     <Dialogue
       dialogue={dialogue}
       choices={choices}
       onChoiceSelected={setCurrentChoice}
+      onRestartSelected={onRestartSelected}
+      hasEnded={hasEnded}
     />
   );
 
