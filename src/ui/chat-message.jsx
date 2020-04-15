@@ -19,7 +19,10 @@ import 'ace-builds/src-noconflict/theme-monokai';
 const sanitizeOptions = {
   allowedTags: ['b', 'i', 's', 'tt', 'u', 'a', 'p'],
   allowedAttributes: {
-    a: ['href'],
+    a: ['href', 'target'],
+  },
+  transformTags: {
+    a: sanitizeHtml.simpleTransform('a', { target: '_blank' }),
   },
 };
 
