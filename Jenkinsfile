@@ -3,19 +3,12 @@ pipeline {
         dockerfile {
             filename 'Dockerfile.build'
 
-            args (
-                // In order to run the inklecate flatpak in bubblewrap's
-                // sandbox, some of docker's sandboxing needs to be
-                // turned off.
-                '--cap-add=SYS_ADMIN'
-                '--cap-add=NET_ADMIN'
-                '--security-opt=seccomp=unconfined'
-
-                // Also, the host user databases need to be available so
-                // lookups of the unprivileged user work.
-                '-v /etc/passwd:/etc/passwd:ro'
-                '-v /etc/group:/etc/group:ro'
-            )
+            // In order to run the inklecate flatpak in bubblewrap's
+            // sandbox, some of docker's sandboxing needs to be
+            // turned off.
+            // Also, the host user databases need to be available so
+            // lookups of the unprivileged user work.
+            args ('--cap-add=SYS_ADMIN --cap-add=NET_ADMIN --security-opt=seccomp=unconfined -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro')
         }
     }
 
