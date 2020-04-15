@@ -35,8 +35,13 @@ const P5Quest = () => {
   const dispatch = useDispatch();
 
   const {
-    dialogue, choices, setCurrentChoice,
+    quest, dialogue, choices, setCurrentChoice,
   } = useQuest(questContent);
+
+  const updateQuestCode = (value) => {
+    quest.updateStoryVariable('code', value);
+    setCurrentChoice(undefined);
+  };
 
   useEffect(() => {
     const changeCallback = (params, firstTime = false) => {
@@ -50,10 +55,12 @@ const P5Quest = () => {
     proxyApp('globalParameters', changeCallback);
 
     const handleChange = () => {
-      updateApp('globalParameters', store.getState().hackableApp, (prop) => {
+      updateApp('globalParameters', store.getState().hackableApp, (prop, value) => {
         if (prop === 'code') {
           const app = document.querySelector('#app');
           app.contentWindow.reload();
+
+          updateQuestCode(value);
         }
       });
     };
