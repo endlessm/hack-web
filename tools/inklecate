@@ -1,8 +1,8 @@
 #!/bin/sh -e
 
 # If inklecate is installed, use it. Otherwise, build it.
-if flatpak info com.inklestudios.inklecate//master >/dev/null 2>&1; then
-    exec flatpak run com.inklestudios.inklecate//master "$@"
+if command -v inklecate >/dev/null 2>&1; then
+    exec inklecate "$@"
 else
     source_dir="$(git rev-parse --show-toplevel)"
     build_dir="${source_dir}/tools/.inklecate-build"
