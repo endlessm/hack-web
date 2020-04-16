@@ -64,8 +64,13 @@ const HtmlQuest = () => {
 
   const toolbox = <Toolbox />;
 
+  const resetToolbox = () => {
+    const { originalHackableApp } = store.getState();
+    dispatch(actions.hackableAppSet(originalHackableApp));
+  };
+
   const onRestartSelected = () => {
-    // TODO: Bring the app and toolbox to the initial state.
+    resetToolbox();
     restartQuest();
   };
 
