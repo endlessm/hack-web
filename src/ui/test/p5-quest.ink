@@ -19,7 +19,7 @@ I've been learning a new programming language for making interactive art - I thi
 
 === p5jsintro1_3 ===
 - Let's see if we can add something new!
-- There are 2 different parts in this program - one called <tt>setup() and the other called <tt>draw()</tt>.
+- There are 2 different parts in this program - one called <tt>setup()</tt> and the other called <tt>draw()</tt>.
 <tt>setup()</tt> creates the place where everything gets drawn, and <tt>draw()</tt> is where the action happens.
 - OK, first, let's change that boring grey! Change the line with <tt>background</tt> to read <tt>background('green')</tt>.
 + [(wait for: code icontains "background('green');")](Done)
