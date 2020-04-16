@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import {
   makeStyles,
@@ -22,6 +23,7 @@ import ThumbsDownIcon from './icons/hack-thumbsdown-symbolic.svg';
 import NextIcon from './icons/hack-next-symbolic.svg';
 import PreviousIcon from './icons/hack-previous-symbolic.svg';
 
+import { actions } from '../store';
 import Quest from '../libquest';
 import ChatMessage from './chat-message';
 
@@ -224,6 +226,7 @@ function useQuest(questContent) {
   const [choices, setChoices] = useState([]);
   const [currentChoice, setCurrentChoice] = useState(null);
   const [hasEnded, setHasEnded] = useState(false);
+  const dispatch = useDispatch();
 
   const updateDialogueChoices = () => {
     const { dialogue: dia, choices: cho } = quest.continueStory();
@@ -232,6 +235,7 @@ function useQuest(questContent) {
     if (quest.hasEnded()) {
       setHasEnded(true);
     }
+    dispatch(actions.sidePanelSetOpen());
   };
 
   useEffect(() => {
