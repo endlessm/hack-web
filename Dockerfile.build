@@ -1,16 +1,16 @@
 FROM node:buster-slim
 
 RUN apt-get update && \
-    apt-get -y install git flatpak wget && \
+    apt-get -y install git unzip mono-runtime wget && \
     apt-get clean
 
 # Inklecate flatpak version and checksum
 ENV INKLECATE_VERSION 0.9.0
-ENV INKLECATE_CHECKSUM 4e8951adb8ded69ffbb880f176d3e06eacecb001d2a7fcfa6da3c744f409c6a9
-ENV INKLECATE_URL https://github.com/manuq/inklecate-flatpak/releases/download/${INKLECATE_VERSION}/inklecate-${INKLECATE_VERSION}.flatpak
-RUN flatpak remote-add --system flathub \
-        https://flathub.org/repo/flathub.flatpakrepo
-RUN wget -q -O /inklecate.flatpak ${INKLECATE_URL} && \
-    echo "${INKLECATE_CHECKSUM}  /inklecate.flatpak" | sha256sum -c && \
-    flatpak install -y --system --no-related --bundle /inklecate.flatpak && \
-    rm -f /inklecate.flatpak
+ENV INKLECATE_CHECKSUM c2d9d042f15379730c93a2af0807534d11bc1ff22e5e99a5f9c216d1c15db8da
+ENV INKLECATE_URL https://github.com/inkle/ink/releases/download/${INKLECATE_VERSION}/inklecate_windows_and_linux.zip
+RUN mkdir /ink
+RUN wget -q -O /ink/inklecate.zip ${INKLECATE_URL} && \
+    echo "${INKLECATE_CHECKSUM} /ink/inklecate.zip" | sha256sum -c && \
+    cd /ink && unzip inklecate.zip && rm -f inklecate.zip && \
+    (echo '#!/bin/bash'; echo 'mono /ink/inklecate.exe $@') > /bin/inklecate && \
+    chmod a+x /bin/inklecate
