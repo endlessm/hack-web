@@ -1,6 +1,7 @@
 import React, {
   useState,
 } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import {
   Box,
@@ -19,6 +20,7 @@ import PropTypes from 'prop-types';
 
 import { useMove } from 'react-use-gesture';
 
+import { actions } from '../store';
 import SlideToHack from './slide-to-hack';
 import FlipToHack from './flip-to-hack';
 
@@ -113,7 +115,10 @@ const QuestFTHView = ({
   toolbox, canvas, sidebar, controls, onFlipped, sideBySide, hideControls,
 }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
+  const dispatch = useDispatch();
+
+  const open = useSelector((state) => state.ui.sidePanelOpen);
+
   // When sideBySide is true we show the toolbox by default
   const [flipped, setFlipped] = useState(sideBySide);
 
@@ -138,7 +143,7 @@ const QuestFTHView = ({
   });
 
   const toggleOpen = () => {
-    setOpen(!open);
+    dispatch(actions.sidePanelToggleOpen());
   };
 
   const toggleFlip = () => {

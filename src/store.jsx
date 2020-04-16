@@ -8,6 +8,12 @@ const actions = {
       username,
     },
   }),
+  sidePanelSetOpen: () => ({
+    type: 'SIDE-PANEL-SET-OPEN',
+  }),
+  sidePanelToggleOpen: () => ({
+    type: 'SIDE-PANEL-TOGGLE-OPEN',
+  }),
   logout: () => ({ type: 'LOGOUT' }),
   originalHackableAppSet: (data) => ({
     type: 'ORIG-SET',
@@ -39,6 +45,19 @@ function authReducer(state = {}, action) {
         authenticated: false,
         username: null,
       };
+    default:
+      return state;
+  }
+}
+
+function uiReducer(state = {}, action) {
+  switch (action.type) {
+    case 'SIDE-PANEL-SET-OPEN': {
+      return { ...state, sidePanelOpen: true };
+    }
+    case 'SIDE-PANEL-TOGGLE-OPEN': {
+      return { ...state, sidePanelOpen: !state.sidePanelOpen };
+    }
     default:
       return state;
   }
@@ -89,6 +108,9 @@ const initialState = {
     authenticated: false,
     username: null,
   },
+  ui: {
+    sidePanelOpen: true,
+  },
   pathways: [
     {
       slug: 'games',
@@ -132,6 +154,7 @@ const initialState = {
 
 const store = createStore(combineReducers({
   auth: authReducer,
+  ui: uiReducer,
   pathways: pathwaysReducer,
   hackableApp: hackableAppReducer,
   originalHackableApp: originalHackableAppReducer,
