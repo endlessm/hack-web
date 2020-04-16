@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   Box,
@@ -34,6 +34,8 @@ const P5Quest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const [firstTimeCode, setFirstTimeCode] = useState(true);
+
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
@@ -46,8 +48,9 @@ const P5Quest = () => {
   useEffect(() => {
     const changeCallback = (params, firstTime = false) => {
       dispatch(actions.hackableAppSet(params));
-      if (firstTime) {
+      if (firstTime && firstTimeCode) {
         dispatch(actions.originalHackableAppSet(params));
+        setFirstTimeCode(false);
       }
     };
 
@@ -85,9 +88,8 @@ const P5Quest = () => {
   );
 
   const onRestartSelected = () => {
-    restartQuest();
-    // FIXME, why this doesn't work?
     resetToolbox();
+    restartQuest();
   };
 
   const sidebar = (
