@@ -6,7 +6,7 @@
   "repository": "https://github.com/endlessm/hack-web.git",
   "author": "Endless Mobile, Inc.",
   "license": "UNLICENSED",
-  "domain": "hack-web.s3.us-east-2.amazonaws.com",
+  "domain": "hack-web.s3-website.us-east-2.amazonaws.com",
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
