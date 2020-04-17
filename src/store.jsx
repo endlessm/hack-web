@@ -100,7 +100,6 @@ const dummyQuestList = [...Array(10).keys()].map((i) => ({
   name: `Quest #${i + 1} - Robots and Pits`,
   description: 'Riley, one of your classmates, can\'t wait to meet you and tell you everything about the Academy.',
   subtitle: 'What you\'ll do?',
-  difficulty: ['easy', 'medium', 'hard'][i % 3],
 }));
 
 const initialState = {

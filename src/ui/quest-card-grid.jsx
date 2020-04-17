@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-const QuestCardGrid = ({ pathway, quests }) => {
+const QuestCardGrid = ({ quests, pathway }) => {
   const classes = useStyles();
 
   return (
@@ -32,8 +32,12 @@ const QuestCardGrid = ({ pathway, quests }) => {
 };
 
 QuestCardGrid.propTypes = {
-  pathway: pathwayType.isRequired,
   quests: PropTypes.arrayOf(questType).isRequired,
+  pathway: pathwayType,
+};
+
+QuestCardGrid.defaultProps = {
+  pathway: null,
 };
 
 export default QuestCardGrid;

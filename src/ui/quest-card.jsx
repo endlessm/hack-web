@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   Card,
+  CardActionArea,
   CardActions,
   CardContent,
   makeStyles,
@@ -12,7 +13,6 @@ import {
 } from '@material-ui/core';
 
 import { pathwayType, questType } from './types';
-import DifficultyBar from './difficulty-bar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,13 +30,14 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     margin: '0.5em',
     transition: `margin ${theme.transitions.duration.standard}ms ease`,
+    textDecoration: 'none',
   },
   rootExpanded: {
     margin: '0 0.5em',
   },
   backgroundBox: {
-    backgroundImage: ({ pathway, quest }) => {
-      const fallbackImg = `url('/assets/quests/pathway-card-${pathway.slug}.svg                                                                                                                                                                                     ')`;
+    backgroundImage: ({ quest, fallbackImage }) => {
+      const fallbackImg = `url('/assets/quests/pathway-card-${fallbackImage}.svg')`;
       const bgImg = `url('/assets/quests/${quest.slug}/card.png')`;
       return `${fallbackImg}, ${bgImg}`;
     },
@@ -49,10 +50,8 @@ const useStyles = makeStyles((theme) => ({
     transform: 'scale(1.2)',
   },
   cardContent: {
+    borderTop: `${theme.spacing(1)}px solid ${theme.palette.primary.main}`,
     backgroundColor: theme.palette.background.paper,
-    zIndex: 1,
-  },
-  difficultyBar: {
     zIndex: 1,
   },
   cardActions: {
@@ -87,27 +86,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     padding: '1em',
   },
-  title: {
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    color: theme.palette.primary.main,
-    fontWeight: 'bold',
-  },
-  difficultySubBar: {
-    backgroundImage: ({ quest }) => {
-      const { colors } = theme.custom.difficultyBar[quest.difficulty];
-      return `linear-gradient(to right, ${colors[0]}, ${colors[1]})`;
-    },
-    height: '0.5em',
-    margin: '0.25em 0',
-  },
 }));
 
-const QuestCard = ({ pathway, quest }) => {
+const QuestCard = ({ quest, pathway }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const classes = useStyles({ pathway, quest, expanded });
+  const fallbackImage = pathway ? pathway.slug : 'art';
+  const classes = useStyles({ quest, fallbackImage });
 
   const handleMouseEnter = () => {
     setExpanded(true);
@@ -122,47 +107,44 @@ const QuestCard = ({ pathway, quest }) => {
       className={clsx(classes.root, expanded && classes.rootExpanded)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      component={RouterLink}
+      to={`/${quest.slug}`}
     >
       <Box className={clsx(classes.backgroundBox, expanded && classes.backgroundBoxExpanded)} />
-      {!expanded
-      && <DifficultyBar difficulty={quest.difficulty} className={classes.difficultyBar} />}
-      <CardContent className={classes.cardContent}>
-        <Typography className={classes.title} gutterBottom component="p">
-          { `${quest.name}` }
-        </Typography>
-        <Box className={clsx(classes.collapsableBox, expanded && classes.collapsableBoxExpanded)}>
-          <Typography className={classes.subtitle} component="p">
-            { quest.subtitle }
+      <CardActionArea>
+        <CardContent className={classes.cardContent}>
+          <Typography gutterBottom>
+            <b>{ `${quest.name}` }</b>
           </Typography>
-          <Box width="100%" display="flex">
-            <Box className={classes.difficultySubBar} flexGrow={1} />
-            <Box flexGrow={2} />
+          <Box className={clsx(classes.collapsableBox, expanded && classes.collapsableBoxExpanded)}>
+            <Typography variant="body2" color="textSecondary">
+              { quest.subtitle }
+            </Typography>
+            <CardActions className={classes.cardActions}>
+              <Button
+                size="small"
+                variant="contained"
+                color="primary"
+                disableElevation
+                className={classes.button}
+              >
+                Show
+              </Button>
+            </CardActions>
           </Box>
-          <Typography variant="body2" color="textSecondary" component="p">
-            { quest.description }
-          </Typography>
-          <CardActions className={classes.cardActions}>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              disableElevation
-              className={classes.button}
-              component={RouterLink}
-              to={`/${quest.slug}`}
-            >
-              Play
-            </Button>
-          </CardActions>
-        </Box>
-      </CardContent>
+        </CardContent>
+      </CardActionArea>
     </Card>
   );
 };
 
 QuestCard.propTypes = {
-  pathway: pathwayType.isRequired,
   quest: questType.isRequired,
+  pathway: pathwayType,
+};
+
+QuestCard.defaultProps = {
+  pathway: null,
 };
 
 export default QuestCard;
