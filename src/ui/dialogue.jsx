@@ -5,9 +5,7 @@ import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import {
   makeStyles,
-  Box,
   Button,
-  Divider,
   Fade,
   IconButton,
   SvgIcon,
@@ -26,6 +24,7 @@ import PreviousIcon from './icons/hack-previous-symbolic.svg';
 import { actions } from '../store';
 import Quest from '../libquest';
 import ChatMessage from './chat-message';
+import SidePanel from './side-panel';
 
 const iconsByEmoji = {
   '❯': NextIcon,
@@ -37,14 +36,6 @@ const iconsByEmoji = {
 const useStyles = makeStyles(({
   custom, shadows, spacing, palette, transitions,
 }) => ({
-  dialogue: {
-    height: '100%',
-    backgroundColor: palette.background.default,
-    overflowY: 'scroll',
-    alignItems: 'flex-end',
-    display: 'flex',
-    flexDirection: 'column',
-  },
   choiceButton: {
     color: palette.common.white,
     background: `linear-gradient(to right, ${palette.common.hackGreen}, ${palette.common.hackGreenGradient})`,
@@ -159,45 +150,36 @@ const Dialogue = ({
     </>
   );
 
-  return (
+  const chatMessages = dialogue.map((d, i) => (
+    <Fade
+      key={d.id}
+      in
+      timeout={getTimeout(i)}
+    >
+      <ChatMessage
+        side={d.character === 'user' ? 'right' : 'left'}
+        avatar={`/assets/pathways/${pathwayByCharacter[d.character]}-card-media.png`}
+        messages={[d]}
+      />
+    </Fade>
+  ));
+
+  const content = (
     <>
-      <Box className={classes.dialogue} px={1} py={2}>
-        <div
-          style={{ marginTop: 'auto' }}
-        />
-        {dialogue.map((d, i) => (
-          <Fade
-            key={d.id}
-            in
-            timeout={getTimeout(i)}
-          >
-            <ChatMessage
-              side={d.character === 'user' ? 'right' : 'left'}
-              avatar={`/assets/pathways/${pathwayByCharacter[d.character]}-card-media.png`}
-              messages={[d]}
-            />
-          </Fade>
-        ))}
-        <div
-          className={classes.scrollRef}
-          ref={messagesEndRef}
-        />
-      </Box>
-      <Divider />
-      <Box
-        m={1}
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="flex-end"
-      >
-        {hasEnded ? (
-          endChoices
-        ) : (
-          choices.map((choice) => getChoiceButton(choice))
-        )}
-      </Box>
+      <div
+        style={{ marginTop: 'auto' }}
+      />
+      {chatMessages}
+      <div
+        className={classes.scrollRef}
+        ref={messagesEndRef}
+      />
     </>
   );
+
+  const buttons = hasEnded ? endChoices : choices.map((choice) => getChoiceButton(choice));
+
+  return <SidePanel content={content} buttons={buttons} />;
 };
 
 Dialogue.propTypes = {
