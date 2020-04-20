@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { Link as RouterLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Box,
   Button,
@@ -12,6 +12,7 @@ import {
   Typography,
 } from '@material-ui/core';
 
+import { actions } from '../store';
 import { pathwayType, questType } from './types';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
   },
   rootExpanded: {
     margin: '0 0.5em',
+  },
+  rootSelected: {
+    boxShadow: `0px 0px 0px ${theme.spacing(1)}px ${theme.palette.primary.main}`,
   },
   backgroundBox: {
     backgroundImage: ({ quest, fallbackImage }) => {
@@ -94,6 +98,10 @@ const QuestCard = ({ quest, pathway }) => {
   const fallbackImage = pathway ? pathway.slug : 'art';
   const classes = useStyles({ quest, fallbackImage });
 
+  const dispatch = useDispatch();
+
+  const isSelected = useSelector((state) => state.ui.cardSelected === quest);
+
   const handleMouseEnter = () => {
     setExpanded(true);
   };
@@ -102,13 +110,21 @@ const QuestCard = ({ quest, pathway }) => {
     setExpanded(false);
   };
 
+  const handleClick = () => {
+    dispatch(actions.selectCard(quest));
+    dispatch(actions.sidePanelSetOpen());
+  };
+
   return (
     <Card
-      className={clsx(classes.root, expanded && classes.rootExpanded)}
+      className={clsx(
+        classes.root,
+        expanded && classes.rootExpanded,
+        isSelected && classes.rootSelected,
+      )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      component={RouterLink}
-      to={`/${quest.slug}`}
+      onClick={handleClick}
     >
       <Box className={clsx(classes.backgroundBox, expanded && classes.backgroundBoxExpanded)} />
       <CardActionArea>
@@ -147,4 +163,16 @@ QuestCard.defaultProps = {
   pathway: null,
 };
 
-export default QuestCard;
+function useCardInfo() {
+  // eslint-disable-next-line no-restricted-globals
+  const slug = location.pathname;
+
+  const title = useSelector((state) => {
+    const pathway = state.pathways.find((p) => p.slug === 'home');
+    const card = pathway.quests.find((c) => slug === c.slug);
+    return card.name;
+  });
+  return { title };
+}
+
+export { QuestCard as default, useCardInfo };

@@ -14,6 +14,13 @@ const actions = {
   sidePanelToggleOpen: () => ({
     type: 'SIDE-PANEL-TOGGLE-OPEN',
   }),
+  selectCard: (quest) => ({
+    type: 'SELECT-CARD',
+    payload: quest,
+  }),
+  deselectCard: () => ({
+    type: 'DESELECT-CARD',
+  }),
   logout: () => ({ type: 'LOGOUT' }),
   originalHackableAppSet: (data) => ({
     type: 'ORIG-SET',
@@ -58,6 +65,12 @@ function uiReducer(state = {}, action) {
     case 'SIDE-PANEL-TOGGLE-OPEN': {
       return { ...state, sidePanelOpen: !state.sidePanelOpen };
     }
+    case 'SELECT-CARD': {
+      return { ...state, cardSelected: action.payload };
+    }
+    case 'DESELECT-CARD': {
+      return { ...state, cardSelected: null };
+    }
     default:
       return state;
   }
@@ -96,7 +109,7 @@ function hackableAppReducer(state = {}, action) {
 
 // TODO: Fake data. Remove this later.
 const dummyQuestList = [...Array(10).keys()].map((i) => ({
-  slug: `quest_${i}`,
+  href: 'https://hack-computer.com/',
   name: `Quest #${i + 1} - Robots and Pits`,
   description: 'Riley, one of your classmates, can\'t wait to meet you and tell you everything about the Academy.',
   subtitle: 'What you\'ll do?',
@@ -108,41 +121,62 @@ const initialState = {
     username: null,
   },
   ui: {
-    sidePanelOpen: true,
+    sidePanelOpen: false,
+    cardSelected: null,
   },
   pathways: [
     {
-      slug: 'games',
-      tempUrl: 'games/fixme-name-the-sidetrack-quest',
-      name: 'Games',
-      description: 'This is a category description.',
-      quests: dummyQuestList,
-    },
-    {
-      slug: 'art',
-      tempUrl: 'art/fixme-name-the-p5-quest',
-      name: 'Art',
-      description: 'This is a category description.',
-      quests: dummyQuestList,
-    },
-    {
-      slug: 'web',
-      tempUrl: 'web/fixme-name-the-html-quest',
-      name: 'Web',
-      description: 'This is a category description.',
-      quests: dummyQuestList,
-    },
-    {
-      slug: 'maker',
-      tempUrl: 'maker/make-change',
-      name: 'Maker',
-      description: 'This is a category description.',
-      quests: dummyQuestList,
+      slug: 'home',
+      name: 'Pick a dimension to explore.',
+      description: '',
+      quests: [
+        {
+          slug: '/games/fixme-name-the-sidetrack-quest',
+          name: 'Intro to Gaming',
+          subtitle: 'What you\'ll do?',
+          description: 'This is a description for the Intro to Gaming quest.',
+        },
+        {
+          slug: '/art/fixme-name-the-p5-quest',
+          name: 'Intro to Processing',
+          subtitle: 'What you\'ll do?',
+          description: 'This is a description for the Intro to Processing quest.',
+        },
+        {
+          slug: '/web/fixme-name-the-html-quest',
+          name: 'Intro to Web Technology',
+          subtitle: 'What you\'ll do?',
+          description: 'This is a description for the Intro to Web quest.',
+        },
+        {
+          slug: '/maker/make-change',
+          name: 'Intro to Engineering',
+          subtitle: 'What you\'ll do?',
+          description: 'This is a description for the Intro to Engineering quest.',
+        },
+        {
+          slug: '/os',
+          name: 'Intro to Endless',
+          subtitle: 'What you\'ll do?',
+          description: 'This is a description for the Intro to Endless quest.',
+        },
+        {
+          slug: '/t2',
+          name: 'Intro to T2',
+          subtitle: 'What you\'ll do?',
+          description: 'This is a description for the Intro to Endless quest.',
+        },
+      ],
     },
     {
       slug: 'os',
-      tempUrl: 'os',
-      name: 'OS',
+      name: 'Intro to Endless',
+      description: 'This is a category description.',
+      quests: dummyQuestList.slice(0, 5),
+    },
+    {
+      slug: 't2',
+      name: 'Intro to T2',
       description: 'This is a category description.',
       quests: dummyQuestList.slice(0, 5),
     },

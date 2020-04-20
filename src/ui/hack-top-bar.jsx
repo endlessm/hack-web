@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   AppBar,
   Box,
-  fade,
   makeStyles,
   IconButton,
   Toolbar,
@@ -13,102 +12,56 @@ import {
 } from '@material-ui/core';
 
 import {
-  NavigateBeforeRounded,
-  NavigateNextRounded,
+  Home,
 } from '@material-ui/icons';
 
-import { pathwayType } from './types';
 
-
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    margin: 0,
-  },
-  topBarBox: {
-    width: '100%',
-    height: '10em',
-    display: 'flex',
-    justifyContent: 'center',
-    margin: '2em 0',
-    backgroundImage: `linear-gradient(${theme.custom.landingTitleGradientDirection}deg, ${fade(theme.palette.primary.main, 0.5)}, ${fade(theme.palette.secondary.main, 0.5)})`,
-    backgroundSize: '100% auto',
-  },
-  navButton: {
-    alignSelf: 'center',
-  },
-  characterBg: {
-    backgroundImage: ({ pathway }) => `url('/assets/pathways/${pathway.slug}-header.png')`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'right',
-    backgroundSize: 'auto 100%',
-    marginRight: '1.5em',
-    width: 142,
-  },
+const useStyles = makeStyles(({ spacing, mixins }) => ({
   toolbar: {
-    minHeight: '14em',
+    marginTop: spacing(1),
+    marginBottom: spacing(1),
   },
-  titleBox: {
-    paddingBottom: '6em 0',
-    margin: '0 1em 0 0',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-center',
-    color: theme.palette.secondary.contrastText,
+  offset: {
+    ...mixins.toolbar,
+    marginTop: spacing(2),
   },
 }));
 
-const PathwayTopBar = ({ pathway }) => {
-  const pathways = useSelector((state) => state.pathways);
-  const pathwayIndex = pathways.findIndex((p) => pathway.slug === p.slug);
-
-  const classes = useStyles({ pathway });
-
-  const getNextPathwayUrl = (() => {
-    const i = (pathwayIndex + 1) % pathways.length;
-    return `/${pathways[i].slug}`;
-  })();
-
-  const getPrevPathwayUrl = (() => {
-    const i = (pathwayIndex + pathways.length - 1) % pathways.length;
-    return `/${pathways[i].slug}`;
-  })();
+const HackTopBar = ({ title, hideHomeIcon }) => {
+  const classes = useStyles();
 
   return (
-    <>
-      <AppBar>
-        <Box className={classes.topBarBox}>
-          <IconButton className={classes.navButton} component={RouterLink} to={getPrevPathwayUrl}>
-            <NavigateBeforeRounded />
-          </IconButton>
-          <div className={classes.characterBg} />
-          <Box className={classes.titleBox}>
-            <Typography variant="h3">
-              <Box fontWeight="fontWeightMedium">
-                {`${pathway.name} pathway`}
-              </Box>
-            </Typography>
-            <Typography variant="h5">
-              <Box fontStyle="italic">
-                Pick a card to get started
-              </Box>
-            </Typography>
-          </Box>
-          <IconButton className={classes.navButton} component={RouterLink} to={getNextPathwayUrl}>
-            <NavigateNextRounded />
-          </IconButton>
-        </Box>
+    <Box>
+      <AppBar elevation={0}>
+        <Toolbar className={classes.toolbar}>
+          {!hideHomeIcon && (
+            <IconButton
+              component={RouterLink}
+              to="/"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+            >
+              <Home />
+            </IconButton>
+          )}
+          <Typography variant="h5" color="inherit">
+            {title}
+          </Typography>
+        </Toolbar>
       </AppBar>
-
-      {/* FIXME: Height is hard-coded matching the height of the bar
-      to prevent children content appearing below the bar. */}
-      <Toolbar className={classes.toolbar} />
-    </>
+      <div className={classes.offset} />
+    </Box>
   );
 };
 
-PathwayTopBar.propTypes = {
-  pathway: pathwayType.isRequired,
+HackTopBar.propTypes = {
+  title: PropTypes.string.isRequired,
+  hideHomeIcon: PropTypes.bool,
 };
 
-export default PathwayTopBar;
+HackTopBar.defaultProps = {
+  hideHomeIcon: false,
+};
+
+export default HackTopBar;
