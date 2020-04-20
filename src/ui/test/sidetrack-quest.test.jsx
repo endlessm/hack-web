@@ -62,6 +62,10 @@ const SidetrackQuest = () => {
       quest.updateStoryVariable('success', params.success);
       questUpdated = true;
     }
+    if (params.playing !== Boolean(quest.getStoryVariable('playing'))) {
+      quest.updateStoryVariable('playing', params.playing);
+      questUpdated = true;
+    }
     if (params.controlsCutscene !== Boolean(quest.getStoryVariable('controlsCutscene'))) {
       quest.updateStoryVariable('controlsCutscene', params.controlsCutscene);
       questUpdated = true;
@@ -164,6 +168,7 @@ const SidetrackQuest = () => {
       highestAchievedLevel: quest.getStoryVariable('highestAchievedLevel'),
       availableLevels: quest.getStoryVariable('availableLevels'),
       success: quest.getStoryVariable('success'),
+      playing: quest.getStoryVariable('playing'),
       controlsCutscene: quest.getStoryVariable('controlsCutscene'),
       escapeCutscene: quest.getStoryVariable('escapeCutscene'),
     };
