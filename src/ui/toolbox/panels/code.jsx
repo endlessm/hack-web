@@ -45,7 +45,7 @@ const CodePanel = ({
     <AceEditor
       width="100%"
       mode="javascript"
-      theme="terminal"
+      theme="monokai"
       value={text}
       onChange={build}
       name="editor"
