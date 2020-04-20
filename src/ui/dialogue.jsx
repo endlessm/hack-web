@@ -2,13 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import clsx from 'clsx';
 import {
   makeStyles,
-  Button,
   Fade,
-  IconButton,
-  SvgIcon,
   useTheme,
 } from '@material-ui/core';
 
@@ -24,7 +20,9 @@ import PreviousIcon from './icons/hack-previous-symbolic.svg';
 import { actions } from '../store';
 import Quest from '../libquest';
 import ChatMessage from './chat-message';
-import SidePanel from './side-panel';
+import SidePanel, {
+  ChoiceButton, ChoiceIconButton, ChoiceSvgIcon,
+} from './side-panel';
 
 const iconsByEmoji = {
   '❯': NextIcon,
@@ -33,32 +31,7 @@ const iconsByEmoji = {
   '👎': ThumbsDownIcon,
 };
 
-const useStyles = makeStyles(({
-  custom, shadows, spacing, palette, transitions,
-}) => ({
-  choiceButton: {
-    color: palette.common.white,
-    background: `linear-gradient(to right, ${palette.common.hackGreen}, ${palette.common.hackGreenGradient})`,
-    margin: spacing(0.5),
-  },
-  choiceButtonRoot: {
-    borderRadius: spacing(3),
-    whiteSpace: 'nowrap',
-  },
-  choiceButtonLabel: {
-    textTransform: 'none',
-    textShadow: custom.hackButtonTextShadow,
-  },
-  choiceButtonIcon: {
-    boxShadow: shadows[2],
-    transition: `box-shadow ${transitions.duration.short}ms ${transitions.easing.easeInOut} 0ms`,
-    '&:hover': {
-      boxShadow: shadows[4],
-    },
-  },
-  choiceButtonIconSvg: {
-    filter: `drop-shadow(${custom.hackButtonTextShadow})`,
-  },
+const useStyles = makeStyles(() => ({
   scrollRef: {
     float: 'left',
     clear: 'both',
@@ -102,51 +75,44 @@ const Dialogue = ({
   const getChoiceButton = (choice) => {
     if (choice.text in iconsByEmoji) {
       return (
-        <IconButton
+        <ChoiceIconButton
           key={choice.index}
           size="medium"
-          className={clsx(classes.choiceButton, classes.choiceButtonIcon)}
           onClick={() => onChoiceSelected(choice)}
         >
-          <SvgIcon component={iconsByEmoji[choice.text]} className={classes.choiceButtonIconSvg} viewBox="0 0 16 16" />
-        </IconButton>
+          <ChoiceSvgIcon component={iconsByEmoji[choice.text]} viewBox="0 0 16 16" />
+        </ChoiceIconButton>
       );
     }
 
+    // FIXME refactor ChoiceButton NOW
     return (
-      <Button
+      <ChoiceButton
         key={choice.index}
         variant="contained"
         size="large"
-        className={classes.choiceButton}
-        classes={{
-          root: classes.choiceButtonRoot,
-          label: classes.choiceButtonLabel,
-        }}
         onClick={() => onChoiceSelected(choice)}
       >
         {choice.text}
-      </Button>
+      </ChoiceButton>
     );
   };
 
   const endChoices = (
     <>
-      <IconButton
+      <ChoiceIconButton
         size="medium"
-        className={clsx(classes.choiceButton, classes.choiceButtonIcon)}
         component={RouterLink}
         to="/"
       >
         <Home />
-      </IconButton>
-      <IconButton
+      </ChoiceIconButton>
+      <ChoiceIconButton
         size="medium"
-        className={clsx(classes.choiceButton, classes.choiceButtonIcon)}
         onClick={onRestartSelected}
       >
         <Refresh />
-      </IconButton>
+      </ChoiceIconButton>
     </>
   );
 
