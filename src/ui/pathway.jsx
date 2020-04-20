@@ -8,9 +8,7 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-import PathwayTopBar from './pathway-top-bar';
 import QuestCardGrid from './quest-card-grid';
-import PathwayOSIFrame from './pathway-os-iframe';
 import ImageMainBg from './home-background-main.jpg';
 
 
@@ -60,14 +58,12 @@ const Pathway = ({ slug }) => {
 
   return (
     <Box className={classes.root}>
-      <PathwayTopBar pathway={pathway} />
       <Container className={classes.content}>
         <Box className={classes.cardsBox}>
           <Container fixed>
             <QuestCardGrid pathway={pathway} quests={pathway.quests} />
           </Container>
         </Box>
-        {pathway.slug === 'os' && <PathwayOSIFrame />}
       </Container>
     </Box>
   );
