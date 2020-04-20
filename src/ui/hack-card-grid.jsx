@@ -7,8 +7,8 @@ import {
 
 import PropTypes from 'prop-types';
 
-import { pathwayType, questType } from './types';
-import QuestCard from './quest-card';
+import { cardSetType, cardType } from './types';
+import HackCard from './hack-card';
 
 const useStyles = makeStyles({
   grid: {
@@ -17,27 +17,27 @@ const useStyles = makeStyles({
   },
 });
 
-const QuestCardGrid = ({ quests, pathway }) => {
+const HackCardGrid = ({ cardset, cards }) => {
   const classes = useStyles();
 
   return (
     <div>
       <Grid container spacing={3} className={classes.grid}>
         {
-          quests.map((q) => (<QuestCard key={q.slug} pathway={pathway} quest={q} />))
+          cards.map((c) => (<HackCard key={c.slug} cardset={cardset} card={c} />))
         }
       </Grid>
     </div>
   );
 };
 
-QuestCardGrid.propTypes = {
-  quests: PropTypes.arrayOf(questType).isRequired,
-  pathway: pathwayType,
+HackCardGrid.propTypes = {
+  cards: PropTypes.arrayOf(cardType).isRequired,
+  cardset: cardSetType,
 };
 
-QuestCardGrid.defaultProps = {
-  pathway: null,
+HackCardGrid.defaultProps = {
+  cardset: null,
 };
 
-export default QuestCardGrid;
+export default HackCardGrid;

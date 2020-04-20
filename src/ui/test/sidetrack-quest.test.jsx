@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
-import { useCardInfo } from '../quest-card';
+import { useCardInfo } from '../hack-card';
 import QuestFTHView from '../quest-fth-view';
 import questContent from './sidetrack-quest.ink';
 

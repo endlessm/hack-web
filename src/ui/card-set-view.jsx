@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import QuestCardGrid from './quest-card-grid';
+import HackCardGrid from './hack-card-grid';
 import ImageMainBg from './home-background-main.jpg';
 import SidePanel, { ChoiceButton } from './side-panel';
 
@@ -32,19 +32,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  titleBox: {
-    height: '10em',
-    padding: '6em 0',
-    margin: 0,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-center',
-    color: 'red',
-  },
-  pathwayCard: {
-    margin: '0 1em',
-  },
   cardsBox: {
     width: '100%',
     backgroundImage: `linear-gradient(${fade(theme.palette.common.black, 0.5)}, ${fade(theme.palette.common.black, 0.5)}), url('${ImageMainBg}')`,
@@ -59,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CardSetView = ({ slug }) => {
   const classes = useStyles();
-  const pathway = useSelector((state) => state.pathways.find((p) => slug === p.slug));
+  const cardset = useSelector((state) => state.cardsets.find((cs) => slug === cs.slug));
   const selectedCard = useSelector((state) => state.ui.cardSelected);
 
   const getContent = (card) => (
@@ -125,7 +112,7 @@ const CardSetView = ({ slug }) => {
       <Container className={classes.content}>
         <Box className={classes.cardsBox}>
           <Container fixed>
-            <QuestCardGrid pathway={pathway} quests={pathway.quests} />
+            <HackCardGrid cardset={cardset} cards={cardset.cards} />
           </Container>
         </Box>
       </Container>
@@ -136,8 +123,8 @@ const CardSetView = ({ slug }) => {
     <QuestFTHView
       canvas={canvas}
       sidebar={sidebar}
-      title={pathway.name}
-      hideHomeIcon={pathway.slug === 'home'}
+      title={cardset.name}
+      hideHomeIcon={cardset.slug === 'home'}
     />
   );
 };

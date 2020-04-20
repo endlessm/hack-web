@@ -14,9 +14,9 @@ const actions = {
   sidePanelToggleOpen: () => ({
     type: 'SIDE-PANEL-TOGGLE-OPEN',
   }),
-  selectCard: (quest) => ({
+  selectCard: (card) => ({
     type: 'SELECT-CARD',
-    payload: quest,
+    payload: card,
   }),
   deselectCard: () => ({
     type: 'DESELECT-CARD',
@@ -76,7 +76,7 @@ function uiReducer(state = {}, action) {
   }
 }
 
-function pathwaysReducer(state = [], action) {
+function cardSetReducer(state = [], action) {
   switch (action.type) {
     default:
       return state;
@@ -108,9 +108,9 @@ function hackableAppReducer(state = {}, action) {
 }
 
 // TODO: Fake data. Remove this later.
-const dummyQuestList = [...Array(10).keys()].map((i) => ({
+const dummyCards = [...Array(6).keys()].map((i) => ({
   href: 'https://hack-computer.com/',
-  name: `Quest #${i + 1} - Robots and Pits`,
+  name: `Test Link #${i + 1}`,
   description: 'Riley, one of your classmates, can\'t wait to meet you and tell you everything about the Academy.',
   subtitle: 'What you\'ll do?',
 }));
@@ -124,12 +124,12 @@ const initialState = {
     sidePanelOpen: false,
     cardSelected: null,
   },
-  pathways: [
+  cardsets: [
     {
-      slug: 'home',
+      slug: '/home',
       name: 'Pick a dimension to explore.',
       description: '',
-      quests: [
+      cards: [
         {
           slug: '/games/fixme-name-the-sidetrack-quest',
           name: 'Intro to Gaming',
@@ -169,16 +169,16 @@ const initialState = {
       ],
     },
     {
-      slug: 'os',
+      slug: '/os',
       name: 'Intro to Endless',
       description: 'This is a category description.',
-      quests: dummyQuestList.slice(0, 5),
+      cards: dummyCards,
     },
     {
-      slug: 't2',
+      slug: '/t2',
       name: 'Intro to T2',
       description: 'This is a category description.',
-      quests: dummyQuestList.slice(0, 5),
+      cards: dummyCards,
     },
   ],
   hackableApp: {},
@@ -188,7 +188,7 @@ const initialState = {
 const store = createStore(combineReducers({
   auth: authReducer,
   ui: uiReducer,
-  pathways: pathwaysReducer,
+  cardsets: cardSetReducer,
   hackableApp: hackableAppReducer,
   originalHackableApp: originalHackableAppReducer,
 }), initialState);

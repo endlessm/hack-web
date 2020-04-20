@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
-const pathwayType = PropTypes.shape({
+const cardSetType = PropTypes.shape({
   slug: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 });
 
-const questType = PropTypes.shape({
+const cardType = PropTypes.shape({
   slug: PropTypes.string,
   name: PropTypes.string,
   subtitle: PropTypes.string,
@@ -14,6 +14,6 @@ const questType = PropTypes.shape({
 });
 
 export {
-  pathwayType,
-  questType,
+  cardSetType,
+  cardType,
 };

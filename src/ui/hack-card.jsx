@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 
 import { actions } from '../store';
-import { pathwayType, questType } from './types';
+import { cardSetType, cardType } from './types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,9 +40,9 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: `0px 0px 0px ${theme.spacing(1)}px ${theme.palette.primary.main}`,
   },
   backgroundBox: {
-    backgroundImage: ({ quest, fallbackImage }) => {
+    backgroundImage: ({ card, fallbackImage }) => {
       const fallbackImg = `url('/assets/quests/pathway-card-${fallbackImage}.svg')`;
-      const bgImg = `url('/assets/quests/${quest.slug}/card.png')`;
+      const bgImg = `url('/assets/quests/${card.slug}/card.png')`;
       return `${fallbackImg}, ${bgImg}`;
     },
     position: 'absolute',
@@ -92,15 +92,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const QuestCard = ({ quest, pathway }) => {
+const HackCard = ({ card, cardset }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const fallbackImage = pathway ? pathway.slug : 'art';
-  const classes = useStyles({ quest, fallbackImage });
+  const fallbackImage = cardset ? cardset.slug : 'art';
+  const classes = useStyles({ card, fallbackImage });
 
   const dispatch = useDispatch();
 
-  const isSelected = useSelector((state) => state.ui.cardSelected === quest);
+  const isSelected = useSelector((state) => state.ui.cardSelected === card);
 
   const handleMouseEnter = () => {
     setExpanded(true);
@@ -111,7 +111,7 @@ const QuestCard = ({ quest, pathway }) => {
   };
 
   const handleClick = () => {
-    dispatch(actions.selectCard(quest));
+    dispatch(actions.selectCard(card));
     dispatch(actions.sidePanelSetOpen());
   };
 
@@ -130,11 +130,11 @@ const QuestCard = ({ quest, pathway }) => {
       <CardActionArea>
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom>
-            <b>{ `${quest.name}` }</b>
+            <b>{ `${card.name}` }</b>
           </Typography>
           <Box className={clsx(classes.collapsableBox, expanded && classes.collapsableBoxExpanded)}>
             <Typography variant="body2" color="textSecondary">
-              { quest.subtitle }
+              { card.subtitle }
             </Typography>
             <CardActions className={classes.cardActions}>
               <Button
@@ -154,13 +154,13 @@ const QuestCard = ({ quest, pathway }) => {
   );
 };
 
-QuestCard.propTypes = {
-  quest: questType.isRequired,
-  pathway: pathwayType,
+HackCard.propTypes = {
+  card: cardType.isRequired,
+  cardset: cardSetType,
 };
 
-QuestCard.defaultProps = {
-  pathway: null,
+HackCard.defaultProps = {
+  cardset: null,
 };
 
 function useCardInfo() {
@@ -168,11 +168,11 @@ function useCardInfo() {
   const slug = location.pathname;
 
   const title = useSelector((state) => {
-    const pathway = state.pathways.find((p) => p.slug === 'home');
-    const card = pathway.quests.find((c) => slug === c.slug);
+    const cardset = state.cardsets.find((cs) => cs.slug === '/home');
+    const card = cardset.cards.find((c) => slug === c.slug);
     return card.name;
   });
   return { title };
 }
 
-export { QuestCard as default, useCardInfo };
+export { HackCard as default, useCardInfo };
