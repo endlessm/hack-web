@@ -105,8 +105,12 @@ const PdfQuest = () => {
   };
 
   const onRestartSelected = () => {
-    // FIXME, the replay keeps waiting for the 'loaded' variable to change.
     restartQuest();
+    quest.updateStoryVariable('loaded', true);
+    setCurrentChoice(undefined);
+    // scroll to the top
+    ref.current.scrollTop = 0;
+    onSwitchFullscreen();
   };
 
   const sidebar = (
