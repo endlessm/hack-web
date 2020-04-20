@@ -4,4 +4,4 @@
 [submodule "hack-toy-apps"]
 	path = apps/hack-toy-apps
 	url = git@github.com:endlessm/hack-toy-apps.git
-	branch = fizzics-phaser-port
+	branch = web-sidetrack

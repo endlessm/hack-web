@@ -230,4 +230,8 @@ export default class Quest {
       this.doUpdateStoryVariable(name, convertedValue);
     }
   }
+
+  getStoryVariable(name) {
+    return this.story.variablesState[name];
+  }
 }
