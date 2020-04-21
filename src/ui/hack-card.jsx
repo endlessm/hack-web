@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -36,9 +36,12 @@ const useStyles = makeStyles((theme) => ({
     margin: '0.5em',
     transition: `margin ${theme.transitions.duration.standard}ms ease`,
     textDecoration: 'none',
-  },
-  rootExpanded: {
-    margin: '0 0.5em',
+    '&:hover': {
+      margin: '0 0.5em',
+    },
+    '&:hover $backgroundBox': {
+      transform: 'scale(1.2)',
+    },
   },
   rootSelected: {
     boxShadow: `0px 0px 0px ${theme.spacing(1)}px ${theme.palette.primary.main}`,
@@ -52,9 +55,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     transition: `transform ${theme.transitions.duration.standard}ms linear`,
-  },
-  backgroundBoxExpanded: {
-    transform: 'scale(1.2)',
   },
   cardContent: {
     borderTop: `${theme.spacing(1)}px solid ${theme.palette.primary.main}`,
@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: 0,
     overflow: 'hidden',
   },
-  collapsableBoxExpanded: {
+  collapsableBoxSelected: {
     // Just a big height.
     maxHeight: '16em',
   },
@@ -86,21 +86,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HackCard = ({ card, cardset }) => {
-  const [expanded, setExpanded] = useState(false);
-
   const classes = useStyles({ card });
 
   const dispatch = useDispatch();
 
   const isSelected = useSelector((state) => state.ui.cardSelected[cardset.slug] === card);
-
-  const handleMouseEnter = () => {
-    setExpanded(true);
-  };
-
-  const handleMouseLeave = () => {
-    setExpanded(false);
-  };
 
   const handleClick = () => {
     dispatch(actions.selectCard(cardset, card));
@@ -111,20 +101,21 @@ const HackCard = ({ card, cardset }) => {
     <Card
       className={clsx(
         classes.root,
-        expanded && classes.rootExpanded,
         isSelected && classes.rootSelected,
       )}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       onClick={handleClick}
     >
-      <Box className={clsx(classes.backgroundBox, expanded && classes.backgroundBoxExpanded)} />
+      <Box className={classes.backgroundBox} />
       <CardActionArea>
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom>
             <b>{ `${card.name}` }</b>
           </Typography>
-          <Box className={clsx(classes.collapsableBox, expanded && classes.collapsableBoxExpanded)}>
+          <Box className={clsx(
+            classes.collapsableBox,
+            isSelected && classes.collapsableBoxSelected,
+          )}
+          >
             <Typography variant="body2" color="textSecondary">
               { card.subtitle }
             </Typography>
