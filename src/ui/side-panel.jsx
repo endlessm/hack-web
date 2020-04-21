@@ -3,12 +3,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
   Box,
-  Button,
   Divider,
-  IconButton,
-  SvgIcon,
   makeStyles,
-  withStyles,
 } from '@material-ui/core';
 
 const useStyles = makeStyles(({ mixins, spacing, palette }) => ({
@@ -66,43 +62,6 @@ SidePanel.defaultProps = {
   expanded: false,
 };
 
-const ChoiceButton = withStyles(({ custom, palette, spacing }) => ({
-  root: {
-    color: palette.common.white,
-    background: `linear-gradient(to right, ${palette.common.hackGreen}, ${palette.common.hackGreenGradient})`,
-    margin: spacing(0.5),
-    borderRadius: spacing(3),
-    whiteSpace: 'nowrap',
-  },
-  label: {
-    textTransform: 'none',
-    textShadow: custom.hackButtonTextShadow,
-  },
-}))(Button);
-
-const ChoiceIconButton = withStyles(({
-  palette, shadows, spacing, transitions,
-}) => ({
-  root: {
-    boxShadow: shadows[2],
-    transition: `box-shadow ${transitions.duration.short}ms ${transitions.easing.easeInOut} 0ms`,
-    '&:hover': {
-      boxShadow: shadows[4],
-    },
-    color: palette.common.white,
-    background: `linear-gradient(to right, ${palette.common.hackGreen}, ${palette.common.hackGreenGradient})`,
-    margin: spacing(0.5),
-    borderRadius: spacing(3),
-    whiteSpace: 'nowrap',
-  },
-}))(IconButton);
-
-const ChoiceSvgIcon = withStyles(({ custom }) => ({
-  root: {
-    filter: `drop-shadow(${custom.hackButtonTextShadow})`,
-  },
-}))(SvgIcon);
-
 export {
-  SidePanel as default, ChoiceButton, ChoiceIconButton, ChoiceSvgIcon,
+  SidePanel as default,
 };

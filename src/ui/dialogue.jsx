@@ -6,6 +6,7 @@ import {
   makeStyles,
   Fade,
   useTheme,
+  SvgIcon,
 } from '@material-ui/core';
 
 import {
@@ -20,9 +21,10 @@ import PreviousIcon from './icons/hack-previous-symbolic.svg';
 import { actions } from '../store';
 import Quest from '../libquest';
 import ChatMessage from './chat-message';
-import SidePanel, {
-  ChoiceButton, ChoiceIconButton, ChoiceSvgIcon,
-} from './side-panel';
+import SidePanel from './side-panel';
+import {
+  MainButton, MainIconButton,
+} from './main-button';
 
 const iconsByEmoji = {
   '❯': NextIcon,
@@ -31,10 +33,13 @@ const iconsByEmoji = {
   '👎': ThumbsDownIcon,
 };
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ spacing }) => ({
   scrollRef: {
     float: 'left',
     clear: 'both',
+  },
+  button: {
+    margin: spacing(0.5),
   },
 }));
 
@@ -66,44 +71,47 @@ const Dialogue = ({
   const getChoiceButton = (choice) => {
     if (choice.text in iconsByEmoji) {
       return (
-        <ChoiceIconButton
+        <MainIconButton
           key={choice.index}
           size="medium"
           onClick={() => onChoiceSelected(choice)}
         >
-          <ChoiceSvgIcon component={iconsByEmoji[choice.text]} viewBox="0 0 16 16" />
-        </ChoiceIconButton>
+          <SvgIcon component={iconsByEmoji[choice.text]} viewBox="0 0 16 16" />
+        </MainIconButton>
       );
     }
 
     // FIXME refactor ChoiceButton NOW
     return (
-      <ChoiceButton
+      <MainButton
         key={choice.index}
         variant="contained"
         size="large"
+        className={classes.button}
         onClick={() => onChoiceSelected(choice)}
       >
         {choice.text}
-      </ChoiceButton>
+      </MainButton>
     );
   };
 
   const endChoices = (
     <>
-      <ChoiceIconButton
+      <MainIconButton
         size="medium"
+        className={classes.button}
         component={RouterLink}
         to="/"
       >
         <Home />
-      </ChoiceIconButton>
-      <ChoiceIconButton
+      </MainIconButton>
+      <MainIconButton
         size="medium"
+        className={classes.button}
         onClick={onRestartSelected}
       >
         <Refresh />
-      </ChoiceIconButton>
+      </MainIconButton>
     </>
   );
 

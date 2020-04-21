@@ -13,8 +13,8 @@ import {
 
 import HackCardGrid from './hack-card-grid';
 import ImageMainBg from './home-background-main.jpg';
-import SidePanel, { ChoiceButton } from './side-panel';
-
+import SidePanel from './side-panel';
+import { MainButton } from './main-button';
 import QuestFTHView from './quest-fth-view';
 
 
@@ -66,27 +66,27 @@ const CardSetView = ({ slug }) => {
     // If card has href, it is an external link:
     if (card.href) {
       return (
-        <ChoiceButton
+        <MainButton
           variant="contained"
           size="large"
           href={card.href}
           target="_blank"
         >
           Start
-        </ChoiceButton>
+        </MainButton>
       );
     }
 
     // Otherwise, it must be a quest:
     return (
-      <ChoiceButton
+      <MainButton
         variant="contained"
         size="large"
         component={RouterLink}
         to={card.slug}
       >
         Start
-      </ChoiceButton>
+      </MainButton>
     );
   };
 

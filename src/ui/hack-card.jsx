@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   Box,
-  Button,
   Card,
   CardActionArea,
   CardActions,
@@ -14,6 +13,9 @@ import {
 
 import { actions } from '../store';
 import { cardSetType, cardType } from './types';
+import {
+  MainButton,
+} from './main-button';
 
 const defaultImage = '/assets/cards/default-card.svg';
 
@@ -77,16 +79,6 @@ const useStyles = makeStyles((theme) => ({
     // Just a big height.
     maxHeight: '16em',
   },
-  button: {
-    borderRadius: '1em',
-    padding: '0 1em',
-    // FIXME is changing from primary color to secondary colors on
-    // hover part of the spec?
-    '&:hover': {
-      color: theme.palette.secondary.contrastText,
-      backgroundColor: theme.palette.secondary.main,
-    },
-  },
   actions: {
     justifyContent: 'flex-end',
     padding: '1em',
@@ -137,15 +129,12 @@ const HackCard = ({ card, cardset }) => {
               { card.subtitle }
             </Typography>
             <CardActions className={classes.cardActions}>
-              <Button
-                size="small"
+              <MainButton
                 variant="contained"
-                color="primary"
-                disableElevation
-                className={classes.button}
+                size="large"
               >
                 Show
-              </Button>
+              </MainButton>
             </CardActions>
           </Box>
         </CardContent>

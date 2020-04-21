@@ -38,7 +38,6 @@ const theme = createMuiTheme({
     flipToHackPerspective: 1000,
     landingTitleGradientDirection: 270,
     chatMessageMaxWidth: '90%',
-    hackButtonTextShadow: '0px 2px 2px rgba(0,0,0,0.2)',
   },
 });
 
