@@ -72,7 +72,7 @@ const CardSetView = ({ slug }) => {
           href={card.href}
           target="_blank"
         >
-          Start
+          Let&apos;s go
         </MainButton>
       );
     }
@@ -85,7 +85,7 @@ const CardSetView = ({ slug }) => {
         component={RouterLink}
         to={card.slug}
       >
-        Start
+        Let&apos;s go
       </MainButton>
     );
   };

@@ -124,7 +124,7 @@ const HackCard = ({ card, cardset }) => {
                 variant="contained"
                 size="large"
               >
-                Show
+                Let&apos;s go
               </MainButton>
             </CardActions>
           </Box>
