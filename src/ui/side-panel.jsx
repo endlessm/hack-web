@@ -6,7 +6,6 @@ import {
   Button,
   Divider,
   IconButton,
-  SvgIcon,
   makeStyles,
   withStyles,
 } from '@material-ui/core';
@@ -66,17 +65,20 @@ SidePanel.defaultProps = {
   expanded: false,
 };
 
-const ChoiceButton = withStyles(({ custom, palette, spacing }) => ({
+const ChoiceButton = withStyles(({ palette, spacing }) => ({
   root: {
-    color: palette.common.white,
-    background: `linear-gradient(to right, ${palette.common.hackGreen}, ${palette.common.hackGreenGradient})`,
+    color: palette.primary.contrastText,
+    background: palette.primary.main,
     margin: spacing(0.5),
     borderRadius: spacing(3),
     whiteSpace: 'nowrap',
+    '&:hover': {
+      color: palette.secondary.contrastText,
+      backgroundColor: palette.secondary.main,
+    },
   },
   label: {
     textTransform: 'none',
-    textShadow: custom.hackButtonTextShadow,
   },
 }))(Button);
 
@@ -85,24 +87,23 @@ const ChoiceIconButton = withStyles(({
 }) => ({
   root: {
     boxShadow: shadows[2],
-    transition: `box-shadow ${transitions.duration.short}ms ${transitions.easing.easeInOut} 0ms`,
-    '&:hover': {
-      boxShadow: shadows[4],
-    },
-    color: palette.common.white,
-    background: `linear-gradient(to right, ${palette.common.hackGreen}, ${palette.common.hackGreenGradient})`,
+    transition: transitions.create(['box-shadow', 'color', 'background'], {
+      easing: transitions.easing.easeInOut,
+      duration: transitions.duration.short,
+    }),
+    color: palette.primary.contrastText,
+    background: palette.primary.main,
     margin: spacing(0.5),
     borderRadius: spacing(3),
     whiteSpace: 'nowrap',
+    '&:hover': {
+      boxShadow: shadows[4],
+      color: palette.secondary.contrastText,
+      backgroundColor: palette.secondary.main,
+    },
   },
 }))(IconButton);
 
-const ChoiceSvgIcon = withStyles(({ custom }) => ({
-  root: {
-    filter: `drop-shadow(${custom.hackButtonTextShadow})`,
-  },
-}))(SvgIcon);
-
 export {
-  SidePanel as default, ChoiceButton, ChoiceIconButton, ChoiceSvgIcon,
+  SidePanel as default, ChoiceButton, ChoiceIconButton,
 };
