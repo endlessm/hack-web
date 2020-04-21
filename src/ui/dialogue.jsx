@@ -58,15 +58,6 @@ const Dialogue = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dialogue]);
 
-  // FIXME, this is to reuse the character assets for avatars. These
-  // are just placeholders for now:
-  const pathwayByCharacter = {
-    ada: 'games',
-    riley: 'web',
-    saniel: 'os',
-    faber: 'maker',
-  };
-
   const theme = useTheme();
   const getTimeout = (i) => (
     theme.transitions.duration.complex * (i - dialogue.length + newMessagesLength + 1)
@@ -124,7 +115,7 @@ const Dialogue = ({
     >
       <ChatMessage
         side={d.character === 'user' ? 'right' : 'left'}
-        avatar={`/assets/pathways/${pathwayByCharacter[d.character]}-card-media.png`}
+        avatar={`/assets/avatars/${d.character}.png`}
         messages={[d]}
       />
     </Fade>

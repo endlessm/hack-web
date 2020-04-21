@@ -15,6 +15,8 @@ import {
 import { actions } from '../store';
 import { cardSetType, cardType } from './types';
 
+const defaultImage = '/assets/cards/default-card.svg';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '16em',
@@ -40,10 +42,9 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: `0px 0px 0px ${theme.spacing(1)}px ${theme.palette.primary.main}`,
   },
   backgroundBox: {
-    backgroundImage: ({ card, fallbackImage }) => {
-      const fallbackImg = `url('/assets/quests/pathway-card-${fallbackImage}.svg')`;
-      const bgImg = `url('/assets/quests/${card.slug}/card.png')`;
-      return `${fallbackImg}, ${bgImg}`;
+    backgroundImage: ({ card }) => {
+      const bgImg = `url('/assets/cards/${card.slug.slice(1)}/card.png')`;
+      return `${bgImg}, url('${defaultImage}')`;
     },
     position: 'absolute',
     width: '100%',
@@ -92,11 +93,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// FIXME use cardset:
+// eslint-disable-next-line unused-imports/no-unused-vars
 const HackCard = ({ card, cardset }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const fallbackImage = cardset ? cardset.slug : 'art';
-  const classes = useStyles({ card, fallbackImage });
+  const classes = useStyles({ card });
 
   const dispatch = useDispatch();
 
@@ -111,6 +113,7 @@ const HackCard = ({ card, cardset }) => {
   };
 
   const handleClick = () => {
+    // FIXME use cardset to select the card in that cardset:
     dispatch(actions.selectCard(card));
     dispatch(actions.sidePanelSetOpen());
   };

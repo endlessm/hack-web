@@ -63,27 +63,27 @@ const CardSetView = ({ slug }) => {
   );
 
   const getButtons = (card) => {
-    // If card has slug, it is an internal link to a quest:
-    if (card.slug) {
+    // If card has href, it is an external link:
+    if (card.href) {
       return (
         <ChoiceButton
           variant="contained"
           size="large"
-          component={RouterLink}
-          to={card.slug}
+          href={card.href}
+          target="_blank"
         >
           Start
         </ChoiceButton>
       );
     }
 
-    // Otherwise, it must be an external link:
+    // Otherwise, it must be a quest:
     return (
       <ChoiceButton
         variant="contained"
         size="large"
-        href={card.href}
-        target="_blank"
+        component={RouterLink}
+        to={card.slug}
       >
         Start
       </ChoiceButton>
