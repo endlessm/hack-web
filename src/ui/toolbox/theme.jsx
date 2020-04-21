@@ -45,7 +45,7 @@ const theme = createMuiTheme({
 
   toolbox: {
     colors: toolboxColors,
-    backgroundImage: `url('assets/toolbox/background.png'),
+    backgroundImage: `url('/assets/toolbox/background.png'),
                       radial-gradient(at -47% 158%,
                                       rgba(197, 163, 93, 0.81) 0%,
                                       rgba(208, 95, 52, 0.80) 14%,
