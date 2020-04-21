@@ -184,7 +184,7 @@ const QuestFTHView = ({
             <div {...bind()} className={classes.canvas}>{canvas}</div>
           </>
         )}
-        {toolbox && (
+        {toolbox && !sideBySide && (
           <Fab
             color="secondary"
             aria-label="open toolbox"
