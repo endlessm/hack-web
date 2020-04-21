@@ -10,36 +10,22 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import HackCardGrid from './hack-card-grid';
 import ImageMainBg from './home-background-main.jpg';
 import SidePanel from './side-panel';
 import { getGoButton } from './main-button';
 import QuestFTHView from './quest-fth-view';
-
+import HackCard from './hack-card';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100%',
+    height: `calc(100% - ${theme.spacing(10)}px)`,
     display: 'flex',
     flexDirection: 'column',
-  },
-  content: {
-    flex: 1,
-    maxWidth: '100%',
-    margin: 0,
-    padding: 0,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardsBox: {
-    width: '100%',
+    justifyContent: 'center',
     backgroundImage: `linear-gradient(${fade(theme.palette.common.black, 0.5)}, ${fade(theme.palette.common.black, 0.5)}), url('${ImageMainBg}')`,
     backgroundAttachment: 'fixed',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    padding: '4em 0',
-    display: 'flex',
-    flex: 1,
   },
 }));
 
@@ -80,12 +66,18 @@ const CardSetView = ({ slug }) => {
 
   const canvas = (
     <Box className={classes.root}>
-      <Container className={classes.content}>
-        <Box className={classes.cardsBox}>
-          <Container fixed>
-            <HackCardGrid cardset={cardset} cards={cardset.cards} />
-          </Container>
-        </Box>
+      <Container fixed maxWidth="md">
+        <Grid container spacing={4}>
+          {
+            cardset.cards.map((c) => (
+              <Grid key={c.slug} item xs={4}>
+                <Container>
+                  <HackCard cardset={cardset} card={c} />
+                </Container>
+              </Grid>
+            ))
+          }
+        </Grid>
       </Container>
     </Box>
   );

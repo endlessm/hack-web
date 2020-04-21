@@ -111,7 +111,7 @@ function hackableAppReducer(state = {}, action) {
 }
 
 // TODO: Fake data. Remove this later.
-const dummyCards = [...Array(6).keys()].map((i) => ({
+const dummyCards = [...Array(3).keys()].map((i) => ({
   slug: `card-${i}`,
   href: 'https://hack-computer.com/',
   name: `Test Link #${i + 1}`,

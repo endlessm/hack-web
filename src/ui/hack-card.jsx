@@ -20,7 +20,7 @@ const defaultImage = '/assets/cards/default-card.svg';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '16em',
-    minHeight: '24em',
+    height: '24em',
     display: 'flex',
     backgroundRepeat: 'no reapeat',
     backgroundSize: '100% 100%',
@@ -32,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: 0,
     position: 'relative',
     margin: '0.5em',
-    transition: `margin ${theme.transitions.duration.standard}ms ease`,
+    transition: `transform ${theme.transitions.duration.standard}ms linear`,
     textDecoration: 'none',
     '&:hover': {
-      margin: '0 0.5em',
+      transform: 'scale(1.05)',
     },
     '&:hover $backgroundBox': {
       transform: 'scale(1.2)',
