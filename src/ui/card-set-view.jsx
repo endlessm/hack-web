@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 const CardSetView = ({ slug }) => {
   const classes = useStyles();
   const cardset = useSelector((state) => state.cardsets.find((cs) => slug === cs.slug));
-  const selectedCard = useSelector((state) => state.ui.cardSelected);
+  const selectedCard = useSelector((state) => state.ui.cardSelected[slug]);
 
   const getContent = (card) => (
     <Grid container justify="flex-start">

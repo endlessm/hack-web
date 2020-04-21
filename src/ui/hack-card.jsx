@@ -93,8 +93,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// FIXME use cardset:
-// eslint-disable-next-line unused-imports/no-unused-vars
 const HackCard = ({ card, cardset }) => {
   const [expanded, setExpanded] = useState(false);
 
@@ -102,7 +100,7 @@ const HackCard = ({ card, cardset }) => {
 
   const dispatch = useDispatch();
 
-  const isSelected = useSelector((state) => state.ui.cardSelected === card);
+  const isSelected = useSelector((state) => state.ui.cardSelected[cardset.slug] === card);
 
   const handleMouseEnter = () => {
     setExpanded(true);
@@ -113,8 +111,7 @@ const HackCard = ({ card, cardset }) => {
   };
 
   const handleClick = () => {
-    // FIXME use cardset to select the card in that cardset:
-    dispatch(actions.selectCard(card));
+    dispatch(actions.selectCard(cardset, card));
     dispatch(actions.sidePanelSetOpen());
   };
 
