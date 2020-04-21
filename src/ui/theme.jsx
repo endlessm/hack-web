@@ -39,17 +39,6 @@ const theme = createMuiTheme({
     landingTitleGradientDirection: 270,
     chatMessageMaxWidth: '90%',
     hackButtonTextShadow: '0px 2px 2px rgba(0,0,0,0.2)',
-    difficultyBar: {
-      easy: {
-        colors: ['#37DCB1', '#00E718'],
-      },
-      medium: {
-        colors: ['#EFBE2D', '#FF6B00'],
-      },
-      hard: {
-        colors: ['#F92781', '#FF0000'],
-      },
-    },
   },
 });
 

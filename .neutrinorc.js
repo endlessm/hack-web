@@ -36,12 +36,12 @@ module.exports = {
     copy({
       patterns: [
         {
-          from: 'src/pathways',
-          to: 'assets/pathways',
+          from: 'src/avatars',
+          to: 'assets/avatars',
         },
         {
-          from: 'src/quests',
-          to: 'assets/quests',
+          from: 'src/cards',
+          to: 'assets/cards',
         },
         {
           from: 'src/articles',

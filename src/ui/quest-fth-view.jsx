@@ -1,6 +1,7 @@
 import React, {
   useState,
 } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import {
   Box,
@@ -19,6 +20,8 @@ import PropTypes from 'prop-types';
 
 import { useMove } from 'react-use-gesture';
 
+import { actions } from '../store';
+import HackTopBar from './hack-top-bar';
 import SlideToHack from './slide-to-hack';
 import FlipToHack from './flip-to-hack';
 
@@ -60,7 +63,7 @@ const useStyles = makeStyles((theme) => {
     },
     controlsContainer: {
       position: 'absolute',
-      top: theme.spacing(1),
+      top: theme.spacing(11),
       right: 0,
       marginRight: theme.spacing(12),
       transition: marginTransition,
@@ -110,10 +113,13 @@ const useStyles = makeStyles((theme) => {
 
 
 const QuestFTHView = ({
-  toolbox, canvas, sidebar, controls, onFlipped, sideBySide, hideControls,
+  toolbox, canvas, sidebar, controls, onFlipped, sideBySide, hideControls, title, hideHomeIcon,
 }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
+  const dispatch = useDispatch();
+
+  const open = useSelector((state) => state.ui.sidePanelOpen);
+
   // When sideBySide is true we show the toolbox by default
   const [flipped, setFlipped] = useState(sideBySide);
 
@@ -138,7 +144,10 @@ const QuestFTHView = ({
   });
 
   const toggleOpen = () => {
-    setOpen(!open);
+    dispatch(actions.sidePanelToggleOpen());
+    if (open) {
+      dispatch(actions.deselectCard());
+    }
   };
 
   const toggleFlip = () => {
@@ -162,6 +171,7 @@ const QuestFTHView = ({
           [classes.contentShift]: open,
         })}
       >
+        <HackTopBar title={title} hideHomeIcon={hideHomeIcon} />
         {toolbox ? (
           <>
             {sideBySide ? (
@@ -248,6 +258,8 @@ QuestFTHView.propTypes = {
   onFlipped: PropTypes.func,
   sideBySide: PropTypes.bool,
   hideControls: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+  hideHomeIcon: PropTypes.bool,
 };
 
 QuestFTHView.defaultProps = {
@@ -256,6 +268,7 @@ QuestFTHView.defaultProps = {
   controls: null,
   sideBySide: false,
   hideControls: true,
+  hideHomeIcon: false,
 };
 
 export default QuestFTHView;

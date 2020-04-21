@@ -1,15 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { useDispatch } from 'react-redux';
 import {
   makeStyles,
-  Box,
-  Button,
-  Divider,
   Fade,
-  IconButton,
-  SvgIcon,
   useTheme,
 } from '@material-ui/core';
 
@@ -22,8 +17,12 @@ import ThumbsDownIcon from './icons/hack-thumbsdown-symbolic.svg';
 import NextIcon from './icons/hack-next-symbolic.svg';
 import PreviousIcon from './icons/hack-previous-symbolic.svg';
 
+import { actions } from '../store';
 import Quest from '../libquest';
 import ChatMessage from './chat-message';
+import SidePanel, {
+  ChoiceButton, ChoiceIconButton, ChoiceSvgIcon,
+} from './side-panel';
 
 const iconsByEmoji = {
   '❯': NextIcon,
@@ -32,40 +31,7 @@ const iconsByEmoji = {
   '👎': ThumbsDownIcon,
 };
 
-const useStyles = makeStyles(({
-  custom, shadows, spacing, palette, transitions,
-}) => ({
-  dialogue: {
-    height: '100%',
-    backgroundColor: palette.background.default,
-    overflowY: 'scroll',
-    alignItems: 'flex-end',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  choiceButton: {
-    color: palette.common.white,
-    background: `linear-gradient(to right, ${palette.common.hackGreen}, ${palette.common.hackGreenGradient})`,
-    margin: spacing(0.5),
-  },
-  choiceButtonRoot: {
-    borderRadius: spacing(3),
-    whiteSpace: 'nowrap',
-  },
-  choiceButtonLabel: {
-    textTransform: 'none',
-    textShadow: custom.hackButtonTextShadow,
-  },
-  choiceButtonIcon: {
-    boxShadow: shadows[2],
-    transition: `box-shadow ${transitions.duration.short}ms ${transitions.easing.easeInOut} 0ms`,
-    '&:hover': {
-      boxShadow: shadows[4],
-    },
-  },
-  choiceButtonIconSvg: {
-    filter: `drop-shadow(${custom.hackButtonTextShadow})`,
-  },
+const useStyles = makeStyles(() => ({
   scrollRef: {
     float: 'left',
     clear: 'both',
@@ -92,15 +58,6 @@ const Dialogue = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dialogue]);
 
-  // FIXME, this is to reuse the character assets for avatars. These
-  // are just placeholders for now:
-  const pathwayByCharacter = {
-    ada: 'games',
-    riley: 'web',
-    saniel: 'os',
-    faber: 'maker',
-  };
-
   const theme = useTheme();
   const getTimeout = (i) => (
     theme.transitions.duration.complex * (i - dialogue.length + newMessagesLength + 1)
@@ -109,93 +66,77 @@ const Dialogue = ({
   const getChoiceButton = (choice) => {
     if (choice.text in iconsByEmoji) {
       return (
-        <IconButton
+        <ChoiceIconButton
           key={choice.index}
           size="medium"
-          className={clsx(classes.choiceButton, classes.choiceButtonIcon)}
           onClick={() => onChoiceSelected(choice)}
         >
-          <SvgIcon component={iconsByEmoji[choice.text]} className={classes.choiceButtonIconSvg} viewBox="0 0 16 16" />
-        </IconButton>
+          <ChoiceSvgIcon component={iconsByEmoji[choice.text]} viewBox="0 0 16 16" />
+        </ChoiceIconButton>
       );
     }
 
+    // FIXME refactor ChoiceButton NOW
     return (
-      <Button
+      <ChoiceButton
         key={choice.index}
         variant="contained"
         size="large"
-        className={classes.choiceButton}
-        classes={{
-          root: classes.choiceButtonRoot,
-          label: classes.choiceButtonLabel,
-        }}
         onClick={() => onChoiceSelected(choice)}
       >
         {choice.text}
-      </Button>
+      </ChoiceButton>
     );
   };
 
   const endChoices = (
     <>
-      <IconButton
+      <ChoiceIconButton
         size="medium"
-        className={clsx(classes.choiceButton, classes.choiceButtonIcon)}
         component={RouterLink}
         to="/"
       >
         <Home />
-      </IconButton>
-      <IconButton
+      </ChoiceIconButton>
+      <ChoiceIconButton
         size="medium"
-        className={clsx(classes.choiceButton, classes.choiceButtonIcon)}
         onClick={onRestartSelected}
       >
         <Refresh />
-      </IconButton>
+      </ChoiceIconButton>
     </>
   );
 
-  return (
+  const chatMessages = dialogue.map((d, i) => (
+    <Fade
+      key={d.id}
+      in
+      timeout={getTimeout(i)}
+    >
+      <ChatMessage
+        side={d.character === 'user' ? 'right' : 'left'}
+        avatar={`/assets/avatars/${d.character}.png`}
+        messages={[d]}
+      />
+    </Fade>
+  ));
+
+  const content = (
     <>
-      <Box className={classes.dialogue} px={1} py={2}>
-        <div
-          style={{ marginTop: 'auto' }}
-        />
-        {dialogue.map((d, i) => (
-          <Fade
-            key={d.id}
-            in
-            timeout={getTimeout(i)}
-          >
-            <ChatMessage
-              side={d.character === 'user' ? 'right' : 'left'}
-              avatar={`/assets/pathways/${pathwayByCharacter[d.character]}-card-media.png`}
-              messages={[d]}
-            />
-          </Fade>
-        ))}
-        <div
-          className={classes.scrollRef}
-          ref={messagesEndRef}
-        />
-      </Box>
-      <Divider />
-      <Box
-        m={1}
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="flex-end"
-      >
-        {hasEnded ? (
-          endChoices
-        ) : (
-          choices.map((choice) => getChoiceButton(choice))
-        )}
-      </Box>
+      <div
+        style={{ marginTop: 'auto' }}
+      />
+      {chatMessages}
+      <div
+        className={classes.scrollRef}
+        ref={messagesEndRef}
+      />
     </>
   );
+
+  const buttons = hasEnded ? endChoices : choices.map((choice) => getChoiceButton(choice));
+
+  return <SidePanel content={content} buttons={buttons} />;
 };
 
 Dialogue.propTypes = {
@@ -224,6 +165,7 @@ function useQuest(questContent) {
   const [choices, setChoices] = useState([]);
   const [currentChoice, setCurrentChoice] = useState(null);
   const [hasEnded, setHasEnded] = useState(false);
+  const dispatch = useDispatch();
 
   const updateDialogueChoices = () => {
     const { dialogue: dia, choices: cho } = quest.continueStory();
@@ -232,6 +174,7 @@ function useQuest(questContent) {
     if (quest.hasEnded()) {
       setHasEnded(true);
     }
+    dispatch(actions.sidePanelSetOpen());
   };
 
   useEffect(() => {

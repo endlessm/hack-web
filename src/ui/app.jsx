@@ -13,8 +13,7 @@ import PropTypes from 'prop-types';
 
 import './app.css';
 import theme from './theme';
-import Home from './home';
-import Pathway from './pathway';
+import CardSetView from './card-set-view';
 import Login, { RequireAuth } from './login';
 import SignUp from './signup';
 import ResetPassword from './reset';
@@ -40,7 +39,7 @@ GAWrapper.propTypes = {
 };
 
 const App = () => {
-  const pathways = useSelector((state) => state.pathways);
+  const cardsets = useSelector((state) => state.cardsets);
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,16 +75,16 @@ const App = () => {
               <GAWrapper><PdfQuest /></GAWrapper>
             </RequireAuth>
           </Route>
-          {pathways.map((p) => (
-            <Route key={p.slug} path={`/${p.slug}`}>
+          {cardsets.map((p) => (
+            <Route key={p.slug} path={p.slug}>
               <RequireAuth>
-                <GAWrapper><Pathway slug={p.slug} /></GAWrapper>
+                <GAWrapper><CardSetView slug={p.slug} /></GAWrapper>
               </RequireAuth>
             </Route>
           ))}
           <Route path="/">
             <RequireAuth>
-              <GAWrapper><Home /></GAWrapper>
+              <GAWrapper><CardSetView slug="/home" /></GAWrapper>
             </RequireAuth>
           </Route>
         </Switch>

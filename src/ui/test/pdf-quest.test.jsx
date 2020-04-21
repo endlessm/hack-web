@@ -22,6 +22,7 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 
 import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
+import { useCardInfo } from '../hack-card';
 import QuestFTHView from '../quest-fth-view';
 import questContent from './pdf-quest.ink';
 
@@ -47,6 +48,7 @@ const useStyles = makeStyles(({ palette, shadows }) => ({
 
 const PdfQuest = () => {
   const classes = useStyles();
+  const { title } = useCardInfo();
 
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
@@ -199,6 +201,7 @@ const PdfQuest = () => {
       canvas={canvas}
       sidebar={sidebar}
       controls={controls}
+      title={title}
     />
   );
 };
