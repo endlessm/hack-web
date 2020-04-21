@@ -22,10 +22,10 @@ I've been learning a new programming language for making interactive art - I thi
 - There are 2 different parts in this program - one called <tt>setup()</tt> and the other called <tt>draw()</tt>.
 <tt>setup()</tt> creates the place where everything gets drawn, and <tt>draw()</tt> is where the action happens.
 - OK, first, let's change that boring grey! Change the line with <tt>background</tt> to read <tt>background('green')</tt>.
-+ [(wait for: code icontains "background('green');")](Done)
--> p5jsintro1_4
 + [Hint] Can I have a hint?
 -> p5jsintro1_3error
++ [(wait for: code icontains "background('green');")](Done)
+-> p5jsintro1_4
 
 === p5jsintro1_3error ===
 - Hey, no problem, I got so many errors when I first started. Good thing they tell you where the problem is!
