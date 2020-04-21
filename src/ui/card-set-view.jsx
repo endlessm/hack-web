@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Box,
@@ -14,7 +13,7 @@ import {
 import HackCardGrid from './hack-card-grid';
 import ImageMainBg from './home-background-main.jpg';
 import SidePanel from './side-panel';
-import { MainButton } from './main-button';
+import { getGoButton } from './main-button';
 import QuestFTHView from './quest-fth-view';
 
 
@@ -62,34 +61,6 @@ const CardSetView = ({ slug }) => {
     </Grid>
   );
 
-  const getButtons = (card) => {
-    // If card has href, it is an external link:
-    if (card.href) {
-      return (
-        <MainButton
-          variant="contained"
-          size="large"
-          href={card.href}
-          target="_blank"
-        >
-          Let&apos;s go
-        </MainButton>
-      );
-    }
-
-    // Otherwise, it must be a quest:
-    return (
-      <MainButton
-        variant="contained"
-        size="large"
-        component={RouterLink}
-        to={card.slug}
-      >
-        Let&apos;s go
-      </MainButton>
-    );
-  };
-
   const emptyContent = (
     <Grid container justify="flex-start">
       <Grid item>
@@ -102,7 +73,7 @@ const CardSetView = ({ slug }) => {
   const sidebar = (
     <SidePanel
       content={selectedCard ? getContent(selectedCard) : emptyContent}
-      buttons={selectedCard ? getButtons(selectedCard) : null}
+      buttons={selectedCard ? getGoButton(selectedCard) : null}
       expanded
     />
   );

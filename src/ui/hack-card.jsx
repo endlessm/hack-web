@@ -13,9 +13,7 @@ import {
 
 import { actions } from '../store';
 import { cardSetType, cardType } from './types';
-import {
-  MainButton,
-} from './main-button';
+import { getGoButton } from './main-button';
 
 const defaultImage = '/assets/cards/default-card.svg';
 
@@ -93,6 +91,7 @@ const HackCard = ({ card, cardset }) => {
   const isSelected = useSelector((state) => state.ui.cardSelected[cardset.slug] === card);
 
   const handleClick = () => {
+    if (isSelected) return;
     dispatch(actions.selectCard(cardset, card));
     dispatch(actions.sidePanelSetOpen());
   };
@@ -120,12 +119,7 @@ const HackCard = ({ card, cardset }) => {
               { card.subtitle }
             </Typography>
             <CardActions className={classes.cardActions}>
-              <MainButton
-                variant="contained"
-                size="large"
-              >
-                Let&apos;s go
-              </MainButton>
+              {getGoButton(card)}
             </CardActions>
           </Box>
         </CardContent>

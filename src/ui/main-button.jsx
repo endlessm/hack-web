@@ -1,3 +1,5 @@
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Button,
   IconButton,
@@ -41,6 +43,34 @@ const MainIconButton = withStyles(({
   },
 }))(IconButton);
 
+const getGoButton = (card) => {
+  // If card has href, it is an external link:
+  if (card.href) {
+    return (
+      <MainButton
+        variant="contained"
+        size="large"
+        href={card.href}
+        target="_blank"
+      >
+        Let&apos;s go
+      </MainButton>
+    );
+  }
+
+  // Otherwise, it must be a quest:
+  return (
+    <MainButton
+      variant="contained"
+      size="large"
+      component={RouterLink}
+      to={card.slug}
+    >
+      Let&apos;s go
+    </MainButton>
+  );
+};
+
 export {
-  MainButton, MainIconButton,
+  MainButton, MainIconButton, getGoButton,
 };
