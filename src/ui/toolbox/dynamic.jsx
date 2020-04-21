@@ -26,27 +26,31 @@ const ToolBoxGrid = ({
   const [tab, setTab] = useState(0);
   const classes = useStyles();
 
+  const showTabs = toolbox.tabs.length > 1;
+
   return (
     <Box className={classes.root} height="100vh" overflow="auto" p={3}>
       <Grid container spacing={1}>
-        <Grid item xs={3}>
-          <Box boxShadow={4} bgcolor={ToolboxTheme.toolbox.colors.tabBackground}>
-            <Tabs
-              orientation="vertical"
-              variant="scrollable"
-              value={tab}
-              onChange={(ev, newValue) => setTab(newValue)}
-              textColor="primary"
-              aria-label="Toolbox tabs"
-            >
-              { toolbox.tabs.map(({ name, icon }) => (
-                <Tab key={name} label={name} icon={icon} />
-              )) }
-            </Tabs>
-          </Box>
-        </Grid>
+        { showTabs && (
+          <Grid item xs={3}>
+            <Box boxShadow={4} bgcolor={ToolboxTheme.toolbox.colors.tabBackground}>
+              <Tabs
+                orientation="vertical"
+                variant="scrollable"
+                value={tab}
+                onChange={(ev, newValue) => setTab(newValue)}
+                textColor="primary"
+                aria-label="Toolbox tabs"
+              >
+                { toolbox.tabs.map(({ name, icon }) => (
+                  <Tab key={name} label={name} icon={icon} />
+                )) }
+              </Tabs>
+            </Box>
+          </Grid>
+        )}
 
-        <Grid item xs={9}>
+        <Grid item xs={showTabs ? 9 : 12}>
           { toolbox.tabs.map(({ name, grid }, index) => (
             <GridTabPanel key={name} index={index} tab={tab} grid={grid} />
           ))}
