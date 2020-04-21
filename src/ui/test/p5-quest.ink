@@ -35,7 +35,7 @@ You might have forgotten to put quotes around <tt>green</tt>, or you might have 
 
 === p5jsintro1_4 ===
 - Much better! Just like with other web languages, you can also use a <b>hex color</b> like <tt>\#76EECF</tt>, or <tt>\#FFAA00</tt>, instead of a named color.
-You can get more info on hex colors <a href"https:\/\/htmlcolorcodes.com\/">at the HTML color code list</a>.
+You can get more info on hex colors <a href="https:\/\/htmlcolorcodes.com\/">at the HTML color code list</a>.
 Once you've added your hex color, just wait a second, and you'll see it in action!
 + [(wait for: code not contains "background('green');")](Done)
 -> p5jsintro1_5
