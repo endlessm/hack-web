@@ -8,6 +8,11 @@ This is the web version of Hack.
     git submodule init
     git submodule update
     flatpak install org.freedesktop.Sdk.Extension.mono5//18.08
+    flatpak install org.freedesktop.Sdk//18.08
+
+### Install Inklecate
+    wget https://github.com/manuq/inklecate-flatpak/releases/download/0.9.0/inklecate-0.9.0.flatpak
+    flatpak install --bundle inklecate-0.9.0.flatpak
 
 You will need the following dependencies: NodeJS and Yarn. See tips
 below for installing [NodeJS](#tip-installing-nodejs-in-endless-os)
