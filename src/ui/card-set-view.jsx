@@ -39,7 +39,7 @@ const CardSetView = ({ slug }) => {
         <Typography variant="h5">
           {card.name}
         </Typography>
-        <Typography variant="body">
+        <Typography variant="body1">
           {card.description}
         </Typography>
       </Grid>
@@ -50,7 +50,7 @@ const CardSetView = ({ slug }) => {
     <Grid container justify="flex-start">
       <Grid item>
         <Typography variant="h5">Empty Content</Typography>
-        <Typography variant="body">Empty Description</Typography>
+        <Typography variant="body1">Empty Description</Typography>
       </Grid>
     </Grid>
   );
