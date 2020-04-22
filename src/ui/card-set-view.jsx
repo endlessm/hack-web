@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import {
   Box,
   Container,
-  fade,
   Grid,
   makeStyles,
   Typography,
 } from '@material-ui/core';
 
-import ImageMainBg from './home-background-main.jpg';
+import ImageMainBg from './background.png';
 import SidePanel from './side-panel';
 import { getGoButton } from './main-button';
 import QuestFTHView from './quest-fth-view';
@@ -22,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundImage: `linear-gradient(${fade(theme.palette.common.black, 0.5)}, ${fade(theme.palette.common.black, 0.5)}), url('${ImageMainBg}')`,
+    backgroundImage: `url('${ImageMainBg}')`,
     backgroundAttachment: 'fixed',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
