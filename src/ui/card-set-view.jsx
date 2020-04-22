@@ -59,6 +59,7 @@ const CardSetView = ({ slug }) => {
     <SidePanel
       content={selectedCard ? getContent(selectedCard) : emptyContent}
       buttons={selectedCard ? getGoButton(selectedCard) : null}
+      card={selectedCard}
       expanded
     />
   );

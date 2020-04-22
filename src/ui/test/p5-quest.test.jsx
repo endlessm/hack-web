@@ -13,7 +13,7 @@ import {
 
 import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
-import { useCardInfo } from '../hack-card';
+import { useCard } from '../hack-card';
 import QuestFTHView from '../quest-fth-view';
 import questContent from './p5-quest.ink';
 
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 const P5Quest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { title } = useCardInfo();
+  const card = useCard();
 
   const [firstTimeCode, setFirstTimeCode] = useState(true);
 
@@ -101,6 +101,7 @@ const P5Quest = () => {
       onChoiceSelected={setCurrentChoice}
       onRestartSelected={onRestartSelected}
       hasEnded={hasEnded}
+      card={card}
     />
   );
 
@@ -127,7 +128,7 @@ const P5Quest = () => {
       controls={controls}
       hideControls={false}
       sideBySide
-      title={title}
+      title={card.name}
     />
   );
 };

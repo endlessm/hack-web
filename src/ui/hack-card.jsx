@@ -131,16 +131,14 @@ HackCard.defaultProps = {
   cardset: null,
 };
 
-function useCardInfo() {
+function useCard() {
   // eslint-disable-next-line no-restricted-globals
   const slug = location.pathname;
 
-  const title = useSelector((state) => {
+  return useSelector((state) => {
     const cardset = state.cardsets.find((cs) => cs.slug === '/home');
-    const card = cardset.cards.find((c) => slug === c.slug);
-    return card.name;
+    return cardset.cards.find((c) => slug === c.slug);
   });
-  return { title };
 }
 
-export { HackCard as default, useCardInfo };
+export { HackCard as default, useCard };

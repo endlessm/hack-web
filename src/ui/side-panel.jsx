@@ -7,6 +7,8 @@ import {
   makeStyles,
 } from '@material-ui/core';
 
+import { cardType } from './types';
+
 const useStyles = makeStyles(({ mixins, spacing, palette }) => ({
   offset: {
     ...mixins.toolbar,
@@ -26,8 +28,10 @@ const useStyles = makeStyles(({ mixins, spacing, palette }) => ({
   },
 }));
 
-const SidePanel = ({ content, buttons, expanded }) => {
-  const classes = useStyles();
+const SidePanel = ({
+  content, buttons, card, expanded,
+}) => {
+  const classes = useStyles({ card });
 
   return (
     <>
@@ -53,12 +57,14 @@ const SidePanel = ({ content, buttons, expanded }) => {
 SidePanel.propTypes = {
   content: PropTypes.element,
   buttons: PropTypes.element,
+  card: cardType,
   expanded: PropTypes.bool,
 };
 
 SidePanel.defaultProps = {
   content: null,
   buttons: null,
+  card: null,
   expanded: false,
 };
 
