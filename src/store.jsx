@@ -135,25 +135,25 @@ const initialState = {
       description: '',
       cards: [
         {
-          slug: '/games/fixme-name-the-sidetrack-quest',
+          slug: '/games',
           name: 'Intro to Gaming',
           subtitle: 'What you\'ll do?',
           description: 'This is a description for the Intro to Gaming quest.',
         },
         {
-          slug: '/art/fixme-name-the-p5-quest',
+          slug: '/art',
           name: 'Intro to Processing',
           subtitle: 'What you\'ll do?',
           description: 'This is a description for the Intro to Processing quest.',
         },
         {
-          slug: '/web/fixme-name-the-html-quest',
+          slug: '/web',
           name: 'Intro to Web Technology',
           subtitle: 'What you\'ll do?',
           description: 'This is a description for the Intro to Web quest.',
         },
         {
-          slug: '/maker/make-change',
+          slug: '/maker',
           name: 'Intro to Engineering',
           subtitle: 'What you\'ll do?',
           description: 'This is a description for the Intro to Engineering quest.',
