@@ -135,18 +135,6 @@ const initialState = {
       description: '',
       cards: [
         {
-          slug: '/games',
-          name: 'Sidetrack',
-          subtitle: 'What you\'ll do?',
-          description: 'This is a description for the Intro to Gaming quest.',
-        },
-        {
-          slug: '/art',
-          name: 'Processing',
-          subtitle: 'What you\'ll do?',
-          description: 'This is a description for the Intro to Processing quest.',
-        },
-        {
           slug: '/web',
           name: 'Web Technology',
           subtitle: 'What you\'ll do?',
@@ -159,10 +147,22 @@ const initialState = {
           description: 'This is a description for the Intro to Engineering quest.',
         },
         {
+          slug: '/art',
+          name: 'Processing',
+          subtitle: 'What you\'ll do?',
+          description: 'This is a description for the Intro to Processing quest.',
+        },
+        {
           slug: '/os',
           name: 'Endless OS',
           subtitle: 'What you\'ll do?',
           description: 'This is a description for the Intro to Endless quest.',
+        },
+        {
+          slug: '/games',
+          name: 'Sidetrack',
+          subtitle: 'What you\'ll do?',
+          description: 'This is a description for the Intro to Gaming quest.',
         },
         {
           slug: '/t2',
