@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     width: '16em',
     height: '24em',
     display: 'flex',
-    backgroundRepeat: 'no reapeat',
+    backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
     flexDirection: 'column',
     justifyContent: 'flex-end',
@@ -98,6 +98,7 @@ const HackCard = ({ card, cardset }) => {
 
   return (
     <Card
+      elevation={6}
       className={clsx(
         classes.root,
         isSelected && classes.rootSelected,
