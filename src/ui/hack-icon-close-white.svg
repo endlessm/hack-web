@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 23.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 24 24"
+   style="enable-background:new 0 0 24 24;"
+   xml:space="preserve"
+   sodipodi:docname="hack-icon-close-white.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"><metadata
+   id="metadata65"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
+   id="defs63" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1016"
+   id="namedview61"
+   showgrid="false"
+   inkscape:pagecheckerboard="true"
+   inkscape:zoom="9.8333333"
+   inkscape:cx="-35.491525"
+   inkscape:cy="12.050847"
+   inkscape:window-x="0"
+   inkscape:window-y="27"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<g
+   id="g58"
+   transform="matrix(0.82608696,0,0,0.82608696,2.0956522,2.0869566)"
+   style="stroke-width:1.21052635">
+	<g
+   id="g40"
+   style="stroke-width:1.21052635">
+		<g
+   id="g4"
+   style="stroke-width:1.21052635">
+			<circle
+   style="fill:#41ffc7;stroke-width:1.21052635"
+   cx="12.173"
+   cy="11.887"
+   r="11.082"
+   id="circle2" />
+		</g>
+		<g
+   id="g8"
+   style="stroke-width:1.21052635">
+			<path
+   style="fill:#37d8ad;stroke-width:1.21052635"
+   d="m 6.547,19.122 c -1.009,0 -1.994,-0.077 -2.952,-0.222 2.032,2.483 5.119,4.069 8.578,4.069 6.12,0 11.082,-4.962 11.082,-11.082 0,-0.597 -0.06,-1.179 -0.151,-1.75 -3.677,5.358 -10.029,8.985 -16.557,8.985 z"
+   id="path6"
+   inkscape:connector-curvature="0" />
+		</g>
+		<g
+   style="opacity:0.65;stroke-width:1.21052635"
+   id="g24">
+			<defs
+   id="defs11">
+				<path
+   id="SVGID_7_"
+   style="opacity:0.65"
+   d="m 12.173,23.178 c -6.226,0 -11.291,-5.065 -11.291,-11.291 0,-6.226 5.065,-11.292 11.291,-11.292 6.226,0 11.291,5.065 11.291,11.292 0.001,6.226 -5.065,11.291 -11.291,11.291 z m 0,-22.164 C 6.177,1.014 1.3,5.892 1.3,11.887 c 0,5.995 4.878,10.873 10.873,10.873 5.995,0 10.873,-4.877 10.873,-10.873 0,-5.996 -4.877,-10.873 -10.873,-10.873 z"
+   inkscape:connector-curvature="0" />
+			</defs>
+			<use
+   xlink:href="#SVGID_7_"
+   style="overflow:visible;fill:#e9f3ed;stroke-width:1.21052635"
+   id="use13"
+   x="0"
+   y="0"
+   width="100%"
+   height="100%" />
+			<clipPath
+   id="SVGID_2_">
+				<use
+   xlink:href="#SVGID_7_"
+   style="overflow:visible"
+   id="use15"
+   x="0"
+   y="0"
+   width="100%"
+   height="100%" />
+			</clipPath>
+			<g
+   clip-path="url(#SVGID_2_)"
+   id="g22"
+   style="stroke-width:1.21052635">
+				
+					<rect
+   x="-4.619"
+   y="7.263"
+   transform="matrix(0.7616,-0.6481,0.6481,0.7616,-2.9987,10.5574)"
+   style="fill:#e9f3ed;stroke-width:1.21052635"
+   width="34.935001"
+   height="4.1810002"
+   id="rect18" />
+				
+					<rect
+   x="-2.168"
+   y="11.595"
+   transform="matrix(0.7615,-0.6482,0.6482,0.7615,-4.0023,12.7333)"
+   style="fill:#e9f3ed;stroke-width:1.21052635"
+   width="34.933998"
+   height="0.41800001"
+   id="rect20" />
+			</g>
+		</g>
+		<g
+   style="opacity:0.77999998;stroke-width:1.21052635"
+   id="g38">
+			<defs
+   id="defs27">
+				<circle
+   id="SVGID_9_"
+   style="opacity:0.77999998"
+   cx="12.173"
+   cy="11.887"
+   r="11.082" />
+			</defs>
+			<clipPath
+   id="SVGID_4_">
+				<use
+   xlink:href="#SVGID_9_"
+   style="overflow:visible"
+   id="use29"
+   x="0"
+   y="0"
+   width="100%"
+   height="100%" />
+			</clipPath>
+			<g
+   clip-path="url(#SVGID_4_)"
+   id="g36"
+   style="stroke-width:1.21052635">
+				
+					<rect
+   x="-4.618"
+   y="8.0740004"
+   transform="matrix(0.7617,-0.648,0.648,0.7617,-3.5245,10.7489)"
+   style="fill:#e9f3ed;stroke-width:1.21052635"
+   width="34.935001"
+   height="4.1820002"
+   id="rect32" />
+				
+					<rect
+   x="-2.168"
+   y="12.198"
+   transform="matrix(0.7615,-0.6482,0.6482,0.7615,-4.5282,12.9268)"
+   style="fill:#e9f3ed;stroke-width:1.21052635"
+   width="34.933998"
+   height="0.83700001"
+   id="rect34" />
+			</g>
+		</g>
+	</g>
+	<g
+   style="opacity:0.75;stroke-width:1.32581449"
+   id="g48">
+		<defs
+   id="defs43">
+			<circle
+   id="SVGID_11_"
+   style="opacity:0.75"
+   cx="12.173"
+   cy="11.887"
+   r="11.082" />
+		</defs>
+		<clipPath
+   id="SVGID_6_">
+			<use
+   xlink:href="#SVGID_11_"
+   style="overflow:visible"
+   id="use45"
+   x="0"
+   y="0"
+   width="100%"
+   height="100%" />
+		</clipPath>
+	</g>
+	<g
+   id="g56"
+   style="stroke-width:1.21052635">
+		<path
+   style="fill:#181866;stroke-width:1.21052635"
+   d="M 20.182,3.868 C 18.01,1.696 15.122,0.5 12.05,0.5 8.978,0.5 6.09,1.696 3.918,3.868 1.746,6.04 0.55,8.928 0.55,12 c 0,3.072 1.196,5.96 3.368,8.132 2.172,2.172 5.06,3.368 8.132,3.368 3.072,0 5.96,-1.196 8.132,-3.368 C 22.354,17.96 23.55,15.072 23.55,12 23.55,8.928 22.354,6.04 20.182,3.868 Z M 19.59,19.541 c -2.014,2.014 -4.692,3.123 -7.541,3.123 -2.848,0 -5.526,-1.109 -7.54,-3.123 C 2.495,17.527 1.386,14.848 1.386,12 c 0,-2.848 1.109,-5.526 3.123,-7.54 2.014,-2.014 4.692,-3.123 7.54,-3.123 2.849,0 5.527,1.109 7.541,3.123 2.014,2.014 3.123,4.692 3.123,7.54 0,2.848 -1.109,5.527 -3.123,7.541 z"
+   id="path50"
+   inkscape:connector-curvature="0" />
+		<polygon
+   style="fill:#181866;stroke-width:1.21052635"
+   points="18.655,5.384 18.522,5.306 13.892,11.304 13.501,11.811 13.881,12.332 18.521,18.694 18.656,18.619 15.898,11.837 "
+   id="polygon52" />
+		<polygon
+   style="fill:#181866;stroke-width:1.21052635"
+   points="5.578,5.306 5.444,5.384 8.202,11.837 5.444,18.619 5.579,18.694 10.219,12.332 10.599,11.811 10.207,11.304 "
+   id="polygon54" />
+	</g>
+</g>
+<circle
+   style="opacity:1;fill:none;fill-opacity:1;stroke:#f9f9f9;stroke-width:0.60000002;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="path4575"
+   cx="12"
+   cy="12"
+   r="11.184255" /></svg>
