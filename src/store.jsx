@@ -14,12 +14,12 @@ const actions = {
   sidePanelToggleOpen: () => ({
     type: 'SIDE-PANEL-TOGGLE-OPEN',
   }),
-  selectCard: (card) => ({
+  selectCard: (cardset, card) => ({
     type: 'SELECT-CARD',
-    payload: card,
+    payload: { cardset, card },
   }),
-  deselectCard: () => ({
-    type: 'DESELECT-CARD',
+  deselectCards: () => ({
+    type: 'DESELECT-CARDS',
   }),
   logout: () => ({ type: 'LOGOUT' }),
   originalHackableAppSet: (data) => ({
@@ -66,10 +66,13 @@ function uiReducer(state = {}, action) {
       return { ...state, sidePanelOpen: !state.sidePanelOpen };
     }
     case 'SELECT-CARD': {
-      return { ...state, cardSelected: action.payload };
+      const { cardset, card } = action.payload;
+      const newValue = {};
+      newValue[cardset.slug] = card;
+      return { ...state, cardSelected: { ...state.cardSelected, ...newValue } };
     }
-    case 'DESELECT-CARD': {
-      return { ...state, cardSelected: null };
+    case 'DESELECT-CARDS': {
+      return { ...state, cardSelected: {} };
     }
     default:
       return state;
@@ -108,7 +111,7 @@ function hackableAppReducer(state = {}, action) {
 }
 
 // TODO: Fake data. Remove this later.
-const dummyCards = [...Array(6).keys()].map((i) => ({
+const dummyCards = [...Array(3).keys()].map((i) => ({
   slug: `card-${i}`,
   href: 'https://hack-computer.com/',
   name: `Test Link #${i + 1}`,
@@ -123,7 +126,7 @@ const initialState = {
   },
   ui: {
     sidePanelOpen: false,
-    cardSelected: null,
+    cardSelected: {},
   },
   cardsets: [
     {

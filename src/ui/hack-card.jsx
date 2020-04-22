@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   Box,
-  Button,
   Card,
   CardActionArea,
   CardActions,
@@ -14,13 +13,14 @@ import {
 
 import { actions } from '../store';
 import { cardSetType, cardType } from './types';
+import { getGoButton } from './main-button';
 
 const defaultImage = '/assets/cards/default-card.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '16em',
-    minHeight: '24em',
+    height: '24em',
     display: 'flex',
     backgroundRepeat: 'no reapeat',
     backgroundSize: '100% 100%',
@@ -32,11 +32,14 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: 0,
     position: 'relative',
     margin: '0.5em',
-    transition: `margin ${theme.transitions.duration.standard}ms ease`,
+    transition: `transform ${theme.transitions.duration.standard}ms linear`,
     textDecoration: 'none',
-  },
-  rootExpanded: {
-    margin: '0 0.5em',
+    '&:hover': {
+      transform: 'scale(1.05)',
+    },
+    '&:hover $backgroundBox': {
+      transform: 'scale(1.2)',
+    },
   },
   rootSelected: {
     boxShadow: `0px 0px 0px ${theme.spacing(1)}px ${theme.palette.primary.main}`,
@@ -50,9 +53,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     transition: `transform ${theme.transitions.duration.standard}ms linear`,
-  },
-  backgroundBoxExpanded: {
-    transform: 'scale(1.2)',
   },
   cardContent: {
     borderTop: `${theme.spacing(1)}px solid ${theme.palette.primary.main}`,
@@ -73,19 +73,9 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: 0,
     overflow: 'hidden',
   },
-  collapsableBoxExpanded: {
+  collapsableBoxSelected: {
     // Just a big height.
     maxHeight: '16em',
-  },
-  button: {
-    borderRadius: '1em',
-    padding: '0 1em',
-    // FIXME is changing from primary color to secondary colors on
-    // hover part of the spec?
-    '&:hover': {
-      color: theme.palette.secondary.contrastText,
-      backgroundColor: theme.palette.secondary.main,
-    },
   },
   actions: {
     justifyContent: 'flex-end',
@@ -93,28 +83,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// FIXME use cardset:
-// eslint-disable-next-line unused-imports/no-unused-vars
 const HackCard = ({ card, cardset }) => {
-  const [expanded, setExpanded] = useState(false);
-
   const classes = useStyles({ card });
 
   const dispatch = useDispatch();
 
-  const isSelected = useSelector((state) => state.ui.cardSelected === card);
-
-  const handleMouseEnter = () => {
-    setExpanded(true);
-  };
-
-  const handleMouseLeave = () => {
-    setExpanded(false);
-  };
+  const isSelected = useSelector((state) => state.ui.cardSelected[cardset.slug] === card);
 
   const handleClick = () => {
-    // FIXME use cardset to select the card in that cardset:
-    dispatch(actions.selectCard(card));
+    if (isSelected) return;
+    dispatch(actions.selectCard(cardset, card));
     dispatch(actions.sidePanelSetOpen());
   };
 
@@ -122,33 +100,26 @@ const HackCard = ({ card, cardset }) => {
     <Card
       className={clsx(
         classes.root,
-        expanded && classes.rootExpanded,
         isSelected && classes.rootSelected,
       )}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       onClick={handleClick}
     >
-      <Box className={clsx(classes.backgroundBox, expanded && classes.backgroundBoxExpanded)} />
+      <Box className={classes.backgroundBox} />
       <CardActionArea>
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom>
             <b>{ `${card.name}` }</b>
           </Typography>
-          <Box className={clsx(classes.collapsableBox, expanded && classes.collapsableBoxExpanded)}>
+          <Box className={clsx(
+            classes.collapsableBox,
+            isSelected && classes.collapsableBoxSelected,
+          )}
+          >
             <Typography variant="body2" color="textSecondary">
               { card.subtitle }
             </Typography>
             <CardActions className={classes.cardActions}>
-              <Button
-                size="small"
-                variant="contained"
-                color="primary"
-                disableElevation
-                className={classes.button}
-              >
-                Show
-              </Button>
+              {getGoButton(card)}
             </CardActions>
           </Box>
         </CardContent>

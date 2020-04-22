@@ -146,7 +146,7 @@ const QuestFTHView = ({
   const toggleOpen = () => {
     dispatch(actions.sidePanelToggleOpen());
     if (open) {
-      dispatch(actions.deselectCard());
+      dispatch(actions.deselectCards());
     }
   };
 
