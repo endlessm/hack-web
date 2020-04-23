@@ -27,14 +27,15 @@ const useStyles = makeStyles(({ spacing, mixins }) => ({
   },
 }));
 
-const HackTopBar = ({ title, hideHomeIcon }) => {
+const HackTopBar = ({ title, hideHomeIcon, isMainPage }) => {
   const classes = useStyles();
+  const shouldShowIcon = !hideHomeIcon && !isMainPage;
 
   return (
     <Box>
       <AppBar elevation={0}>
         <Toolbar className={classes.toolbar}>
-          {!hideHomeIcon && (
+          {shouldShowIcon && (
             <IconButton
               component={RouterLink}
               to="/"
@@ -45,9 +46,19 @@ const HackTopBar = ({ title, hideHomeIcon }) => {
               <Home />
             </IconButton>
           )}
-          <Typography variant="h5" color="inherit">
-            {title}
-          </Typography>
+
+          {isMainPage ? (
+            <Box m="auto">
+              <Typography variant="h5" color="inherit">
+                <strong>{title}</strong>
+              </Typography>
+            </Box>
+          ) : (
+            <Typography variant="h5" color="inherit">
+              {title}
+            </Typography>
+          )}
+
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />
@@ -58,10 +69,12 @@ const HackTopBar = ({ title, hideHomeIcon }) => {
 HackTopBar.propTypes = {
   title: PropTypes.string.isRequired,
   hideHomeIcon: PropTypes.bool,
+  isMainPage: PropTypes.bool,
 };
 
 HackTopBar.defaultProps = {
   hideHomeIcon: false,
+  isMainPage: false,
 };
 
 export default HackTopBar;
