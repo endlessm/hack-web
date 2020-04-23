@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => {
       position: 'absolute',
       top: theme.spacing(11),
       right: 0,
-      marginRight: theme.spacing(12),
+      marginRight: theme.spacing(1),
       transition: marginTransition,
       opacity: 0,
     },
@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => {
       overflow: 'hidden',
       flexGrow: 1,
       transition: marginTransition,
-      marginRight: theme.spacing(10) - drawerWidth,
+      marginRight: -drawerWidth,
       height: '100%',
     },
     contentShift: {
