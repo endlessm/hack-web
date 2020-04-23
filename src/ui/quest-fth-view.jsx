@@ -146,8 +146,14 @@ const QuestFTHView = ({
   const toggleOpen = () => {
     dispatch(actions.sidePanelToggleOpen());
     if (open) {
-      dispatch(actions.deselectCards());
+      setTimeout(() => {
+        dispatch(actions.deselectCards());
+      }, theme.transitions.duration.leavingScreen);
     }
+  };
+
+  const onDrawerClose = () => {
+    dispatch(actions.deselectCards());
   };
 
   const toggleFlip = () => {
@@ -236,6 +242,7 @@ const QuestFTHView = ({
         }}
         anchor="right"
         open={open}
+        onClose={onDrawerClose}
       >
         <Box
           display="flex"
