@@ -7,6 +7,7 @@ import {
   Fab,
   Paper,
   Typography,
+  fade,
   makeStyles,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
@@ -53,66 +54,62 @@ RequireAuth.propTypes = {
   children: PropTypes.instanceOf(Object).isRequired,
 };
 
-// FIXME: Replace em, px and direct units with theme.spacing
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiToolbar-root .MuiTypography-root': {
-      margin: '0 auto',
-      fontWeight: 'bold',
-    },
-    backgroundImage: `url('${LoginBg}')`,
-    backgroundSize: 'cover',
-    minHeight: '100%',
-  },
-  hackIcon: {
-    width: `${theme.spacing(6)}px`,
-    height: `${theme.spacing(6)}px`,
-  },
-  hackIconBox: {
-    width: `${theme.spacing(12)}px`,
-    height: `${theme.spacing(12)}px`,
-  },
-  dialogueToggleButton: {
-    position: 'absolute',
-    top: theme.spacing(1),
-    right: theme.spacing(1),
-    zIndex: theme.zIndex.drawer + 1,
-    opacity: 0.5,
-  },
-  hackFabRoot: {
-    boxShadow: 'none',
-  },
-  card: {
-    display: 'flex',
-    flexDirection: 'column',
-    borderWidth: 0,
-    position: 'relative',
-    margin: '4em auto',
-    borderRadius: '2em',
-    width: '26em',
-    height: '38em',
-  },
-  cardContent: {
-    padding: 20,
-    paddingTop: 10,
+const useStyles = makeStyles(({ spacing, palette, zIndex }) => {
+  const cardImageOverlay = fade(palette.grey[900], 0.8);
 
-    '& input': {
-      border: `1px solid ${theme.palette.grey[500]}`,
-      borderRadius: '2em',
-      padding: '1ex',
-      paddingLeft: '1em',
-      width: '100%',
+  return {
+    root: {
+      backgroundImage: `url('${LoginBg}')`,
+      backgroundSize: 'cover',
+      minHeight: '100%',
+      overflow: 'hidden',
     },
-  },
-  backgroundBox: {
-    background: `linear-gradient(rgba(10, 10, 20, 0.8), rgba(10, 10, 20, 0.8)), url('${loginBox}')`,
-    backgroundSize: 'cover',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-}));
+    hackIcon: {
+      width: `${spacing(6)}px`,
+      height: `${spacing(6)}px`,
+    },
+    hackIconBox: {
+      width: `${spacing(12)}px`,
+      height: `${spacing(12)}px`,
+    },
+    dialogueToggleButton: {
+      position: 'absolute',
+      top: spacing(1),
+      right: spacing(1),
+      zIndex: zIndex.drawer + 1,
+      opacity: 0.5,
+    },
+    card: {
+      display: 'flex',
+      flexDirection: 'column',
+      borderWidth: 0,
+      position: 'relative',
+      margin: `${spacing(8)}px auto`,
+      width: `${spacing(48)}px`,
+      height: `${spacing(72)}px`,
+    },
+    cardContent: {
+      padding: spacing(3),
+      paddingTop: spacing(1),
+
+      '& input': {
+        border: `1px solid ${palette.grey[500]}`,
+        borderRadius: `${spacing(4)}px`,
+        padding: `${spacing(1)}px`,
+        paddingLeft: `${spacing(2)}px`,
+        width: '100%',
+      },
+    },
+    backgroundBox: {
+      background: `linear-gradient(${cardImageOverlay}, ${cardImageOverlay}), url('${loginBox}')`,
+      backgroundSize: 'cover',
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  };
+});
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -147,7 +144,7 @@ const Login = () => {
           color="primary"
           aria-label="open / close dialogue"
           size="medium"
-          classes={{ root: classes.hackFabRoot }}
+          disabled
         >
           <HackIconClose className={classes.hackIcon} />
         </Fab>
@@ -157,7 +154,7 @@ const Login = () => {
 
   return (
     <div className={classes.root}>
-      <HackTopBar title="login to explore" hideHomeIcon />
+      <HackTopBar title="login to explore" isMainPage />
       {HackIcon}
 
       <form noValidate autoComplete="off" onSubmit={callback}>
