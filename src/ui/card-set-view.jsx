@@ -87,7 +87,7 @@ const CardSetView = ({ slug }) => {
       canvas={canvas}
       sidebar={sidebar}
       title={cardset.name}
-      hideHomeIcon={cardset.slug === '/home'}
+      isMainPage={slug === '/home'}
     />
   );
 };
