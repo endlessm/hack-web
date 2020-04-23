@@ -55,22 +55,22 @@ const App = () => {
           <Route path="/reset-password">
             <ResetPassword />
           </Route>
-          <Route path="/games/fixme-name-the-sidetrack-quest">
+          <Route path="/games">
             <RequireAuth>
               <GAWrapper><SidetrackQuest /></GAWrapper>
             </RequireAuth>
           </Route>
-          <Route path="/art/fixme-name-the-p5-quest">
+          <Route path="/art">
             <RequireAuth>
               <GAWrapper><P5Quest /></GAWrapper>
             </RequireAuth>
           </Route>
-          <Route path="/web/fixme-name-the-html-quest">
+          <Route path="/web">
             <RequireAuth>
               <GAWrapper><HtmlQuest /></GAWrapper>
             </RequireAuth>
           </Route>
-          <Route path="/maker/make-change">
+          <Route path="/maker">
             <RequireAuth>
               <GAWrapper><PdfQuest /></GAWrapper>
             </RequireAuth>

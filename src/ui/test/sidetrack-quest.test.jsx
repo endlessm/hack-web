@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
-import { useCardInfo } from '../hack-card';
+import { useCard } from '../hack-card';
 import QuestFTHView from '../quest-fth-view';
 import questContent from './sidetrack-quest.ink';
 
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 const SidetrackQuest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { title } = useCardInfo();
+  const card = useCard();
 
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
@@ -200,6 +200,7 @@ const SidetrackQuest = () => {
       onChoiceSelected={setCurrentChoice}
       onRestartSelected={onRestartSelected}
       hasEnded={hasEnded}
+      card={card}
     />
   );
 
@@ -209,7 +210,7 @@ const SidetrackQuest = () => {
         toolbox={toolbox}
         canvas={canvas}
         sidebar={sidebar}
-        title={title}
+        title={card.name}
       />
     </TestWrapper>
   );

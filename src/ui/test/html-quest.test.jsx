@@ -8,7 +8,7 @@ import {
 
 import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
-import { useCardInfo } from '../hack-card';
+import { useCard } from '../hack-card';
 import QuestFTHView from '../quest-fth-view';
 import questContent from './html-quest.ink';
 
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 const HtmlQuest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { title } = useCardInfo();
+  const card = useCard();
 
   const [firstTimeCode, setFirstTimeCode] = useState(true);
 
@@ -83,6 +83,7 @@ const HtmlQuest = () => {
       onChoiceSelected={setCurrentChoice}
       onRestartSelected={onRestartSelected}
       hasEnded={hasEnded}
+      card={card}
     />
   );
 
@@ -102,7 +103,7 @@ const HtmlQuest = () => {
       canvas={canvas}
       sidebar={sidebar}
       sideBySide
-      title={title}
+      title={card.name}
     />
   );
 };

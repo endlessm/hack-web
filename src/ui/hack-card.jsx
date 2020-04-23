@@ -17,23 +17,17 @@ import { getGoButton } from './main-button';
 
 const defaultImage = '/assets/cards/default-card.svg';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
   root: {
-    width: '16em',
-    height: '24em',
+    width: `${spacing(28)}px`,
+    height: `${spacing(42)}px`,
     display: 'flex',
-    backgroundRepeat: 'no reapeat',
-    backgroundSize: '100% 100%',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center top',
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    borderColor: theme.palette.common.white,
-    borderStyle: 'solid',
-    borderRadius: '1em',
-    borderWidth: 0,
     position: 'relative',
-    margin: '0.5em',
-    transition: `transform ${theme.transitions.duration.standard}ms linear`,
-    textDecoration: 'none',
+    transition: `transform ${transitions.duration.standard}ms linear`,
     '&:hover': {
       transform: 'scale(1.05)',
     },
@@ -42,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   rootSelected: {
-    boxShadow: `0px 0px 0px ${theme.spacing(1)}px ${theme.palette.primary.main}`,
+    boxShadow: `0px 0px 0px ${spacing(1)}px ${palette.primary.main}`,
   },
   backgroundBox: {
     backgroundImage: ({ card }) => {
@@ -52,11 +46,11 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    transition: `transform ${theme.transitions.duration.standard}ms linear`,
+    transition: `transform ${transitions.duration.standard}ms linear`,
   },
   cardContent: {
-    borderTop: `${theme.spacing(1)}px solid ${theme.palette.primary.main}`,
-    backgroundColor: theme.palette.background.paper,
+    borderTop: `${spacing(1)}px solid ${palette.primary.main}`,
+    backgroundColor: palette.background.paper,
     zIndex: 1,
   },
   cardActions: {
@@ -69,13 +63,12 @@ const useStyles = makeStyles((theme) => ({
   collapsableBox: {
     display: 'flex',
     flexDirection: 'column',
-    transition: `max-height ${theme.transitions.duration.standard}ms linear, padding ${theme.transitions.duration.standard}ms linear`,
+    transition: `max-height ${transitions.duration.standard}ms linear, padding ${transitions.duration.standard}ms linear`,
     maxHeight: 0,
     overflow: 'hidden',
   },
   collapsableBoxSelected: {
-    // Just a big height.
-    maxHeight: '16em',
+    maxHeight: `${spacing(15.5)}px`,
   },
   actions: {
     justifyContent: 'flex-end',
@@ -98,6 +91,7 @@ const HackCard = ({ card, cardset }) => {
 
   return (
     <Card
+      elevation={6}
       className={clsx(
         classes.root,
         isSelected && classes.rootSelected,
@@ -137,16 +131,14 @@ HackCard.defaultProps = {
   cardset: null,
 };
 
-function useCardInfo() {
+function useCard() {
   // eslint-disable-next-line no-restricted-globals
   const slug = location.pathname;
 
-  const title = useSelector((state) => {
+  return useSelector((state) => {
     const cardset = state.cardsets.find((cs) => cs.slug === '/home');
-    const card = cardset.cards.find((c) => slug === c.slug);
-    return card.name;
+    return cardset.cards.find((c) => slug === c.slug);
   });
-  return { title };
 }
 
-export { HackCard as default, useCardInfo };
+export { HackCard as default, useCard };

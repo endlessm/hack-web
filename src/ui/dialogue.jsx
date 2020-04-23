@@ -19,6 +19,7 @@ import NextIcon from './icons/hack-next-symbolic.svg';
 import PreviousIcon from './icons/hack-previous-symbolic.svg';
 
 import { actions } from '../store';
+import { cardType } from './types';
 import Quest from '../libquest';
 import ChatMessage from './chat-message';
 import SidePanel from './side-panel';
@@ -44,7 +45,7 @@ const useStyles = makeStyles(({ spacing }) => ({
 }));
 
 const Dialogue = ({
-  dialogue, choices, onChoiceSelected, onRestartSelected, hasEnded,
+  dialogue, choices, onChoiceSelected, onRestartSelected, hasEnded, card,
 }) => {
   const classes = useStyles();
   const [previousMessageLength, setPreviousMessageLength] = useState(dialogue.length);
@@ -144,7 +145,7 @@ const Dialogue = ({
 
   const buttons = hasEnded ? endChoices : choices.map((choice) => getChoiceButton(choice));
 
-  return <SidePanel content={content} buttons={buttons} />;
+  return <SidePanel content={content} buttons={buttons} card={card} />;
 };
 
 Dialogue.propTypes = {
@@ -159,12 +160,14 @@ Dialogue.propTypes = {
   onChoiceSelected: PropTypes.func,
   onRestartSelected: PropTypes.func,
   hasEnded: PropTypes.bool,
+  card: cardType,
 };
 
 Dialogue.defaultProps = {
   onChoiceSelected: null,
   onRestartSelected: null,
   hasEnded: false,
+  card: null,
 };
 
 function useQuest(questContent) {

@@ -7,13 +7,25 @@ import {
   makeStyles,
 } from '@material-ui/core';
 
-const useStyles = makeStyles(({ mixins, spacing, palette }) => ({
+import { cardType } from './types';
+
+const defaultImage = '/assets/cards/default-side-panel.png';
+
+const useStyles = makeStyles(({ spacing, palette }) => ({
   offset: {
-    ...mixins.toolbar,
-    marginTop: spacing(2),
+    minHeight: `${spacing(10)}px`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center top',
+    backgroundImage: ({ card }) => {
+      if (!card) {
+        return `url('${defaultImage}')`;
+      }
+      // FIXME add a fallback background:
+      return `url('/assets/cards/${card.slug.slice(1)}/side-panel.png')`;
+    },
   },
   offsetExpanded: {
-    height: '100%',
+    height: '200%',
     borderBottom: `${spacing(1)}px solid ${palette.primary.main}`,
   },
   dialogue: {
@@ -26,8 +38,10 @@ const useStyles = makeStyles(({ mixins, spacing, palette }) => ({
   },
 }));
 
-const SidePanel = ({ content, buttons, expanded }) => {
-  const classes = useStyles();
+const SidePanel = ({
+  content, buttons, card, expanded,
+}) => {
+  const classes = useStyles({ card });
 
   return (
     <>
@@ -53,12 +67,14 @@ const SidePanel = ({ content, buttons, expanded }) => {
 SidePanel.propTypes = {
   content: PropTypes.element,
   buttons: PropTypes.element,
+  card: cardType,
   expanded: PropTypes.bool,
 };
 
 SidePanel.defaultProps = {
   content: null,
   buttons: null,
+  card: null,
   expanded: false,
 };
 

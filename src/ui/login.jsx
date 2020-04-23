@@ -20,7 +20,7 @@ import HackIconClose from './hack-icon-close.svg';
 import HackIconCloseWhite from './hack-icon-close-white.svg';
 
 import loginBox from './login-box.jpg';
-import LoginBg from './login-background.png';
+import LoginBg from './background.png';
 
 import { login, getUser } from '../cognito';
 
