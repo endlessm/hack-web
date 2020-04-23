@@ -16,9 +16,19 @@ import {
 } from '@material-ui/icons';
 
 
-const useStyles = makeStyles(({ spacing, mixins }) => ({
+const useStyles = makeStyles(({ palette, spacing, mixins }) => ({
+  appbar: {
+    background: ({ isMainPage }) => {
+      if (isMainPage) {
+        return palette.primary.main;
+      }
+      const d = spacing(10);
+      return `linear-gradient(to right, ${palette.primary.main} ${d}px, ${palette.background.paper} ${d}px)`;
+    },
+  },
   toolbar: {
     marginTop: spacing(1),
+    marginLeft: spacing(0.5),
     marginBottom: spacing(1),
   },
   offset: {
@@ -28,11 +38,11 @@ const useStyles = makeStyles(({ spacing, mixins }) => ({
 }));
 
 const HackTopBar = ({ title, isMainPage }) => {
-  const classes = useStyles();
+  const classes = useStyles({ isMainPage });
 
   return (
     <Box>
-      <AppBar elevation={0}>
+      <AppBar elevation={0} className={classes.appbar}>
         <Toolbar className={classes.toolbar}>
           {!isMainPage && (
             <IconButton
@@ -53,9 +63,11 @@ const HackTopBar = ({ title, isMainPage }) => {
               </Typography>
             </Box>
           ) : (
-            <Typography variant="h5" color="secondary">
-              {title}
-            </Typography>
+            <Box ml={4}>
+              <Typography variant="h5" color="secondary">
+                {title}
+              </Typography>
+            </Box>
           )}
 
         </Toolbar>
