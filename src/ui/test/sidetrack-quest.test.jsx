@@ -15,6 +15,42 @@ import store, { actions } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
 import Toolbox from '../toolbox/sidetrack';
 
+import SoundsMeta from '../../../apps/sounds/metadata.json';
+
+const SidetrackSounds = [
+  'sidetrack/bg/lobby_loop',
+  'sidetrack/bg/bonus_mode',
+  'sidetrack/bg/auto_mode',
+  'sidetrack/bg/manual_mode',
+  'sidetrack/sfx/start_chime',
+  'sidetrack/sfx/move_fwd',
+  'sidetrack/sfx/move_up',
+  'sidetrack/sfx/move_down',
+  'sidetrack/sfx/move_jump',
+  'sidetrack/sfx/push_default',
+  'sidetrack/sfx/failure',
+  'sidetrack/sfx/move_fwd',
+  'sidetrack/sfx/move_up',
+  'sidetrack/sfx/move_down',
+  'sidetrack/sfx/move_jump',
+  'sidetrack/sfx/push_default',
+  'sidetrack/sfx/failure',
+  'sidetrack/sfx/robot',
+  'sidetrack/sfx/explosion',
+  'sidetrack/sfx/instruction_grab',
+  'sidetrack/sfx/instruction_drag',
+  'sidetrack/sfx/instruction_drop',
+  'sidetrack/sfx/start_chime',
+  'sidetrack/sfx/start_chime',
+  'sidetrack/sfx/felix_smash',
+  'sidetrack/bg/manual_mode',
+  'sidetrack/bg/auto_mode',
+  'sidetrack/bg/bonus_mode',
+  'sidetrack/bg/lobby_loop',
+  'sidetrack/sfx/failure',
+  'sidetrack/sfx/success',
+];
+
 const useStyles = makeStyles({
   root: {
   },
@@ -100,11 +136,39 @@ const SidetrackQuest = () => {
       loadNotify: () => {},
     };
 
-    // fake Sound
+    // preload all sounds
+    SidetrackSounds.forEach((s) => {
+      const sound = SoundsMeta[s];
+      const soundFile = sound['sound-file'];
+      const audio = new Audio(`/apps/sounds/${soundFile}`);
+      audio.setAttribute('id', s);
+      if (sound.volume) {
+        audio.volume = sound.volume;
+      }
+      app.contentDocument.body.appendChild(audio);
+    });
+
     app.contentWindow.Sounds = {
-      play: () => {},
-      stop: () => {},
-      playLoop: () => {},
+      getSound: (sound) => {
+        const audio = app.contentDocument.getElementById(sound);
+        return audio;
+      },
+      play: (sound) => {
+        const audio = app.contentWindow.Sounds.getSound(sound);
+        audio.currentTime = 0;
+        audio.play();
+      },
+      stop: (sound) => {
+        const audio = app.contentWindow.Sounds.getSound(sound);
+        audio.pause();
+        audio.currentTime = 0;
+      },
+      playLoop: (sound) => {
+        const audio = app.contentWindow.Sounds.getSound(sound);
+        audio.setAttribute('loop', 'true');
+        audio.currentTime = 0;
+        audio.play();
+      },
     };
 
     // fake pauseToyApp
