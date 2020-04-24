@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => {
       position: 'absolute',
       top: theme.spacing(11),
       right: 0,
-      marginRight: theme.spacing(12),
+      marginRight: theme.spacing(1),
       transition: marginTransition,
       opacity: 0,
     },
@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => {
       overflow: 'hidden',
       flexGrow: 1,
       transition: marginTransition,
-      marginRight: theme.spacing(10) - drawerWidth,
+      marginRight: -drawerWidth,
       height: '100%',
     },
     contentShift: {
@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => {
 
 
 const QuestFTHView = ({
-  toolbox, canvas, sidebar, controls, onFlipped, sideBySide, hideControls, title, hideHomeIcon,
+  toolbox, canvas, sidebar, controls, onFlipped, sideBySide, hideControls, title, isMainPage,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -146,8 +146,14 @@ const QuestFTHView = ({
   const toggleOpen = () => {
     dispatch(actions.sidePanelToggleOpen());
     if (open) {
-      dispatch(actions.deselectCards());
+      setTimeout(() => {
+        dispatch(actions.deselectCards());
+      }, theme.transitions.duration.leavingScreen);
     }
+  };
+
+  const onDrawerClose = () => {
+    dispatch(actions.deselectCards());
   };
 
   const toggleFlip = () => {
@@ -171,7 +177,7 @@ const QuestFTHView = ({
           [classes.contentShift]: open,
         })}
       >
-        <HackTopBar title={title} hideHomeIcon={hideHomeIcon} />
+        <HackTopBar title={title} isMainPage={isMainPage} />
         {toolbox ? (
           <>
             {sideBySide ? (
@@ -236,6 +242,7 @@ const QuestFTHView = ({
         }}
         anchor="right"
         open={open}
+        onClose={onDrawerClose}
       >
         <Box
           display="flex"
@@ -259,7 +266,7 @@ QuestFTHView.propTypes = {
   sideBySide: PropTypes.bool,
   hideControls: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  hideHomeIcon: PropTypes.bool,
+  isMainPage: PropTypes.bool,
 };
 
 QuestFTHView.defaultProps = {
@@ -268,7 +275,7 @@ QuestFTHView.defaultProps = {
   controls: null,
   sideBySide: false,
   hideControls: true,
-  hideHomeIcon: false,
+  isMainPage: false,
 };
 
 export default QuestFTHView;

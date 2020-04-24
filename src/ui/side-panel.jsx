@@ -11,9 +11,10 @@ import { cardType } from './types';
 
 const defaultImage = '/assets/cards/default-side-panel.png';
 
-const useStyles = makeStyles(({ spacing, palette }) => ({
+const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
   offset: {
     minHeight: `${spacing(10)}px`,
+    height: `${spacing(11)}px`,
     backgroundSize: 'cover',
     backgroundPosition: 'center top',
     backgroundImage: ({ card }) => {
@@ -23,6 +24,10 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
       // FIXME add a fallback background:
       return `url('/assets/cards/${card.slug.slice(1)}/side-panel.png')`;
     },
+    transition: transitions.create(['height'], {
+      easing: transitions.easing.easeInOut,
+      duration: transitions.duration.short,
+    }),
   },
   offsetExpanded: {
     height: '200%',

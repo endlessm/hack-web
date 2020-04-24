@@ -16,9 +16,19 @@ import {
 } from '@material-ui/icons';
 
 
-const useStyles = makeStyles(({ spacing, mixins }) => ({
+const useStyles = makeStyles(({ palette, spacing, mixins }) => ({
+  appbar: {
+    background: ({ isMainPage }) => {
+      if (isMainPage) {
+        return palette.primary.main;
+      }
+      const d = spacing(10);
+      return `linear-gradient(to right, ${palette.primary.main} ${d}px, ${palette.background.paper} ${d}px)`;
+    },
+  },
   toolbar: {
     marginTop: spacing(1),
+    marginLeft: spacing(0.5),
     marginBottom: spacing(1),
   },
   offset: {
@@ -27,20 +37,19 @@ const useStyles = makeStyles(({ spacing, mixins }) => ({
   },
 }));
 
-const HackTopBar = ({ title, hideHomeIcon, isMainPage }) => {
-  const classes = useStyles();
-  const shouldShowIcon = !hideHomeIcon && !isMainPage;
+const HackTopBar = ({ title, isMainPage }) => {
+  const classes = useStyles({ isMainPage });
 
   return (
     <Box>
-      <AppBar elevation={0}>
+      <AppBar elevation={0} className={classes.appbar}>
         <Toolbar className={classes.toolbar}>
-          {shouldShowIcon && (
+          {!isMainPage && (
             <IconButton
               component={RouterLink}
               to="/"
               edge="start"
-              color="inherit"
+              color="secondary"
               aria-label="menu"
             >
               <Home />
@@ -49,14 +58,16 @@ const HackTopBar = ({ title, hideHomeIcon, isMainPage }) => {
 
           {isMainPage ? (
             <Box m="auto">
-              <Typography variant="h5" color="inherit">
+              <Typography variant="h5" color="secondary">
                 <strong>{title}</strong>
               </Typography>
             </Box>
           ) : (
-            <Typography variant="h5" color="inherit">
-              {title}
-            </Typography>
+            <Box ml={4}>
+              <Typography variant="h5" color="secondary">
+                {title}
+              </Typography>
+            </Box>
           )}
 
         </Toolbar>
@@ -68,12 +79,10 @@ const HackTopBar = ({ title, hideHomeIcon, isMainPage }) => {
 
 HackTopBar.propTypes = {
   title: PropTypes.string.isRequired,
-  hideHomeIcon: PropTypes.bool,
   isMainPage: PropTypes.bool,
 };
 
 HackTopBar.defaultProps = {
-  hideHomeIcon: false,
   isMainPage: false,
 };
 
