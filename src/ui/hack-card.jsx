@@ -19,6 +19,7 @@ const defaultImage = '/assets/cards/default-card.svg';
 
 const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
   root: {
+    pointerEvents: 'painted',
     width: `${spacing(28)}px`,
     height: `${spacing(42)}px`,
     display: 'flex',
