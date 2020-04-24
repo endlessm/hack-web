@@ -11,10 +11,6 @@ import {
   Paper,
   useTheme,
 } from '@material-ui/core';
-import {
-  ChevronLeft,
-  ChevronRight,
-} from '@material-ui/icons';
 
 import PropTypes from 'prop-types';
 
@@ -24,6 +20,7 @@ import { actions } from '../store';
 import HackTopBar from './hack-top-bar';
 import SlideToHack from './slide-to-hack';
 import FlipToHack from './flip-to-hack';
+import FTHButton from './fth-button';
 
 import HackIconOpen from './hack-icon-open.svg';
 import HackIconClose from './hack-icon-close.svg';
@@ -58,8 +55,7 @@ const useStyles = makeStyles((theme) => {
     },
     toolboxToggleButton: {
       position: 'absolute',
-      borderRadius: '0 50% 50% 0',
-      top: `calc(50% - ${theme.spacing(3)}px)`,
+      top: `calc(50% - ${theme.spacing(2.5)}px)`,
     },
     controlsContainer: {
       position: 'absolute',
@@ -191,16 +187,11 @@ const QuestFTHView = ({
           </>
         )}
         {toolbox && !sideBySide && (
-          <Fab
-            color="secondary"
-            aria-label="open toolbox"
-            edge="end"
-            size="medium"
+          <FTHButton
             onClick={toggleFlip}
             className={classes.toolboxToggleButton}
-          >
-            {flipped ? <ChevronLeft /> : <ChevronRight />}
-          </Fab>
+            flipped={flipped}
+          />
         )}
         {controls && (
           <Box className={clsx(classes.controlsContainer, {
