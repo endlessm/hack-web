@@ -1,0 +1,1334 @@
+{
+    "FBE/page-changed": {
+        "sound-file": "common/juicy_button.webm",
+        "overlap-behavior": "restart"
+    },
+    "FBE/startup": {
+        "sound-file": "FBE/Theater_backside.webm",
+        "loop": true
+    },
+    "HackUnlock/ambient/back": {
+        "sound-file": "HackUnlock/Ambient_back_noclip.webm",
+        "loop": true
+    },
+    "HackUnlock/ambient/front": {
+        "sound-file": "HackUnlock/Ambient_Front_noclip.webm",
+        "loop": true
+    },
+    "HackUnlock/landing": {
+        "sound-file": "HackUnlock/Landing_front.webm"
+    },
+    "HackUnlock/solution": {
+        "sound-file": "HackUnlock/Success_Back.webm"
+    },
+    "HackUnlock/success": {
+        "sound-file": "HackUnlock/Success_Front.webm"
+    },
+    "HackUnlock/success/back": {
+        "sound-file": "HackUnlock/Success_Back_loop.webm",
+        "loop": true,
+        "note": "This is a placeholder sound!",
+        "overlap-behavior": "ignore"
+    },
+    "HackUnlock/wave": {
+        "sound-file": "HackUnlock/wave_back_noclip.wav",
+        "loop": true,
+        "note": "When compressed to WEBM, this sound clips at the end. Leave as WAV."
+    },
+    "clubhouse/ada/mood/talk": {
+        "sound-files": [
+            "clubhouse/characters/ada/moods/talk/Ada_bobble1.webm",
+            "clubhouse/characters/ada/moods/talk/Ada_bobble2.webm",
+            "clubhouse/characters/ada/moods/talk/Ada_bobble3.webm"
+        ],
+        "delay": 250,
+        "overlap-behavior": "ignore"
+    },
+    "clubhouse/ambient": {
+        "sound-file": "clubhouse/clubhouse_ambient.webm",
+        "fade-in": 0,
+        "fade-out": 0,
+        "loop": true,
+        "type": "bg"
+    },
+    "clubhouse/character/dialog/dismiss": {
+        "sound-file": "clubhouse/character_dismiss.webm",
+        "fade-in": 0,
+        "fade-out": 0
+    },
+    "clubhouse/character/dialog/invite": {
+        "sound-file": "clubhouse/character_invite.webm",
+        "fade-in": 0,
+        "fade-out": 0
+    },
+    "clubhouse/character/mood/happy": {
+        "sound-file": "clubhouse/Character_happy.webm",
+        "fade-in": 0,
+        "fade-out": 0
+    },
+    "clubhouse/character/mood/irate": {
+        "sound-file": "clubhouse/Character_irate.webm",
+        "fade-in": 0,
+        "fade-out": 0
+    },
+    "clubhouse/dialog/close": {
+        "sound-file": "common/quest_deny.webm"
+    },
+    "clubhouse/dialog/next": {
+        "sound-files": [
+            "clubhouse/CollectItem_1.webm",
+            "clubhouse/CollectItem_2.webm",
+            "clubhouse/CollectItem_3.webm"
+        ]
+    },
+    "clubhouse/dialog/open": {
+        "sound-file": "clubhouse/dialog_popup.webm"
+    },
+    "clubhouse/ending/episode1": {
+        "sound-file": "clubhouse/ending/episode1.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "clubhouse/ending/episode2": {
+        "sound-file": "clubhouse/ending/episode2.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "clubhouse/ending/episode3": {
+        "sound-file": "clubhouse/ending/episode3.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "clubhouse/ending/episode4": {
+        "sound-file": "clubhouse/ending/episode4.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "clubhouse/entry/close": {
+        "sound-file": "clubhouse/clubhouse_close.webm"
+    },
+    "clubhouse/entry/hover": {
+        "sound-file": "clubhouse/clubhouse_button_hover.webm",
+        "fade-in": 0,
+        "fade-out": 0,
+        "loop": true
+    },
+    "clubhouse/entry/open": {
+        "sound-file": "clubhouse/clubhouse_open.webm"
+    },
+    "clubhouse/entry/pulse": {
+        "sound-file": "clubhouse/clubhouse_attract_jan29.webm"
+    },
+    "clubhouse/entry/pulse-loop": {
+        "sound-file": "clubhouse/clubhouse_attract_noclip.webm",
+        "loop": true,
+        "note": "Instead of using the silence.wav sound from David, set volume to 0",
+        "volume": 0
+    },
+    "clubhouse/estelle/mood/talk": {
+        "sound-files": [
+            "clubhouse/characters/estelle/moods/talk/Estelle_bobble1.webm",
+            "clubhouse/characters/estelle/moods/talk/Estelle_bobble2.webm",
+            "clubhouse/characters/estelle/moods/talk/Estelle_bobble3.webm"
+        ],
+        "delay": 250,
+        "overlap-behavior": "ignore"
+    },
+    "clubhouse/faber/mood/talk": {
+        "sound-files": [
+            "clubhouse/characters/faber/moods/talk/Faber_bobble1.webm",
+            "clubhouse/characters/faber/moods/talk/Faber_bobble2.webm",
+            "clubhouse/characters/faber/moods/talk/Faber_bobble3.webm"
+        ],
+        "delay": 250,
+        "overlap-behavior": "ignore"
+    },
+    "clubhouse/felixnet/mood/talk": {
+        "sound-files": [
+            "clubhouse/characters/felixnet/moods/talk/cat-sfx1.webm",
+            "clubhouse/characters/felixnet/moods/talk/cat-sfx2.webm",
+            "clubhouse/characters/felixnet/moods/talk/cat-sfx3.webm"
+        ],
+        "delay": 250,
+        "overlap-behavior": "ignore"
+    },
+    "clubhouse/riley/mood/talk": {
+        "sound-files": [
+            "clubhouse/characters/riley/moods/talk/Riley_bobble1.webm",
+            "clubhouse/characters/riley/moods/talk/Riley_bobble2.webm",
+            "clubhouse/characters/riley/moods/talk/Riley_bobble3.webm"
+        ],
+        "delay": 250,
+        "overlap-behavior": "ignore"
+    },
+    "clubhouse/riley/mood/talk_glitched": {
+        "sound-files": [
+            "clubhouse/characters/riley/moods/talk_glitched/Riley_glitch1.webm",
+            "clubhouse/characters/riley/moods/talk_glitched/Riley_glitch2.webm",
+            "clubhouse/characters/riley/moods/talk_glitched/Riley_glitch3.webm"
+        ],
+        "delay": 250,
+        "overlap-behavior": "ignore"
+    },
+    "clubhouse/saniel/mood/talk": {
+        "sound-files": [
+            "clubhouse/characters/saniel/moods/talk/Saniel_bobble1.webm",
+            "clubhouse/characters/saniel/moods/talk/Saniel_bobble2.webm",
+            "clubhouse/characters/saniel/moods/talk/Saniel_bobble3.webm"
+        ],
+        "delay": 250,
+        "overlap-behavior": "ignore"
+    },
+    "codeview/action/copy": {
+        "sound-file": "codeview/keyCombo - copy.webm"
+    },
+    "codeview/action/cut": {
+        "sound-file": "codeview/keyCombo - cut.webm"
+    },
+    "codeview/action/paste": {
+        "sound-file": "codeview/keyCombo - paste.webm"
+    },
+    "codeview/action/redo": {
+        "sound-file": "codeview/keyCombo - redo.webm"
+    },
+    "codeview/action/selection-drag": {
+        "sound-file": "codeview/selectionDrag (per character).webm"
+    },
+    "codeview/action/undo": {
+        "sound-file": "codeview/keyCombo - undo.webm"
+    },
+    "codeview/ambient/hacking": {
+        "sound-file": "codeview/Hacking_music1.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "codeview/code-error-appearance": {
+        "sound-file": "codeview/Code_error.webm"
+    },
+    "codeview/code-error-disappearance": {
+        "sound-file": "codeview/Code_solution.webm"
+    },
+    "codeview/keypress/delete": {
+        "sound-file": "codeview/key - delete.webm"
+    },
+    "codeview/keypress/delete-selection": {
+        "sound-file": "codeview/key - delete big.webm"
+    },
+    "codeview/keypress/down": {
+        "sound-file": "codeview/cursorDown.webm"
+    },
+    "codeview/keypress/equals": {
+        "sound-file": "codeview/key - equals.webm"
+    },
+    "codeview/keypress/other": {
+        "sound-file": "codeview/keyGeneric.webm"
+    },
+    "codeview/keypress/return": {
+        "sound-file": "codeview/key - return.webm"
+    },
+    "codeview/keypress/slash": {
+        "sound-file": "codeview/key - slash.webm"
+    },
+    "codeview/keypress/space": {
+        "sound-file": "codeview/key - space.webm"
+    },
+    "codeview/keypress/up": {
+        "sound-file": "codeview/cursorUp.webm"
+    },
+    "codeview/popup/close": {
+        "sound-file": "codeview/errorPopup - closed.webm"
+    },
+    "codeview/popup/fix": {
+        "sound-file": "codeview/errorPopup - fixitButtonPress.webm"
+    },
+    "codeview/popup/open": {
+        "sound-file": "codeview/errorPopup - open.webm"
+    },
+    "fizzics/NEXT-LEVEL/clicked": {
+        "sound-file": "fizzics/Next_Level.webm"
+    },
+    "fizzics/buttonClick": {
+        "sound-file": "fizzics/ButtonClick.webm"
+    },
+    "fizzics/collision": {
+        "sound-file": "fizzics/Collision.webm"
+    },
+    "fizzics/collision/neutral": {
+        "sound-file": "fizzics/Collision_neutral.webm"
+    },
+    "fizzics/collision/wall": {
+        "sound-file": "fizzics/Collision_neutral.webm"
+    },
+    "fizzics/collision/winning": {
+        "sound-file": "fizzics/Collision_winning.webm"
+    },
+    "fizzics/create0": {
+        "sound-file": "fizzics/CreateBall_Species1.webm"
+    },
+    "fizzics/create1": {
+        "sound-file": "fizzics/CreateBall_Species2.webm"
+    },
+    "fizzics/create2": {
+        "sound-file": "fizzics/CreateBall_Species3.webm"
+    },
+    "fizzics/create3": {
+        "sound-file": "fizzics/CreateBall_Species4.webm"
+    },
+    "fizzics/create4": {
+        "sound-file": "fizzics/CreateBall_Species5.webm"
+    },
+    "fizzics/createTool": {
+        "sound-file": "fizzics/Tool_Create.webm"
+    },
+    "fizzics/death0": {
+        "sound-file": "fizzics/Death_1.webm"
+    },
+    "fizzics/death1": {
+        "sound-file": "fizzics/Death_2.webm"
+    },
+    "fizzics/death2": {
+        "sound-file": "fizzics/Death_3.webm"
+    },
+    "fizzics/death3": {
+        "sound-file": "fizzics/Death_4.webm"
+    },
+    "fizzics/death4": {
+        "sound-file": "fizzics/Collision_goal.webm"
+    },
+    "fizzics/death5": {
+        "sound-file": "fizzics/Collision_gem_get.webm"
+    },
+    "fizzics/death6": {
+        "sound-file": "fizzics/Collision_bad.webm"
+    },
+    "fizzics/delete0": {
+        "sound-file": "fizzics/Death_Species1.webm"
+    },
+    "fizzics/delete1": {
+        "sound-file": "fizzics/Death_Species2.webm"
+    },
+    "fizzics/delete2": {
+        "sound-file": "fizzics/Death_Species3.webm"
+    },
+    "fizzics/delete3": {
+        "sound-file": "fizzics/Death_Species4.webm"
+    },
+    "fizzics/delete4": {
+        "sound-file": "fizzics/Death_Species5.webm"
+    },
+    "fizzics/fling": {
+        "sound-file": "fizzics/Slingshot_Release.webm"
+    },
+    "fizzics/flingTool": {
+        "sound-file": "fizzics/Tool_Fling.webm"
+    },
+    "fizzics/fly0": {
+        "sound-file": "fizzics/Fly_Species1.webm"
+    },
+    "fizzics/fly1": {
+        "sound-file": "fizzics/Fly_Species2.webm"
+    },
+    "fizzics/fly2": {
+        "sound-file": "fizzics/Fly_Species3.webm"
+    },
+    "fizzics/fly3": {
+        "sound-file": "fizzics/Fly_Species4.webm"
+    },
+    "fizzics/fly4": {
+        "sound-file": "fizzics/Fly_Species5.webm"
+    },
+    "fizzics/level/1/background": {
+        "sound-file": "fizzics/lv1_troppy.webm",
+        "loop": true,
+        "type": "bg",
+        "volume": 0.4
+    },
+    "fizzics/level/10/background": {
+        "sound-file": "fizzics/lv9_hackhouse.webm",
+        "loop": true,
+        "type": "bg",
+        "volume": 0.4
+    },
+    "fizzics/level/2/background": {
+        "sound-file": "fizzics/lv2_ada_aut.webm",
+        "loop": true,
+        "type": "bg",
+        "volume": 0.4
+    },
+    "fizzics/level/3/background": {
+        "sound-file": "fizzics/lv2_ada_aut.webm",
+        "loop": true,
+        "type": "bg",
+        "volume": 0.4
+    },
+    "fizzics/level/4/background": {
+        "sound-file": "fizzics/lv4_tripe.webm",
+        "loop": true,
+        "type": "bg",
+        "volume": 0.4
+    },
+    "fizzics/level/5/background": {
+        "sound-file": "fizzics/lv4_tripe.webm",
+        "loop": true,
+        "type": "bg",
+        "volume": 0.4
+    },
+    "fizzics/level/6/background": {
+        "sound-file": "fizzics/lv6_rock.webm",
+        "loop": true,
+        "type": "bg",
+        "volume": 0.4
+    },
+    "fizzics/level/7/background": {
+        "sound-file": "fizzics/lv6_rock.webm",
+        "loop": true,
+        "type": "bg",
+        "volume": 0.4
+    },
+    "fizzics/level/8/background": {
+        "sound-file": "fizzics/lv8_mystery.webm",
+        "loop": true,
+        "type": "bg",
+        "volume": 0.4
+    },
+    "fizzics/level/9/background": {
+        "sound-file": "fizzics/lv9_hackhouse.webm",
+        "loop": true,
+        "type": "bg",
+        "volume": 0.4
+    },
+    "fizzics/moveFling": {
+        "sound-file": "fizzics/Slingshot_Grab.webm"
+    },
+    "fizzics/moveTool": {
+        "sound-file": "fizzics/Tool_Move.webm"
+    },
+    "fizzics/noGrab": {
+        "sound-file": "fizzics/Cannot_Grab.webm"
+    },
+    "fizzics/pullFling": {
+        "sound-file": "fizzics/Slingshot_Pull_Loop.webm",
+        "loop": true
+    },
+    "fizzics/select1a": {
+        "sound-file": "fizzics/Select_Species1_a.webm"
+    },
+    "fizzics/select1b": {
+        "sound-file": "fizzics/Select_Species1_b.webm"
+    },
+    "fizzics/select1c": {
+        "sound-file": "fizzics/Select_Species1_c.webm"
+    },
+    "fizzics/select2a": {
+        "sound-file": "fizzics/Select_Species2_a.webm"
+    },
+    "fizzics/select2b": {
+        "sound-file": "fizzics/Select_Species2_b.webm"
+    },
+    "fizzics/select2c": {
+        "sound-file": "fizzics/Select_Species2_c.webm"
+    },
+    "fizzics/select3a": {
+        "sound-file": "fizzics/Select_Species3_a.webm"
+    },
+    "fizzics/select3b": {
+        "sound-file": "fizzics/Select_Species3_b.webm"
+    },
+    "fizzics/select3c": {
+        "sound-file": "fizzics/Select_Species3_c.webm"
+    },
+    "fizzics/select4a": {
+        "sound-file": "fizzics/Select_Species4_a.webm"
+    },
+    "fizzics/select4b": {
+        "sound-file": "fizzics/Select_Species4_b.webm"
+    },
+    "fizzics/select4c": {
+        "sound-file": "fizzics/Select_Species4_c.webm"
+    },
+    "fizzics/select5a": {
+        "sound-file": "fizzics/Select_Species5_a.webm"
+    },
+    "fizzics/select5b": {
+        "sound-file": "fizzics/Select_Species5_b.webm"
+    },
+    "fizzics/select5c": {
+        "sound-file": "fizzics/Select_Species5_c.webm"
+    },
+    "fizzics/success0": {
+        "sound-file": "fizzics/Success_Species1.webm"
+    },
+    "fizzics/success1": {
+        "sound-file": "fizzics/Success_Species2.webm"
+    },
+    "fizzics/success2": {
+        "sound-file": "fizzics/Success_Species3.webm"
+    },
+    "fizzics/success3": {
+        "sound-file": "fizzics/Success_Species4.webm"
+    },
+    "fizzics/success4": {
+        "sound-file": "fizzics/Success_Species5.webm"
+    },
+    "fizzics/tooManyBalls": {
+        "sound-file": "fizzics/Too_Many_Balls.webm"
+    },
+    "fizzics/tool0": {
+        "sound-file": "fizzics/Tool_Species1.webm"
+    },
+    "fizzics/tool1": {
+        "sound-file": "fizzics/Tool_Species2.webm"
+    },
+    "fizzics/tool2": {
+        "sound-file": "fizzics/Tool_Species3.webm"
+    },
+    "fizzics/tool3": {
+        "sound-file": "fizzics/Tool_Species4.webm"
+    },
+    "fizzics/tool4": {
+        "sound-file": "fizzics/Tool_Species5.webm"
+    },
+    "fizzics/trashTool": {
+        "sound-file": "fizzics/Tool_Trash.webm"
+    },
+    "fizzics/unGrab": {
+        "sound-file": "fizzics/Slingshot_Ungrab.webm"
+    },
+    "fizzics/you_won": {
+        "sound-file": "fizzics/you_won_loop.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "framework/drumkit/0": {
+        "sound-file": "soundpacks/sfxgroup_drumkit1.webm"
+    },
+    "framework/drumkit/1": {
+        "sound-file": "soundpacks/sfxgroup_drumkit2.webm"
+    },
+    "framework/drumkit/2": {
+        "sound-file": "soundpacks/sfxgroup_drumkit3.webm"
+    },
+    "framework/drumkit/3": {
+        "sound-file": "soundpacks/sfxgroup_drumkit4.webm"
+    },
+    "framework/drumkit/4": {
+        "sound-file": "soundpacks/sfxgroup_drumkit5.webm"
+    },
+    "framework/drumkit/5": {
+        "sound-file": "soundpacks/sfxgroup_drumkit6.webm"
+    },
+    "framework/idm/0": {
+        "sound-file": "soundpacks/sfxgroup_idm1.webm"
+    },
+    "framework/idm/1": {
+        "sound-file": "soundpacks/sfxgroup_idm2.webm"
+    },
+    "framework/idm/2": {
+        "sound-file": "soundpacks/sfxgroup_idm3.webm"
+    },
+    "framework/idm/3": {
+        "sound-file": "soundpacks/sfxgroup_idm4.webm"
+    },
+    "framework/idm/4": {
+        "sound-file": "soundpacks/sfxgroup_idm5.webm"
+    },
+    "framework/idm/5": {
+        "sound-file": "soundpacks/sfxgroup_idm6.webm"
+    },
+    "framework/jingle/0": {
+        "sound-file": "soundpacks/sfxgroup_jingle1.webm"
+    },
+    "framework/jingle/1": {
+        "sound-file": "soundpacks/sfxgroup_jingle2.webm"
+    },
+    "framework/jingle/2": {
+        "sound-file": "soundpacks/sfxgroup_jingle3.webm"
+    },
+    "framework/jingle/3": {
+        "sound-file": "soundpacks/sfxgroup_jingle4.webm"
+    },
+    "framework/jingle/4": {
+        "sound-file": "soundpacks/sfxgroup_jingle5.webm"
+    },
+    "framework/jingle/5": {
+        "sound-file": "soundpacks/sfxgroup_jingle6.webm"
+    },
+    "framework/mallets/0": {
+        "sound-file": "soundpacks/sfxgroup_mallets1.webm"
+    },
+    "framework/mallets/1": {
+        "sound-file": "soundpacks/sfxgroup_mallets2.webm"
+    },
+    "framework/mallets/2": {
+        "sound-file": "soundpacks/sfxgroup_mallets3.webm"
+    },
+    "framework/mallets/3": {
+        "sound-file": "soundpacks/sfxgroup_mallets4.webm"
+    },
+    "framework/mallets/4": {
+        "sound-file": "soundpacks/sfxgroup_mallets5.webm"
+    },
+    "framework/mallets/5": {
+        "sound-file": "soundpacks/sfxgroup_mallets6.webm"
+    },
+    "framework/tchaik/0": {
+        "sound-file": "soundpacks/sfxgroup_tchaik1.webm"
+    },
+    "framework/tchaik/1": {
+        "sound-file": "soundpacks/sfxgroup_tchaik2.webm"
+    },
+    "framework/tchaik/2": {
+        "sound-file": "soundpacks/sfxgroup_tchaik3.webm"
+    },
+    "framework/tchaik/3": {
+        "sound-file": "soundpacks/sfxgroup_tchaik4.webm"
+    },
+    "framework/tchaik/4": {
+        "sound-file": "soundpacks/sfxgroup_tchaik5.webm"
+    },
+    "framework/tchaik/5": {
+        "sound-file": "soundpacks/sfxgroup_tchaik6.webm"
+    },
+    "framework/tower/0": {
+        "sound-file": "soundpacks/sfxgroup_tower1.webm"
+    },
+    "framework/tower/1": {
+        "sound-file": "soundpacks/sfxgroup_tower2.webm"
+    },
+    "framework/tower/2": {
+        "sound-file": "soundpacks/sfxgroup_tower3.webm"
+    },
+    "framework/tower/3": {
+        "sound-file": "soundpacks/sfxgroup_tower4.webm"
+    },
+    "framework/tower/4": {
+        "sound-file": "soundpacks/sfxgroup_tower5.webm"
+    },
+    "framework/tower/5": {
+        "sound-file": "soundpacks/sfxgroup_tower6.webm"
+    },
+    "hack-toolbox/lockscreen/active": {
+        "sound-file": "toolbox/lockscreenActive.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "hack-toolbox/lockscreen/inactive": {
+        "sound-file": "toolbox/lockscreen-nokey-louder.webm"
+    },
+    "hack-toolbox/lockscreen/open/framework.1": {
+        "sound-file": "toolbox/Lockscreen_framework_open.webm"
+    },
+    "hack-toolbox/lockscreen/open/lock.OperatingSystemApp.1": {
+        "sound-file": "toolbox/Lockscreen_System_open.webm"
+    },
+    "hack-toolbox/lockscreen/open/lock.OperatingSystemApp.2": {
+        "sound-file": "toolbox/trap_unlock_box.webm"
+    },
+    "hack-toolbox/lockscreen/open/lock.com.endlessm.Hackdex_chapter_one.1": {
+        "sound-file": "toolbox/Lockscreen_hackdex_ch1_open.webm"
+    },
+    "hack-toolbox/lockscreen/open/lock.com.endlessm.Hackdex_chapter_two.1": {
+        "sound-file": "toolbox/leviathan-unlock.webm"
+    },
+    "hack-toolbox/lockscreen/open/lock.fizzics.1": {
+        "sound-file": "toolbox/Lockscreen_fizzics1_open.webm"
+    },
+    "hack-toolbox/lockscreen/open/lock.fizzics.2": {
+        "sound-file": "toolbox/Lockscreen_fizzicsL3_open.webm"
+    },
+    "hack-toolbox/lockscreen/open/lock.fizzics.2a": {
+        "sound-file": "toolbox/Lockscreen_fizzics2A_open.webm",
+        "note": "This lockscreen doesn't exist yet."
+    },
+    "hack-toolbox/lockscreen/open/lock.fizzics.2b": {
+        "sound-file": "toolbox/Lockscreen_fizzics2B_open.webm",
+        "note": "This lockscreen doesn't exist yet."
+    },
+    "hack-toolbox/lockscreen/open/lock.lightspeed.1": {
+        "sound-file": "toolbox/lightspeed_unlock.webm"
+    },
+    "hack-toolbox/lockscreen/open/lock.sidetrack.1": {
+        "sound-file": "toolbox/sidetrack-lockscreen-main.webm"
+    },
+    "hack-toolbox/lockscreen/open/lock.sidetrack.2": {
+        "sound-file": "toolbox/sidetrack-lockscreen-topic.webm"
+    },
+    "hack-toolbox/lockscreen/open/lock.sidetrack.3": {
+        "sound-file": "toolbox/sidetrack-lockscreen-topic.webm"
+    },
+    "hack-toolbox/lockscreen/trap/alarm": {
+        "sound-file": "toolbox/trap_alarm_loop.webm",
+        "loop": true
+    },
+    "hack-toolbox/lockscreen/trap/glitch": {
+        "sound-file": "toolbox/trap_glitch.webm"
+    },
+    "hack-toolbox/minimize": {
+        "sound-file": "toolbox/minimizePanel.webm"
+    },
+    "hack-toolbox/reset/click": {
+        "sound-file": "toolbox/reset - commit.webm"
+    },
+    "hack-toolbox/topic/show": {
+        "sound-file": "toolbox/spawn appear.webm"
+    },
+    "hack-toolbox/unminimize": {
+        "sound-file": "toolbox/maximizePanel.webm"
+    },
+    "hack-toolbox/update-codeview": {
+        "sound-file": "toolbox/liveGUItoText.webm"
+    },
+    "hack-toolbox/update-gui": {
+        "sound-file": "toolbox/liveTextToGUI.webm"
+    },
+    "hackdex1/bg": {
+        "sound-file": "hackdex1/bg/roster-select.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "hackdex1/bg/characters/ada": {
+        "sound-file": "hackdex1/bg/characters/ada_aut.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "hackdex1/bg/characters/estelle": {
+        "sound-file": "common/Estelle.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "hackdex1/bg/characters/faber": {
+        "sound-file": "hackdex1/bg/characters/Maker.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "hackdex1/bg/characters/riley": {
+        "sound-file": "hackdex1/bg/characters/Rileys_song.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "hackdex1/bg/characters/saniel": {
+        "sound-file": "hackdex1/bg/characters/Saniel2.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "hackdex1/corrupted": {
+        "sound-file": "hackdex1/roster-crash.webm"
+    },
+    "hackdex1/pre-corruption": {
+        "sound-file": "common/glitch.webm"
+    },
+    "hackdex2/articles": {
+        "sound-file": "hackdex2/leviathan_articles.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "hackdex2/board": {
+        "sound-file": "hackdex2/leviathan_board.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "hackdex2/cat_purring1": {
+        "sound-file": "hackdex2/cat_purring1.webm",
+        "loop": true
+    },
+    "hackdex2/cat_purring2": {
+        "sound-file": "hackdex2/cat_purring2.webm",
+        "loop": true
+    },
+    "hackdex2/cat_purring3": {
+        "sound-file": "hackdex2/cat_purring3.webm",
+        "loop": true
+    },
+    "hackdex2/cat_screaming": {
+        "sound-file": "hackdex2/cat_screaming.webm",
+        "loop": true
+    },
+    "hackdex2/click": {
+        "sound-file": "hackdex2/timpani-start-win.webm"
+    },
+    "hackdex2/close-article": {
+        "sound-file": "hackdex2/collision_gem_get.webm"
+    },
+    "hackdex2/dobroide1": {
+        "sound-file": "hackdex2/dobroide1.webm"
+    },
+    "hackdex2/dobroide2": {
+        "sound-file": "hackdex2/dobroide2.webm"
+    },
+    "hackdex2/dobroide3": {
+        "sound-file": "hackdex2/dobroide3.webm"
+    },
+    "hackdex2/hamface_cat": {
+        "sound-file": "hackdex2/hamface_cat.webm",
+        "loop": true
+    },
+    "hackdex2/hank1": {
+        "sound-file": "hackdex2/hank1.webm"
+    },
+    "hackdex2/hank2": {
+        "sound-file": "hackdex2/hank2.webm"
+    },
+    "hackdex2/hover": {
+        "sound-file": "hackdex2/leviathan_hover.webm",
+        "loop": true
+    },
+    "hackdex2/hungry_cats": {
+        "sound-file": "hackdex2/hungry_cats.webm",
+        "loop": true
+    },
+    "hackdex2/lilpur": {
+        "sound-file": "hackdex2/lilpur.webm"
+    },
+    "lightspeed/asteroid-crash": {
+        "sound-file": "lightspeed/asteroid-crash.webm"
+    },
+    "lightspeed/asteroid-passing": {
+        "sound-file": "lightspeed/astroid-pass-faster.webm"
+    },
+    "lightspeed/astronaut-help": {
+        "sound-file": "lightspeed/astronaut-help.webm"
+    },
+    "lightspeed/astronaut-missed": {
+        "sound-file": "lightspeed/astronaut-missed.webm"
+    },
+    "lightspeed/astronaut-thanks": {
+        "sound-file": "lightspeed/astronaut-thanks.webm"
+    },
+    "lightspeed/bg/2001-hardcore": {
+        "sound-file": "lightspeed/bg/2001_hardcore.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "lightspeed/bg/level-loop1": {
+        "sound-file": "lightspeed/bg/level_loop1.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "lightspeed/bg/powerup/invulnerable": {
+        "sound-file": "lightspeed/bg/powerup/powerup_invulnerable.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "lightspeed/bg/powerup/upgrade": {
+        "sound-file": "lightspeed/bg/powerup/powerup_random.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "lightspeed/bg/zarathustra-whale": {
+        "sound-file": "lightspeed/bg/zarathustra_whale.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "lightspeed/level-complete": {
+        "sound-file": "lightspeed/level-complete.webm"
+    },
+    "lightspeed/powerup/blowup": {
+        "sound-file": "lightspeed/powerup/enemy_blowup.webm"
+    },
+    "lightspeed/powerup/invulnerable": {
+        "sound-file": "lightspeed/powerup/power_invulnerable_sfx.webm"
+    },
+    "lightspeed/powerup/upgrade": {
+        "sound-file": "lightspeed/powerup/power_upgrade_sfx.webm"
+    },
+    "lightspeed/thrust-down": {
+        "sound-file": "lightspeed/thrust-down.webm",
+        "loop": true
+    },
+    "lightspeed/thrust-up": {
+        "sound-file": "lightspeed/thrust-up.webm",
+        "loop": true
+    },
+    "lightspeed/timpani-start-win": {
+        "sound-file": "lightspeed/timpani-start-win.webm"
+    },
+    "operatingSystem/clock": {
+        "sound-file": "system/system-clock.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "operatingSystem/close": {
+        "sound-file": "system/subsystem-close.webm",
+        "overlap-behavior": "overlap"
+    },
+    "operatingSystem/cursor": {
+        "sound-file": "system/system-cursor.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "operatingSystem/daemons": {
+        "sound-file": "system/daemons.webm",
+        "loop": true,
+        "overlap-behavior": "ignore"
+    },
+    "operatingSystem/dev": {
+        "sound-file": "system/system-null.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "operatingSystem/file": {
+        "sound-file": "system/system-files.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "operatingSystem/kernel": {
+        "sound-file": "system/system-clock.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "operatingSystem/land": {
+        "sound-file": "system/speech-bubble-land.webm",
+        "overlap-behavior": "overlap"
+    },
+    "operatingSystem/memory": {
+        "sound-file": "system/system-memory.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "operatingSystem/open": {
+        "sound-file": "system/subsystem-open.webm",
+        "delay": 1250,
+        "overlap-behavior": "overlap"
+    },
+    "operatingSystem/select": {
+        "sound-file": "system/element-select.webm",
+        "overlap-behavior": "overlap"
+    },
+    "operatingSystem/system": {
+        "sound-file": "system/system-whole.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "operatingSystem/window": {
+        "sound-file": "system/system-window.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "operatingSystem/writing": {
+        "sound-file": "system/speech-bubble-writing.webm",
+        "overlap-behavior": "overlap"
+    },
+    "quests/ada-intro": {
+        "sound-file": "quests/Ada_intro.webm"
+    },
+    "quests/ada-theme-start": {
+        "sound-file": "quests/Ada.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/ada-variant-start": {
+        "sound-file": "quests/Ada_piano.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/cat-loop": {
+        "sound-file": "quests/cat-glitch-loop.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/clarifying": {
+        "sound-file": "quests/clarifying.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/device-hope": {
+        "sound-file": "quests/device-hope.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/end-sting": {
+        "sound-file": "quests/ricky_rescued.webm"
+    },
+    "quests/ep4end1": {
+        "sound-file": "quests/ep4end - 1 last level.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/ep4end2": {
+        "sound-file": "quests/ep4end - 2 stalked.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/ep4end3": {
+        "sound-file": "quests/ep4end - 3 riley escape.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/ep4end4": {
+        "sound-file": "quests/ep4end - 4 cooldown.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/ep4end5": {
+        "sound-file": "quests/ep4end - 5 AI concerns.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/episode3/activatetrap/transcoding-init/blowup": {
+        "sound-file": "quests/episode3/activatetrap/ep3-box-blowup.webm"
+    },
+    "quests/episode3/activatetrap/transcoding-init/pulse": {
+        "sound-file": "quests/episode3/activatetrap/ep3-box-pulse.webm",
+        "delay": 2300
+    },
+    "quests/episode3/activatetrap/transcoding/pulse": {
+        "sound-file": "quests/episode3/activatetrap/ep3-box-pulse.webm"
+    },
+    "quests/estelle-theme": {
+        "sound-file": "common/Estelle.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/faber-theme": {
+        "sound-file": "quests/Faber-theme.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/fob1": {
+        "sound-file": "quests/Key-fob1-glow.webm"
+    },
+    "quests/fob2": {
+        "sound-file": "quests/Key-fob2-more-glow.webm"
+    },
+    "quests/fob3": {
+        "sound-file": "quests/Key-fob1-glow.webm"
+    },
+    "quests/glitch-meow": {
+        "sound-file": "quests/cat-sfx1.webm"
+    },
+    "quests/hi-hat-start": {
+        "sound-file": "quests/hihat-sneaker.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/horse-tale": {
+        "sound-file": "quests/horse-tale.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/key-confirm": {
+        "sound-file": "quests/key_confirm.webm"
+    },
+    "quests/key-given": {
+        "sound-file": "quests/key_given_tune.webm"
+    },
+    "quests/new-icon": {
+        "sound-file": "common/juicy_button.webm"
+    },
+    "quests/pink-panther-start": {
+        "sound-file": "quests/quest_sneaky.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest-aborted": {
+        "sound-file": "common/quest_deny.webm"
+    },
+    "quests/quest-complete": {
+        "sound-file": "quests/quest_challenge_completed.webm"
+    },
+    "quests/quest-given": {
+        "sound-file": "quests/quest_accept.webm"
+    },
+    "quests/quest-march-start": {
+        "sound-file": "quests/quest_march.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest-proposed": {
+        "sound-file": "quests/quest_proposed.webm"
+    },
+    "quests/quest-unavailable": {
+        "sound-file": "quests/quest-unavailable.webm"
+    },
+    "quests/quest2-ada-hi": {
+        "sound-file": "quests/guitar-plain.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-ada-hi2": {
+        "sound-file": "quests/guitar-easy2.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-faber-conga-build": {
+        "sound-file": "quests/faber-conga-build.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-faber-make-stealth": {
+        "sound-file": "quests/faber-make-stealth.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-faber-werks": {
+        "sound-file": "quests/faber-werks.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-fabers-fizzics": {
+        "sound-file": "quests/fabers-fizzics.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-glitch": {
+        "sound-file": "common/glitch.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-riley-hi": {
+        "sound-file": "quests/guitar-easy1.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-riley-sneak": {
+        "sound-file": "quests/pink panther edit.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-saniel-chore": {
+        "sound-file": "quests/starlight.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-sneaky-hihat": {
+        "sound-file": "quests/sneaky-hihat.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-stealth-piece-get": {
+        "sound-file": "quests/stealth-piece-get.webm",
+        "overlap-behavior": "ignore",
+        "type": "sfx"
+    },
+    "quests/quest2-stealth-power-on": {
+        "sound-file": "quests/stealth-power-on.webm",
+        "loop": false,
+        "overlap-behavior": "ignore",
+        "type": "sfx"
+    },
+    "quests/quest2-unlock-gush": {
+        "sound-file": "quests/unlock gush.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-werk-before-stealth": {
+        "sound-file": "quests/werk-before-stealth.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/quest2-zarathustra-whale": {
+        "sound-file": "quests/zarathustra whale.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/reset-given": {
+        "sound-file": "quests/CollectItem_1.webm"
+    },
+    "quests/riley-intro": {
+        "sound-file": "quests/riley_intro-stinger.webm",
+        "type": "bg"
+    },
+    "quests/riley-theme": {
+        "sound-file": "quests/Rileys_song.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg",
+        "volume": 0.5
+    },
+    "quests/san-backstory": {
+        "sound-file": "quests/san-backstory.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/saniel-angry": {
+        "sound-file": "quests/saniel_angry_choir.webm"
+    },
+    "quests/saniel-intro": {
+        "sound-file": "quests/saniel-intro-stinger.webm",
+        "type": "bg"
+    },
+    "quests/saniel-theme-start": {
+        "sound-file": "quests/Saniel2.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg",
+        "volume": 0.6
+    },
+    "quests/shutdown-start": {
+        "sound-file": "quests/system_shutdown.webm",
+        "loop": true,
+        "overlap-behavior": "ignore"
+    },
+    "quests/teaching": {
+        "sound-file": "quests/teacher.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/transcoding-loop": {
+        "sound-file": "quests/transcoding-loop.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    },
+    "quests/transfer-complete": {
+        "sound-file": "quests/transfer-complete.webm"
+    },
+    "shell/tracking-button/flip-inverse/click": {
+        "sound-file": "MouseClick_Invert.webm"
+    },
+    "shell/tracking-button/flip-inverse/enter": {
+        "sound-file": "MouseEnter_Inverse.webm"
+    },
+    "shell/tracking-button/flip-inverse/hover": {
+        "sound-file": "Hover_InverseFlip.webm",
+        "fade-in": 100,
+        "fade-out": 100,
+        "volume": 0
+    },
+    "shell/tracking-button/flip/click": {
+        "sound-file": "MouseClick_Flip.webm"
+    },
+    "shell/tracking-button/flip/enter": {
+        "sound-file": "MouseEnter_Flip.webm"
+    },
+    "shell/tracking-button/flip/hover": {
+        "sound-file": "Hover_Flip.webm",
+        "fade-in": 100,
+        "fade-out": 100,
+        "volume": 0
+    },
+    "sidetrack/bg/auto_mode": {
+        "sound-file": "sidetrack/bg/bg2.webm",
+        "loop": true,
+        "type": "bg",
+        "volume": 0.6
+    },
+    "sidetrack/bg/bonus_mode": {
+        "sound-file": "sidetrack/bg/bg3.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "sidetrack/bg/lobby_loop": {
+        "sound-file": "sidetrack/bg/lobby_loop.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "sidetrack/bg/manual_mode": {
+        "sound-file": "sidetrack/bg/bg1.webm",
+        "loop": true,
+        "type": "bg"
+    },
+    "sidetrack/sfx/explosion": {
+        "sound-file": "sidetrack/sfx/explosion.webm"
+    },
+    "sidetrack/sfx/failure": {
+        "sound-file": "sidetrack/sfx/failure.webm"
+    },
+    "sidetrack/sfx/felix_smash": {
+        "sound-file": "sidetrack/sfx/felix_smash.webm"
+    },
+    "sidetrack/sfx/instruction_drag": {
+        "sound-file": "sidetrack/sfx/instruction_drag.webm"
+    },
+    "sidetrack/sfx/instruction_drop": {
+        "sound-file": "sidetrack/sfx/instruction_drop.webm"
+    },
+    "sidetrack/sfx/instruction_grab": {
+        "sound-file": "sidetrack/sfx/instruction_grab.webm"
+    },
+    "sidetrack/sfx/move_down": {
+        "sound-file": "sidetrack/sfx/move_down.webm"
+    },
+    "sidetrack/sfx/move_fwd": {
+        "sound-file": "sidetrack/sfx/move_fwd.webm"
+    },
+    "sidetrack/sfx/move_jump": {
+        "sound-file": "sidetrack/sfx/move_jump.webm"
+    },
+    "sidetrack/sfx/move_up": {
+        "sound-file": "sidetrack/sfx/move_up.webm"
+    },
+    "sidetrack/sfx/pit_fall": {
+        "sound-file": "sidetrack/sfx/failure.webm"
+    },
+    "sidetrack/sfx/push_arrive": {
+        "sound-file": "sidetrack/sfx/push_arrive.webm"
+    },
+    "sidetrack/sfx/push_default": {
+        "sound-file": "sidetrack/sfx/push_default.webm"
+    },
+    "sidetrack/sfx/push_depart": {
+        "sound-file": "sidetrack/sfx/push_depart.webm"
+    },
+    "sidetrack/sfx/robot": {
+        "sound-file": "sidetrack/sfx/robot.webm"
+    },
+    "sidetrack/sfx/start_chime": {
+        "sound-file": "sidetrack/sfx/start_chime.webm"
+    },
+    "sidetrack/sfx/success": {
+        "sound-file": "sidetrack/sfx/success.webm"
+    },
+    "sidetrack/sfx/wall_bump": {
+        "sound-file": "sidetrack/sfx/failure.webm"
+    },
+    "system/background/back": {
+        "sound-file": "system/Theater_backside.webm",
+        "loop": true
+    },
+    "system/background/front": {
+        "sound-file": "system/Theater_front.webm",
+        "loop": true,
+        "overlap-behavior": "ignore",
+        "type": "bg"
+    }
+}
