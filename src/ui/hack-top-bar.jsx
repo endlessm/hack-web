@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import clsx from 'clsx';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -16,7 +18,9 @@ import {
 } from '@material-ui/icons';
 
 
-const useStyles = makeStyles(({ palette, spacing, mixins }) => ({
+const useStyles = makeStyles(({
+  custom, palette, spacing, transitions, mixins,
+}) => ({
   appbar: {
     background: ({ isMainPage }) => {
       if (isMainPage) {
@@ -25,6 +29,14 @@ const useStyles = makeStyles(({ palette, spacing, mixins }) => ({
       const d = spacing(10);
       return `linear-gradient(to right, ${palette.primary.main} ${d}px, ${palette.background.paper} ${d}px)`;
     },
+    left: 0,
+    transition: transitions.create(['width'], {
+      easing: transitions.easing.sharp,
+      duration: transitions.duration.leavingScreen,
+    }),
+  },
+  appbarShift: {
+    width: `calc(100% - ${custom.drawerWidth}px)`,
   },
   toolbar: {
     marginTop: spacing(1),
@@ -40,9 +52,16 @@ const useStyles = makeStyles(({ palette, spacing, mixins }) => ({
 const HackTopBar = ({ title, isMainPage }) => {
   const classes = useStyles({ isMainPage });
 
+  const open = useSelector((state) => state.ui.sidePanelOpen);
+
   return (
     <Box>
-      <AppBar elevation={0} className={classes.appbar}>
+      <AppBar
+        elevation={0}
+        className={clsx(classes.appbar, {
+          [classes.appbarShift]: open,
+        })}
+      >
         <Toolbar className={classes.toolbar}>
           {!isMainPage && (
             <IconButton
