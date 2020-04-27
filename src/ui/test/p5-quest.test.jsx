@@ -49,8 +49,9 @@ const P5Quest = () => {
 
   useEffect(() => {
     const changeCallback = (params, firstTime = false) => {
-      dispatch(actions.hackableAppSet(params));
       if (firstTime && firstTimeCode) {
+        // only update the toolbox code editor the first time
+        dispatch(actions.hackableAppSet(params));
         dispatch(actions.originalHackableAppSet(params));
         setFirstTimeCode(false);
       }
