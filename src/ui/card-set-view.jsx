@@ -1,23 +1,25 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   Box,
+  ButtonBase,
   Container,
   Grid,
   makeStyles,
   Typography,
 } from '@material-ui/core';
 
+import { actions } from '../store';
 import ImageMainBg from './background.png';
 import SidePanel from './side-panel';
 import { getGoButton } from './main-button';
 import QuestFTHView from './quest-fth-view';
 import HackCard from './hack-card';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ spacing, zIndex }) => ({
   root: {
-    height: `calc(100% - ${theme.spacing(10)}px)`,
+    height: `calc(100% - ${spacing(10)}px)`,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -26,12 +28,29 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
   },
+  cardsContainer: {
+    pointerEvents: 'none',
+    zIndex: zIndex.drawer - 10,
+  },
+  backgroundButton: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: zIndex.drawer - 20,
+  },
 }));
 
 const CardSetView = ({ slug }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const cardset = useSelector((state) => state.cardsets.find((cs) => slug === cs.slug));
   const selectedCard = useSelector((state) => state.ui.cardSelected[slug]);
+
+  useEffect(() => {
+    dispatch(actions.sidePanelSetOpen());
+  }, [dispatch]);
 
   const getContent = (card) => (
     <Grid container justify="flex-start">
@@ -64,9 +83,15 @@ const CardSetView = ({ slug }) => {
     />
   );
 
+  const onBackgroundClick = () => {
+    if (selectedCard) {
+      dispatch(actions.deselectCards());
+    }
+  };
+
   const canvas = (
     <Box className={classes.root}>
-      <Container fixed maxWidth="md">
+      <Container fixed maxWidth="md" className={classes.cardsContainer}>
         <Grid container spacing={4}>
           {
             cardset.cards.map((c) => (
@@ -79,6 +104,7 @@ const CardSetView = ({ slug }) => {
           }
         </Grid>
       </Container>
+      <ButtonBase className={classes.backgroundButton} onClick={onBackgroundClick} />
     </Box>
   );
 
@@ -88,6 +114,7 @@ const CardSetView = ({ slug }) => {
       sidebar={sidebar}
       title={cardset.name}
       isMainPage={slug === '/home'}
+      disableHackButton
     />
   );
 };

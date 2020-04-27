@@ -53,6 +53,9 @@ const useStyles = makeStyles((theme) => {
     dialogueToggleButtonClosed: {
       boxShadow: 'none',
     },
+    dialogueToggleButtonDisabled: {
+      opacity: 0.5,
+    },
     toolboxToggleButton: {
       position: 'absolute',
       top: `calc(50% - ${theme.spacing(2.5)}px)`,
@@ -110,6 +113,7 @@ const useStyles = makeStyles((theme) => {
 
 const QuestFTHView = ({
   toolbox, canvas, sidebar, controls, onFlipped, sideBySide, hideControls, title, isMainPage,
+  disableHackButton,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -141,15 +145,6 @@ const QuestFTHView = ({
 
   const toggleOpen = () => {
     dispatch(actions.sidePanelToggleOpen());
-    if (open) {
-      setTimeout(() => {
-        dispatch(actions.deselectCards());
-      }, theme.transitions.duration.leavingScreen);
-    }
-  };
-
-  const onDrawerClose = () => {
-    dispatch(actions.deselectCards());
   };
 
   const toggleFlip = () => {
@@ -207,6 +202,7 @@ const QuestFTHView = ({
         elevation={6}
         className={clsx(classes.dialogueToggleButton, {
           [classes.dialogueToggleButtonClosed]: !open,
+          [classes.dialogueToggleButtonDisabled]: disableHackButton,
         })}
       >
         <Box m={1}>
@@ -216,6 +212,7 @@ const QuestFTHView = ({
             size="medium"
             onClick={toggleOpen}
             classes={{ root: classes.hackFabRoot }}
+            disabled={disableHackButton}
           >
             {open ? (
               <HackIconClose className={classes.hackIcon} />
@@ -233,7 +230,6 @@ const QuestFTHView = ({
         }}
         anchor="right"
         open={open}
-        onClose={onDrawerClose}
       >
         <Box
           display="flex"
@@ -258,6 +254,7 @@ QuestFTHView.propTypes = {
   hideControls: PropTypes.bool,
   title: PropTypes.string.isRequired,
   isMainPage: PropTypes.bool,
+  disableHackButton: PropTypes.bool,
 };
 
 QuestFTHView.defaultProps = {
@@ -267,6 +264,7 @@ QuestFTHView.defaultProps = {
   sideBySide: false,
   hideControls: true,
   isMainPage: false,
+  disableHackButton: false,
 };
 
 export default QuestFTHView;
