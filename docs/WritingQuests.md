@@ -37,6 +37,12 @@ displayed as icon buttons:
     * [👍] -> END
     * [👎] -> END
 
+## User answer
+
+The UI mimics a chat box. It's a conversation between the Hack
+characters and the user. By convention, the text right after a choice
+is the user answer, and will be presented as such.
+
 ## Rich text formatting
 
 The following HTML tags are allowed:
