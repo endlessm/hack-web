@@ -72,6 +72,7 @@ const SidetrackQuest = () => {
 
   const [firstTimeCode, setFirstTimeCode] = useState(true);
   const [appLoaded, setAppLoaded] = useState(false);
+  const [lastDialog, setLastDialog] = useState(0);
 
   const changeCallback = (params, firstTime = false) => {
     const app = document.querySelector('#app');
@@ -228,6 +229,15 @@ const SidetrackQuest = () => {
       return;
     }
 
+    // If the quest doesn't changed we shouldn't update the variables to avoid
+    // race condition with app updating the quest variables.
+    // Variables in the quest can only change if the quest advances.
+    if (quest.dialogueId === lastDialog) {
+      return;
+    }
+
+    setLastDialog(quest.dialogueId);
+
     const params = {
       currentLevel: quest.getStoryVariable('currentLevel'),
       startLevel: quest.getStoryVariable('startLevel'),
@@ -239,7 +249,7 @@ const SidetrackQuest = () => {
       escapeCutscene: quest.getStoryVariable('escapeCutscene'),
     };
     updateApp('globalParameters', params);
-  }, [quest, dialogue, appLoaded]);
+  }, [appLoaded, lastDialog, quest, dialogue]);
 
   const toolbox = <Toolbox />;
 
