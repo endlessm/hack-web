@@ -18,13 +18,14 @@ const useStyles = makeStyles(({ transitions }) => ({
     // Note, the following sizes are intentionally hardcoded to fit
     // the assets.
     borderRadius: '0 60px 60px 0',
-    width: '96px',
+    width: '66px',
     height: '124px',
     boxShadow: 'none',
     transition: transitions.create(['background-image'], {
       easing: transitions.easing.easeInOut,
       duration: transitions.duration.short,
     }),
+    backgroundPosition: 'right',
     backgroundImage: `url('${flipFrontNormal}')`,
     backgroundColor: 'transparent',
     '&:hover': {
