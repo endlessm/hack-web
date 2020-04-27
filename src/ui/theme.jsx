@@ -9,6 +9,8 @@ const colors = {
   messageLink: '#3584E4',
 };
 
+const defaultTheme = createMuiTheme();
+
 const theme = createMuiTheme({
   transitions: {
     duration: {
@@ -38,6 +40,8 @@ const theme = createMuiTheme({
     flipToHackPerspective: 1000,
     landingTitleGradientDirection: 270,
     chatMessageMaxWidth: '90%',
+    // Fill 3 of 12 columns in XL screen size:
+    drawerWidth: defaultTheme.breakpoints.values.xl * 0.25,
   },
 });
 
