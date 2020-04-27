@@ -1,3 +1,6 @@
+VAR flipped = 0
+VAR attractFTH = 0
+
 VAR currentLevel = 1
 VAR startLevel = 1
 VAR highestAchievedLevel = 1
