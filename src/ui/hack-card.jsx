@@ -15,7 +15,7 @@ import { actions } from '../store';
 import { cardSetType, cardType } from './types';
 import { getGoButton } from './main-button';
 
-const defaultImage = '/assets/cards/default-card.svg';
+const defaultImage = '/assets/cards/default-card.png';
 
 const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
   root: {
