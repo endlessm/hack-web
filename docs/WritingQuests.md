@@ -134,4 +134,9 @@ For example:
 ## Recommendations
 
 - You should use at most 3 choices. The UI is optimized for that.
+
 - Emoji choices should go after "normal text" choices.
+
+- Make it interactive! Add a choice once in a while, even if the quest
+  is linear, one message after the other. Otherwise the text will
+  scroll to the last message, leaving the first one out of sight.
