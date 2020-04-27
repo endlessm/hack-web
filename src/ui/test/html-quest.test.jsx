@@ -39,9 +39,9 @@ const HtmlQuest = () => {
 
   useEffect(() => {
     const changeCallback = (params, firstTime = false) => {
-      window.hack = store;
-      dispatch(actions.hackableAppSet(params));
       if (firstTime && firstTimeCode) {
+        // only update the toolbox code editor the first time
+        dispatch(actions.hackableAppSet(params));
         dispatch(actions.originalHackableAppSet(params));
         setFirstTimeCode(false);
       }
