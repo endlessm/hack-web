@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import {
 } from '@material-ui/core';
@@ -70,143 +70,147 @@ const SidetrackQuest = () => {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
 
-  const [firstTimeCode, setFirstTimeCode] = useState(true);
-  const [appLoaded, setAppLoaded] = useState(false);
   const [lastDialog, setLastDialog] = useState(0);
   const [attractFTH, setAttractFTH] = useState(false);
 
-  const changeCallback = (params, firstTime = false) => {
-    const app = document.querySelector('#app');
+  const questRef = useRef(quest);
 
-    const level = app.contentWindow[`globalLevel${params.currentLevel}Parameters`];
-    const code = {
-      instructionCode: level.instructionCode,
-      levelCode: level.levelCode,
-      robotADirection: level.robotADirection,
-      robotBDirection: level.robotBDirection,
-    };
-    const state = { ...params, ...code };
-    dispatch(actions.hackableAppSet(state));
-    if (firstTime && firstTimeCode) {
-      dispatch(actions.originalHackableAppSet(state));
-      setFirstTimeCode(false);
-    }
-
-    // Expose some game variables to the quest
-    let questUpdated = false;
-    if (params.currentLevel !== quest.getStoryVariable('currentLevel')) {
-      quest.updateStoryVariable('currentLevel', params.currentLevel);
-      questUpdated = true;
-    }
-    if (params.success !== Boolean(quest.getStoryVariable('success'))) {
-      quest.updateStoryVariable('success', params.success);
-      questUpdated = true;
-    }
-    if (params.playing !== Boolean(quest.getStoryVariable('playing'))) {
-      quest.updateStoryVariable('playing', params.playing);
-      questUpdated = true;
-    }
-    if (params.controlsCutscene !== Boolean(quest.getStoryVariable('controlsCutscene'))) {
-      quest.updateStoryVariable('controlsCutscene', params.controlsCutscene);
-      questUpdated = true;
-    }
-    if (params.escapeCutscene !== Boolean(quest.getStoryVariable('escapeCutscene'))) {
-      quest.updateStoryVariable('escapeCutscene', params.escapeCutscene);
-      questUpdated = true;
-    }
-
-    // Only update quest if some variable changes, to avoid infinite loop
-    if (questUpdated) {
-      setCurrentChoice(undefined);
-    }
-  };
-
-  const loadState = () => {
-    const app = document.querySelector('#app');
-    if (!app.contentWindow.loadState) {
-      setTimeout(loadState, 500);
-      return;
-    }
-
-    // fake ToyApp
-    app.contentWindow.ToyApp = {
-      isHackMode: true,
-      runningQuest: true,
-      showClubhouse: () => {},
-      saveState: () => {},
-      requestState: () => {},
-      loadNotify: () => {},
-    };
-
-    // preload all sounds
-    SidetrackSounds.forEach((s) => {
-      const sound = SoundsMeta[s];
-      const soundFile = sound['sound-file'];
-      const audio = new Audio(`/apps/sounds/${soundFile}`);
-      audio.setAttribute('id', s);
-      if (sound.volume) {
-        audio.volume = sound.volume;
+  useEffect(() => {
+    const updateQuestVariables = (params) => {
+      const currentQuest = questRef.current;
+      // Expose some game variables to the quest
+      let questUpdated = false;
+      if (params.currentLevel !== currentQuest.getStoryVariable('currentLevel')) {
+        currentQuest.updateStoryVariable('currentLevel', params.currentLevel);
+        questUpdated = true;
       }
-      app.contentDocument.body.appendChild(audio);
-    });
+      if (params.success !== Boolean(currentQuest.getStoryVariable('success'))) {
+        currentQuest.updateStoryVariable('success', params.success);
+        questUpdated = true;
+      }
+      if (params.playing !== Boolean(currentQuest.getStoryVariable('playing'))) {
+        currentQuest.updateStoryVariable('playing', params.playing);
+        questUpdated = true;
+      }
+      if (params.controlsCutscene !== Boolean(currentQuest.getStoryVariable('controlsCutscene'))) {
+        currentQuest.updateStoryVariable('controlsCutscene', params.controlsCutscene);
+        questUpdated = true;
+      }
+      if (params.escapeCutscene !== Boolean(currentQuest.getStoryVariable('escapeCutscene'))) {
+        currentQuest.updateStoryVariable('escapeCutscene', params.escapeCutscene);
+        questUpdated = true;
+      }
 
-    app.contentWindow.Sounds = {
-      getSound: (sound) => {
-        const audio = app.contentDocument.getElementById(sound);
-        return audio;
-      },
-      play: (sound) => {
-        const audio = app.contentWindow.Sounds.getSound(sound);
-        audio.currentTime = 0;
-        audio.play();
-      },
-      stop: (sound) => {
-        const audio = app.contentWindow.Sounds.getSound(sound);
-        audio.pause();
-        audio.currentTime = 0;
-      },
-      playLoop: (sound) => {
-        const audio = app.contentWindow.Sounds.getSound(sound);
-        audio.setAttribute('loop', 'true');
-        audio.currentTime = 0;
-        audio.play();
-      },
+      // Only update quest if some variable changes, to avoid infinite loop
+      if (questUpdated) {
+        setCurrentChoice(undefined);
+      }
     };
 
-    // fake pauseToyApp
-    app.contentWindow.wakeScenes = () => {};
-    app.contentWindow.sleepScenes = () => {};
-    app.contentWindow.needHackScreen = () => {};
-    app.contentWindow.hideNeedHackScreen = () => {};
-    app.contentWindow.clearSleepTimer = () => {};
+    const changeCallback = (params, firstTime = false) => {
+      const app = document.querySelector('#app');
 
-    // center vertically
-    app.contentDocument.body.style.height = '100vh';
+      if (!app) {
+        return;
+      }
 
-    app.contentWindow.loadState();
+      const level = app.contentWindow[`globalLevel${params.currentLevel}Parameters`];
 
-    // starting at level defined on the quest
-    const highestAchievedLevel = quest.getStoryVariable('highestAchievedLevel');
-    const availableLevels = quest.getStoryVariable('availableLevels');
-    const startLevel = quest.getStoryVariable('startLevel');
-    // TODO: remove this timeout or show feedback to the user
-    setTimeout(() => {
-      app.contentWindow.globalParameters.highestAchievedLevel = highestAchievedLevel;
-      app.contentWindow.globalParameters.availableLevels = availableLevels;
-      app.contentWindow.globalParameters.startLevel = startLevel;
-      setAppLoaded(true);
-    }, 5000);
-  };
+      const code = {
+        instructionCode: level.instructionCode,
+        levelCode: level.levelCode,
+        robotADirection: level.robotADirection,
+        robotBDirection: level.robotBDirection,
+      };
+      const state = { ...params, ...code };
+      dispatch(actions.hackableAppSet(state));
+      if (firstTime) {
+        dispatch(actions.originalHackableAppSet(state));
+      } else {
+        updateQuestVariables(params);
+      }
+    };
 
-  useEffect(() => {
+    const loadState = () => {
+      const app = document.querySelector('#app');
+
+      const { readyState } = app.contentDocument;
+      if (readyState !== 'complete' || !app.contentWindow.loadState) {
+        setTimeout(loadState, 500);
+        return;
+      }
+
+      // fake ToyApp
+      app.contentWindow.ToyApp = {
+        isHackMode: true,
+        runningQuest: true,
+        showClubhouse: () => {},
+        saveState: () => {},
+        requestState: () => {},
+        loadNotify: () => {},
+      };
+
+      // preload all sounds
+      SidetrackSounds.forEach((s) => {
+        const sound = SoundsMeta[s];
+        const soundFile = sound['sound-file'];
+        const audio = new Audio(`/apps/sounds/${soundFile}`);
+        audio.setAttribute('id', s);
+        if (sound.volume) {
+          audio.volume = sound.volume;
+        }
+        app.contentDocument.body.appendChild(audio);
+      });
+
+      app.contentWindow.Sounds = {
+        getSound: (sound) => {
+          const audio = app.contentDocument.getElementById(sound);
+          return audio;
+        },
+        play: (sound) => {
+          const audio = app.contentWindow.Sounds.getSound(sound);
+          audio.currentTime = 0;
+          audio.play();
+        },
+        stop: (sound) => {
+          const audio = app.contentWindow.Sounds.getSound(sound);
+          audio.pause();
+          audio.currentTime = 0;
+        },
+        playLoop: (sound) => {
+          const audio = app.contentWindow.Sounds.getSound(sound);
+          audio.setAttribute('loop', 'true');
+          audio.currentTime = 0;
+          audio.play();
+        },
+      };
+
+      // fake pauseToyApp
+      app.contentWindow.wakeScenes = () => {};
+      app.contentWindow.sleepScenes = () => {};
+      app.contentWindow.needHackScreen = () => {};
+      app.contentWindow.hideNeedHackScreen = () => {};
+      app.contentWindow.clearSleepTimer = () => {};
+
+      // center vertically
+      app.contentDocument.body.style.height = '100vh';
+
+      const currentQuest = questRef.current;
+      // starting at level defined on the quest
+      const state = {
+        highestAchievedLevel: currentQuest.getStoryVariable('highestAchievedLevel'),
+        availableLevels: currentQuest.getStoryVariable('availableLevels'),
+        levelParameters: [],
+      };
+      app.contentWindow.loadState(state);
+
+      setLastDialog(currentQuest.dialogueId);
+    };
+
     // Creates a proxy to track iframe globalParameters
-    if (firstTimeCode) {
-      proxyApp('globalParameters', changeCallback);
-      loadState();
-    }
-  });
+    proxyApp('globalParameters', changeCallback);
+    loadState();
 
-  useEffect(() => {
     const handleChange = () => {
       const params = store.getState().hackableApp;
       const currentLevel = {
@@ -222,37 +226,32 @@ const SidetrackQuest = () => {
       });
     };
     return store.subscribe(handleChange);
-  });
+  }, [dispatch, setCurrentChoice]);
 
   // Update the app when the quest changes some variable
   useEffect(() => {
-    if (!appLoaded) {
-      return;
-    }
+    const currentQuest = questRef.current;
 
     // If the quest doesn't changed we shouldn't update the variables to avoid
     // race condition with app updating the quest variables.
     // Variables in the quest can only change if the quest advances.
-    if (quest.dialogueId === lastDialog) {
+    if (currentQuest.dialogueId === lastDialog) {
       return;
     }
 
-    setLastDialog(quest.dialogueId);
+    setLastDialog(currentQuest.dialogueId);
 
     const params = {
-      currentLevel: quest.getStoryVariable('currentLevel'),
-      startLevel: quest.getStoryVariable('startLevel'),
-      highestAchievedLevel: quest.getStoryVariable('highestAchievedLevel'),
-      availableLevels: quest.getStoryVariable('availableLevels'),
-      success: quest.getStoryVariable('success'),
-      playing: quest.getStoryVariable('playing'),
-      controlsCutscene: quest.getStoryVariable('controlsCutscene'),
-      escapeCutscene: quest.getStoryVariable('escapeCutscene'),
+      startLevel: currentQuest.getStoryVariable('startLevel'),
+      highestAchievedLevel: currentQuest.getStoryVariable('highestAchievedLevel'),
+      availableLevels: currentQuest.getStoryVariable('availableLevels'),
+      controlsCutscene: currentQuest.getStoryVariable('controlsCutscene'),
+      escapeCutscene: currentQuest.getStoryVariable('escapeCutscene'),
     };
     updateApp('globalParameters', params);
 
-    setAttractFTH(Boolean(quest.getStoryVariable('attractFTH')));
-  }, [appLoaded, lastDialog, quest, dialogue]);
+    setAttractFTH(Boolean(currentQuest.getStoryVariable('attractFTH')));
+  }, [lastDialog, dialogue]);
 
   const toolbox = <Toolbox />;
 
