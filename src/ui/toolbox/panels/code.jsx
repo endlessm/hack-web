@@ -84,6 +84,7 @@ const CodePanel = ({
       name="editor"
       editorProps={{ $blockScrolling: true }}
       wrapEnabled
+      fontSize={14}
     />
   );
 };
