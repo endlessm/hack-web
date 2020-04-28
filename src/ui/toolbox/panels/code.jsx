@@ -83,6 +83,7 @@ const CodePanel = ({
       onChange={build}
       name="editor"
       editorProps={{ $blockScrolling: true }}
+      wrapEnabled
     />
   );
 };
