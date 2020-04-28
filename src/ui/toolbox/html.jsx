@@ -41,7 +41,7 @@ const TOOLBOX = {
 };
 
 const Toolbox = () => (
-  <DynToolbox toolbox={TOOLBOX} xs={11} />
+  <DynToolbox toolbox={TOOLBOX} xs={12} />
 );
 
 export default Toolbox;
