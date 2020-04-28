@@ -56,7 +56,7 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
   },
   cardActions: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     paddingBottom: 0,
     paddingLeft: 0,
     paddingRight: 0,
