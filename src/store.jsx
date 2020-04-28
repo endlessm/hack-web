@@ -181,8 +181,45 @@ const initialState = {
     {
       slug: '/t2',
       name: 'T2 Games',
-      description: 'This is a category description.',
-      cards: dummyCards,
+      description: 'Terminal Two is another branch of Endless, focused on delivering educational games. Journey through their worlds, hacking futuristic cities, discovering ancient ruins, and exploring alien planets!',
+      cards: [
+        {
+          slug: 't2-01',
+          href: 'https://terminaltwo.com/hourofcode/whitehouse',
+          name: 'White House',
+          subtitle: '',
+          description: 'Using the magic of CSS, hack your world into a unique burst of color and light revealing hidden objects and clues.',
+        },
+        {
+          slug: 't2-02',
+          href: 'https://terminaltwo.com/hourofcode/aqueducts',
+          name: 'Aqueducts',
+          subtitle: '',
+          description: 'All the water has disappeared from your village and it\'s up to you to save the day! Go on an adventure to connect the water pipes and bring water back to your village.',
+        },
+        {
+          slug: 't2-03',
+          href: 'https://terminaltwo.com/hourofcode/frogsquash',
+          name: 'FrogSquash',
+          subtitle: '',
+          description: 'Dodge arrows, saws, and fire balls without getting squashed! Choose from eight different animals to cross these perilous roads. Hack your animals and go farther than ever before!',
+        },
+        {
+          slug: 't2-04',
+          // FIXME, set correct link:
+          href: 'https://hack-computer.com/',
+          name: 'The Maze',
+          subtitle: '',
+          description: 'Description: You have landed on an alien planet in a pocket universe and must find a way to escape so you can continue on your journey. Learn and use new programming concepts to hack your way to victory.',
+        },
+        {
+          slug: 't2-05',
+          href: 'https://terminaltwo.com/hourofcode/ovumcity',
+          name: 'Ovum City',
+          subtitle: '',
+          description: 'Can you control the chaos? Hack your way into the cyberpunk world of Ovum City. Debug broken code, solve puzzles, and upgrade your hardware as you explore this open world. Don\'t get caught by the drones! It\'s up to you how Ovum City evolves.',
+        },
+      ],
     },
   ],
   hackableApp: {},
