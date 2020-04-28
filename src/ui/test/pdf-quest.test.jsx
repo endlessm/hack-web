@@ -203,6 +203,7 @@ const PdfQuest = () => {
       sidebar={sidebar}
       controls={controls}
       title={card.name}
+      subtitle={card.subtitle}
     />
   );
 };

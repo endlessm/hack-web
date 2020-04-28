@@ -130,6 +130,7 @@ const P5Quest = () => {
       hideControls={false}
       sideBySide
       title={card.name}
+      subtitle={card.subtitle}
     />
   );
 };
