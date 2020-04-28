@@ -13,7 +13,7 @@ import {
 import { actions } from '../store';
 import ImageMainBg from './background.png';
 import SidePanel from './side-panel';
-import { getGoButton } from './main-button';
+import { GoButton } from './main-button';
 import QuestFTHView from './quest-fth-view';
 import HackCard from './hack-card';
 
@@ -77,7 +77,7 @@ const CardSetView = ({ slug }) => {
   const sidebar = (
     <SidePanel
       content={selectedCard ? getContent(selectedCard) : emptyContent}
-      buttons={selectedCard ? getGoButton(selectedCard) : null}
+      buttons={selectedCard ? <GoButton card={selectedCard} /> : null}
       card={selectedCard}
       expanded
     />

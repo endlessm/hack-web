@@ -6,6 +6,8 @@ import {
   withStyles,
 } from '@material-ui/core';
 
+import { cardType } from './types';
+
 const MainButton = withStyles(({ palette, spacing }) => ({
   root: {
     color: palette.primary.contrastText,
@@ -43,7 +45,7 @@ const MainIconButton = withStyles(({
   },
 }))(IconButton);
 
-const getGoButton = (card) => {
+const GoButton = ({ card }) => {
   // If card has href, it is an external link:
   if (card.href) {
     return (
@@ -71,6 +73,10 @@ const getGoButton = (card) => {
   );
 };
 
+GoButton.propTypes = {
+  card: cardType.isRequired,
+};
+
 export {
-  MainButton, MainIconButton, getGoButton,
+  MainButton, MainIconButton, GoButton,
 };

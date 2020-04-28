@@ -13,7 +13,7 @@ import {
 
 import { actions } from '../store';
 import { cardSetType, cardType } from './types';
-import { getGoButton } from './main-button';
+import { GoButton } from './main-button';
 
 const defaultImage = '/assets/cards/default-card.png';
 
@@ -114,7 +114,7 @@ const HackCard = ({ card, cardset }) => {
               { card.subtitle }
             </Typography>
             <CardActions className={classes.cardActions}>
-              {getGoButton(card)}
+              <GoButton card={card} />
             </CardActions>
           </Box>
         </CardContent>
