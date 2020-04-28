@@ -73,6 +73,7 @@ const SidetrackQuest = () => {
   const [firstTimeCode, setFirstTimeCode] = useState(true);
   const [appLoaded, setAppLoaded] = useState(false);
   const [lastDialog, setLastDialog] = useState(0);
+  const [attractFTH, setAttractFTH] = useState(false);
 
   const changeCallback = (params, firstTime = false) => {
     const app = document.querySelector('#app');
@@ -249,6 +250,8 @@ const SidetrackQuest = () => {
       escapeCutscene: quest.getStoryVariable('escapeCutscene'),
     };
     updateApp('globalParameters', params);
+
+    setAttractFTH(Boolean(quest.getStoryVariable('attractFTH')));
   }, [appLoaded, lastDialog, quest, dialogue]);
 
   const toolbox = <Toolbox />;
@@ -265,6 +268,11 @@ const SidetrackQuest = () => {
   const onRestartSelected = () => {
     // TODO: Bring the app and toolbox to the initial state.
     restartQuest();
+  };
+
+  const onFlipped = (f) => {
+    quest.updateStoryVariable('flipped', f);
+    setCurrentChoice(undefined);
   };
 
   const sidebar = (
@@ -285,6 +293,8 @@ const SidetrackQuest = () => {
         canvas={canvas}
         sidebar={sidebar}
         title={card.name}
+        attractFTH={attractFTH}
+        onFlipped={onFlipped}
       />
     </TestWrapper>
   );

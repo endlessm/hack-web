@@ -18,13 +18,14 @@ const useStyles = makeStyles(({ transitions }) => ({
     // Note, the following sizes are intentionally hardcoded to fit
     // the assets.
     borderRadius: '0 60px 60px 0',
-    width: '96px',
+    width: '66px',
     height: '124px',
     boxShadow: 'none',
     transition: transitions.create(['background-image'], {
       easing: transitions.easing.easeInOut,
       duration: transitions.duration.short,
     }),
+    backgroundPosition: 'right',
     backgroundImage: `url('${flipFrontNormal}')`,
     backgroundColor: 'transparent',
     '&:hover': {
@@ -44,35 +45,68 @@ const useStyles = makeStyles(({ transitions }) => ({
       backgroundImage: `url('${flipBackDimmed}')`,
     },
   },
+  glow: {
+    // Note, the following sizes are intentionally hardcoded to fit
+    // the assets.
+    width: '0px',
+    height: '0px',
+    marginTop: 124 / 2,
+    animation: '$glow 1s alternate infinite',
+  },
+
+  '@keyframes glow': {
+    from: {
+      boxShadow: '0 0 0 0px rgba(255, 255, 255, 0.4);',
+    },
+    to: {
+      boxShadow: `
+        0 0 60px 20px #fff,  /* inner white */
+        0 0 100px 50px #f0f, /* middle magenta */
+        0 0 140px 70px #0ff; /* outer cyan */
+      `,
+    },
+  },
 }));
 
-const FTHButton = ({ className, flipped, ...props }) => {
+const FTHButton = ({
+  className,
+  flipped,
+  attracting,
+  ...props
+}) => {
   FTHButton.muiName = Fab.muiName;
   const classes = useStyles();
 
   return (
-    <Fab
-      color="secondary"
-      aria-label="open toolbox"
-      edge="end"
-      size="medium"
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-      className={clsx(className, classes.fthButton, {
-        [classes.fthButtonFlipped]: flipped,
-      })}
-    />
+    <>
+      { attracting && (
+        <div className={clsx(className, classes.glow)} />
+      )}
+      <Fab
+        color="secondary"
+        aria-label="open toolbox"
+        edge="end"
+        size="medium"
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+        className={clsx(className, classes.fthButton, {
+          [classes.fthButtonFlipped]: flipped,
+        })}
+      />
+    </>
   );
 };
 
 FTHButton.propTypes = {
   className: PropTypes.string,
   flipped: PropTypes.bool,
+  attracting: PropTypes.bool,
 };
 
 FTHButton.defaultProps = {
   className: '',
   flipped: false,
+  attracting: false,
 };
 
 export default FTHButton;
