@@ -42,6 +42,7 @@ const theme = createMuiTheme({
     chatMessageMaxWidth: '90%',
     // Fill 3 of 12 columns in XL screen size:
     drawerWidth: defaultTheme.breakpoints.values.xl * 0.25,
+    appBarHeight: defaultTheme.spacing(10),
   },
 });
 
