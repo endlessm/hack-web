@@ -14,6 +14,7 @@ import questContent from './sidetrack-quest.ink';
 import store, { actions } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
 import Toolbox from '../toolbox/sidetrack';
+import LockScreen from '../toolbox/lockscreen';
 
 import SoundsMeta from '../../../apps/sounds/metadata.json';
 
@@ -51,15 +52,13 @@ const SidetrackSounds = [
   'sidetrack/sfx/success',
 ];
 
-const useStyles = makeStyles({
-  root: {
-  },
+const useStyles = makeStyles(({ custom }) => ({
   frame: {
     width: '100%',
-    height: '100vh',
+    height: `calc(100vh - ${custom.appBarHeight}px)`,
     border: 'none',
   },
-});
+}));
 
 const SidetrackQuest = () => {
   const classes = useStyles();
@@ -72,6 +71,9 @@ const SidetrackQuest = () => {
 
   const [lastDialog, setLastDialog] = useState(0);
   const [attractFTH, setAttractFTH] = useState(false);
+
+  const [hasLockKey, setHasLockKey] = useState(false);
+  const [isLocked, setIsLocked] = useState(true);
 
   const questRef = useRef(quest);
   const appRef = useRef(null);
@@ -261,9 +263,23 @@ const SidetrackQuest = () => {
     updateApp('globalParameters', params);
 
     setAttractFTH(Boolean(currentQuest.getStoryVariable('attractFTH')));
+    setHasLockKey(Boolean(currentQuest.getStoryVariable('hasLockKey')));
   }, [lastDialog, dialogue]);
 
-  const toolbox = <Toolbox />;
+  const onUnlock = () => {
+    setIsLocked(false);
+  };
+
+  const toolbox = (
+    <LockScreen
+      screen="lock.sidetrack.1"
+      locked={isLocked}
+      hasKey={hasLockKey}
+      onUnlock={onUnlock}
+    >
+      <Toolbox />
+    </LockScreen>
+  );
 
   const canvas = (
     <iframe

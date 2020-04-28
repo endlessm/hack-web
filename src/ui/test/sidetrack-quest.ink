@@ -18,6 +18,8 @@ VAR playing = 1
 VAR controlsCutscene = 0
 VAR escapeCutscene = 0
 
+VAR hasLockKey = 0
+
 -> begin
 
 ===function get_user_name===
