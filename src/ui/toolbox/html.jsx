@@ -33,6 +33,7 @@ const TOOLBOX = {
           code: regenerateCode,
           compile: compileCode,
           buildDelay: 500,
+          fullHeight: true,
         },
       ],
     },
