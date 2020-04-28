@@ -80,11 +80,11 @@ ToolBoxGrid.propTypes = {
 
 const DynToolbox = ({
   toolbox,
-  width,
+  xs,
 }) => (
   <ThemeProvider theme={ToolboxTheme}>
     <Grid container spacing={0}>
-      <Grid item xs={width}>
+      <Grid item xs={xs}>
         <ToolBoxGrid toolbox={toolbox} />
       </Grid>
     </Grid>
@@ -93,11 +93,11 @@ const DynToolbox = ({
 
 DynToolbox.propTypes = {
   toolbox: PropTypes.shape({ tabs: PropTypes.arrayOf(TabType) }).isRequired,
-  width: PropTypes.number,
+  xs: PropTypes.number,
 };
 
 DynToolbox.defaultProps = {
-  width: 8,
+  xs: 8,
 };
 
 export default DynToolbox;
