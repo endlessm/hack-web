@@ -26,9 +26,6 @@ import HackIconOpen from './hack-icon-open.svg';
 import HackIconClose from './hack-icon-close.svg';
 
 const useStyles = makeStyles((theme) => {
-  // Fill 3 of 12 columns in XL screen size:
-  const drawerWidth = theme.breakpoints.values.xl * 0.25;
-
   const marginTransition = theme.transitions.create(['opacity', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -70,24 +67,24 @@ const useStyles = makeStyles((theme) => {
     },
     controlsContainerShift: {
       transition: marginTransitionShift,
-      marginRight: drawerWidth + theme.spacing(2),
+      marginRight: theme.custom.drawerWidth + theme.spacing(2),
     },
     controlsContainerVisible: {
       transition: marginTransitionShift,
       opacity: 1,
     },
     drawer: {
-      width: drawerWidth,
+      width: theme.custom.drawerWidth,
       flexShrink: 0,
     },
     drawerPaper: {
-      width: drawerWidth,
+      width: theme.custom.drawerWidth,
     },
     content: {
       overflow: 'hidden',
       flexGrow: 1,
       transition: marginTransition,
-      marginRight: -drawerWidth,
+      marginRight: -theme.custom.drawerWidth,
       height: '100%',
     },
     contentShift: {
