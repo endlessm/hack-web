@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
+import clsx from 'clsx';
 import {
   Box,
   Grid,
@@ -14,9 +14,18 @@ import GridTabPanel from './panels/gridtab';
 import { TabType } from './panels/types';
 import ToolboxTheme from './theme';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ spacing, toolbox }) => ({
   root: {
-    backgroundImage: theme.toolbox.backgroundImage,
+    backgroundImage: toolbox.backgroundImage,
+  },
+  toolboxTab: {
+    width: spacing(10),
+  },
+  toolboxTabContent: {
+    width: `calc(100% - ${spacing(10)}px)`,
+  },
+  toolboxTabContentSingle: {
+    width: '100%',
   },
 }));
 
@@ -29,10 +38,10 @@ const ToolBoxGrid = ({
   const showTabs = toolbox.tabs.length > 1;
 
   return (
-    <Box className={classes.root} height="100vh" overflow="auto" p={3}>
-      <Grid container spacing={1}>
+    <Box className={classes.root} height="100vh" overflow="auto">
+      <Grid container>
         { showTabs && (
-          <Grid item xs={3}>
+          <Grid className={classes.toolboxTab}>
             <Box boxShadow={4} bgcolor={ToolboxTheme.toolbox.colors.tabBackground}>
               <Tabs
                 orientation="vertical"
@@ -50,7 +59,12 @@ const ToolBoxGrid = ({
           </Grid>
         )}
 
-        <Grid item xs={showTabs ? 9 : 12}>
+        <Grid
+          item
+          className={clsx(classes.toolboxTabContent, {
+            [classes.toolboxTabContentSingle]: !showTabs,
+          })}
+        >
           { toolbox.tabs.map(({ name, grid }, index) => (
             <GridTabPanel key={name} index={index} tab={tab} grid={grid} />
           ))}
