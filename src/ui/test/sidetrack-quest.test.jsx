@@ -74,6 +74,13 @@ const SidetrackQuest = () => {
   const [attractFTH, setAttractFTH] = useState(false);
 
   const questRef = useRef(quest);
+  const appRef = useRef(null);
+
+  const focusApp = () => {
+    if (appRef.current) {
+      appRef.current.focus();
+    }
+  };
 
   useEffect(() => {
     const updateQuestVariables = (params) => {
@@ -108,7 +115,7 @@ const SidetrackQuest = () => {
     };
 
     const changeCallback = (params, firstTime = false) => {
-      const app = document.querySelector('#app');
+      const app = appRef.current;
 
       if (!app) {
         return;
@@ -132,7 +139,7 @@ const SidetrackQuest = () => {
     };
 
     const loadState = () => {
-      const app = document.querySelector('#app');
+      const app = appRef.current;
 
       const { readyState } = app.contentDocument;
       if (readyState !== 'complete' || !app.contentWindow.loadState) {
@@ -225,6 +232,9 @@ const SidetrackQuest = () => {
         changeCallback(params);
       });
     };
+
+    focusApp();
+
     return store.subscribe(handleChange);
   }, [dispatch, setCurrentChoice]);
 
@@ -258,6 +268,7 @@ const SidetrackQuest = () => {
   const canvas = (
     <iframe
       id="app"
+      ref={appRef}
       title="Fizzics App"
       className={classes.frame}
       src="/apps/hack-toy-apps/com.hack_computer.Sidetrack/app/index.html"
