@@ -17,7 +17,9 @@ import { GoButton } from './main-button';
 import QuestFTHView from './quest-fth-view';
 import HackCard from './hack-card';
 
-const useStyles = makeStyles(({ spacing, zIndex }) => ({
+const useStyles = makeStyles(({
+  breakpoints, custom, spacing, zIndex,
+}) => ({
   root: {
     height: `calc(100% - ${spacing(10)}px)`,
     display: 'flex',
@@ -30,7 +32,16 @@ const useStyles = makeStyles(({ spacing, zIndex }) => ({
   },
   cardsContainer: {
     pointerEvents: 'none',
-    zIndex: zIndex.drawer - 10,
+    zIndex: zIndex.appBar - 10,
+    [breakpoints.down('md')]: {
+      maxWidth: custom.cardSizes.downMd.containerWidth,
+    },
+    [breakpoints.only('lg')]: {
+      maxWidth: custom.cardSizes.onlyLg.containerWidth,
+    },
+    [breakpoints.only('xl')]: {
+      maxWidth: custom.cardSizes.onlyXl.containerWidth,
+    },
   },
   backgroundButton: {
     backgroundColor: 'transparent',
@@ -38,7 +49,7 @@ const useStyles = makeStyles(({ spacing, zIndex }) => ({
     top: 0,
     width: '100%',
     height: '100%',
-    zIndex: zIndex.drawer - 20,
+    zIndex: zIndex.appBar - 20,
   },
 }));
 
@@ -94,14 +105,12 @@ const CardSetView = ({ slug }) => {
 
   const canvas = (
     <Box className={classes.root}>
-      <Container fixed maxWidth="md" className={classes.cardsContainer}>
+      <Container fixed className={classes.cardsContainer}>
         <Grid container spacing={4}>
           {
             cardset.cards.map((c) => (
-              <Grid key={c.slug} item xs={4}>
-                <Container>
-                  <HackCard cardset={cardset} card={c} />
-                </Container>
+              <Grid key={c.slug} item xs={12} md={4}>
+                <HackCard cardset={cardset} card={c} />
               </Grid>
             ))
           }

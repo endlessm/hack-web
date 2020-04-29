@@ -43,6 +43,23 @@ const theme = createMuiTheme({
     // Fill 3 of 12 columns in XL screen size:
     drawerWidth: defaultTheme.breakpoints.values.xl * 0.25,
     appBarHeight: defaultTheme.spacing(10),
+    cardSizes: {
+      downMd: {
+        width: defaultTheme.spacing(14),
+        height: defaultTheme.spacing(21),
+        containerWidth: defaultTheme.spacing(14) * 3 + defaultTheme.spacing(8) * 2,
+      },
+      onlyLg: {
+        width: defaultTheme.spacing(18.5),
+        height: defaultTheme.spacing(28),
+        containerWidth: defaultTheme.spacing(18.5) * 3 + defaultTheme.spacing(8) * 2,
+      },
+      onlyXl: {
+        width: defaultTheme.spacing(28),
+        height: defaultTheme.spacing(42),
+        containerWidth: defaultTheme.spacing(28) * 3 + defaultTheme.spacing(8) * 2,
+      },
+    },
   },
 });
 
