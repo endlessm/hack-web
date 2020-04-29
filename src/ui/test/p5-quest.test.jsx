@@ -24,9 +24,9 @@ import Toolbox from '../toolbox/p5';
 const useStyles = makeStyles(({ custom, palette }) => ({
   frame: {
     width: '100%',
-    height: '100vh',
+    // Top bar size
+    height: `calc(100vh - ${custom.appBarHeight}px)`,
     border: 'none',
-    marginTop: `-${custom.appBarHeight}px`,
     backgroundColor: palette.grey[500],
   },
 }));
