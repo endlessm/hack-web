@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme) => ({
     transformStyle: 'preserve-3d',
   },
   flipBoxInnerWhenFlipped: {
-    transform: 'rotateY(180deg)',
+    transform: 'rotateY(-180deg)',
   },
   toolbox: {
     background: fade(theme.palette.secondary.main, 0.4),
-    transform: 'rotateY(180deg)',
+    transform: 'rotateY(-180deg)',
     backfaceVisibility: 'hidden',
     position: 'absolute',
     width: '100%',
