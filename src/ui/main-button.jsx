@@ -1,10 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Button,
   IconButton,
   withStyles,
 } from '@material-ui/core';
+
+import { actions } from '../store';
+import { cardType } from './types';
 
 const MainButton = withStyles(({ palette, spacing }) => ({
   root: {
@@ -43,7 +47,9 @@ const MainIconButton = withStyles(({
   },
 }))(IconButton);
 
-const getGoButton = (card) => {
+const GoButton = ({ card }) => {
+  const dispatch = useDispatch();
+
   // If card has href, it is an external link:
   if (card.href) {
     return (
@@ -58,6 +64,10 @@ const getGoButton = (card) => {
     );
   }
 
+  const onClick = () => {
+    dispatch(actions.deselectCards());
+  };
+
   // Otherwise, it must be a quest:
   return (
     <MainButton
@@ -65,12 +75,17 @@ const getGoButton = (card) => {
       size="large"
       component={RouterLink}
       to={card.slug}
+      onClick={onClick}
     >
       Let&apos;s go
     </MainButton>
   );
 };
 
+GoButton.propTypes = {
+  card: cardType.isRequired,
+};
+
 export {
-  MainButton, MainIconButton, getGoButton,
+  MainButton, MainIconButton, GoButton,
 };
