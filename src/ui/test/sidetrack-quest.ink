@@ -24,6 +24,8 @@ VAR escapeCutscene = 0
     ~ return "DefaultUser"
 
 === begin ===
+~ startLevel = 1
+~ highestAchievedLevel = 1
 -> level1
 
 === level1 ===
