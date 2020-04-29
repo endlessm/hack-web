@@ -17,14 +17,24 @@ import { GoButton } from './main-button';
 
 const defaultImage = '/assets/cards/default-card.png';
 
-const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
+const useStyles = makeStyles(({ breakpoints, custom, palette, spacing, transitions }) => ({
   root: {
     pointerEvents: 'painted',
-    width: `${spacing(28)}px`,
-    height: `${spacing(42)}px`,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    [breakpoints.down('lg')]: {
+      width: `${custom.cardWidth / 2}px`,
+      height: `${custom.cardHeight / 2}px`,
+    },
+    [breakpoints.between('lg', 'xl')]: {
+      width: `${custom.cardWidth * 2 / 3}px`,
+      height: `${custom.cardHeight * 2 / 3}px`,
+    },
+    [breakpoints.only('xl')]: {
+      width: `${custom.cardWidth}px`,
+      height: `${custom.cardHeight}px`,
+    },
     display: 'flex',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center top',
     flexDirection: 'column',
     justifyContent: 'flex-end',
     position: 'relative',
@@ -40,6 +50,8 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
     boxShadow: `0px 0px 0px ${spacing(1)}px ${palette.primary.main}`,
   },
   backgroundBox: {
+    backgroundSize: 'cover',
+    backgroundPosition: 'center top',
     backgroundImage: ({ card }) => {
       const bgImg = `url('/assets/cards/${card.slug.slice(1)}/card.png')`;
       return `${bgImg}, url('${defaultImage}')`;
@@ -57,9 +69,7 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
   cardActions: {
     display: 'flex',
     justifyContent: 'center',
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
+    paddingBottom: spacing(1),
   },
   collapsableBox: {
     display: 'flex',
@@ -69,7 +79,7 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
     overflow: 'hidden',
   },
   collapsableBoxSelected: {
-    maxHeight: `${spacing(15.5)}px`,
+    maxHeight: `${custom.cardWidth}px`,
   },
   actions: {
     justifyContent: 'flex-end',
