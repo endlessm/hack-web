@@ -135,13 +135,13 @@ const initialState = {
           slug: '/maker',
           name: 'Engineering',
           subtitle: 'Learn how strong buildings stay up!',
-          description: 'Learn some basic engineering in this fun (and tasty!) activity. This activity is just one of the many real-world activities the desktop version of Hack offers - the virtual world is useful, but there is no substitute for building with your own hands!',
+          description: 'Learn some basic engineering in this fun (and tasty!) activity. The virtual world is useful, but there is no substitute for building with your own hands!',
         },
         {
           slug: '/art',
           name: 'Processing',
           subtitle: 'Take your first steps into programming!',
-          description: 'Processing is a language that connects programming to art, making it easy for anyone to understand and start learning. The desktop version of Hack includes more activities that ease you into Javascript, a common programming language with many different uses.',
+          description: 'Processing is a language that connects programming to art, making it easy for anyone to understand and start learning. Check out the bascis of Javascript, a common programming language with many different uses!',
         },
         {
           slug: '/os',
