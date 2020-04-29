@@ -21,15 +21,15 @@ import store, { actions } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
 import Toolbox from '../toolbox/p5';
 
-const useStyles = makeStyles({
-  root: {
-  },
+const useStyles = makeStyles(({ custom, palette }) => ({
   frame: {
     width: '100%',
-    height: '100vh',
+    // Top bar size
+    height: `calc(100vh - ${custom.appBarHeight}px)`,
     border: 'none',
+    backgroundColor: palette.grey[500],
   },
-});
+}));
 
 const P5Quest = () => {
   const classes = useStyles();
