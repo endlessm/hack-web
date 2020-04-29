@@ -29,8 +29,9 @@ module.exports = {
     }),
     react({
       html: {
-        title: 'Hack'
-      }
+        title: 'Hack',
+        favicon: 'src/favicon.png'
+      },
     }),
     jest(),
     copy({
