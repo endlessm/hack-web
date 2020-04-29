@@ -110,15 +110,6 @@ function hackableAppReducer(state = {}, action) {
   }
 }
 
-// TODO: Fake data. Remove this later.
-const dummyCards = [...Array(3).keys()].map((i) => ({
-  slug: `card-${i}`,
-  href: 'https://hack-computer.com/',
-  name: `Test Link #${i + 1}`,
-  description: 'Riley, one of your classmates, can\'t wait to meet you and tell you everything about the Academy.',
-  subtitle: 'What you\'ll do?',
-}));
-
 const initialState = {
   auth: {
     authenticated: false,
@@ -176,7 +167,36 @@ const initialState = {
       slug: '/os',
       name: 'Endless OS',
       description: 'This is a category description.',
-      cards: dummyCards,
+      cards: [
+        {
+          slug: '/os/os-01',
+          href: 'https://endlessos.com/download/',
+          name: 'Supplement your OS',
+          subtitle: '',
+          description: 'FIXME',
+        },
+        {
+          slug: '/os/os-02',
+          href: 'https://endlessos.com/download/',
+          name: 'Replace your OS',
+          subtitle: '',
+          description: 'FIXME',
+        },
+        {
+          slug: '/os/os-03',
+          href: 'https://www.hack-computer.com/products',
+          name: 'Hack Computer',
+          subtitle: '',
+          description: 'FIXME',
+        },
+        {
+          slug: '/os/os-04',
+          href: 'https://www.hack-computer.com/products',
+          name: 'Hack Key',
+          subtitle: '',
+          description: 'FIXME',
+        },
+      ],
     },
     {
       slug: '/t2',
