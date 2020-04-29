@@ -122,7 +122,7 @@ const initialState = {
   cardsets: [
     {
       slug: '/home',
-      name: 'Pick a dimension to explore.',
+      name: 'Pick a dimension to explore!',
       description: '',
       cards: [
         {
@@ -204,39 +204,45 @@ const initialState = {
       description: 'Terminal Two is another branch of Endless, focused on delivering educational games. Journey through their worlds, hacking futuristic cities, discovering ancient ruins, and exploring alien planets!',
       cards: [
         {
-          slug: '/t2/t2-01',
+          slug: '/t2/t2-whitehouse',
           href: 'https://terminaltwo.com/hourofcode/whitehouse',
           name: 'White House',
-          subtitle: '',
+          subtitle: 'Color and Investigate!',
           description: 'Using the magic of CSS, hack your world into a unique burst of color and light revealing hidden objects and clues.',
         },
         {
-          slug: '/t2/t2-02',
+          slug: '/t2/t2-aqueducts',
           href: 'https://terminaltwo.com/hourofcode/aqueducts',
           name: 'Aqueducts',
-          subtitle: '',
+          subtitle: 'A Voxel Adventure!',
           description: 'All the water has disappeared from your village and it\'s up to you to save the day! Go on an adventure to connect the water pipes and bring water back to your village.',
         },
         {
-          slug: '/t2/t2-03',
+          slug: '/t2/t2-passage',
+          href: 'https://terminaltwo.com/hourofcode/thepassage',
+          name: 'The Passage',
+          subtitle: 'Blast and Hack!',
+          description: 'You\'ve landed on a mysterious planet with one mission; find the secret map to locate the hidden bunker. Hack the world to cross perilous lands and the obstacles within.',
+        },
+        {
+          slug: '/t2/t2-squash',
           href: 'https://terminaltwo.com/hourofcode/frogsquash',
           name: 'FrogSquash',
-          subtitle: '',
+          subtitle: 'Jump and Dash!',
           description: 'Dodge arrows, saws, and fire balls without getting squashed! Choose from eight different animals to cross these perilous roads. Hack your animals and go farther than ever before!',
         },
         {
-          slug: '/t2/t2-04',
-          // FIXME, set correct link:
-          href: 'https://hack-computer.com/',
-          name: 'The Maze',
-          subtitle: '',
-          description: 'Description: You have landed on an alien planet in a pocket universe and must find a way to escape so you can continue on your journey. Learn and use new programming concepts to hack your way to victory.',
+          slug: '/t2/t2-canyon',
+          href: 'https://terminaltwo.com/download',
+          name: 'The Canyon',
+          subtitle: 'Battle and Adventure!',
+          description: 'You and your sidekick F3lix have landed on an alien planet, but you\'re out of fuel. Program F3lix to help you collect resources and battle alien monsters. Work together to explore and find a way out!',
         },
         {
-          slug: '/t2/t2-05',
+          slug: '/t2/t2-ovum',
           href: 'https://terminaltwo.com/hourofcode/ovumcity',
           name: 'Ovum City',
-          subtitle: '',
+          subtitle: 'Explore and Control!',
           description: 'Can you control the chaos? Hack your way into the cyberpunk world of Ovum City. Debug broken code, solve puzzles, and upgrade your hardware as you explore this open world. Don\'t get caught by the drones! It\'s up to you how Ovum City evolves.',
         },
       ],
