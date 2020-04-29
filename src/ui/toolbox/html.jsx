@@ -33,6 +33,7 @@ const TOOLBOX = {
           code: regenerateCode,
           compile: compileCode,
           buildDelay: 500,
+          fullHeight: true,
         },
       ],
     },
@@ -40,7 +41,7 @@ const TOOLBOX = {
 };
 
 const Toolbox = () => (
-  <DynToolbox toolbox={TOOLBOX} width={11} />
+  <DynToolbox toolbox={TOOLBOX} xs={12} />
 );
 
 export default Toolbox;
