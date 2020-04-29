@@ -104,6 +104,7 @@ const HtmlQuest = () => {
       sidebar={sidebar}
       sideBySide
       title={card.name}
+      subtitle={card.subtitle}
     />
   );
 };

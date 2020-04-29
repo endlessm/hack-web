@@ -49,7 +49,7 @@ const useStyles = makeStyles(({
   },
 }));
 
-const HackTopBar = ({ title, isMainPage }) => {
+const HackTopBar = ({ title, subtitle, isMainPage }) => {
   const classes = useStyles({ isMainPage });
 
   const open = useSelector((state) => state.ui.sidePanelOpen);
@@ -86,6 +86,11 @@ const HackTopBar = ({ title, isMainPage }) => {
               <Typography variant="h5" color="secondary">
                 {title}
               </Typography>
+              {subtitle && (
+                <Typography variant="subtitle1" color="textSecondary">
+                  {subtitle}
+                </Typography>
+              )}
             </Box>
           )}
 
@@ -98,11 +103,13 @@ const HackTopBar = ({ title, isMainPage }) => {
 
 HackTopBar.propTypes = {
   title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
   isMainPage: PropTypes.bool,
 };
 
 HackTopBar.defaultProps = {
   isMainPage: false,
+  subtitle: null,
 };
 
 export default HackTopBar;

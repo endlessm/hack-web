@@ -292,6 +292,7 @@ const SidetrackQuest = () => {
         canvas={canvas}
         sidebar={sidebar}
         title={card.name}
+        subtitle={card.subtitle}
         attractFTH={attractFTH}
         onFlipped={onFlipped}
       />

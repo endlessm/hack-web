@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => {
 
 const QuestFTHView = ({
   toolbox, canvas, sidebar, controls, onFlipped,
-  sideBySide, hideControls, title, isMainPage, attractFTH,
+  sideBySide, hideControls, title, subtitle, isMainPage, attractFTH,
   disableHackButton,
 }) => {
   const classes = useStyles();
@@ -166,7 +166,7 @@ const QuestFTHView = ({
           [classes.contentShift]: open,
         })}
       >
-        <HackTopBar title={title} isMainPage={isMainPage} />
+        <HackTopBar title={title} subtitle={subtitle} isMainPage={isMainPage} />
         {toolbox ? (
           <>
             {sideBySide ? (
@@ -252,6 +252,7 @@ QuestFTHView.propTypes = {
   sideBySide: PropTypes.bool,
   hideControls: PropTypes.bool,
   title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
   isMainPage: PropTypes.bool,
   disableHackButton: PropTypes.bool,
   attractFTH: PropTypes.bool,
@@ -263,6 +264,7 @@ QuestFTHView.defaultProps = {
   controls: null,
   sideBySide: false,
   hideControls: true,
+  subtitle: null,
   isMainPage: false,
   disableHackButton: false,
   attractFTH: false,
