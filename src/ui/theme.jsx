@@ -9,7 +9,7 @@ const colors = {
   messageLink: '#3584E4',
 };
 
-const defaultTheme = createMuiTheme();
+const { spacing, breakpoints } = createMuiTheme();
 
 const theme = createMuiTheme({
   transitions: {
@@ -41,23 +41,30 @@ const theme = createMuiTheme({
     landingTitleGradientDirection: 270,
     chatMessageMaxWidth: '90%',
     // Fill 3 of 12 columns in XL screen size:
-    drawerWidth: defaultTheme.breakpoints.values.xl * 0.25,
-    appBarHeight: defaultTheme.spacing(10),
+    drawerWidth: breakpoints.values.xl * 0.25,
+    drawerWidths: {
+      downMd: breakpoints.values.md * 0.25,
+      onlyLg: breakpoints.values.lg * 0.25,
+      onlyXl: breakpoints.values.xl * 0.25,
+    },
+    appBarHeight: spacing(10),
     cardSizes: {
       downMd: {
-        width: defaultTheme.spacing(14),
-        height: defaultTheme.spacing(21),
-        containerWidth: defaultTheme.spacing(14) * 3 + defaultTheme.spacing(8) * 2,
+        // Size is about 1/2 of the XL one:
+        width: spacing(14),
+        height: spacing(21),
+        containerWidth: spacing(14) * 3 + spacing(16),
       },
       onlyLg: {
-        width: defaultTheme.spacing(18.5),
-        height: defaultTheme.spacing(28),
-        containerWidth: defaultTheme.spacing(18.5) * 3 + defaultTheme.spacing(8) * 2,
+        // Size is about 2/3 of the XL one:
+        width: spacing(18.5),
+        height: spacing(28),
+        containerWidth: spacing(18.5) * 3 + spacing(16),
       },
       onlyXl: {
-        width: defaultTheme.spacing(28),
-        height: defaultTheme.spacing(42),
-        containerWidth: defaultTheme.spacing(28) * 3 + defaultTheme.spacing(8) * 2,
+        width: spacing(28),
+        height: spacing(42),
+        containerWidth: spacing(28) * 3 + spacing(16),
       },
     },
   },

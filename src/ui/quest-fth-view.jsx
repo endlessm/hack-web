@@ -67,24 +67,56 @@ const useStyles = makeStyles((theme) => {
     },
     controlsContainerShift: {
       transition: marginTransitionShift,
-      marginRight: theme.custom.drawerWidth + theme.spacing(2),
+      [theme.breakpoints.down('md')]: {
+        marginRight: theme.custom.drawerWidths.downMd + theme.spacing(2),
+      },
+      [theme.breakpoints.only('lg')]: {
+        marginRight: theme.custom.drawerWidths.onlyLg + theme.spacing(2),
+      },
+      [theme.breakpoints.only('xl')]: {
+        marginRight: theme.custom.drawerWidths.onlyXl + theme.spacing(2),
+      },
     },
     controlsContainerVisible: {
       transition: marginTransitionShift,
       opacity: 1,
     },
     drawer: {
-      width: theme.custom.drawerWidth,
       flexShrink: 0,
+      [theme.breakpoints.down('md')]: {
+        width: theme.custom.drawerWidths.downMd,
+      },
+      [theme.breakpoints.only('lg')]: {
+        width: theme.custom.drawerWidths.onlyLg,
+      },
+      [theme.breakpoints.only('xl')]: {
+        width: theme.custom.drawerWidths.onlyXl,
+      },
     },
     drawerPaper: {
-      width: theme.custom.drawerWidth,
+      [theme.breakpoints.down('md')]: {
+        width: theme.custom.drawerWidths.downMd,
+      },
+      [theme.breakpoints.only('lg')]: {
+        width: theme.custom.drawerWidths.onlyLg,
+      },
+      [theme.breakpoints.only('xl')]: {
+        width: theme.custom.drawerWidths.onlyXl,
+      },
     },
     content: {
       overflow: 'hidden',
       flexGrow: 1,
       transition: marginTransition,
-      marginRight: -theme.custom.drawerWidth,
+      [theme.breakpoints.down('md')]: {
+        marginRight: -theme.custom.drawerWidths.downMd,
+      },
+      [theme.breakpoints.only('lg')]: {
+        marginRight: -theme.custom.drawerWidths.onlyLg,
+      },
+      [theme.breakpoints.only('xl')]: {
+        marginRight: -theme.custom.drawerWidths.onlyXl,
+      },
       height: '100%',
     },
     contentShift: {
