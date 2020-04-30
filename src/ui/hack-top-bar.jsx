@@ -19,7 +19,7 @@ import {
 
 
 const useStyles = makeStyles(({
-  custom, palette, spacing, transitions, mixins,
+  breakpoints, custom, palette, spacing, transitions, mixins,
 }) => ({
   appbar: {
     background: ({ isMainPage }) => {
@@ -36,7 +36,15 @@ const useStyles = makeStyles(({
     }),
   },
   appbarShift: {
-    width: `calc(100% - ${custom.drawerWidth}px)`,
+    [breakpoints.down('md')]: {
+      width: `calc(100% - ${custom.drawerWidths.downMd}px)`,
+    },
+    [breakpoints.only('lg')]: {
+      width: `calc(100% - ${custom.drawerWidths.onlyLg}px)`,
+    },
+    [breakpoints.only('xl')]: {
+      width: `calc(100% - ${custom.drawerWidths.onlyXl}px)`,
+    },
   },
   toolbar: {
     marginTop: spacing(1),
