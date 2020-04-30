@@ -92,7 +92,10 @@ const FTHButton = ({
         className={clsx(className, classes.fthButton, {
           [classes.fthButtonFlipped]: flipped,
         })}
-      />
+      >
+        {/* Fab requires one child */}
+        <></>
+      </Fab>
     </>
   );
 };

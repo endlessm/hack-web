@@ -93,7 +93,7 @@ const HtmlQuest = () => {
       title="HTML sandbox"
       className={classes.frame}
       src="/apps/html/index.html"
-      sandbox
+      sandbox="allow-same-origin allow-scripts"
     />
   );
 
