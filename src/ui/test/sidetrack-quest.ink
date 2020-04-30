@@ -104,7 +104,7 @@ VAR hasLockKey = 0
 === level3 ===
 # character: faber
 - Nice job on the music, Riley. Looks like all our jam sessions paid off!
-* [(wait for: currentLevel is 4)] Level Complete!
+* [(wait for: currentLevel is 4)] Level {currentLevel -1 } Complete!
 -> level4
 
 
@@ -129,7 +129,7 @@ VAR hasLockKey = 0
 
 
 === level5 ===
-* [(wait for: currentLevel is 6)] Level Complete!
+* [(wait for: currentLevel is 6)] Level {currentLevel -1 } Complete!
 -> level6
 
 
@@ -216,7 +216,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 === level10 ===
 # character: riley
 -Time for new bugbots! This new type <b>only moves up</b>, just like the first <b>only moves down</b>. Be sure to note which way they're facing...
-* [(wait for: currentLevel is 11)] Level Complete!
+* [(wait for: currentLevel is 11)] Level {currentLevel -1 } Complete!
 -> level11
 
 
@@ -233,7 +233,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 === level13 ===
 # charcter: ada
 -Bugbots, pits... Riley, you've done a great job here.
-* [(wait for: currentLevel is 14)] Level Complete!
+* [(wait for: currentLevel is 14)] Level {currentLevel -1 }Complete!
 -> level14
 
 
@@ -312,7 +312,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 # character: riley
 -In this mode, we can still move around the level, but you'll have to plan all your moves in advance. Just think it through, and you'll pass these levels in no time.
 Once your instructions are laid out in the order you want them, press <b>play</b> to start our journey through the maze.
-* [(wait for: currentLevel is 16)] Level Complete!
+* [(wait for: currentLevel is 16)] Level {currentLevel -1 } Complete!
 -> level16
 
 
@@ -461,7 +461,7 @@ I'd say something about this level bringing me <b>down</b>, but this game is too
 -Interesting, I wonder what happens if we just press Play and try to forge ahead?
 -There's no way forward unless we at least try!
 # wait for the player to die, as they cannot pass this level
-* [(wait for: success is 0)](Level Failed!)
+* [(wait for: success is 0)](Level {currentLevel -1 } Failed!)
 -> quest_successful
 
 
