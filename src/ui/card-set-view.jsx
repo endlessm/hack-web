@@ -72,7 +72,7 @@ const CardSetView = ({ slug }) => {
     <Grid container justify="flex-start">
       <Grid item>
         <Typography variant="h5">Hey, Hacker!</Typography>
-        <Typography variant="body1">My name's Riley, and I'm here to show off Endless OS and Hack! Pick a card and check out what we've got to offer!</Typography>
+        <Typography variant="body1">My name&apos;s Riley, and I&apos;m here to show off Endless OS and Hack! Pick a card and check out what we&apos;ve got to offer!</Typography>
       </Grid>
     </Grid>
   );
