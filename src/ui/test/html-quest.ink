@@ -50,7 +50,7 @@ VAR code = ""
 
 === htmlintro1_4 ===
 - Awesome! You just edited a webpage! That makes you a web designer, and that's pretty cool.
-Let's take it one step further. Do you see the text that says <b>Welcome to my test website<b> near the top of the webpage?
+Let's take it one step further. Do you see the text that says <b>Welcome to my test website</b> near the top of the webpage?
 Try finding that text in the <b>code</b> area and changing it.
 * [(wait for: code not icontains "Welcome to my test website")] (Done)
 -> htmlintro1_5
@@ -93,7 +93,8 @@ If you did, though, all you'd have is boring black text on a white background. L
 -> htmlintro2_5
 
 === htmlintro2_4hints_final ===
-- Your code should look like this: {snippet_h1()}
+- Your code should look like this:
+- {snippet_h1()}
 * [(wait for: code icontains "<h1 style=\"color:purple\">")](Done)
 -> htmlintro2_5
 
@@ -152,7 +153,8 @@ Let's edit a <tt>&lt;p&gt;</tt>tag to make the text that hex color.
 -> htmlintro2_9
 
 === htmlintro2_8hints_final ===
-- Your body tag should look like this: {snippet_bodytag()}
+- Your body tag should look like this:
+- {snippet_bodytag()}
 * [(wait for: code icontains "<body style=\"background-color:coral\">")](Done)
 -> htmlintro2_9
 
