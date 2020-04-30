@@ -53,9 +53,18 @@ Bye! -> END
 <h1>This is a header</h1>
 <p>And <b>this</b> is a paragraph.</p>
 
+=== function snippet_oneline ===
+# language: html
+<h1 style="color:purple">
+
 == say_snippet
 - Check this out:
 - {snippet_webpage()}
+-> END
+
+== say_snippet_oneline
+- Check this out:
+- {snippet_oneline()}
 -> END
 
 == all_said_by_the_same_character

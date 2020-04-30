@@ -222,6 +222,18 @@ describe('libquest', () => {
     expect(dialogue[0].codeSnippet.text).toMatch(/^<h1>This is a header<\/h1>/);
   });
 
+  it('can get oneline snippet', () => {
+    const quest = new Quest(questContent);
+
+    // This one does have a code snippet:
+    quest.story.ChoosePathString('say_snippet_oneline');
+    const { dialogue } = quest.continueStory();
+    expect(dialogue.length).toEqual(1);
+    expect(dialogue[0].text).toEqual('<p>Check this out:</p>');
+    expect(dialogue[0].codeSnippet.language).toEqual('html');
+    expect(dialogue[0].codeSnippet.text).toMatch(/^<h1 style="color:purple">/);
+  });
+
   it('groups messages by character', () => {
     const quest = new Quest(questContent);
 
