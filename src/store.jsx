@@ -127,7 +127,7 @@ const initialState = {
       cards: [
         {
           slug: '/web',
-          name: 'Web Technology',
+          name: 'Web Tech',
           subtitle: ' Explore web pages, and learn how to make your own!',
           description: 'Have you ever wondered how web pages are made, or wanted to make your own? Come and take your first steps into web design - it\'s easier than you think!',
         },
