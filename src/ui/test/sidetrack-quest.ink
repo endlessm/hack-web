@@ -28,8 +28,6 @@ VAR hasLockKey = 0
     ~ return "Hacker"
 
 === begin ===
-~ startLevel = 1
-~ highestAchievedLevel = 1
 -> level1_1
 
 === level1_1 ===
