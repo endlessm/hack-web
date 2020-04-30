@@ -29,6 +29,9 @@ VAR isLocked = 1
 
 === begin ===
 -> level1_1
+~ startLevel = 1
+~ highestAchievedLevel = 1
+-> level1_1
 
 === level1_1 ===
 # character: ada
@@ -45,49 +48,33 @@ VAR isLocked = 1
 === level1_2 ===
 # character: riley
 -Oh, jeez... I didn't do everything, I mean, Ada helped with design, and Saniel helped me with the code, and Felix--
-{ currentLevel == 2:
-    -> level1_3
-- else:
-    * [❯] ❯
-    -> level1_3
-    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
-    -> level1_3
-}
+* [❯] ❯
+-> level1_3
+* [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
+-> level1_3
 
 
 === level1_3 ===
 # character: faber
 -Don't sell yourself short, Riley! It takes a lot of skill and talent to put something like this together.
-{ currentLevel == 2:
-    -> level1_4
-- else:
-    * [❯] ❯
-    -> level1_4
-    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
-    -> level1_4
-}
+* [❯] ❯
+-> level1_4
+* [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
+-> level1_4
 
 
 === level1_4 ===
 # character: saniel
 -Let's dim the lights, shall we? Riley, the room is yours.
-{ currentLevel == 2:
-    -> level1_5
-- else:
-    * [❯] ❯
-    -> level1_5
-    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
-    -> level1_5
-}
+* [❯] ❯
+-> level1_5
+* [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
+-> level1_5
 
 
 === level1_5 ===
 # character: riley
 -Woohoo! Here we are! See that <b>Exit</b> on the far side of the screen? That's our goal! Let's get there! Use the FORWARD, UP, and DOWN <b>Instructions</b> to move through these obstacles, but watch out for those <b>Walls</b>!
-{ currentLevel == 2:
-    - Great job on that level!
-    -> level2
-}
 * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
 -> level2
 
@@ -160,7 +147,6 @@ VAR isLocked = 1
 -> level7_1
 
 
-
 === level7_1 ===
 # character: riley
 -I knew you'd like that one, Faber :D
@@ -172,7 +158,6 @@ VAR isLocked = 1
     * [(wait for: currentLevel is 8)] Level {currentLevel -1 } Complete!
     -> level7_2
 }
-
 
 
 === level7_2===
@@ -297,7 +282,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 
 === level14_postcs_5 ===
 # character: riley
--And now, we enter hard-mode! See that <b>Play</b> button? Try pushing it.
+- And now, we enter hard-mode! See that <b>Play</b> button? Try pushing it.
 { currentLevel == 15:
     - Great job on that level!
     -> level15
