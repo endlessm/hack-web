@@ -8,6 +8,7 @@ import {
   Grid,
   Paper,
   Typography,
+  useMediaQuery,
   useTheme,
 } from '@material-ui/core';
 
@@ -27,7 +28,7 @@ const sanitizeOptions = {
 };
 
 const useStyles = makeStyles(({
-  custom, palette, spacing, typography,
+  breakpoints, custom, palette, spacing, typography,
 }) => {
   const size = spacing(6);
   return {
@@ -65,15 +66,35 @@ const useStyles = makeStyles(({
       flexDirection: 'row-reverse',
     },
     message: {
-      maxWidth: custom.chatMessageMaxWidth,
-      padding: spacing(1, 2),
+      [breakpoints.down('md')]: {
+        maxWidth: custom.chatMessageMaxWidths.downMd,
+        padding: spacing(0.5, 1),
+        marginTop: spacing(1),
+      },
+      [breakpoints.only('lg')]: {
+        maxWidth: custom.chatMessageMaxWidths.onlyLg,
+        padding: spacing(1, 2),
+        marginTop: spacing(3),
+      },
+      [breakpoints.only('xl')]: {
+        maxWidth: custom.chatMessageMaxWidths.onlyXl,
+        padding: spacing(1, 2),
+        marginTop: spacing(3),
+      },
       display: 'inline-block',
       wordBreak: 'break-word',
       fontSize: typography.fontSize,
-      marginTop: spacing(3),
     },
     messageWithSnippet: {
-      width: custom.chatMessageMaxWidth,
+      [breakpoints.down('md')]: {
+        maxWidth: custom.chatMessageMaxWidths.downMd,
+      },
+      [breakpoints.only('lg')]: {
+        maxWidth: custom.chatMessageMaxWidths.onlyLg,
+      },
+      [breakpoints.only('xl')]: {
+        maxWidth: custom.chatMessageMaxWidths.onlyXl,
+      },
     },
     left: {
       borderTopLeftRadius: 0,
@@ -96,16 +117,17 @@ const ChatMessage = ({
   );
 
   const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Grid
       container
-      spacing={1}
+      spacing={isSmall ? 0 : 1}
       justify={side === 'right' ? 'flex-end' : 'flex-start'}
       style={style}
     >
       {side === 'left' && (
-        <Grid item>
+        <Grid item xs={isSmall ? 12 : 0}>
           <Avatar src={avatar} className={styles.avatar} />
         </Grid>
       )}

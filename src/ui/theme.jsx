@@ -40,6 +40,11 @@ const theme = createMuiTheme({
     flipToHackPerspective: 1000,
     landingTitleGradientDirection: 270,
     chatMessageMaxWidth: '90%',
+    chatMessageMaxWidths: {
+      downMd: '100%',
+      onlyLg: '95%',
+      onlyXl: '90%',
+    },
     // Fill 3 of 12 columns in XL screen size:
     drawerWidth: breakpoints.values.xl * 0.25,
     drawerWidths: {
