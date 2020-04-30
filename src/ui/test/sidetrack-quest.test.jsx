@@ -264,6 +264,8 @@ const SidetrackQuest = () => {
 
     setAttractFTH(Boolean(currentQuest.getStoryVariable('attractFTH')));
     setHasLockKey(Boolean(currentQuest.getStoryVariable('hasLockKey')));
+
+    focusApp();
   }, [lastDialog, dialogue]);
 
   const onUnlock = () => {
@@ -299,6 +301,7 @@ const SidetrackQuest = () => {
   const onFlipped = (f) => {
     quest.updateStoryVariable('flipped', f);
     setCurrentChoice(undefined);
+    focusApp();
   };
 
   const sidebar = (
