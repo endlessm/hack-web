@@ -17,14 +17,26 @@ import { GoButton } from './main-button';
 
 const defaultImage = '/assets/cards/default-card.png';
 
-const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
+const useStyles = makeStyles(({
+  breakpoints, custom, palette, spacing, transitions,
+}) => ({
   root: {
     pointerEvents: 'painted',
-    width: `${spacing(28)}px`,
-    height: `${spacing(42)}px`,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    [breakpoints.down('md')]: {
+      width: custom.cardSizes.downMd.width,
+      height: custom.cardSizes.downMd.height,
+    },
+    [breakpoints.only('lg')]: {
+      width: custom.cardSizes.onlyLg.width,
+      height: custom.cardSizes.onlyLg.height,
+    },
+    [breakpoints.only('xl')]: {
+      width: custom.cardSizes.onlyXl.width,
+      height: custom.cardSizes.onlyXl.height,
+    },
     display: 'flex',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center top',
     flexDirection: 'column',
     justifyContent: 'flex-end',
     position: 'relative',
@@ -40,6 +52,8 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
     boxShadow: `0px 0px 0px ${spacing(1)}px ${palette.primary.main}`,
   },
   backgroundBox: {
+    backgroundSize: 'cover',
+    backgroundPosition: 'center top',
     backgroundImage: ({ card }) => {
       const bgImg = `url('/assets/cards/${card.slug.slice(1)}/card.png')`;
       return `${bgImg}, url('${defaultImage}')`;
@@ -53,13 +67,20 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
     borderTop: `${spacing(1)}px solid ${palette.primary.main}`,
     backgroundColor: palette.background.paper,
     zIndex: 1,
+    [breakpoints.down('lg')]: {
+      padding: `${spacing(0.5)}px`,
+      '& .MuiTypography-gutterBottom': {
+        marginBottom: 0,
+      },
+    },
   },
   cardActions: {
     display: 'flex',
     justifyContent: 'center',
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
+    paddingBottom: spacing(1),
+    [breakpoints.down('md')]: {
+      padding: `0 0 ${spacing(1)}px 0`,
+    },
   },
   collapsableBox: {
     display: 'flex',
@@ -69,7 +90,20 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
     overflow: 'hidden',
   },
   collapsableBoxSelected: {
-    maxHeight: `${spacing(15.5)}px`,
+    [breakpoints.down('md')]: {
+      maxHeight: custom.cardSizes.downMd.height,
+    },
+    [breakpoints.only('lg')]: {
+      maxHeight: custom.cardSizes.onlyLg.height,
+    },
+    [breakpoints.only('xl')]: {
+      maxHeight: custom.cardSizes.onlyXl.height,
+    },
+  },
+  cardSubtitle: {
+    [breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
   actions: {
     justifyContent: 'flex-end',
@@ -110,7 +144,7 @@ const HackCard = ({ card, cardset }) => {
             isSelected && classes.collapsableBoxSelected,
           )}
           >
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body2" color="textSecondary" className={classes.cardSubtitle}>
               { card.subtitle }
             </Typography>
             <CardActions className={classes.cardActions}>
