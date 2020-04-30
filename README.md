@@ -23,6 +23,17 @@ You can find the built app inside the `build/` folder. You can also
 call `yarn` in multiple ways while developing. See [the development
 doc](./HACKING.md#run-test-build) for the available options.
 
+## Target Devices
+
+Here are the target devices we support:
+
+- Medium and large screens. Specifically, 960 pixels wide and above.
+- Landscape view (not portrait).
+- "Modern" browsers. Specifically, those having:
+  - [Material-UI support](https://material-ui.com/getting-started/supported-platforms/#browser)
+  - [CSS Flexible Box Layout Module](https://caniuse.com/#feat=flexbox)
+  - [Video element](https://caniuse.com/#feat=video)
+
 ## Authoring Content
 
 We use the Ink DSL for user instructions in quests. See
