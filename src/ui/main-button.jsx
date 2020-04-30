@@ -4,6 +4,8 @@ import { Link as RouterLink } from 'react-router-dom';
 import {
   Button,
   IconButton,
+  useMediaQuery,
+  useTheme,
   withStyles,
 } from '@material-ui/core';
 
@@ -50,12 +52,15 @@ const MainIconButton = withStyles(({
 const GoButton = ({ card }) => {
   const dispatch = useDispatch();
 
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down('md'));
+
   // If card has href, it is an external link:
   if (card.href) {
     return (
       <MainButton
         variant="contained"
-        size="large"
+        size={isSmall ? 'small' : 'large'}
         href={card.href}
         target="_blank"
       >
@@ -72,7 +77,7 @@ const GoButton = ({ card }) => {
   return (
     <MainButton
       variant="contained"
-      size="large"
+      size={isSmall ? 'small' : 'large'}
       component={RouterLink}
       to={card.slug}
       onClick={onClick}
