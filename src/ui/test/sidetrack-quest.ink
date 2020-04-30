@@ -30,7 +30,7 @@ VAR hasLockKey = 0
 === begin ===
 ~ startLevel = 1
 ~ highestAchievedLevel = 1
--> level1
+-> level1_1
 
 === level1_1 ===
 # character: ada
