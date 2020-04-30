@@ -100,7 +100,10 @@ export default class Quest {
   }
 
   codeSnippetBegins() {
-    return Boolean(this.story.state.currentPathString && /^snippet_.*$/.test(this.story.state.currentPathString));
+    const snippet = Boolean(this.story.state.currentPathString && /^snippet_.*$/.test(this.story.state.currentPathString));
+    // One line snippets doesn't create a different currentPathString so we
+    // should check if the currentTags has "language" to detect oneline snippets
+    return snippet || Boolean(extractCodeSnippetLanguage(this.story.currentTags));
   }
 
   stepBegins() {
