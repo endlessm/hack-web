@@ -134,7 +134,8 @@ const SidetrackQuest = () => {
       const state = { ...params, ...code };
       dispatch(actions.hackableAppSet(state));
       if (firstTime) {
-        dispatch(actions.originalHackableAppSet(state));
+        const initialState = { ...state, startLevel: state.highestAchievedLevel };
+        dispatch(actions.originalHackableAppSet(initialState));
       } else {
         updateQuestVariables(params);
       }
@@ -291,9 +292,20 @@ const SidetrackQuest = () => {
     />
   );
 
+  const restartApp = () => {
+    const { originalHackableApp } = store.getState();
+    const { startLevel, highestAchievedLevel } = originalHackableApp;
+    const app = appRef.current.contentWindow;
+
+    app.globalParameters.highestAchievedLevel = highestAchievedLevel;
+    const level = app[`globalLevel${startLevel}Parameters`];
+    app.game.scene.start('Game', level);
+  };
+
   const onRestartSelected = () => {
-    // TODO: Bring the app and toolbox to the initial state.
     restartQuest();
+    restartApp();
+    focusApp();
   };
 
   const onFlipped = (f) => {
