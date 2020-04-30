@@ -86,7 +86,7 @@ const P5Quest = () => {
       title="P5.js sandbox"
       className={classes.frame}
       src="/apps/p5/index.html"
-      sandbox
+      sandbox="allow-same-origin allow-scripts"
     />
   );
 

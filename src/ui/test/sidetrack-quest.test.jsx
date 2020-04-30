@@ -291,6 +291,7 @@ const SidetrackQuest = () => {
       title="Fizzics App"
       className={classes.frame}
       src="/apps/hack-toy-apps/com.hack_computer.Sidetrack/app/index.html"
+      sandbox="allow-same-origin allow-scripts"
     />
   );
 

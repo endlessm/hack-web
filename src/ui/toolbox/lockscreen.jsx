@@ -71,7 +71,7 @@ const LockScreen = ({
       <video
         ref={video}
         className={clsx(classes.base, classes.video)}
-        preload
+        preload="auto"
         onPlay={hideButton}
         onEnded={onUnlock}
       >

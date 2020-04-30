@@ -143,7 +143,7 @@ const Dialogue = ({
     </>
   );
 
-  const buttons = hasEnded ? endChoices : choices.map((choice) => getChoiceButton(choice));
+  const buttons = hasEnded ? endChoices : <>{choices.map((choice) => getChoiceButton(choice))}</>;
 
   return <SidePanel content={content} buttons={buttons} card={card} />;
 };
