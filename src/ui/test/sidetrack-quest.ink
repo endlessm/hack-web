@@ -30,7 +30,7 @@ VAR hasLockKey = 0
 === begin ===
 ~ startLevel = 1
 ~ highestAchievedLevel = 1
--> level1
+-> level1_1
 
 === level1_1 ===
 # character: ada
@@ -41,7 +41,7 @@ VAR hasLockKey = 0
 -You've probably guessed whose project this is already - our star student, Riley!
 * [❯] ❯
 -> level1_2
-* [(wait for: currentLevel is 2)] Level Complete!
+* [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
 -> level1_2
 
 === level1_2 ===
@@ -52,7 +52,7 @@ VAR hasLockKey = 0
 - else:
     * [❯] ❯
     -> level1_3
-    * [(wait for: currentLevel is 2)] Level Complete!
+    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
     -> level1_3
 }
 
@@ -65,7 +65,7 @@ VAR hasLockKey = 0
 - else:
     * [❯] ❯
     -> level1_4
-    * [(wait for: currentLevel is 2)] Level Complete!
+    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
     -> level1_4
 }
 
@@ -78,7 +78,7 @@ VAR hasLockKey = 0
 - else:
     * [❯] ❯
     -> level1_5
-    * [(wait for: currentLevel is 2)] Level Complete!
+    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
     -> level1_5
 }
 
@@ -90,14 +90,14 @@ VAR hasLockKey = 0
     - Great job on that level!
     -> level2
 }
-* [(wait for: currentLevel is 2)] Level Complete!
+* [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
 -> level2
 
 
 === level2 ===
 # character: riley
 - Haha, another level! What, you thought I'd just let you go after the exit? Nope, this is only the beginning!
-* [(wait for: currentLevel is 3)] Level Complete!
+* [(wait for: currentLevel is 3)] Level {currentLevel -1 } Complete!
 -> level3
 
 
@@ -113,7 +113,7 @@ VAR hasLockKey = 0
 -Oh ho! <b>Pits</b>, eh? I wonder how you'll cross those...
 * [❯] ❯
 -> level4_1
-* [(wait for: currentLevel is 5)] Level Complete!
+* [(wait for: currentLevel is 5)] Level {currentLevel -1 } Complete!
 -> level4_1
 
 
@@ -124,7 +124,7 @@ VAR hasLockKey = 0
     - Great job on that level!
     -> level5
 }
-* [(wait for: currentLevel is 5)] Level Complete!
+* [(wait for: currentLevel is 5)] Level {currentLevel -1 } Complete!
 -> level5
 
 
@@ -138,7 +138,7 @@ VAR hasLockKey = 0
 -BTW, those pits weren't easy to draw... it's tough trying to get that feeling of a deep, black hole, but only using colors.
 * [❯] ❯
 -> level6_1
-* [(wait for: currentLevel is 7)] Level Complete!
+* [(wait for: currentLevel is 7)] Level {currentLevel -1 } Complete!
 -> level6_1
 
 
@@ -149,7 +149,7 @@ VAR hasLockKey = 0
     - Great job on that level!
     -> level7
 }
-* [(wait for: currentLevel is 7)] Level Complete!
+* [(wait for: currentLevel is 7)] Level {currentLevel -1 } Complete!
 -> level7
 
 
@@ -158,7 +158,7 @@ VAR hasLockKey = 0
 -Hey Riley, I think your game has some <b>bugs</b>, LOL! What a cool bunch of robots. `Beep. Boop. Hello. Faber. I. Am. A. Bugbot.`
 * [❯] ❯
 -> level7_1
-* [(wait for: currentLevel is 8)] Level Complete!
+* [(wait for: currentLevel is 8)] Level {currentLevel -1 } Complete!
 -> level7_1
 
 
@@ -171,7 +171,7 @@ VAR hasLockKey = 0
 - else:
     * [❯] ❯
     -> level7_2
-    * [(wait for: currentLevel is 8)] Level Complete!
+    * [(wait for: currentLevel is 8)] Level {currentLevel -1 } Complete!
     -> level7_2
 }
 
@@ -186,7 +186,7 @@ VAR hasLockKey = 0
 - else:
     * [❯] ❯
     -> level7_3
-    * [(wait for: currentLevel is 8)] Level Complete!
+    * [(wait for: currentLevel is 8)] Level {currentLevel -1 } Complete!
     -> level7_3
 }
 
@@ -199,17 +199,17 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
     - Great job on that level!
     -> level8
 }
-* [(wait for: currentLevel is 8)] Level Complete!
+* [(wait for: currentLevel is 8)] Level {currentLevel -1 } Complete!
 -> level8
 
 
 === level8 ===
-* [(wait for: currentLevel is 9)] Level Complete!
+* [(wait for: currentLevel is 9)] Level {currentLevel -1 } Complete!
 -> level9
 
 
 === level9 ===
-* [(wait for: currentLevel is 10)] Level Complete!
+* [(wait for: currentLevel is 10)] Level {currentLevel -1 } Complete!
 -> level10
 
 
@@ -221,12 +221,12 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 
 
 === level11 ===
-* [(wait for: currentLevel is 12)] Level Complete!
+* [(wait for: currentLevel is 12)] Level {currentLevel -1 } Complete!
 -> level12
 
 
 === level12 ===
-* [(wait for: currentLevel is 13)] Level Complete!
+* [(wait for: currentLevel is 13)] Level {currentLevel -1 } Complete!
 -> level13
 
 
@@ -253,7 +253,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 - else:
     * [❯] ❯
     -> level14_postcs_2
-    * [(wait for: currentLevel is 15)] Level Complete!
+    * [(wait for: currentLevel is 15)] Level {currentLevel -1 } Complete!
     -> level14_postcs_2
 }
 
@@ -266,7 +266,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 - else:
     * [❯] ❯
     -> level14_postcs_3
-    * [(wait for: currentLevel is 15)] Level Complete!
+    * [(wait for: currentLevel is 15)] Level {currentLevel -1 } Complete!
     -> level14_postcs_3
 }
 
@@ -279,7 +279,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 - else:
     * [❯] ❯
     -> level14_postcs_4
-    * [(wait for: currentLevel is 15)] Level Complete!
+    * [(wait for: currentLevel is 15)] Level {currentLevel -1 } Complete!
     -> level14_postcs_4
 }
 
@@ -292,7 +292,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 - else:
     * [❯] ❯
     -> level14_postcs_5
-    * [(wait for: currentLevel is 15)] Level Complete!
+    * [(wait for: currentLevel is 15)] Level {currentLevel -1 } Complete!
     -> level14_postcs_5
 }
 
@@ -304,7 +304,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
     - Great job on that level!
     -> level15
 }
-* [(wait for: currentLevel is 15)] Level Complete!
+* [(wait for: currentLevel is 15)] Level {currentLevel -1 } Complete!
 -> level15
 
 
@@ -321,7 +321,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 -Hmm, there's just no way this set of instructions could finish this level. You'll have to re-order them.
 * [❯] ❯
 -> level16_2
-* [(wait for: currentLevel is 17)] Level Complete!
+* [(wait for: currentLevel is 17)] Level {currentLevel -1 } Complete!
 -> level16_2
 
 
@@ -332,7 +332,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
     - Great job on that level!
     -> level17
 }
-* [(wait for: currentLevel is 17)] Level Complete!
+* [(wait for: currentLevel is 17)] Level {currentLevel -1 } Complete!
 -> level17
 
 
@@ -341,7 +341,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 -Fantastic work, you practically sailed through that level, {get_user_name()}. Excellent planning!
 * [❯] ❯
 -> level17_2
-* [(wait for: currentLevel is 18)] Level Complete!
+* [(wait for: currentLevel is 18)] Level {currentLevel -1 } Complete!
 -> level17_2
 
 
@@ -353,7 +353,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 - else:
     * [❯] ❯
     -> level17_3
-    * [(wait for: currentLevel is 18)] Level Complete!
+    * [(wait for: currentLevel is 18)] Level {currentLevel -1 } Complete!
     -> level17_3
 }
 
@@ -365,7 +365,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
     - Great job on that level!
     -> level18
 }
-* [(wait for: currentLevel is 18)] Level Complete!
+* [(wait for: currentLevel is 18)] Level {currentLevel -1 } Complete!
 -> level18
 
 
@@ -374,7 +374,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 -Hey Riley, how's your maze going?
 * [❯] ❯
 -> level18_2
-* [(wait for: currentLevel is 19)] Level Complete!
+* [(wait for: currentLevel is 19)] Level {currentLevel -1 } Complete!
 -> level18_2
 
 
@@ -386,7 +386,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 - else:
     * [❯] ❯
     -> level18_3
-    * [(wait for: currentLevel is 18)] Level Complete!
+    * [(wait for: currentLevel is 18)] Level {currentLevel -1 } Complete!
     -> level18_3
 }
 
@@ -398,7 +398,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
     - Great job on that level!
     -> level19
 }
-* [(wait for: currentLevel is 19)] Level Complete!
+* [(wait for: currentLevel is 19)] Level {currentLevel -1 } Complete!
 -> level19
 
 
@@ -407,7 +407,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 -Let's turn the heat up - now you've got 2 Jumps.
 * [❯] ❯
 -> level19_2
-* [(wait for: currentLevel is 20)] Level Complete!
+* [(wait for: currentLevel is 20)] Level {currentLevel -1 } Complete!
 -> level19_2
 
 
@@ -418,21 +418,21 @@ Once your instructions are laid out in the order you want them, press <b>play</b
     - Great job on that level!
     -> level20
 }
-* [(wait for: currentLevel is 20)] Level Complete!
+* [(wait for: currentLevel is 20)] Level {currentLevel -1 } Complete!
 -> level20
 
 
 === level20 ===
 # character: faber
 I'd say something about this level bringing me <b>down</b>, but this game is too cool for that. How are you supposed to move forward when all you can do is go down, though? Might as well give it a shot!
-* [(wait for: currentLevel is 21)] Level Complete!
+* [(wait for: currentLevel is 21)] Level {currentLevel -1 } Complete!
 -> level21
 
 
 === level21 ===
 # character: ada
 -You know, you don't have to have a pit in front of you to use a jump instruction. Maybe you could use jump to go forward? You never know when that will come in handy!
-* [(wait for: currentLevel is 22)] Level Complete!
+* [(wait for: currentLevel is 22)] Level {currentLevel -1 } Complete!
 -> level22
 
 
@@ -441,7 +441,7 @@ I'd say something about this level bringing me <b>down</b>, but this game is too
 -This looks... familliar.
 * [❯] ❯
 -> level22_2
-* [(wait for: currentLevel is 23)] Level Complete!
+* [(wait for: currentLevel is 23)] Level {currentLevel -1 } Complete!
 -> level22_2
 
 
@@ -452,7 +452,7 @@ I'd say something about this level bringing me <b>down</b>, but this game is too
     - Great job on that level!
     -> level23
 }
-* [(wait for: currentLevel is 23)] Level Complete!
+* [(wait for: currentLevel is 23)] Level {currentLevel -1 } Complete!
 -> level23
 
 
