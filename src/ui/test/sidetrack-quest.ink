@@ -231,7 +231,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 === level13 ===
 # charcter: ada
 -Bugbots, pits... Riley, you've done a great job here.
-* [(wait for: currentLevel is 14)] Level {currentLevel -1 }Complete!
+* [(wait for: currentLevel is 14)] Level {currentLevel -1 } Complete!
 -> level14
 
 
