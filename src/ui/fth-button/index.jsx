@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   Fab,
   makeStyles,
@@ -68,17 +68,56 @@ const useStyles = makeStyles(({ transitions }) => ({
   },
 }));
 
+const SOUNDS = '/assets/sounds';
+
 const FTHButton = ({
   className,
   flipped,
   attracting,
+  onClick,
   ...props
 }) => {
   FTHButton.muiName = Fab.muiName;
   const classes = useStyles();
 
+  const hoverRef = useRef(null);
+  const inverseHoverRef = useRef(null);
+  const clickRef = useRef(null);
+
+  const playSound = (ref) => {
+    if (!ref.current) {
+      return;
+    }
+
+    const audio = ref.current;
+    audio.currentTime = 0;
+    audio.play();
+  };
+
+  const stopSound = (ref) => {
+    if (!ref.current) {
+      return;
+    }
+
+    const audio = ref.current;
+    audio.pause();
+    audio.currentTime = 0;
+  };
+
+  useEffect(() => {
+    stopSound(hoverRef);
+    stopSound(inverseHoverRef);
+  }, [flipped]);
+
   return (
     <>
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <audio src={`${SOUNDS}/Hover_Flip.webm`} preload="auto" ref={hoverRef} type="audio/webm" loop />
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <audio src={`${SOUNDS}/Hover_InverseFlip.webm`} preload="auto" ref={inverseHoverRef} type="audio/webm" loop />
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <audio src={`${SOUNDS}/MouseClick_Flip.webm`} preload="auto" ref={clickRef} type="audio/webm" />
+
       { attracting && (
         <div className={clsx(className, classes.glow)} />
       )}
@@ -87,6 +126,12 @@ const FTHButton = ({
         aria-label="open toolbox"
         edge="end"
         size="medium"
+        onMouseEnter={() => { playSound(flipped ? inverseHoverRef : hoverRef); }}
+        onMouseLeave={() => { stopSound(flipped ? inverseHoverRef : hoverRef); }}
+        onClick={() => {
+          playSound(clickRef);
+          onClick();
+        }}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
         className={clsx(className, classes.fthButton, {
@@ -104,12 +149,14 @@ FTHButton.propTypes = {
   className: PropTypes.string,
   flipped: PropTypes.bool,
   attracting: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 FTHButton.defaultProps = {
   className: '',
   flipped: false,
   attracting: false,
+  onClick: null,
 };
 
 export default FTHButton;

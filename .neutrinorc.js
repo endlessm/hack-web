@@ -57,6 +57,10 @@ module.exports = {
           to: 'assets/toolbox',
         },
         {
+          from: 'src/sounds',
+          to: 'assets/sounds',
+        },
+        {
           from: 'node_modules/pdfjs-dist/build/pdf.worker.js',
         },
       ],
