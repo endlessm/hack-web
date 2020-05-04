@@ -79,20 +79,11 @@ const CardSetView = ({ slug }) => {
     </Grid>
   );
 
-  const emptyContent = (
-    <Grid container justify="flex-start">
-      <Grid item>
-        <Typography variant="h5">Hey, Hacker!</Typography>
-        <Typography variant="body1">My name&apos;s Riley, and I&apos;m here to show off Endless OS and Hack! Pick a card and check out what we&apos;ve got to offer!</Typography>
-      </Grid>
-    </Grid>
-  );
-
   const sidebar = (
     <SidePanel
-      content={selectedCard ? getContent(selectedCard) : emptyContent}
+      content={getContent(selectedCard || cardset)}
       buttons={selectedCard ? <GoButton card={selectedCard} /> : null}
-      card={selectedCard}
+      card={selectedCard || cardset}
       expanded
     />
   );
