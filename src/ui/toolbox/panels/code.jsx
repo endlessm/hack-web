@@ -42,8 +42,12 @@ const CodePanel = ({
   fullHeight,
 }) => {
   const params = useSelector((state) => state.hackableApp);
+
   const dispatch = useDispatch();
-  const text = code(params);
+  const editorCode = code(params);
+  const text = editorCode.text || editorCode;
+  const annotations = editorCode.annotations || [];
+
   const size = useWindowSize();
 
   let timeout = null;
@@ -83,6 +87,7 @@ const CodePanel = ({
       onChange={build}
       name="editor"
       editorProps={{ $blockScrolling: true }}
+      annotations={annotations}
       wrapEnabled
       fontSize={14}
     />

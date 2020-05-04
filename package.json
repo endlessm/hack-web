@@ -36,7 +36,8 @@
     "redux": "^4.0.5",
     "sanitize-html": "^1.22.1",
     "tmp": "^0.1.0",
-    "typeface-roboto": "^0.0.75"
+    "typeface-roboto": "^0.0.75",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@neutrinojs/airbnb": "^9.1.0",
