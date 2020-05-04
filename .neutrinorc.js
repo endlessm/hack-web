@@ -30,7 +30,8 @@ module.exports = {
     react({
       html: {
         title: 'Hack',
-        favicon: 'src/favicon.png'
+        favicon: 'src/favicons/favicon.png',
+        template: 'src/template.ejs',
       },
     }),
     jest(),
@@ -47,6 +48,10 @@ module.exports = {
         {
           from: 'src/articles',
           to: 'assets/articles',
+        },
+        {
+          from: 'src/favicons',
+          to: 'favicons/',
         },
         {
           from: 'apps',
