@@ -35,6 +35,9 @@ const useStyles = makeStyles(({
     avatar: {
       width: size,
       height: size,
+      [breakpoints.down('md')]: {
+        marginTop: spacing(1),
+      },
     },
     rightRow: {
       marginLeft: 'auto',
