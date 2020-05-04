@@ -3,8 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
+  Box,
+  Fab,
   makeStyles,
 } from '@material-ui/core';
+
+import {
+  SettingsBackupRestore,
+} from '@material-ui/icons';
 
 import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
@@ -97,11 +103,27 @@ const HtmlQuest = () => {
     />
   );
 
+  const controls = (
+    <Box m={1}>
+      <Fab
+        color="secondary"
+        aria-label="Reset toolbox"
+        edge="end"
+        size="medium"
+        onClick={resetToolbox}
+      >
+        <SettingsBackupRestore />
+      </Fab>
+    </Box>
+  );
+
   return (
     <QuestFTHView
       toolbox={toolbox}
       canvas={canvas}
       sidebar={sidebar}
+      controls={controls}
+      hideControls={false}
       sideBySide
       title={card.name}
       subtitle={card.subtitle}
