@@ -123,7 +123,7 @@ const initialState = {
     {
       slug: '/home',
       name: 'Pick a dimension to explore!',
-      description: '',
+      description: 'Hey, Hacker! My name\'s Riley, and I\'m here to show off Endless OS and Hack! Pick a card and check out what we\'ve got to offer!',
       cards: [
         {
           slug: '/web',
@@ -166,7 +166,8 @@ const initialState = {
     {
       slug: '/os',
       name: 'Endless OS',
-      description: ' Fast - Powerful - Friendly',
+      subtitle: 'Dive deeper into hacking with the Endless Operating System!',
+      description: 'Endless OS is the center of it all - an operating system designed to be easy for anyone to use. Easy doesn\'t mean less powerful, though - Endless OS has everything you need to work, learn, play, and connect, using the best of free and open-source software.',
       cards: [
         {
           slug: '/os/os-01',
@@ -201,6 +202,7 @@ const initialState = {
     {
       slug: '/t2',
       name: 'T2 Games',
+      subtitle: 'Explore the world of Terminal Two!',
       description: 'Terminal Two is another branch of Endless, focused on delivering educational games. Journey through their worlds, hacking futuristic cities, discovering ancient ruins, and exploring alien planets!',
       cards: [
         {
