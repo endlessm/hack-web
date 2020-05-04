@@ -130,7 +130,7 @@ const ChatMessage = ({
       style={style}
     >
       {side === 'left' && (
-        <Grid item xs={isSmall ? 12 : 0}>
+        <Grid item xs={isSmall ? 12 : false}>
           <Avatar src={avatar} className={styles.avatar} />
         </Grid>
       )}
