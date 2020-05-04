@@ -1,6 +1,6 @@
 import { hot } from 'react-hot-loader';
 import React, { useEffect, useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -65,6 +65,10 @@ const SidetrackQuest = () => {
   const dispatch = useDispatch();
   const card = useCard();
 
+  // This is here to trigger a reload when the sidepanel changes so we can
+  // focus the APP
+  const open = useSelector((state) => state.ui.sidePanelOpen);
+
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
@@ -83,6 +87,10 @@ const SidetrackQuest = () => {
       appRef.current.focus();
     }
   };
+
+  useEffect(() => {
+    focusApp();
+  }, [open]);
 
   useEffect(() => {
     const updateQuestVariables = (params) => {
