@@ -1,4 +1,5 @@
 import { hot } from 'react-hot-loader';
+import { useSelector } from 'react-redux';
 import React, {
   useLayoutEffect, useRef, useState,
 } from 'react';
@@ -8,6 +9,7 @@ import {
   Divider,
   Fab,
   makeStyles,
+  useTheme,
 } from '@material-ui/core';
 
 import {
@@ -54,6 +56,8 @@ const PdfQuest = () => {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
 
+  const open = useSelector((state) => state.ui.sidePanelOpen);
+
   const [state, setState] = useState({
     scale: null,
     width: null,
@@ -75,11 +79,18 @@ const PdfQuest = () => {
     availableHeight: ref.current.clientHeight,
   });
 
+  const { transitions } = useTheme();
+
   useLayoutEffect(() => {
-    const dimentions = getRefDimentions();
-    const scaleInfo = fitWidthToCanvas(dimentions);
-    setState((oldState) => ({ ...oldState, ...scaleInfo }));
-  }, []);
+    if (!state.fullscreen) {
+      return;
+    }
+    setTimeout(() => {
+      const dimentions = getRefDimentions();
+      const scaleInfo = fitWidthToCanvas(dimentions);
+      setState((oldState) => ({ ...oldState, ...scaleInfo }));
+    }, transitions.duration.enteringScreen);
+  }, [open, state.fullscreen, transitions.duration.enteringScreen]);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     quest.updateStoryVariable('loaded', true);
