@@ -1,6 +1,6 @@
 [submodule "tools/inklecate-flatpak"]
 	path = tools/.inklecate-build/inklecate-flatpak
-	url = git@github.com:manuq/inklecate-flatpak.git
+	url = https://github.com/manuq/inklecate-flatpak.git
 [submodule "hack-toy-apps"]
 	path = apps/hack-toy-apps
 	url = git@github.com:endlessm/hack-toy-apps.git
