@@ -41,9 +41,8 @@ function uploadToS3(bucketName, keyPrefix, filePath) {
   });
 }
 
-const exec = require('child_process').execSync;
-const branch = exec('git rev-parse --abbrev-ref HEAD').toString().trim();
-const bucket = branch === 'stable' ? 'hack-web-stable' : 'hack-web';
+const branch = path.basename(process.env.HOME).split('-').slice(-1).pop();
+const bucket = branch === 'stable' ? 'try.hack-computer.com' : 'dev.hack-computer.com';
 
 getFiles('build')
   .then((files) => {
