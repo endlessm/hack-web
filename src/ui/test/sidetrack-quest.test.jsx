@@ -16,7 +16,7 @@ import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
 import { useCard } from '../hack-card';
 import QuestFTHView from '../quest-fth-view';
-import questContent from './sidetrack-quest.ink';
+import questContent from './sidetrack-quest-2.ink';
 
 import store, { actions } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
