@@ -83,6 +83,7 @@ const FTHButton = ({
   const hoverRef = useRef(null);
   const inverseHoverRef = useRef(null);
   const clickRef = useRef(null);
+  const inverseClickRef = useRef(null);
 
   const playSound = (ref) => {
     if (!ref.current) {
@@ -112,11 +113,13 @@ const FTHButton = ({
   return (
     <>
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio src={`${SOUNDS}/Hover_Flip.webm`} preload="auto" ref={hoverRef} type="audio/webm" loop />
+      <audio src={`${SOUNDS}/MouseEnter_Flip.webm`} preload="auto" ref={hoverRef} type="audio/webm" />
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio src={`${SOUNDS}/Hover_InverseFlip.webm`} preload="auto" ref={inverseHoverRef} type="audio/webm" loop />
+      <audio src={`${SOUNDS}/MouseEnter_Inverse.webm`} preload="auto" ref={inverseHoverRef} type="audio/webm" />
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio src={`${SOUNDS}/MouseClick_Flip.webm`} preload="auto" ref={clickRef} type="audio/webm" />
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <audio src={`${SOUNDS}/MouseClick_Invert.webm`} preload="auto" ref={inverseClickRef} type="audio/webm" />
 
       { attracting && (
         <div className={clsx(className, classes.glow)} />
@@ -129,7 +132,7 @@ const FTHButton = ({
         onMouseEnter={() => { playSound(flipped ? inverseHoverRef : hoverRef); }}
         onMouseLeave={() => { stopSound(flipped ? inverseHoverRef : hoverRef); }}
         onClick={() => {
-          playSound(clickRef);
+          playSound(flipped ? inverseClickRef : clickRef);
           onClick();
         }}
         // eslint-disable-next-line react/jsx-props-no-spreading
