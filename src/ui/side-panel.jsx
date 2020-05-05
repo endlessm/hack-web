@@ -60,7 +60,8 @@ const SidePanel = ({
       </Box>
       <Divider />
       <Box
-        m={1}
+        my={1}
+        mr={2}
         display="flex"
         flexWrap="wrap"
         justifyContent="flex-end"
