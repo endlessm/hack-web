@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Container,
   Box,
-  Button,
   Typography,
 } from '@material-ui/core';
 
@@ -11,12 +10,6 @@ import TestWrapper from './test-wrapper';
 import FlipToHack from '../flip-to-hack';
 
 const App = () => {
-  const [flipped, setFlipped] = React.useState(false);
-
-  const toggleFlip = () => {
-    setFlipped(!flipped);
-  };
-
   const width = 400;
   const height = 300;
 
@@ -39,9 +32,7 @@ const App = () => {
           Flip to Hack!
         </Typography>
         <Box style={{ width, height }}>
-          <Button onClick={toggleFlip}>Flip</Button>
           <FlipToHack
-            flipped={flipped}
             toolbox={toolbox}
             canvas={canvas}
           />

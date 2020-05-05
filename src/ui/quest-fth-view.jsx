@@ -20,7 +20,6 @@ import { actions } from '../store';
 import HackTopBar from './hack-top-bar';
 import SlideToHack from './slide-to-hack';
 import FlipToHack from './flip-to-hack';
-import FTHButton from './fth-button';
 
 import HackIconOpen from './hack-icon-open.svg';
 import HackIconClose from './hack-icon-close.svg';
@@ -52,10 +51,6 @@ const useStyles = makeStyles((theme) => {
     },
     dialogueToggleButtonDisabled: {
       opacity: 0.5,
-    },
-    toolboxToggleButton: {
-      position: 'absolute',
-      top: `calc(50% - ${theme.spacing(2.5)}px)`,
     },
     controlsContainer: {
       position: 'absolute',
@@ -150,9 +145,6 @@ const QuestFTHView = ({
 
   const open = useSelector((state) => state.ui.sidePanelOpen);
 
-  // When sideBySide is true we show the toolbox by default
-  const [flipped, setFlipped] = useState(sideBySide);
-
   const [movingTimeout, setMovingTimeout] = useState();
   const [controlsVisible, setControlsVisible] = useState(!hideControls);
 
@@ -177,13 +169,6 @@ const QuestFTHView = ({
     dispatch(actions.sidePanelToggleOpen());
   };
 
-  const toggleFlip = () => {
-    setFlipped(!flipped);
-    if (onFlipped) {
-      onFlipped(!flipped);
-    }
-  };
-
   const canvasWrap = (
     <>
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
@@ -202,22 +187,21 @@ const QuestFTHView = ({
         {toolbox ? (
           <>
             {sideBySide ? (
-              <SlideToHack flipped={flipped} toolbox={toolbox} canvas={canvasWrap} />
-            ) : <FlipToHack flipped={flipped} toolbox={toolbox} canvas={canvasWrap} />}
+              <SlideToHack flipped toolbox={toolbox} canvas={canvasWrap} />
+            ) : (
+              <FlipToHack
+                toolbox={toolbox}
+                canvas={canvasWrap}
+                attractFTH={attractFTH}
+                onFlipped={onFlipped}
+              />
+            )}
           </>
         ) : (
           <>
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <div {...bind()} className={classes.canvas}>{canvas}</div>
           </>
-        )}
-        {toolbox && !sideBySide && (
-          <FTHButton
-            onClick={toggleFlip}
-            className={classes.toolboxToggleButton}
-            flipped={flipped}
-            attracting={attractFTH}
-          />
         )}
         {controls && (
           <Box className={clsx(classes.controlsContainer, {

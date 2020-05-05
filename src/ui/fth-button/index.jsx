@@ -13,13 +13,13 @@ import flipBackHover from './flip-back-hover.png';
 import flipFrontDimmed from './flip-front-dimmed.png';
 import flipBackDimmed from './flip-back-dimmed.png';
 
-const useStyles = makeStyles(({ transitions }) => ({
+const useStyles = makeStyles(({ custom, transitions }) => ({
   fthButton: {
     // Note, the following sizes are intentionally hardcoded to fit
     // the assets.
     borderRadius: '0 60px 60px 0',
-    width: '66px',
-    height: '124px',
+    width: custom.fthButton.width,
+    height: custom.fthButton.height,
     boxShadow: 'none',
     transition: transitions.create(['background-image'], {
       easing: transitions.easing.easeInOut,
@@ -50,7 +50,7 @@ const useStyles = makeStyles(({ transitions }) => ({
     // the assets.
     width: '0px',
     height: '0px',
-    marginTop: 124 / 2,
+    marginTop: custom.fthButton.height / 2,
     animation: '$glow 1s alternate infinite',
   },
 

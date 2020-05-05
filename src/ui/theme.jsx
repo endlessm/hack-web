@@ -37,6 +37,10 @@ const theme = createMuiTheme({
     borderRadius: 16,
   },
   custom: {
+    fthButton: {
+      width: 66,
+      height: 124,
+    },
     flipToHackPerspective: 1000,
     landingTitleGradientDirection: 270,
     chatMessageMaxWidth: '90%',
