@@ -6,10 +6,8 @@ import {
   CookieStorage,
 } from 'amazon-cognito-identity-js';
 
-import config from '../package.json';
-
 let CookieStorageClass = CookieStorage;
-let COOKIE_DOMAIN = config.domain;
+let COOKIE_DOMAIN = '.hack-computer.com';
 
 if (process.env.NODE_ENV === 'development') {
   COOKIE_DOMAIN = null;

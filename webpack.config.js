@@ -10,6 +10,7 @@ const plugin = new webpack.DefinePlugin({
   CONFIG: {
     mode: JSON.stringify(module.exports.mode),
     testAuth: process.env.TEST_AUTH,
+    branch: JSON.stringify(process.env.HOME.split('-').slice(-1).pop()),
   },
 });
 module.exports.plugins.push(plugin);
