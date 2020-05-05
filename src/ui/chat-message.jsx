@@ -30,11 +30,13 @@ const sanitizeOptions = {
 const useStyles = makeStyles(({
   breakpoints, custom, palette, spacing, typography,
 }) => {
-  const size = spacing(6);
+  const size = spacing(8);
   return {
     avatar: {
       width: size,
       height: size,
+      marginLeft: spacing(1),
+      marginRight: spacing(1),
       [breakpoints.down('md')]: {
         marginTop: spacing(1),
       },
