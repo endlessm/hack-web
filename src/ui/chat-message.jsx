@@ -35,6 +35,9 @@ const useStyles = makeStyles(({
     avatar: {
       width: size,
       height: size,
+      [breakpoints.down('md')]: {
+        marginTop: spacing(1),
+      },
     },
     rightRow: {
       marginLeft: 'auto',
@@ -127,7 +130,7 @@ const ChatMessage = ({
       style={style}
     >
       {side === 'left' && (
-        <Grid item xs={isSmall ? 12 : 0}>
+        <Grid item xs={isSmall ? 12 : false}>
           <Avatar src={avatar} className={styles.avatar} />
         </Grid>
       )}

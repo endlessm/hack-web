@@ -14,7 +14,7 @@ const defaultImage = '/assets/cards/default-side-panel.png';
 const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
   offset: {
     minHeight: `${spacing(10)}px`,
-    height: `${spacing(11)}px`,
+    flexShrink: 1,
     backgroundSize: 'cover',
     backgroundPosition: 'center top',
     backgroundImage: ({ card }) => {
@@ -30,7 +30,7 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
     }),
   },
   offsetExpanded: {
-    height: '200%',
+    flexGrow: 1,
     borderBottom: `${spacing(1)}px solid ${palette.primary.main}`,
   },
   dialogue: {
@@ -40,6 +40,9 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
     alignItems: 'flex-end',
     display: 'flex',
     flexDirection: 'column',
+  },
+  dialogueExpanded: {
+    height: 'fit-content',
   },
 }));
 
@@ -52,7 +55,7 @@ const SidePanel = ({
     <>
       <div className={clsx(classes.offset, expanded && classes.offsetExpanded)} />
       <Divider />
-      <Box className={classes.dialogue} px={1} py={2}>
+      <Box className={clsx(classes.dialogue, expanded && classes.dialogueExpanded)} px={1} py={2}>
         {content}
       </Box>
       <Divider />
