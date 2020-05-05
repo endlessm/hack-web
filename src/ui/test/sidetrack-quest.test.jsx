@@ -2,8 +2,15 @@ import { hot } from 'react-hot-loader';
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
+  Fab,
+  Box,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+
+import {
+  VolumeOff,
+  VolumeUp,
+} from '@material-ui/icons';
 
 import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
@@ -78,6 +85,8 @@ const SidetrackQuest = () => {
 
   const [hasLockKey, setHasLockKey] = useState(false);
   const [isLocked, setIsLocked] = useState(true);
+
+  const [mute, setMute] = useState(false);
 
   const questRef = useRef(quest);
   const appRef = useRef(null);
@@ -336,6 +345,36 @@ const SidetrackQuest = () => {
     />
   );
 
+  const toggleMute = () => {
+    const app = appRef.current;
+    if (!app) {
+      return;
+    }
+
+    // mute/unmute all sounds
+    SidetrackSounds.forEach((s) => {
+      const audio = app.contentDocument.getElementById(s);
+      audio.muted = !mute;
+    });
+
+    setMute(!mute);
+    focusApp();
+  };
+
+  const controls = (
+    <Box m={1}>
+      <Fab
+        color="primary"
+        aria-label="Mute volume"
+        edge="end"
+        size="medium"
+        onClick={toggleMute}
+      >
+        { mute ? <VolumeOff /> : <VolumeUp /> }
+      </Fab>
+    </Box>
+  );
+
   return (
     <TestWrapper>
       <QuestFTHView
@@ -346,6 +385,8 @@ const SidetrackQuest = () => {
         subtitle={card.subtitle}
         attractFTH={attractFTH}
         onFlipped={onFlipped}
+        controls={controls}
+        hideControls={false}
       />
     </TestWrapper>
   );
