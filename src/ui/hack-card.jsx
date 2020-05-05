@@ -60,19 +60,24 @@ const useStyles = makeStyles(({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    transition: `transform ${transitions.duration.standard}ms linear`,
+    opacity: 0,
+    transition: `${transitions.create(['opacity'], {
+      easing: transitions.easing.easeOut,
+      duration: transitions.duration.enteringScreen,
+    })}, transform ${transitions.duration.standard}ms linear`,
   },
   backgroundBoxLoaded: {
+    opacity: 1,
     backgroundImage: ({ card }) => `url('/assets/cards/${card.slug.slice(1)}/side-panel.png')`,
   },
-  loading: {
+  titleLoading: {
     opacity: 0,
     transition: transitions.create(['opacity'], {
       easing: transitions.easing.easeOut,
       duration: transitions.duration.enteringScreen,
     }),
   },
-  loadingLoaded: {
+  titleLoaded: {
     opacity: 1,
   },
   cardContent: {
@@ -158,19 +163,17 @@ const HackCard = ({ card, cardset }) => {
       onClick={handleClick}
     >
       <Box className={clsx(
-        classes.backgroundBox,
         classes.coverBackground,
+        classes.backgroundBox,
         loaded && classes.backgroundBoxLoaded,
-        classes.loading,
-        loaded && classes.loadingLoaded,
       )}
       />
       <CardActionArea>
         <CardContent className={classes.cardContent}>
           <Typography
             className={clsx(
-              classes.loading,
-              loaded && classes.loadingLoaded,
+              classes.titleLoading,
+              loaded && classes.titleLoaded,
             )}
             gutterBottom
           >
