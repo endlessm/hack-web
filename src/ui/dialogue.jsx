@@ -124,7 +124,7 @@ const Dialogue = ({
     >
       <ChatMessage
         side={d.character === 'user' ? 'right' : 'left'}
-        avatar={`/assets/avatars/${d.character}.png`}
+        avatar={`/assets/avatars/${d.character}.svg`}
         messages={[d]}
       />
     </Fade>
