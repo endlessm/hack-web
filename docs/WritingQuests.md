@@ -26,6 +26,15 @@ again using a tag:
 In the case above, the main character will say "Hello", and Riley will
 say "Hey there!".
 
+The available character codes are:
+
+- ada
+- estelle
+- faber
+- felix
+- riley
+- saniel
+
 ## Using emojis in choices
 
 You can use the following Unicode emojis in choices. They will be
