@@ -45,6 +45,11 @@ const theme = createMuiTheme({
       onlyLg: '95%',
       onlyXl: '90%',
     },
+    chatMessageMinWidths: {
+      downMd: '50%',
+      onlyLg: '47%',
+      onlyXl: '45%',
+    },
     // Fill 3 of 12 columns in XL screen size:
     drawerWidth: breakpoints.values.xl * 0.25,
     drawerWidths: {

@@ -5,6 +5,7 @@ import sanitizeHtml from 'sanitize-html';
 import {
   makeStyles,
   Avatar,
+  Box,
   Grid,
   Paper,
   Typography,
@@ -32,13 +33,17 @@ const useStyles = makeStyles(({
 }) => {
   const size = spacing(8);
   return {
+    root: {
+      marginTop: spacing(1),
+    },
     avatar: {
       width: size,
       height: size,
       marginLeft: spacing(1),
       marginRight: spacing(1),
       [breakpoints.down('md')]: {
-        marginTop: spacing(1),
+        marginLeft: 0,
+        marginRight: 0,
       },
     },
     rightRow: {
@@ -79,12 +84,12 @@ const useStyles = makeStyles(({
       [breakpoints.only('lg')]: {
         maxWidth: custom.chatMessageMaxWidths.onlyLg,
         padding: spacing(1, 2),
-        marginTop: spacing(3),
+        marginTop: spacing(0),
       },
       [breakpoints.only('xl')]: {
         maxWidth: custom.chatMessageMaxWidths.onlyXl,
         padding: spacing(1, 2),
-        marginTop: spacing(3),
+        marginTop: spacing(0),
       },
       display: 'inline-block',
       wordBreak: 'break-word',
@@ -102,6 +107,16 @@ const useStyles = makeStyles(({
       },
     },
     left: {
+      minHeight: spacing(8),
+      [breakpoints.down('md')]: {
+        minWidth: custom.chatMessageMinWidths.downMd,
+      },
+      [breakpoints.only('lg')]: {
+        minWidth: custom.chatMessageMinWidths.onlyLg,
+      },
+      [breakpoints.only('xl')]: {
+        minWidth: custom.chatMessageMinWidths.onlyXl,
+      },
       borderTopLeftRadius: 0,
     },
     right: {
@@ -130,6 +145,7 @@ const ChatMessage = ({
       spacing={isSmall ? 0 : 1}
       justify={side === 'right' ? 'flex-end' : 'flex-start'}
       style={style}
+      className={styles.root}
     >
       {side === 'left' && (
         <Grid item xs={isSmall ? 12 : false}>
@@ -152,23 +168,25 @@ const ChatMessage = ({
                   styles[side],
                 )}
               >
-                {/* eslint-disable-next-line react/no-danger */}
-                <Typography dangerouslySetInnerHTML={{ __html: sanitize(message.text) }} />
-                {message.codeSnippet && (
-                  <AceEditor
-                    width="100%"
-                    height={theme.spacing(15)}
-                    mode={message.codeSnippet.language}
-                    theme="monokai"
-                    value={message.codeSnippet.text}
-                    name="editor"
-                    readOnly
-                    showGutter={false}
-                    highlightActiveLine={false}
-                    editorProps={{ $blockScrolling: true }}
-                    enableSnippets
-                  />
-                )}
+                <Box my={side === 'left' ? 1.5 : 0}>
+                  {/* eslint-disable-next-line react/no-danger */}
+                  <Typography dangerouslySetInnerHTML={{ __html: sanitize(message.text) }} />
+                  {message.codeSnippet && (
+                    <AceEditor
+                      width="100%"
+                      height={theme.spacing(15)}
+                      mode={message.codeSnippet.language}
+                      theme="monokai"
+                      value={message.codeSnippet.text}
+                      name="editor"
+                      readOnly
+                      showGutter={false}
+                      highlightActiveLine={false}
+                      editorProps={{ $blockScrolling: true }}
+                      enableSnippets
+                    />
+                  )}
+                </Box>
               </Paper>
             </div>
           </div>
