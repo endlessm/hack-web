@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -40,6 +40,7 @@ const useStyles = makeStyles(({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     position: 'relative',
+    backgroundImage: `url('${defaultImage}')`,
     transition: `transform ${transitions.duration.standard}ms linear`,
     '&:hover': {
       transform: 'scale(1.05)',
@@ -48,20 +49,31 @@ const useStyles = makeStyles(({
       transform: 'scale(1.2)',
     },
   },
+  coverBackground: {
+    backgroundSize: 'cover',
+    backgroundPosition: 'center top',
+  },
   rootSelected: {
     boxShadow: `0px 0px 0px ${spacing(1)}px ${palette.primary.main}`,
   },
   backgroundBox: {
-    backgroundSize: 'cover',
-    backgroundPosition: 'center top',
-    backgroundImage: ({ card }) => {
-      const bgImg = `url('/assets/cards/${card.slug.slice(1)}/card.png')`;
-      return `${bgImg}, url('${defaultImage}')`;
-    },
     position: 'absolute',
     width: '100%',
     height: '100%',
     transition: `transform ${transitions.duration.standard}ms linear`,
+  },
+  backgroundBoxLoaded: {
+    backgroundImage: ({ card }) => `url('/assets/cards/${card.slug.slice(1)}/side-panel.png')`,
+  },
+  loading: {
+    opacity: 0,
+    transition: transitions.create(['opacity'], {
+      easing: transitions.easing.easeOut,
+      duration: transitions.duration.enteringScreen,
+    }),
+  },
+  loadingLoaded: {
+    opacity: 1,
   },
   cardContent: {
     borderTop: `${spacing(1)}px solid ${palette.primary.main}`,
@@ -118,25 +130,50 @@ const HackCard = ({ card, cardset }) => {
 
   const isSelected = useSelector((state) => state.ui.cardSelected[cardset.slug] === card);
 
+  const [loaded, setLoaded] = useState(false);
+
   const handleClick = () => {
+    if (!loaded) return;
     if (isSelected) return;
     dispatch(actions.selectCard(cardset, card));
     dispatch(actions.sidePanelSetOpen());
   };
+
+  useEffect(() => {
+    const image = new Image();
+    image.src = `/assets/cards/${card.slug.slice(1)}/side-panel.png`;
+    image.onload = () => {
+      setLoaded(true);
+    };
+  }, [card.slug]);
 
   return (
     <Card
       elevation={6}
       className={clsx(
         classes.root,
+        classes.coverBackground,
         isSelected && classes.rootSelected,
       )}
       onClick={handleClick}
     >
-      <Box className={classes.backgroundBox} />
+      <Box className={clsx(
+        classes.backgroundBox,
+        classes.coverBackground,
+        loaded && classes.backgroundBoxLoaded,
+        classes.loading,
+        loaded && classes.loadingLoaded,
+      )}
+      />
       <CardActionArea>
         <CardContent className={classes.cardContent}>
-          <Typography gutterBottom>
+          <Typography
+            className={clsx(
+              classes.loading,
+              loaded && classes.loadingLoaded,
+            )}
+            gutterBottom
+          >
             <b>{ `${card.name}` }</b>
           </Typography>
           <Box className={clsx(
