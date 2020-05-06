@@ -83,7 +83,7 @@ const DynToolbox = ({
   xs,
 }) => (
   <ThemeProvider theme={ToolboxTheme}>
-    <Grid container spacing={0}>
+    <Grid container>
       <Grid item xs={xs}>
         <ToolBoxGrid toolbox={toolbox} />
       </Grid>
@@ -97,7 +97,7 @@ DynToolbox.propTypes = {
 };
 
 DynToolbox.defaultProps = {
-  xs: 8,
+  xs: 12,
 };
 
 export default DynToolbox;
