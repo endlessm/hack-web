@@ -5,6 +5,8 @@ import {
   Box,
   Divider,
   makeStyles,
+  useMediaQuery,
+  useTheme,
 } from '@material-ui/core';
 
 import { cardType } from './types';
@@ -51,11 +53,16 @@ const SidePanel = ({
 }) => {
   const classes = useStyles({ card });
 
+  // Make it always unexpanded for the smallest resolutions:
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down('md'));
+  const isExpanded = isSmall ? false : expanded;
+
   return (
     <>
-      <div className={clsx(classes.offset, expanded && classes.offsetExpanded)} />
+      <div className={clsx(classes.offset, isExpanded && classes.offsetExpanded)} />
       <Divider />
-      <Box className={clsx(classes.dialogue, expanded && classes.dialogueExpanded)} px={1} py={2}>
+      <Box className={clsx(classes.dialogue, isExpanded && classes.dialogueExpanded)} px={1} py={2}>
         {content}
       </Box>
       <Divider />
