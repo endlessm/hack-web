@@ -1,11 +1,9 @@
+INCLUDE common.ink
 # main character: riley
 
 VAR code = ""
 
 -> begin
-
-=== function get_user_name ===
-    ~ return "Hacker"
 
 === function snippet_h1 ===
     # language: html

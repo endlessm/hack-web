@@ -1,11 +1,9 @@
+INCLUDE common.ink
 # main character: faber
 
 VAR loaded = false
 
 -> begin
-
-===function get_user_name===
-    ~ return "DefaultUser"
 
 === begin ===
 - Sometimes, it's easy to forget that we can change our world in meaningful ways. Let's find something for you change for the better.

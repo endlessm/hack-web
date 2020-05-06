@@ -1,11 +1,9 @@
+INCLUDE common.ink
 # main character: riley
 
 VAR code = ""
 
 -> begin
-
-===function get_user_name===
-    ~ return "DefaultUser"
 
 === begin ===
 -> p5jsintro1_1
