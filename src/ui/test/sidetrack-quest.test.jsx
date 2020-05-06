@@ -288,6 +288,8 @@ const SidetrackQuest = () => {
 
   const onUnlock = () => {
     setIsLocked(false);
+    questRef.current.updateStoryVariable('isLocked', false);
+    setCurrentChoice(undefined);
   };
 
   const toolbox = (

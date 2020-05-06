@@ -21,6 +21,7 @@ VAR escapeCutscene = 0
 VAR skip = 0
 
 VAR hasLockKey = 0
+VAR isLocked = 1
 
 -> begin
 
