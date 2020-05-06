@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
+  makeStyles,
   useTheme,
 } from '@material-ui/core';
 
@@ -34,6 +35,17 @@ function useWindowSize() {
 
   return windowSize;
 }
+
+const useStyles = makeStyles(() => ({
+  root: {
+    // Converted from ace-monokai #272822, and with a small
+    // transparency:
+    backgroundColor: 'rgba(39, 40, 34, 0.6)',
+    '& .ace_gutter': {
+      backgroundColor: 'rgba(39, 40, 34, 0.8)',
+    },
+  },
+}));
 
 const CodePanel = ({
   code,
@@ -86,10 +98,13 @@ const CodePanel = ({
   const theme = useTheme();
   const editorHeight = fullHeight ? `${size.height - theme.spacing(10)}px` : undefined;
 
+  const classes = useStyles();
+
   return (
     <AceEditor
       width="100%"
       height={editorHeight}
+      className={classes.root}
       mode="javascript"
       theme="monokai"
       value={text}
