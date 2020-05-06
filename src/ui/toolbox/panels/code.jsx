@@ -99,6 +99,7 @@ const CodePanel = ({
       annotations={annotations}
       wrapEnabled
       fontSize={14}
+      showPrintMargin={false}
     />
   );
 };
