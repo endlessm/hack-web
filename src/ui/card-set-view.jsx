@@ -7,6 +7,8 @@ import {
   Container,
   Grid,
   makeStyles,
+  useMediaQuery,
+  useTheme,
   Typography,
 } from '@material-ui/core';
 
@@ -59,6 +61,9 @@ const CardSetView = ({ slug }) => {
   const cardset = useSelector((state) => state.cardsets.find((cs) => slug === cs.slug));
   const selectedCard = useSelector((state) => state.ui.cardSelected[slug]);
 
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down('md'));
+
   useEffect(() => {
     dispatch(actions.sidePanelSetOpen());
   }, [dispatch]);
@@ -97,7 +102,7 @@ const CardSetView = ({ slug }) => {
   const canvas = (
     <Box className={classes.root}>
       <Container fixed className={classes.cardsContainer}>
-        <Grid container spacing={4}>
+        <Grid container spacing={isSmall ? 2 : 4}>
           {
             cardset.cards.map((c) => (
               <Grid key={c.slug} item xs={12} md={4}>
