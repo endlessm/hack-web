@@ -75,6 +75,7 @@ const Dialogue = ({
         <MainIconButton
           key={choice.index}
           size="medium"
+          className={classes.button}
           onClick={() => onChoiceSelected(choice)}
         >
           <SvgIcon component={iconsByEmoji[choice.text]} viewBox="0 0 16 16" />
