@@ -1,3 +1,4 @@
+INCLUDE common.ink
 VAR flipped = 0
 VAR attractFTH = 0
 
@@ -24,9 +25,6 @@ VAR hasLockKey = 0
 VAR isLocked = 1
 
 -> begin
-
-===function get_user_name===
-    ~ return "Hacker"
 
 === begin ===
 -> level1_1
