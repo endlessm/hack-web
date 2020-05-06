@@ -1,45 +1,30 @@
 var globalParameters = {
-  code: `function setup() {
-    createCanvas(400, 400);
+  code: `let num = 20;
+let step, sz, offSet, theta, angle;
+
+function setup() {
+  createCanvas(600, 400);
+  strokeWeight(5);
+  step = 22;
+  theta = 1;
 }
 
 function draw() {
-    background(220);
-    strokeWeight(3);
+  background(20);
 
-    drawFace();
-    // drawHat();
-    // drawBowTie();
-}
-
-function drawFace() {
-    fill('yellow');
-    circle(200, 240, 200);
-
-
-    fill('black');
-    // left eye
-    circle(160, 220, 20);
-    // right eye
-    circle(240, 220, 20);
-
-    //smile
+  translate(width/2, height*0.75);
+  angle=0;
+  for (let i=0; i<num; i++) {
+    stroke(255);
     noFill();
-    arc(200, 220, 150, 150, QUARTER_PI, PI - QUARTER_PI);
-}
-
-function drawHat() {
-    fill('black');
-    rect(125, 20, 150, 160);
-    rect(105, 170, 190, 10);
-    fill('red');
-    rect(125, 130, 150, 40);
-}
-
-function drawBowTie() {
-    fill('red');
-    triangle(140, 340, 200, 360, 140, 380);
-    triangle(260, 340, 200, 360, 260, 380);
+    sz = i*step;
+    let offSet = TWO_PI/num*i;
+    let arcEnd = map(sin(theta+offSet), -1, 1, PI, TWO_PI);
+    arc(0, 0, sz, sz, PI, arcEnd*1.00001);
+  }
+  colorMode(RGB);
+  resetMatrix();
+  theta += 0.0523;
 }
 
 `,
