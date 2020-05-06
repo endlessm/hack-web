@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { fade, makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
+import FTHButton from './fth-button';
+
 const useStyles = makeStyles((theme) => ({
+  toolboxToggleButton: {
+    position: 'fixed',
+    top: `calc(50% - ${theme.custom.fthButton.height}px)`,
+    left: 0,
+    zIndex: theme.zIndex.drawer + 20,
+    transition: `opacity ${theme.transitions.duration.complex / 2}ms`,
+    transitionTimingFunction: 'steps(1, end)',
+  },
+  buttonFlipped: {
+    opacity: 0,
+  },
   flipBox: {
     zIndex: 0,
     perspective: `${theme.custom.flipToHackPerspective}px`,
@@ -49,17 +62,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const FlipToHack = ({ flipped, toolbox, canvas }) => {
+const FlipToHack = ({
+  toolbox, canvas, attractFTH, onFlipped,
+}) => {
   const classes = useStyles();
+  const [flipped, setFlipped] = useState(false);
+
+  const toggleFlip = () => {
+    setFlipped(!flipped);
+    if (onFlipped) {
+      onFlipped(!flipped);
+    }
+  };
 
   return (
     <div className={classes.flipBox}>
       <div className={clsx(classes.flipBoxInner, flipped && classes.flipBoxInnerWhenFlipped)}>
         <div className={clsx(classes.canvas, flipped && classes.canvasWhenFlipped)}>
           {canvas}
+          <FTHButton
+            onClick={toggleFlip}
+            className={clsx(classes.toolboxToggleButton, flipped && classes.buttonFlipped)}
+            attracting={attractFTH}
+          />
         </div>
         <div className={clsx(classes.toolbox, flipped && classes.toolboxWhenFlipped)}>
           {toolbox}
+          <FTHButton
+            onClick={toggleFlip}
+            className={classes.toolboxToggleButton}
+            flipped
+            attracting={attractFTH}
+          />
         </div>
       </div>
     </div>
@@ -67,9 +101,15 @@ const FlipToHack = ({ flipped, toolbox, canvas }) => {
 };
 
 FlipToHack.propTypes = {
-  flipped: PropTypes.bool.isRequired,
   toolbox: PropTypes.element.isRequired,
   canvas: PropTypes.element.isRequired,
+  attractFTH: PropTypes.bool,
+  onFlipped: PropTypes.func,
+};
+
+FlipToHack.defaultProps = {
+  attractFTH: false,
+  onFlipped: null,
 };
 
 export default FlipToHack;
