@@ -40,11 +40,16 @@ const CodePanel = ({
   compile,
   buildDelay,
   fullHeight,
+  selector,
 }) => {
-  const params = useSelector((state) => state.hackableApp);
+  const params = useSelector((state) => (
+    selector ? state.hackableApp[selector] : state.hackableApp
+  ));
   const dispatch = useDispatch();
   const text = code(params);
   const size = useWindowSize();
+
+  const [annotations, setAnnotations] = useState([]);
 
   let timeout = null;
   const delayBuild = (c) => {
@@ -54,6 +59,7 @@ const CodePanel = ({
       Object.keys(result).forEach((p) => {
         dispatch(actions.hackableAppSetParam([p], result[p]));
       });
+      setAnnotations(result.annotations || []);
     }
   };
 
@@ -67,8 +73,15 @@ const CodePanel = ({
       clearTimeout(timeout);
     }
 
-    timeout = setTimeout(() => delayBuild(c), 1000);
+    timeout = setTimeout(() => delayBuild(c), buildDelay);
   };
+
+  useEffect(() => {
+    const result = compile(text, params);
+    if (result && result.annotations) {
+      setAnnotations(result.annotations);
+    }
+  }, [text, compile, params]);
 
   const theme = useTheme();
   const editorHeight = fullHeight ? `${size.height - theme.spacing(10)}px` : undefined;
@@ -83,6 +96,7 @@ const CodePanel = ({
       onChange={build}
       name="editor"
       editorProps={{ $blockScrolling: true }}
+      annotations={annotations}
       wrapEnabled
       fontSize={14}
     />
@@ -93,11 +107,13 @@ CodePanel.propTypes = {
   compile: PropTypes.func.isRequired,
   buildDelay: PropTypes.number,
   fullHeight: PropTypes.bool,
+  selector: PropTypes.string,
 };
 
 CodePanel.defaultProps = {
   buildDelay: 1000,
   fullHeight: false,
+  selector: null,
 };
 
 export default CodePanel;
