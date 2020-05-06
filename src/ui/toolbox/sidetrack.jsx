@@ -264,12 +264,18 @@ const TOOLBOX = {
           ],
         },
         {
-          title: 'Code',
-          type: 'code',
+          type: 'panel',
           xs: 12,
-          code: robotsCode,
-          compile: compileRobotsCode,
-          buildDelay: 2000,
+          grid: [
+            {
+              title: 'Code',
+              type: 'code',
+              xs: 12,
+              code: robotsCode,
+              compile: compileRobotsCode,
+              buildDelay: 2000,
+            },
+          ],
         },
       ],
     },
