@@ -11,6 +11,7 @@ import {
   Card,
   CardHeader,
   CardContent,
+  makeStyles,
 } from '@material-ui/core';
 
 import { PanelType } from './types';
@@ -25,6 +26,14 @@ import CodePanel from './code';
 import SliderPanel from './slider';
 import CheckboxPanel from './checkbox';
 
+const useStyles = makeStyles(({ spacing }) => ({
+  panelContent: {
+    '&:last-child': {
+      paddingBottom: spacing(1),
+    },
+  },
+}));
+
 // Container panels, all panels that needs GridItem should be declared here
 //
 // Panel and TabsPanel should be in the same file as GridItem because in other
@@ -32,24 +41,32 @@ import CheckboxPanel from './checkbox';
 const Panel = ({
   title,
   grid,
-}) => (
-  <Card>
-    <CardHeader title={title} />
-    <CardContent>
-      <Box width="100%">
-        <Grid container spacing={3}>
-          { grid.map((item, i) => ({ ...item, id: i })).map((item) => (
-            <GridItem key={item.id} panel={item} />
-          ))}
-        </Grid>
-      </Box>
-    </CardContent>
-  </Card>
-);
+}) => {
+  const classes = useStyles();
+
+  return (
+    <Card>
+      {title && (<CardHeader title={title} />)}
+      <CardContent className={classes.panelContent}>
+        <Box width="100%">
+          <Grid container spacing={1}>
+            { grid.map((item, i) => ({ ...item, id: i })).map((item) => (
+              <GridItem key={item.id} panel={item} />
+            ))}
+          </Grid>
+        </Box>
+      </CardContent>
+    </Card>
+  );
+};
 
 Panel.propTypes = {
-  title: PropTypes.string.isRequired,
   grid: PropTypes.arrayOf(PanelType).isRequired,
+  title: PropTypes.string,
+};
+
+Panel.defaultProps = {
+  title: null,
 };
 
 const TabsPanel = ({
