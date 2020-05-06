@@ -34,7 +34,7 @@ const theme = createMuiTheme({
     },
   },
   shape: {
-    borderRadius: 16,
+    borderRadius: 14,
   },
   custom: {
     fthButton: {
