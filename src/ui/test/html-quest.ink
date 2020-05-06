@@ -62,7 +62,7 @@ Try finding that text in the <b>code</b> area and changing it.
 === htmlintro2_2 ===
 - Here's a fun fact: Based on what you did just now, you already know enough to make your own webpage!
 If you did, though, all you'd have is boring black text on a white background. Let's spice that up a little by coloring the text.
-- Find an opening <tt>&lt;p&gt;</tt>tag in your code, and add <tt>style="color:blue"</tt>after the <tt>p</tt>.
+- Find the opening <tt>&lt;p&gt;</tt>tag in your code, and add <tt>style="color:blue"</tt>after the <tt>p</tt>.
 * [(wait for: code icontains "<p style=\"color:blue\">")](Done)
 -> htmlintro2_3
 
@@ -111,7 +111,7 @@ If you did, though, all you'd have is boring black text on a white background. L
 
 === htmlintro2_6 ===
 - To use this hex color in your webpage, replace one of your color words with that hex code: <tt>\#76EECF</tt> (You need the \"\#\" in front of it to tell the browser \"the next 6 letters or numbers are a hex color\")
-Let's edit a <tt>&lt;p&gt;</tt>tag to make the text that hex color.
+Let's edit the <tt>&lt;p&gt;</tt>tag to make the text that hex color.
 * [(wait for: code icontains "<p style=\"color:\#76EECF\">")](Done)
 -> htmlintro2_7
 
