@@ -20,7 +20,7 @@ import questContent from './sidetrack-quest.ink';
 
 import store, { actions } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
-import Toolbox from '../toolbox/sidetrack';
+import Toolbox, { validateInstructions, validateLevel } from '../toolbox/sidetrack';
 import LockScreen from '../toolbox/lockscreen';
 
 import SoundsMeta from '../../../apps/sounds/metadata.json';
@@ -141,6 +141,18 @@ const SidetrackQuest = () => {
       }
 
       const level = app.contentWindow[`globalLevel${params.currentLevel}Parameters`];
+
+      if (questRef.current) {
+        try {
+          validateInstructions(level.instructionCode);
+          validateLevel(level.levelCode);
+          questRef.current.updateStoryVariable('codeErrors', false);
+          setCurrentChoice(undefined);
+        } catch (e) {
+          questRef.current.updateStoryVariable('codeErrors', true);
+          setCurrentChoice(undefined);
+        }
+      }
 
       const code = {
         instructionCode: level.instructionCode,

@@ -1,6 +1,7 @@
 INCLUDE common.ink
 VAR flipped = 0
 VAR attractFTH = 0
+VAR codeErrors = 0
 
 # The start level should be 0 by default, modifying this
 # will change the currentLevel
