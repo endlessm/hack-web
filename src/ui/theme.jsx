@@ -66,7 +66,7 @@ const theme = createMuiTheme({
       downMd: {
         // Size is about 1/2 of the XL one:
         width: spacing(14),
-        height: spacing(21),
+        height: spacing(18),
         containerWidth: spacing(14) * 3 + spacing(16),
       },
       onlyLg: {
