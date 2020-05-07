@@ -1,5 +1,5 @@
 var globalParameters = {
-  code: `
+  code: `<!DOCTYPE html>
 <html>
    <head>
       <title>This is a Test Web Page!</title>
@@ -9,7 +9,7 @@ var globalParameters = {
       <p>Hello, world!</p>
    </body>
 </html>
-  `,
+`,
 };
 
 function reload() {
