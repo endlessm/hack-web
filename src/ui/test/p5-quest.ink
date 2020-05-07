@@ -1,90 +1,116 @@
 INCLUDE common.ink
-# main character: riley
+# main character: estelle
 
 VAR code = ""
 
 -> begin
 
 === begin ===
--> p5jsintro1_1
+-> processing_1
 
-=== p5jsintro1_1 ===
+=== processing_1 ===
+# character: estelle
 - Hey {get_user_name()}, I've got something <b>super</b> cool for you!
-I've been learning a new programming language for making interactive art - I think it's right up your alley!
+# character: estelle
+- I've been learning a new programming language for making interactive art - I think it's right up your alley!
+# character: estelle
 - It's called <b>p5.js</b> - The "js" part comes from <b>JavaScript</b> - you've probably heard of it before, it runs a ton of websites.
+# character: estelle
 - Here's what I've figured out so far: The code is on the left, and the preview is on the right. As you type, the code will constantly try to run, and update the right side.
--> p5jsintro1_3
+-> processing_2
 
-=== p5jsintro1_3 ===
-- Let's see if we can add something new!
-- There are 2 different parts in this program - one called <tt>setup()</tt> and the other called <tt>draw()</tt>.
-<tt>setup()</tt> creates the place where everything gets drawn, and <tt>draw()</tt> is where the action happens.
-- OK, first, let's change that boring grey! Change the line with <tt>background</tt> to read <tt>background('green')</tt>.
+=== processing_2 ===
+# character: estelle
+- Now let's change the code and see what happens. In the Text Editor, let's change the value of the variable “num” on Line 1 from 20 to 10.
 + [Hint] Can I have a hint?
--> p5jsintro1_3error
-+ [(wait for: code icontains "background('green');")](Done)
--> p5jsintro1_4
+-> processing_3error
++ [(wait for: code icontains "let num = 10;")](Done)
+-> processing_3
 
-=== p5jsintro1_3error ===
+=== processing_3error ===
+# character: estelle
 - Hey, no problem, I got so many errors when I first started. Good thing they tell you where the problem is!
-You might have forgotten to put quotes around <tt>green</tt>, or you might have forgotten to match your parentheses.
-+ [(wait for: code icontains "background('green');")](Done)
--> p5jsintro1_4
+You might have forgotten the <tt>;</tt>.
++ [(wait for: code icontains "let num = 10;")](Done)
+-> processing_3
 
-=== p5jsintro1_4 ===
-- Much better! Just like with other web languages, you can also use a <b>hex color</b> like <tt>\#76EECF</tt>, or <tt>\#FFAA00</tt>, instead of a named color.
-You can get more info on hex colors <a href="https:\/\/htmlcolorcodes.com\/">at the HTML color code list</a>.
-Once you've added your hex color, just wait a second, and you'll see it in action!
-+ [(wait for: code not contains "background('green');")](Done)
--> p5jsintro1_5
+=== processing_3 ===
+# character: estelle
+- Where did all our lines go? Let's set the value of the num variable to 30.
++ [(wait for: code icontains "let num = 30;")](Done)
+-> processing_4
 
-=== p5jsintro1_5 ===
-- Okay, so we've got a background - now let's draw a shape on that background.
-How about a circle? Let's add a new line of code to the <tt>draw()</tt> function.
-Make sure to add this new line after <tt>background(...)</tt>, but before the ending <tt>\}</tt>,  so that the program knows it's a part of <tt>draw()</tt>.
-Type <tt>circle(100, 200, 50);</tt> to draw a circle 100 pixels to the right, 200 pixels down, and 50 pixels in diameter.
-Don't forget the semicolon ( <tt>;</tt> ), which lets the program know you've finished a line of code.
-+ [(wait for: code icontains "circle(100,200,50);")](Done)
--> p5jsintro1_6
-+ [(wait for: code icontains "circle(100, 200, 50);")](Done)
--> p5jsintro1_6
+=== processing_4 ===
+- Next, let's change the space between the arcs. On Line 7, change the “step” command from 22 to 30.
++ [(wait for: code icontains "step = 30;")](Done)
+-> processing_5
 
-=== p5jsintro1_6 ===
-- You can try playing around with the numbers in the parentheses to see if you can make your circle bigger or move it right, left, up, and down.
-If you typed a number bigger than 400, your circle probably went off the screen.
-Remember how in the <tt>setup()</tt> function it says the canvas is 400 x 400? Let's make our canvas bigger!
-Change the two numbers in the <tt>createCanvas()</tt> function - they control how wide and tall the canvas is.
-(I used <tt>createCanvas(600,600)</tt>, BTW)
-+ [(wait for: code not contains "createCanvas(400,400);")](Done)
--> p5jsintro1_7
+=== processing_5 ===
+- Whoa! We're going to need a bigger window to contain this wave! Let's reduce our number of arcs from 30 to 23 to fit all that arc-y goodness.
++ [(wait for: code icontains "let num = 23;")](Done)
+-> processing_6
 
-=== p5jsintro1_7 ===
-- Nice, with that new canvas size, your bigger circle should show up now! Now, let's see about making that circle a different color. To do that, we have to use a command called <tt>fill()</tt>. Make a new line before the <tt>circle()</tt> command, and type <tt>fill('blue');</tt>. Then run the code!
-+ [(wait for: code icontains "fill('blue');")](Done)
--> p5jsintro2_3
+=== processing_6 ===
+# character: estelle
+- On line 2, let's also enlarge the window size by changing <tt>createCanvas(600, 400);</tt>  to <tt>createCanvas(700, 500);</tt>.
++ [(wait for: code icontains "createCanvas(700, 500);")](Done)
+-> processing_7
 
-=== p5jsintro2_3 ===
--Nice, but what about that black line around the outside? That line is the <b>stroke</b>, and we can get rid of it by typing <tt>strokeWeight(0);</tt> on a new line.
--Of course, we could also make it thicker by typing <b>strokeWeight(10)</b> instead - the number in parentheses is how many pixels wide you want it.
--And we can even change the color of the outline - try <tt>stroke('red');</tt> or <tt>stroke('#E84904');</tt> if you want.
-+ [(wait for: code icontains "strokeWeight(")](Done)
--> p5jsintro2_4
+=== processing_7 ===
+# character: estelle
+- Does your wave fit in the window?
+* [👍] Fits nicely!
+-> processing_8
+* [👎] No, not really.
+-> processing_7_hint
 
-=== p5jsintro2_4 ===
--Once you have your circle looking like you want it, let's take another look at our code that draws the circle: <tt>circle(100, 200, 50)</tt>
--Remember how I said the first number in parentheses was the <b>X-coordinate</b>? X means side-to-side, or how far left or right the circle is. What if instead of drawing that circle at X-coordinate <b>100</b> every time, we drew the circle at the X-coordinate of my cursor?
--To do this, replace the number <b>100</b> with <b>mouseX</b> and run the program.
-+ [(wait for: code icontains "circle(mouseX, 200, 50);")](Done)
--> p5jsintro2_5
+=== processing_7_hint ===
+# character: estelle
+- Maybe you have to reduce the number of arcs some more. Or you make the canvas even bigger. Play with the values.
+-> processing_8
 
-=== p5jsintro2_5 ===
--You should have <tt>circle(mouseX, 200, 50);</tt> and if you move your mouse back and forth along the canvas, you should see it following along left to right! Notice that the circle is <b>not</b> moving up and down, because the Y-coordinate is still set to 200... But we can change that, too!
--If you type <tt>circle(mouseX, mouseY, 50);</tt>, you can make the circle follow your mouse exactly throughout the canvas!
-+ [(wait for: code icontains "circle(mouseX, mouseY, 50);")](Done)
--> p5jsintro2_6
+=== processing_8 ===
+# character: estelle
+- Now let\'s have some fun with the thickness of the arcs. On line 6, let\'s change the <tt>strokeWeight</tt> from 5 to 25.
++ [(wait for: code icontains "strokeWeight(25);")](Done)
+-> processing_9
 
-=== p5jsintro2_6 ===
--Wheeeeee! We're done for the moment - But if you'd like to keep going with more activities in <b>p5.js</b> like this, I've got a whole set available in Hack for Endless OS!
--You can learn how to use complex shapes, random numbers, programming tools like variables and loops, and even "paint" with sound or create your own games. I can't wait to see you there!
+=== processing_9 ===
+# character: estelle
+- Look at those crazy arcs! Let’s drop the <tt>strokeWeight</tt> down to 10 and have some fun with colors.
++ [(wait for: code icontains "strokeWeight(10);")](Done)
+-> processing_10
+
+=== processing_10 ===
+# character: estelle
+- Look for the <tt>stroke</tt> function, which is currently being run with 255.
+- The stroke function changes the color of the strokes (which could be lines, arcs, ellipses, etc). Let's start by changing the stroke variable to 155.
++ [(wait for: code icontains "stroke(155);")](Done)
+-> processing_11
+
+=== processing_11 ===
+# character: estelle
+- Now your wave should be a grey color. Because we only have one stroke variable, our poor arcs can only be drawn with white, black, or shades of grey. Time for a pop of color!
+- Lets add the red, green, and blue variables (aka “RGB”), and make the arcs red.
+- Change the stroke variables to: <tt>(255, 0, 0)</tt>.
++ [(wait for: code icontains "stroke(255, 0, 0);")](Done)
+-> processing_12
+
+=== processing_12 ===
+# character: estelle
+- Let’s try out some more colors! Let’s change the stroke variables to (0, 255, 0) for some lucky green waves.
++ [(wait for: code icontains "stroke(0, 255, 0);")](Done)
+-> processing_13
+
+=== processing_13 ===
+# character: estelle
+- Now let’s try blending our RGB values: <tt>stroke(0, 255, 255)</tt>
++ [(wait for: code icontains "stroke(0, 255, 255);")](Done)
+-> processing_14
+
+=== processing_14 ===
+# character: estelle
+- Looks like green and blue make a lovely teal color! Why not explore and try reducing the numbers to see what happens. I love this purple color: (150, 0, 255)
+- Play around with the color parameters. To learn more about working with RGB values, visit this website: <a href="http:\/\/web.stanford.edu\/class\/cs101\/image-rgb-explorer.html">Image RGB Explorer</a>.
 + [❯]
 -> END
