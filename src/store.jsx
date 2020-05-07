@@ -171,14 +171,14 @@ const initialState = {
       cards: [
         {
           slug: '/os/os-win',
-          href: 'https://endlessos.com/download/',
+          href: 'https://support.endlessm.com/hc/en-us/articles/212890106-How-do-I-install-Endless-OS-alongside-Windows-',
           name: 'Windows',
           subtitle: 'Endless OS and Windows - Side by side!',
           description: 'If you\'re running Windows, you can install Endless OS side-by-side in your free hard drive space. Choose what OS you want to use whenever you start up your computer. You can also run it as a virtual machine - a computer inside your computer.',
         },
         {
           slug: '/os/os-mac',
-          href: 'https://endlessos.com/download/',
+          href: 'https://support.endlessm.com/hc/en-us/articles/115001629603-How-can-I-create-and-boot-an-Endless-USB-stick-from-macOS-',
           name: 'MacOS',
           subtitle: 'Endless OS power without restarting your Mac!',
           description: 'Although our support for Apple devices is still in development, you can try out Endless OS on your Mac by running it in a virtual machine. We\'ve got detailed instructions walk you through running Endless OS inside your existing MacOS session, and we\'re working hard on bringing every option for running Endless OS to Apple products.',
@@ -206,7 +206,7 @@ const initialState = {
         },
         {
           slug: '/os/os-rpi',
-          href: 'https://endlessos.com/download/',
+          href: 'https://support.endlessm.com/hc/en-us/articles/360039665771-How-to-install-Endless-OS-on-Raspberry-Pi-',
           name: 'Raspberry Pi',
           subtitle: 'The ultimate DIY Hacking solution!',
           description: 'If you own or are interested in owning a Raspberry Pi, Endless OS works there too! Turn your Raspberry Pi intto a media center, a robot control, a tiny desktop, a home file server, an electronics project station, and so much more! Whatever you choose, Endless OS will be there to support you.',
