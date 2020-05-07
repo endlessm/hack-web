@@ -190,6 +190,12 @@ const SidetrackQuest = () => {
         loadNotify: () => {},
       };
 
+      // fake PauseApp, we don't need this on hack-web
+      app.contentWindow.wakeScenes = () => {};
+      app.contentWindow.sleepScenes = () => {};
+      app.contentWindow.needHackScreen = () => {};
+      app.contentWindow.hideNeedHackScreen = () => {};
+
       // preload all sounds
       SidetrackSounds.forEach((s) => {
         const sound = SoundsMeta[s];

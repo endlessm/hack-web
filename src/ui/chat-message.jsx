@@ -183,6 +183,7 @@ const ChatMessage = ({
                       showGutter={false}
                       highlightActiveLine={false}
                       editorProps={{ $blockScrolling: true }}
+                      setOptions={{ useWorker: false }}
                       enableSnippets
                     />
                   )}
