@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   VolumeOff,
   VolumeUp,
+  SettingsBackupRestore,
 } from '@material-ui/icons';
 
 import TestWrapper from './test-wrapper';
@@ -349,6 +350,16 @@ const SidetrackQuest = () => {
     focusApp();
   };
 
+  const resetToolbox = () => {
+    const app = appRef.current.contentWindow;
+    const { currentLevel } = app.globalParameters;
+    const level = app.defaultLevelParameters.find((l) => l.level === currentLevel);
+    if (level) {
+      dispatch(actions.hackableAppSetParam('instructionCode', level.instructionCode));
+      dispatch(actions.hackableAppSetParam('levelCode', level.levelCode));
+    }
+  };
+
   const onFlipped = (f) => {
     quest.updateStoryVariable('flipped', f);
     setCurrentChoice(undefined);
@@ -383,17 +394,30 @@ const SidetrackQuest = () => {
   };
 
   const controls = (
-    <Box m={1}>
-      <Fab
-        color="primary"
-        aria-label="Mute volume"
-        edge="end"
-        size="medium"
-        onClick={toggleMute}
-      >
-        { mute ? <VolumeOff /> : <VolumeUp /> }
-      </Fab>
-    </Box>
+    <>
+      <Box m={1}>
+        <Fab
+          color="primary"
+          aria-label="Mute volume"
+          edge="end"
+          size="medium"
+          onClick={toggleMute}
+        >
+          { mute ? <VolumeOff /> : <VolumeUp /> }
+        </Fab>
+      </Box>
+      <Box m={1}>
+        <Fab
+          color="primary"
+          aria-label="Reset toolbox"
+          edge="end"
+          size="medium"
+          onClick={resetToolbox}
+        >
+          <SettingsBackupRestore />
+        </Fab>
+      </Box>
+    </>
   );
 
   return (
