@@ -273,6 +273,7 @@ const SidetrackQuest = () => {
   // Update the app when the quest changes some variable
   useEffect(() => {
     const currentQuest = questRef.current;
+    const app = appRef.current;
 
     // If the quest doesn't changed we shouldn't update the variables to avoid
     // race condition with app updating the quest variables.
@@ -284,12 +285,18 @@ const SidetrackQuest = () => {
     setLastDialog(currentQuest.dialogueId);
 
     const params = {
-      startLevel: currentQuest.getStoryVariable('startLevel'),
       highestAchievedLevel: currentQuest.getStoryVariable('highestAchievedLevel'),
       availableLevels: currentQuest.getStoryVariable('availableLevels'),
       controlsCutscene: currentQuest.getStoryVariable('controlsCutscene'),
       escapeCutscene: currentQuest.getStoryVariable('escapeCutscene'),
     };
+
+    // Only update startLevel if it's not 0 and if it's different from the current one
+    const startLevel = currentQuest.getStoryVariable('startLevel');
+    if (startLevel !== 0 && app && app.contentWindow.globalParameters.currentLevel !== startLevel) {
+      params.startLevel = startLevel;
+    }
+
     updateApp('globalParameters', params);
 
     setAttractFTH(Boolean(currentQuest.getStoryVariable('attractFTH')));
