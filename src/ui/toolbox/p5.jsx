@@ -32,6 +32,7 @@ const TOOLBOX = {
           xs: 12,
           code: regenerateCode,
           compile: compileCode,
+          mode: 'javascript',
           buildDelay: 1000,
           fullHeight: true,
         },
