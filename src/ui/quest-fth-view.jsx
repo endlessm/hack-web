@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useState,
 } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -164,6 +165,11 @@ const QuestFTHView = ({
   }, {
     threshold: theme.spacing(6),
   });
+
+  // Hook for component unmount, to clear the timeout:
+  useEffect(() => (function clenup() {
+    clearTimeout(movingTimeout);
+  }), [movingTimeout]);
 
   const toggleOpen = () => {
     dispatch(actions.sidePanelToggleOpen());
