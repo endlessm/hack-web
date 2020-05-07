@@ -86,15 +86,24 @@ VAR isLocked = 1
 -Woohoo! Here we are! See that <b>Exit</b> on the far side of the screen? That's our goal! Let's get there! Use the FORWARD, UP, and DOWN <b>Instructions</b> to move through these obstacles, but watch out for those <b>Walls</b>!
 { currentLevel == 2:
     - Great job on that level!
-    -> level2
+    -> the_choice
 }
 * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
--> level2
+-> the_choice
 
 
-=== level2 ===
+=== the_choice ===
 # character: riley
 - Haha, another level! What, you thought I'd just let you go after the exit? Nope, this is only the beginning!
+- Do you want to continue playing the game or follow me hacking it?
+* [Keep on playing] I just started playing. Let me continue.
+-> level2
+* [Let\'s hack it!] Can\'t wait to take this apart.
+~ startLevel = 23
+-> level23
+
+=== level2 ===
+- Good choice. I like playing as well. We can hack that thing later. Let\'s get me to the exit again.
 * [(wait for: currentLevel is 3)] Level {currentLevel -1 } Complete!
 -> level3
 
