@@ -143,7 +143,7 @@ const validateInstructions = (code) => {
   factoryFunc(scope);
 
   if (scope.riley.queue.length < MAX_QUEUE_LEN) {
-    throw new Error('Instructions must have 8 moves.');
+    throw new Error('Instructions in code must have 8 moves.');
   }
 };
 
@@ -214,7 +214,7 @@ function compileCode(p, code) {
 const TOOLBOX = {
   tabs: [
     {
-      name: 'Instructions',
+      name: 'Code',
       icon: <Code />,
       grid: [
         {
