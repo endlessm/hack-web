@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   VolumeOff,
   VolumeUp,
+  SettingsBackupRestore,
 } from '@material-ui/icons';
 
 import TestWrapper from './test-wrapper';
@@ -189,6 +190,12 @@ const SidetrackQuest = () => {
         loadNotify: () => {},
       };
 
+      // fake PauseApp, we don't need this on hack-web
+      app.contentWindow.wakeScenes = () => {};
+      app.contentWindow.sleepScenes = () => {};
+      app.contentWindow.needHackScreen = () => {};
+      app.contentWindow.hideNeedHackScreen = () => {};
+
       // preload all sounds
       SidetrackSounds.forEach((s) => {
         const sound = SoundsMeta[s];
@@ -273,6 +280,7 @@ const SidetrackQuest = () => {
   // Update the app when the quest changes some variable
   useEffect(() => {
     const currentQuest = questRef.current;
+    const app = appRef.current;
 
     // If the quest doesn't changed we shouldn't update the variables to avoid
     // race condition with app updating the quest variables.
@@ -284,12 +292,18 @@ const SidetrackQuest = () => {
     setLastDialog(currentQuest.dialogueId);
 
     const params = {
-      startLevel: currentQuest.getStoryVariable('startLevel'),
       highestAchievedLevel: currentQuest.getStoryVariable('highestAchievedLevel'),
       availableLevels: currentQuest.getStoryVariable('availableLevels'),
       controlsCutscene: currentQuest.getStoryVariable('controlsCutscene'),
       escapeCutscene: currentQuest.getStoryVariable('escapeCutscene'),
     };
+
+    // Only update startLevel if it's not 0 and if it's different from the current one
+    const startLevel = currentQuest.getStoryVariable('startLevel');
+    if (startLevel !== 0 && app && app.contentWindow.globalParameters.currentLevel !== startLevel) {
+      params.startLevel = startLevel;
+    }
+
     updateApp('globalParameters', params);
 
     setAttractFTH(Boolean(currentQuest.getStoryVariable('attractFTH')));
@@ -342,6 +356,16 @@ const SidetrackQuest = () => {
     focusApp();
   };
 
+  const resetToolbox = () => {
+    const app = appRef.current.contentWindow;
+    const { currentLevel } = app.globalParameters;
+    const level = app.defaultLevelParameters.find((l) => l.level === currentLevel);
+    if (level) {
+      dispatch(actions.hackableAppSetParam('instructionCode', level.instructionCode));
+      dispatch(actions.hackableAppSetParam('levelCode', level.levelCode));
+    }
+  };
+
   const onFlipped = (f) => {
     quest.updateStoryVariable('flipped', f);
     setCurrentChoice(undefined);
@@ -376,17 +400,30 @@ const SidetrackQuest = () => {
   };
 
   const controls = (
-    <Box m={1}>
-      <Fab
-        color="primary"
-        aria-label="Mute volume"
-        edge="end"
-        size="medium"
-        onClick={toggleMute}
-      >
-        { mute ? <VolumeOff /> : <VolumeUp /> }
-      </Fab>
-    </Box>
+    <>
+      <Box m={1}>
+        <Fab
+          color="primary"
+          aria-label="Mute volume"
+          edge="end"
+          size="medium"
+          onClick={toggleMute}
+        >
+          { mute ? <VolumeOff /> : <VolumeUp /> }
+        </Fab>
+      </Box>
+      <Box m={1}>
+        <Fab
+          color="primary"
+          aria-label="Reset toolbox"
+          edge="end"
+          size="medium"
+          onClick={resetToolbox}
+        >
+          <SettingsBackupRestore />
+        </Fab>
+      </Box>
+    </>
   );
 
   return (

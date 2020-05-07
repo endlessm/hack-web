@@ -7,8 +7,10 @@ import {
   useTheme,
 } from '@material-ui/core';
 
+import 'ace-builds/webpack-resolver';
 import AceEditor from 'react-ace';
-import 'ace-builds/src-noconflict/mode-java';
+import 'ace-builds/src-noconflict/mode-javascript';
+import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-monokai';
 
 import { actions } from '../../../store';
@@ -53,6 +55,7 @@ const CodePanel = ({
   buildDelay,
   fullHeight,
   selector,
+  mode,
 }) => {
   const params = useSelector((state) => (
     selector ? state.hackableApp[selector] : state.hackableApp
@@ -105,7 +108,7 @@ const CodePanel = ({
       width="100%"
       height={editorHeight}
       className={classes.root}
-      mode="javascript"
+      mode={mode}
       theme="monokai"
       value={text}
       onChange={build}
@@ -114,6 +117,7 @@ const CodePanel = ({
       annotations={annotations}
       wrapEnabled
       fontSize={14}
+      showPrintMargin={false}
     />
   );
 };
@@ -123,12 +127,14 @@ CodePanel.propTypes = {
   buildDelay: PropTypes.number,
   fullHeight: PropTypes.bool,
   selector: PropTypes.string,
+  mode: PropTypes.string,
 };
 
 CodePanel.defaultProps = {
   buildDelay: 1000,
   fullHeight: false,
   selector: null,
+  mode: 'javascript',
 };
 
 export default CodePanel;

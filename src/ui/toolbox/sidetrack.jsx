@@ -157,6 +157,7 @@ const validateLevel = (code) => {
 
 // This function is copied from the repo hack-toy-apps, file src/codeview.js
 const getErrorLine = (exception) => {
+  window.err = exception;
   const stackFrames = exception.stack.split('\n');
   // The format of stack frames originating inside a function created with
   // new Function(...) looks like this:
@@ -168,7 +169,13 @@ const getErrorLine = (exception) => {
   // in the next 3 lines where the error actually is. For more details,
   // see https://phabricator.endlessm.com/T29104#793998
 
-  const userScriptStackFrame = stackFrames.find((line) => (/ > Function:/).test(line));
+  // Firefox: > Function:row:column
+  // Chrome: <anonymous>:row:column
+  const userScriptStackFrame = stackFrames.find((line) => (/ (> Function|<anonymous>):/).test(line));
+  if (!userScriptStackFrame) {
+    return [0, 0];
+  }
+
   const [line, column] = userScriptStackFrame.split(':').slice(-2);
   return [Math.max(0, line - fixedDelta), column ? column - 1 : 0];
 };
@@ -216,6 +223,7 @@ const TOOLBOX = {
           xs: 12,
           code: instructionCode.bind(this, 'instructionCode'),
           compile: compileCode.bind(this, 'instructionCode'),
+          mode: 'javascript',
           buildDelay: 2000,
           fullHeight: true,
           selector: 'instructionCode',
@@ -232,6 +240,7 @@ const TOOLBOX = {
           xs: 12,
           code: instructionCode.bind(this, 'levelCode'),
           compile: compileCode.bind(this, 'levelCode'),
+          mode: 'javascript',
           buildDelay: 2000,
           fullHeight: true,
           selector: 'levelCode',
@@ -273,6 +282,7 @@ const TOOLBOX = {
               xs: 12,
               code: robotsCode,
               compile: compileRobotsCode,
+              mode: 'javascript',
               buildDelay: 2000,
             },
           ],
