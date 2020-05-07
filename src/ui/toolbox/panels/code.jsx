@@ -38,13 +38,20 @@ function useWindowSize() {
   return windowSize;
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ spacing }) => ({
   root: {
     // Converted from ace-monokai #272822, and with a small
     // transparency:
     backgroundColor: 'rgba(39, 40, 34, 0.6)',
     '& .ace_gutter': {
       backgroundColor: 'rgba(39, 40, 34, 0.8)',
+      width: `${spacing(10)}px !important`,
+    },
+    '& .ace_scroller': {
+      left: `${spacing(10)}px !important`,
+    },
+    '& .ace_gutter-layer': {
+      width: `${spacing(10)}px !important`,
     },
   },
 }));
@@ -114,6 +121,7 @@ const CodePanel = ({
       onChange={build}
       name="editor"
       editorProps={{ $blockScrolling: true }}
+      setOptions={{ fixedWidthGutter: false }}
       annotations={annotations}
       wrapEnabled
       fontSize={14}
