@@ -7,7 +7,7 @@ var globalParameters = {
 }
 
 function draw() {
-    strokeWeight(10);
+    strokeWeight(5);
     background(20);
     arcColor = 255;
     doArcs(arcColor);
@@ -15,7 +15,7 @@ function draw() {
 
 
 function doArcs(color) {
-    translate(width/2, height*.75);
+    translate(width/2, height*0.75);
     angle = 0;
     for (i = 0; i < num; i++) {
         stroke(color);
@@ -23,7 +23,7 @@ function doArcs(color) {
         sz = i*step;
         offSet = TWO_PI/num*i;
         arcEnd = map(sin(theta+offSet), -1, 1, PI, TWO_PI);
-        arc(0, 0, sz, sz, PI, arcEnd);
+        arc(0, 0, sz, sz, PI, arcEnd*1.00001);
     }
     colorMode(RGB);
     resetMatrix();

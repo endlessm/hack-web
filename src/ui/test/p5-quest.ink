@@ -22,7 +22,7 @@ VAR code = ""
 
 === p5_3 ===
 # character: estelle
-- Let's start off with something simple - How about we change that background color. Find the line that says <tt>background('20');</tt>, and change it to read <tt>background('green');</tt>
+- Let's start off with something simple - How about we change that background color. Find the line that says <tt>background(20);</tt>, and change it to read <tt>background('green');</tt>
 + [(wait for: code icontains "background('green');")] (Done)
 -> p5_4
 
@@ -53,8 +53,8 @@ VAR code = ""
 
 === p5_8 ===
 # character: estelle
-- Hmm, looks like we're going to need a bigger window to contain this wave! We can make the <b>canvas</b> (that's the name of the area the program draws things in) larger by changing the line that says <tt>size(400, 400)</t> Let's make that a little bigger - increase the first number to 600!
-+ [(wait for: code not contains "size(600, 400);")] (Done)
+- Hmm, looks like we're going to need a bigger window to contain this wave! We can make the <b>canvas</b> (that's the name of the area the program draws things in) larger by changing the line that says <tt>createCanvas(400, 400)</tt> Let's make that a little bigger - increase the first number to <b>600</b>!
++ [(wait for: code contains "createCanvas(600, 400);")] (Done)
 -> p5_10
 
 
@@ -62,16 +62,16 @@ VAR code = ""
 # character: estelle
 - That looks better, feel free to adjust the size to whatever you like.
 # character: estelle
-- Now, let's tweak the thickness of the arcs. Change <tt>strokeWeight</tt> from <b>1</b> to <b>25</b>.
-+ [(wait for: code icontains "strokeweight(25);")] (Done)
+- Now, let's tweak the thickness of the arcs. Change <tt>strokeWeight</tt> from <b>5</b> to <b>10</b>.
++ [(wait for: code icontains "strokeweight(10);")] (Done)
 -> p5_11
 
 
 === p5_11 ===
 # character: estelle
-- Nice! You can drop the <tt>strokeWeight</tt> back down to something around 10, if you want.
+- Nice! You can drop the <tt>strokeWeight</tt> back down to something around <b>10</b>, if you want.
 # character: estelle
-- Let's move on to some fun with colors - look for a line that says <tt>arcColor = </tt>.
+- Let's move on to some fun with colors - look for the line that defines <tt>arcColor</tt>.
 # character: estelle
 - That <b>variable</b> controls the color of every line that your program draws - let's change it to... <b>100</b>, and see what happens!
 + [(wait for: code icontains "arcColor = 100;")] (Done)
@@ -80,7 +80,7 @@ VAR code = ""
 
 === p5_14 ===
 # character: estelle
-- Now your wave is grey! If you want the wave to be blue, green or some other color, we need a more complex way of talking about colors. True, you can use color words, like you did for the background, but you can also describe colors in terms of the amounts of red, green, and blue they have.
+- Now your wave is gray! If you want the wave to be blue, green or some other color, we need a more complex way of talking about colors. True, you can use color words, like you did for the background, but you can also describe colors in terms of the amounts of red, green, and blue they have.
 # character: estelle
 - For example, let's make the wave red - change the line with <b>arcColor</b> on it to <tt>arcColor = color(255, 0, 0);</t>
 + [(wait for: code icontains "arcColor = color(255, 0, 0);")] (Done)
@@ -127,19 +127,19 @@ VAR code = ""
 
 === p5_21 ===
 # character: estelle
-- OK, let's get complex. We'll make the arcs change color only when you press a key on the keyboard.
+- OK, let's get complex. We'll make the arcs change color only when you click or touch the canvas.
 # character: estelle
-- First, surround your existing <tt>doArcs(...</tt> code with <tt>if (keyIsPressed) \{ </tt>, and <tt>\}</tt>
+- First, surround your existing <tt>doArcs(...</tt> code with <tt>if (mouseIsPressed) \{ </tt>, and <tt>\}</tt>
 # character: estelle
 - It should look like this:
 {snippet_p5_21()}
-+ [(wait for: code icontains "if (keyIsPressed) \{ doArcs(arcColor); \}")] (Done)
++ [(wait for: code icontains "if (mouseIsPressed) \{ doArcs(arcColor); \}")] (Done)
 -> p5_22
 
 
 === function snippet_p5_21 ===
 # language: javascript
-if (keyIsPressed) \{ doArcs(arcColor); \}
+if (mouseIsPressed) \{ doArcs(arcColor); \}
 
 
 === p5_22 ===
@@ -154,7 +154,7 @@ if (keyIsPressed) \{ doArcs(arcColor); \}
 
 === function snippet_p5_22 ===
 # language: javascript
-if (keyIsPressed) \{ doArcs(arcColor); \}
+if (mouseIsPressed) \{ doArcs(arcColor); \}
 else \{ doArcs(128); \}
 
 
@@ -166,19 +166,19 @@ else \{ doArcs(128); \}
 # character: estelle
 - Your code should now look like this:
 {snippet_p5_23()}
-+ [(wait for: code icontains "if (keyIsPressed) \{ background(255);")] (Done)
++ [(wait for: code icontains "if (mouseIsPressed) \{ background(255);")] (Done)
 -> p5_24
 
 
 === function snippet_p5_23 ===
 # language: javascript
-if(keyIsPressed)\{ background(255); doArcs(arcColor); \}
+if(mouseIsPressed)\{ background(255); doArcs(arcColor); \}
 else \{ background(20); \}
 
 
 === p5_24 ===
 # character: estelle
-- So, do you see what's we've done here? We've used an <b>if statement</b> to change the behavior of this program depending on what you, the user, is doing! If you press a key, it runs the bits of code after the <b>if</b>, otherwise it runs the other bits, after the <b>else</b>.
+- So, do you see what's we've done here? We've used an <b>if</b> statement to change the behavior of this program depending on what you, the user, is doing! If you click or touch the canvas, it runs the bits of code after the <b>if</b> statement, otherwise it runs the other bits, after the <b>else</b> statement.
 + [❯] ❯
 -> p5_25
 
@@ -192,7 +192,7 @@ else \{ background(20); \}
 
 === p5_26 ===
 # character: estelle
-- First, let's get familliar with the numbers we'll be changing. Do you see the last line of our code, <tt>theta += 0.0523;</tt>? That number controls the speed of the wave.
+- First, let's get familiar with the numbers we'll be changing. Do you see the last line of our code, <tt>theta += 0.0523;</tt>? That number controls the speed of the wave.
 # character: estelle
 - <b>0.0523</b> is an awfully small number! Let's try increasing it to <tt>0.1</tt>.
 + [(wait for: code icontains "theta += 0.1;")] (Done)
@@ -222,14 +222,14 @@ else \{ background(20); \}
 
 === p5_30 ===
 # character: estelle
-- Check it out! As you move your mouse higher, the wave speeds up. As you move it down, it slows down! And of course, you can still press keys to change the colors.
+- Check it out! As you move your mouse higher, the wave speeds up. As you move it down, it slows down! And of course, you can still click or touch to change the colors.
 + [❯] ❯
 -> p5_31
 
 
 === p5_31 ===
 # character: estelle
-- We're done for the moment, but there's so much to explore in <b>p5.js</b>! Feel free to change any of the variables you’ve learned, and aply around as much as you like. If you'd like to keep going with more activities like this, I've got a whole set available in Hack for Endless OS!
+- We're done for the moment, but there's so much to explore in <b>p5.js</b>! Feel free to change any of the variables you’ve learned, and apply around as much as you like. If you'd like to keep going with more activities like this, I've got a whole set available in Hack for Endless OS!
 # character: estelle
 -You can learn how to use complex shapes, random numbers, programming tools like variables and loops, and even "paint" with sound or create your own games. I'd love to see you there!
 ->END
