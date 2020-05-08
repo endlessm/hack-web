@@ -66,8 +66,7 @@ const CodePanel = ({
 
   const [annotations, setAnnotations] = useState([]);
 
-  let timeout = null;
-  const delayBuild = (c) => {
+  const build = (c) => {
     const result = compile(c, params);
 
     if (result) {
@@ -77,26 +76,6 @@ const CodePanel = ({
       setAnnotations(result.annotations || []);
     }
   };
-
-  const build = (c) => {
-    if (!buildDelay) {
-      delayBuild(c);
-      return;
-    }
-
-    if (timeout) {
-      clearTimeout(timeout);
-    }
-
-    timeout = setTimeout(() => delayBuild(c), buildDelay);
-  };
-
-  useEffect(() => {
-    const result = compile(text, params);
-    if (result && result.annotations) {
-      setAnnotations(result.annotations);
-    }
-  }, [text, compile, params]);
 
   const theme = useTheme();
   const editorHeight = fullHeight ? `${size.height - theme.spacing(10)}px` : undefined;
@@ -112,6 +91,7 @@ const CodePanel = ({
       theme="monokai"
       value={text}
       onChange={build}
+      debounceChangePeriod={buildDelay}
       name="editor"
       editorProps={{ $blockScrolling: true }}
       annotations={annotations}
