@@ -51,7 +51,7 @@ const Panel = ({
         <Box width="100%">
           <Grid container spacing={1}>
             { grid.map((item, i) => ({ ...item, id: i })).map((item) => (
-              <GridItem key={item.id} panel={item} />
+              <GridItem key={item.key} panel={item} />
             ))}
           </Grid>
         </Box>
@@ -95,18 +95,18 @@ const TabsPanel = ({
           onChange={(ev, newValue) => setTab(newValue)}
         >
 
-          { items.map(({ label, icon }) => (
-            <Tab key={label} label={label} icon={calculateIcon(icon)} />
+          { items.map(({ key, label, icon }) => (
+            <Tab key={key} label={label} icon={calculateIcon(icon)} />
           ))}
         </Tabs>
       </Paper>
 
       { panels.map((p, index) => (
-        <TabPanel key={p.id} value={tab} index={index}>
+        <TabPanel key={p.key} value={tab} index={index}>
           <Box width="100%" pt={1}>
             <Grid container spacing={1}>
-              { p.grid.map((grid, i) => ({ ...grid, id: i })).map((grid) => (
-                <GridItem key={grid.id} panel={grid} />
+              { p.grid.map((grid) => (
+                <GridItem key={p.key + grid.key} panel={grid} />
               ))}
             </Grid>
           </Box>
@@ -148,7 +148,7 @@ const GridItem = ({
   content = klass({ ...panel });
 
   return (
-    <Grid item xs={xs}>
+    <Grid key={panel.key} item xs={xs}>
       { content }
     </Grid>
   );

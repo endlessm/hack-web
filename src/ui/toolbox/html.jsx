@@ -24,10 +24,12 @@ const TOOLBOX = {
   tabs: [
     {
       name: 'Code',
+      key: 'html-code',
       icon: <Code />,
       grid: [
         {
           title: 'Code',
+          key: 'html-code',
           type: 'code',
           xs: 12,
           code: regenerateCode,
@@ -42,7 +44,7 @@ const TOOLBOX = {
 };
 
 const Toolbox = () => (
-  <DynToolbox toolbox={TOOLBOX} xs={12} />
+  <DynToolbox key="html" toolbox={TOOLBOX} xs={12} />
 );
 
 export default Toolbox;

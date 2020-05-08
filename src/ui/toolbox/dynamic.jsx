@@ -51,8 +51,8 @@ const ToolBoxGrid = ({
                 textColor="primary"
                 aria-label="Toolbox tabs"
               >
-                { toolbox.tabs.map(({ name, icon }) => (
-                  <Tab key={name} label={name} icon={icon} />
+                { toolbox.tabs.map(({ key, name, icon }) => (
+                  <Tab key={key} label={name} icon={icon} />
                 )) }
               </Tabs>
             </Box>
@@ -65,8 +65,8 @@ const ToolBoxGrid = ({
             [classes.toolboxTabContentSingle]: !showTabs,
           })}
         >
-          { toolbox.tabs.map(({ name, grid }, index) => (
-            <GridTabPanel key={name} index={index} tab={tab} grid={grid} />
+          { toolbox.tabs.map(({ key, grid }, index) => (
+            <GridTabPanel key={key} index={index} tab={tab} grid={grid} />
           ))}
         </Grid>
       </Grid>

@@ -221,10 +221,12 @@ const TOOLBOX = {
   tabs: [
     {
       name: 'Code',
+      key: 'sidetrack-code-tab',
       icon: <Code />,
       grid: [
         {
           title: 'Code',
+          key: 'code',
           type: 'code',
           xs: 12,
           code: instructionCode.bind(this, 'instructionCode'),
@@ -238,10 +240,12 @@ const TOOLBOX = {
     },
     {
       name: 'Level',
+      key: 'sidetrack-level-tab',
       icon: <Casino />,
       grid: [
         {
           title: 'Code',
+          key: 'sidetrack-levels-code',
           type: 'code',
           xs: 12,
           code: instructionCode.bind(this, 'levelCode'),
@@ -255,10 +259,12 @@ const TOOLBOX = {
     },
     {
       name: 'Robots',
+      key: 'sidetrack-robots-tab',
       icon: <BugReport />,
       grid: [
         {
           title: 'Robots',
+          key: 'robots-controls',
           type: 'panel',
           xs: 12,
           grid: [
@@ -279,11 +285,13 @@ const TOOLBOX = {
           ],
         },
         {
+          key: 'robots-code',
           type: 'panel',
           xs: 12,
           grid: [
             {
               title: 'Code',
+              key: 'robots-code',
               type: 'code',
               xs: 12,
               code: robotsCode,

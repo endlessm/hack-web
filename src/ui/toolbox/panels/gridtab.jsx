@@ -19,8 +19,8 @@ const GridTabPanel = ({
   <TabPanel value={tab} index={index}>
     <Box width="100%">
       <Grid container>
-        { grid.map((item, i) => ({ ...item, id: i })).map((item) => (
-          <GridItem key={item.id} panel={item} />
+        { grid.map((item) => (
+          <GridItem key={tab.key + item.key} panel={item} />
         ))}
       </Grid>
     </Box>

@@ -56,6 +56,7 @@ const CodePanel = ({
   fullHeight,
   selector,
   mode,
+  key,
 }) => {
   const params = useSelector((state) => (
     selector ? state.hackableApp[selector] : state.hackableApp
@@ -92,18 +93,19 @@ const CodePanel = ({
       value={text}
       onChange={build}
       debounceChangePeriod={buildDelay}
-      name="editor"
+      name={key}
       editorProps={{ $blockScrolling: true }}
       annotations={annotations}
       wrapEnabled
       fontSize={14}
       showPrintMargin={false}
-    />
+      />
   );
 };
 CodePanel.propTypes = {
   code: PropTypes.func.isRequired,
   compile: PropTypes.func.isRequired,
+  key: PropTypes.string.isRequired,
   buildDelay: PropTypes.number,
   fullHeight: PropTypes.bool,
   selector: PropTypes.string,
