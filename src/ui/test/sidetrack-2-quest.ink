@@ -123,7 +123,7 @@
 === level23_play ===
 ~ attractFTH = 0
 # character: riley
-- Ok let's give it a shot! Press the <b>Play</b> button.
+- Ok, let's give it a shot! Press the <b>Play</b> button.
 * [(wait for: currentLevel is 24)] Level {currentLevel -1} Complete!
 -> level24
 
@@ -143,6 +143,24 @@ Wow, looks like this level has 2 errors! Time to head to the <b>Instructions</b>
 I think I can see the problem here!
 * [Hint] (Hint)
 -> level24_3_hints
+* [(wait for: codeErrors is 0)] Fixed it!
+-> level24_flip
+* [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
+-> level25
+
+
+=== level24_flip ===
+~ attractFTH = 1
+# character: saniel
+- Awesome! No errors anymore. Now <b>flip</b> back to the front of Sidetrack and check if you can get through the maze. If not you might need different instructions.
+* [(wait for: flipped)]  Flipped back!
+-> level24_play
+
+
+=== level24_play ===
+~ attractFTH = 0
+# character: estelle
+- Ok, let's give it a shot! Press the <b>Play</b> button.
 * [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
 -> level25
 
@@ -154,6 +172,8 @@ I think I can see the problem here!
 -> level24_3_hints_2
 * [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
 -> level25
+* [(wait for: codeErrors is 0)] Fixed it!
+-> level24_flip
 
 
 === level24_3_hints_2 ===
@@ -163,6 +183,8 @@ I think I can see the problem here!
 -> level24_3_hints_final
 * [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
 -> level25
+* [(wait for: codeErrors is 0)] Fixed it!
+-> level24_flip
 
 
 === level24_3_hints_final ===
@@ -170,11 +192,22 @@ I think I can see the problem here!
 - Oh, hey, I think I see another problem. Look at the capitalization in the code. I think it should be <tt>riley.jump()</tt>, not <tt>riley.<b>J</b>ump()</tt>!
 * [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
 -> level25
+* [(wait for: codeErrors is 0)] Fixed it!
+-> level24_flip
 
 
 === level25 ===
 # character: estelle
 - Riley, did you remember to test your code? We've hit quite a lot of errors!
+* [(wait for: codeErrors is 0)] Fixed it!
+-> level25_fix
+* [(wait for: currentLevel is 26)] Level {currentLevel -1} Complete!
+-> level26
+
+
+=== level25_fix ===
+# character: saniel
+- Nice work. You got it. Although this has already been said, flip back and check if you can get through the maze. If not you might need different instructions.
 * [(wait for: currentLevel is 26)] Level {currentLevel -1} Complete!
 -> level26
 
@@ -200,13 +233,42 @@ I think I can see the problem here!
 === level26_3 ===
 # character: ada
 - Once you've fixed any errors, you still might need to re-order the instructions in order to beat this level.
+* [(wait for: codeErrors is 0)] Fixed it!
+-> level26_fix
 * [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
 -> level27
+
+
+=== level26_fix ===
+# character: faber
+- Excellent!
+* [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
+-> level27
+* [(wait for: success is 0)] Level {currentLevel -1} Failed!
+-> level26_reorder
+
+
+=== level26_reorder ===
+# character: faber
+- You'll need to rearrange the instructions until you get it right.
+* [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
+-> level27
+* [(wait for: success is 0)] Level {currentLevel -1} Failed!
+-> level26_reorder
 
 
 === level27 ===
 # character: ada
 - It looks like this level has only two incorrect instructions - that's an improvement.
+* [(wait for: codeErrors is 0)] Fixed it!
+-> level27_fix
+* [(wait for: currentLevel is 28)] Level {currentLevel -1} Complete!
+-> level28
+
+
+=== level27_fix ===
+# character: saniel
+- Nice work. You got it!
 * [(wait for: currentLevel is 28)] Level {currentLevel -1} Complete!
 -> level28
 

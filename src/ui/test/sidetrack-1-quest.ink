@@ -342,6 +342,15 @@ I'd say something about this level bringing me <b>down</b>, but this game is too
 
 === level22 ===
 # characer: ada
-- A simple level... I feel like there might be a trick to this one.
+- Ok, let's see what this one is about.
 * [(wait for: currentLevel is 23)] Level {currentLevel -1 } Complete!
+-> level23
+* [(wait for: success is 0)] Level {currentLevel -1} Failed!
+-> level22_reorder
+
+
+=== level22_reorder ===
+# character: faber
+- You'll need to rearrange the instructions until you get it right.
+* [(wait for: currentLevel is 23)] Level {currentLevel -1} Complete!
 -> level23
