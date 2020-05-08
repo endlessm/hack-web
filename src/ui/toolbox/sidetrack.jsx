@@ -188,6 +188,7 @@ function instructionCode(_p, code) {
   return code;
 }
 
+let lastAnnotationId = 0;
 function compileCode(p, code) {
   const annotations = [];
 
@@ -200,11 +201,16 @@ function compileCode(p, code) {
     validateFunction(code);
   } catch (e) {
     const [row, column] = getErrorLine(e);
+    lastAnnotationId += 1;
     annotations.push({
       type: 'error',
       text: e.message,
       row,
       column,
+      // Unique id to make each compilation annotation object different, to
+      // ensure that the annotations are updated and the code editor is
+      // rendered.
+      id: lastAnnotationId,
     });
   }
 
