@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -9,6 +9,7 @@ import {
 
 import 'ace-builds/webpack-resolver';
 import AceEditor from 'react-ace';
+import { Range } from 'ace-builds';
 import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-monokai';
@@ -38,7 +39,7 @@ function useWindowSize() {
   return windowSize;
 }
 
-const useStyles = makeStyles(({ spacing }) => ({
+const useStyles = makeStyles(({ spacing, zIndex, palette }) => ({
   root: {
     // Converted from ace-monokai #272822, and with a small
     // transparency:
@@ -53,6 +54,12 @@ const useStyles = makeStyles(({ spacing }) => ({
     '& .ace_gutter-layer': {
       width: `${spacing(10)}px !important`,
     },
+  },
+  errorHighlight: {
+    position: 'absolute',
+    zIndex: zIndex.drawer,
+    backgroundColor: palette.error.dark,
+    opacity: 0.3,
   },
 }));
 
@@ -73,6 +80,36 @@ const CodePanel = ({
 
   const [annotations, setAnnotations] = useState([]);
 
+  const classes = useStyles();
+
+  // This is to store a reference to the ace editor javascript object on load,
+  // to be able to modify markers
+  const aceEditor = useRef(null);
+  const highlightCode = (editor) => {
+    if (!editor) {
+      return;
+    }
+
+    aceEditor.current = editor;
+    const markers = Object.values(editor.getSession().getMarkers());
+    markers.forEach((m) => {
+      if (m.clazz === classes.errorHighlight) {
+        editor.getSession().removeMarker(m.id);
+      }
+    });
+
+    const rows = editor.getSession().getAnnotations().map((a) => a.row);
+    // Use the set constructor to remove duplicates
+    const unique = [...(new Set(rows))];
+    unique.forEach((r) => {
+      editor.session.addMarker(
+        new Range(r, 0, r, 144),
+        classes.errorHighlight,
+        'fullLine',
+      );
+    });
+  };
+
   const build = (c) => {
     const result = compile(c, params);
 
@@ -82,15 +119,15 @@ const CodePanel = ({
       });
       setAnnotations(result.annotations || []);
     }
+    highlightCode(aceEditor.current);
   };
 
   const theme = useTheme();
   const editorHeight = fullHeight ? `${size.height - theme.spacing(10)}px` : undefined;
 
-  const classes = useStyles();
-
   return (
     <AceEditor
+      onLoad={highlightCode}
       width="100%"
       height={editorHeight}
       className={classes.root}
