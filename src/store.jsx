@@ -249,10 +249,10 @@ const initialState = {
         },
         {
           slug: '/t2/t2-canyon',
-          href: 'https://terminaltwo.com/download',
-          name: 'The Canyon',
-          subtitle: 'Battle and Adventure!',
-          description: 'You and your sidekick F3lix have landed on an alien planet, but you\'re out of fuel. Program F3lix to help you collect resources and battle alien monsters. Work together to explore and find a way out!',
+          href: 'https://terminaltwo.com/play',
+          name: 'More Games',
+          subtitle: 'Exciting games in development!',
+          description: 'Terminal 2 has lots more games coming soon - Maze adventures, fantasy quests, space shooters, hacking racers, survival shooters... Keep up to date on the site, and sign up for the free download!',
         },
         {
           slug: '/t2/t2-ovum',
