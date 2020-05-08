@@ -89,6 +89,11 @@ const SidetrackQuest = () => {
 
   const [mute, setMute] = useState(false);
 
+  // FIXME, this is a copy of the same state as in the FlipToHack
+  // component. In the future we should have two kind of controls: one
+  // for the canvas and one for the toolbox.
+  const [isFlipped, setFlipped] = useState(false);
+
   const questRef = useRef(quest);
   const appRef = useRef(null);
 
@@ -367,6 +372,7 @@ const SidetrackQuest = () => {
   };
 
   const onFlipped = (f) => {
+    setFlipped(f);
     quest.updateStoryVariable('flipped', f);
     setCurrentChoice(undefined);
     focusApp();
@@ -401,28 +407,33 @@ const SidetrackQuest = () => {
 
   const controls = (
     <>
-      <Box m={1}>
-        <Fab
-          color="primary"
-          aria-label="Mute volume"
-          edge="end"
-          size="medium"
-          onClick={toggleMute}
-        >
-          { mute ? <VolumeOff /> : <VolumeUp /> }
-        </Fab>
-      </Box>
-      <Box m={1}>
-        <Fab
-          color="primary"
-          aria-label="Reset toolbox"
-          edge="end"
-          size="medium"
-          onClick={resetToolbox}
-        >
-          <SettingsBackupRestore />
-        </Fab>
-      </Box>
+      {!isFlipped && (
+        <Box m={1}>
+          <Fab
+            color="primary"
+            aria-label="Mute volume"
+            edge="end"
+            size="medium"
+            disabled={isFlipped}
+            onClick={toggleMute}
+          >
+            { mute ? <VolumeOff /> : <VolumeUp /> }
+          </Fab>
+        </Box>
+      )}
+      {isFlipped && !isLocked && (
+        <Box m={1}>
+          <Fab
+            color="primary"
+            aria-label="Reset toolbox"
+            edge="end"
+            size="medium"
+            onClick={resetToolbox}
+          >
+            <SettingsBackupRestore />
+          </Fab>
+        </Box>
+      )}
     </>
   );
 
