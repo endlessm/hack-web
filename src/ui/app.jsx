@@ -31,7 +31,8 @@ browserUpdate({
     // From Material-UI, support Chrome >= 49
     c: 49,
     // From Material-UI, support IE/Edge >= 14
-    i: 14,
+    // 79 rest parameters
+    i: 79,
     // From Material-UI, support Safari >= 10
     s: 10,
     // No Opera specified in Material-UI, so we guess the last 4 releases:

@@ -33,6 +33,9 @@ module.exports = {
         favicon: 'src/favicons/favicon.png',
         template: 'src/template.ejs',
       },
+      targets: {
+        browsers: ['Firefox >= 52', 'Chrome >= 49', 'Edge >= 79', 'last 4 Opera versions'],
+      },
     }),
     jest(),
     copy({
