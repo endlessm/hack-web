@@ -221,28 +221,28 @@ const initialState = {
       cards: [
         {
           slug: '/t2/t2-whitehouse',
-          href: 'https://terminaltwo.com/games/white-house',
+          href: 'https://terminaltwo.com/hourofcode/whitehouse',
           name: 'White House',
           subtitle: 'Color and Investigate!',
           description: 'Using the magic of CSS, hack your world into a unique burst of color and light revealing hidden objects and clues.',
         },
         {
           slug: '/t2/t2-aqueducts',
-          href: 'https://terminaltwo.com/games/aqueducts',
+          href: 'https://terminaltwo.com/hourofcode/aqueducts',
           name: 'Aqueducts',
           subtitle: 'A Voxel Adventure!',
           description: 'All the water has disappeared from your village and it\'s up to you to save the day! Go on an adventure to connect the water pipes and bring water back to your village.',
         },
         {
           slug: '/t2/t2-passage',
-          href: 'https://terminaltwo.com/games/the-passage',
+          href: 'https://terminaltwo.com/hourofcode/thepassage',
           name: 'The Passage',
           subtitle: 'Blast and Hack!',
           description: 'You\'ve landed on a mysterious planet with one mission; find the secret map to locate the hidden bunker. Hack the world to cross perilous lands and the obstacles within.',
         },
         {
           slug: '/t2/t2-squash',
-          href: 'https://terminaltwo.com/games/frog-squash',
+          href: 'https://terminaltwo.com/hourofcode/frogsquash',
           name: 'FrogSquash',
           subtitle: 'Jump and Dash!',
           description: 'Dodge arrows, saws, and fire balls without getting squashed! Choose from eight different animals to cross these perilous roads. Hack your animals and go farther than ever before!',
@@ -256,7 +256,7 @@ const initialState = {
         },
         {
           slug: '/t2/t2-ovum',
-          href: 'https://terminaltwo.com/games/ovum-city',
+          href: 'https://terminaltwo.com/hourofcode/ovumcity',
           name: 'Ovum City',
           subtitle: 'Explore and Control!',
           description: 'Can you control the chaos? Hack your way into the cyberpunk world of Ovum City. Debug broken code, solve puzzles, and upgrade your hardware as you explore this open world. Don\'t get caught by the drones! It\'s up to you how Ovum City evolves.',
