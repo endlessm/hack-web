@@ -91,15 +91,15 @@
 === level23_cont_10 ===
 # character: riley
 - Let's take a close look at the instructions. When you write code, it has to be <b>exactly</b> how the computer expects... So, you see anything weird?
-* [(wait for: codeErrors is 0)] Fixed it!
--> level23_flip
 * [👍] I see it!
 -> level23_cont_11
-* [👎] ... I'm a little lost.
--> level23_cont_11_hint
+* [👎] I'm a little lost.
+-> level23_cont_12
+* [(wait for: codeErrors is 0)] Fixed it!
+-> level23_flip
 
 
-=== level23_cont_11_hint ===
+=== level23_cont_12 ===
 # character: ada
 - Look at that middle instruction, Hacker. I'm pretty sure <b>jumpp</b> isn't a real word - and I'm positive it's not a correct <b>instruction</b>, either! Fix that, <b>flip</b> back to the front of Sidetrack, and press the <b>Play</b> button!
 * [(wait for: currentLevel is 24)] Level {currentLevel -1 } Complete!
