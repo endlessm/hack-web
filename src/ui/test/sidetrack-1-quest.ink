@@ -345,7 +345,7 @@ I'd say something about this level bringing me <b>down</b>, but this game is too
 - Ok, let's see what this one is about.
 * [(wait for: currentLevel is 23)] Level {currentLevel -1 } Complete!
 -> level23
-* [(wait for: success is 0)] Level {currentLevel -1} Failed!
+* [(wait for: success is 0)] Level {currentLevel} Failed!
 -> level22_reorder
 
 

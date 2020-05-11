@@ -3,7 +3,7 @@
 - Hey, check out that instruction in the middle. That's not a good symbol!
 * [❯] ❯
 -> level23_2
-* [(wait for: success is 0)] Level {currentLevel -1} Failed!
+* [(wait for: success is 0)] Level {currentLevel} Failed!
 -> level23_fail
 * [(wait for: flipped)] Flipped!
 -> level23_fail
@@ -12,7 +12,7 @@
 === level23_2 ===
 # character: ada
 - Well, I suppose we should try out the level anyway, just to see what happens...
-* [(wait for: success is 0)] Level {currentLevel -1} Failed!
+* [(wait for: success is 0)] Level {currentLevel} Failed!
 -> level23_fail
 * [(wait for: flipped)] Flipped!
 -> level23_fail
@@ -244,7 +244,7 @@ I think I can see the problem here!
 - Excellent!
 * [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
 -> level27
-* [(wait for: success is 0)] Level {currentLevel -1} Failed!
+* [(wait for: success is 0)] Level {currentLevel} Failed!
 -> level26_reorder
 
 
@@ -253,7 +253,7 @@ I think I can see the problem here!
 - You'll need to rearrange the instructions until you get it right.
 * [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
 -> level27
-* [(wait for: success is 0)] Level {currentLevel -1} Failed!
+* [(wait for: success is 0)] Level {currentLevel} Failed!
 -> level26_reorder
 
 
