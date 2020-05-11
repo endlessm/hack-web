@@ -25,6 +25,12 @@ This is the second line # character: riley
 + [(wait for: filter3 icontains "IGNORE cAsE")] -> icase_changed
 + [(wait for: filter4 not icontains "sample text")] -> icase_changed
 
+== multiple_checks
++ [(wait for: filter contains "A")]
++ [(wait for: filter contains "B")]
++ [(wait for: filter contains "C")]
+- Changed! -> END
+
 == variables_changed
 something changed! radius: {radius} flipped: {flipped}
 -> END

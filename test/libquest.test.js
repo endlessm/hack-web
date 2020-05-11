@@ -205,6 +205,18 @@ describe('libquest', () => {
     expect(dialogue[0].character).toEqual('user');
   });
 
+  it('can auto-choose with multiple checks for the same variable', () => {
+    const spyOnChoose = jest.spyOn(Quest.prototype, 'choose');
+    const quest = new Quest(questContent);
+    ['A', 'B', 'C'].forEach((matchWord, i) => {
+      quest.story.ChoosePathString('multiple_checks');
+      quest.continueStory();
+      quest.updateStoryVariable('filter', matchWord);
+      expect(spyOnChoose).toHaveBeenCalledTimes(i + 1);
+    });
+    spyOnChoose.mockRestore();
+  });
+
   it('can get snippet', () => {
     const quest = new Quest(questContent);
 
