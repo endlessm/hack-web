@@ -188,10 +188,19 @@ export default class Quest {
           choice: c,
           variable,
         };
-        this.waitFor = { ...this.waitFor, [variable.name]: waitForContext };
+        if (variable.name in this.waitFor) {
+          this.waitFor = {
+            ...this.waitFor,
+            [variable.name]: [...this.waitFor[variable.name], waitForContext],
+          };
+        } else {
+          this.waitFor = {
+            ...this.waitFor,
+            [variable.name]: [waitForContext],
+          };
+        }
       });
     });
-
     return { dialogue, choices };
   }
 
@@ -211,11 +220,13 @@ export default class Quest {
   doUpdateStoryVariable(name, newValue) {
     this.story.variablesState[name] = newValue;
     if (name in this.waitFor) {
-      const { choice, variable } = this.waitFor[name];
-      const fn = variable.fn || (() => true);
-      const params = variable.params || [];
-      if (fn.apply(null, [newValue, ...params])) {
-        this.choose(choice);
+      // eslint-disable-next-line no-restricted-syntax
+      for (const { choice, variable } of this.waitFor[name]) {
+        const fn = variable.fn || (() => true);
+        const params = variable.params || [];
+        if (fn.apply(null, [newValue, ...params])) {
+          this.choose(choice);
+        }
       }
     }
   }

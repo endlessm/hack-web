@@ -27,8 +27,13 @@ VAR code = ""
 - Let's start off with something simple - How about we change that background color. Find the line that says <tt>background(20);</tt>, and change it to read <tt>background('green');</tt>.
 # character: estelle
 - Dont forget the semicolons ( <b>;</b> ) at the end, and be careful of your spacing!
-+ [(wait for: code icontains "background('green');")] (Done)
--> p5_4
+TODO: Replace brute-force checks when we have a better check:
++ [(wait for: code contains "background('green');")]
++ [(wait for: code contains "background('Green');")]
++ [(wait for: code contains "background('GREEN');")]
+-
+(Done)
+- -> p5_4
 
 === p5_4 ===
 # character: estelle
@@ -39,22 +44,20 @@ VAR code = ""
 === p5_5 ===
 # character: estelle
 - Now, let's go a little deeper and change something about how those cool lines work! Find the line that says <tt>num = 20;</tt>, and change <b>20</b> to <b>5</b>. Don't forget to type the code exactly as you see it!
-+ [(wait for: code icontains "num = 5;")] (Done)
--> p5_6
-+ [(wait for: code icontains "num = 5;")] (Done)
++ [(wait for: code contains "num = 5;")] (Done)
 -> p5_6
 
 === p5_6 ===
 # character: estelle
 - Huh, where did all our lines go? Try changing <tt>num</tt> to <b>15</b>.
-+ [(wait for: code icontains "num = 15;")] (Done)
++ [(wait for: code contains "num = 15;")] (Done)
 -> p5_7
 
 
 === p5_7 ===
 # character: estelle
 - That's a nice number! Next, let's change the space between the arcs. Try changing <tt>step</tt> to 30.
-+ [(wait for: code icontains "step = 30;")] (Done)
++ [(wait for: code contains "step = 30;")] (Done)
 -> p5_8
 
 === p5_8 ===
@@ -69,7 +72,7 @@ VAR code = ""
 - That looks better, feel free to adjust the size to whatever you like.
 # character: estelle
 - Now, let's tweak the thickness of the arcs. Change <tt>strokeWeight</tt> from <b>5</b> to <b>10</b>.
-+ [(wait for: code icontains "strokeweight(10);")] (Done)
++ [(wait for: code contains "strokeWeight(10);")] (Done)
 -> p5_11
 
 
@@ -80,7 +83,7 @@ VAR code = ""
 - Let's move on to some fun with colors - look for the line that defines <tt>arcColor</tt>.
 # character: estelle
 - That <b>variable</b> controls the color of every line that your program draws - let's change it to <b>100</b>, and see what happens!
-+ [(wait for: code icontains "arcColor = 100;")] (Done)
++ [(wait for: code contains "arcColor = 100;")] (Done)
 -> p5_14
 
 
@@ -89,37 +92,53 @@ VAR code = ""
 - Now your wave is gray! If you want the wave to be blue, green or some other color, we need a more complex way of talking about colors. True, you can use color words, like you did for the background, but you can also describe colors in terms of the amounts of red, green, and blue they have.
 # character: estelle
 - For example, let's make the wave red - change the line with <b>arcColor</b> on it to <tt>arcColor = color(255, 0, 0);</tt>. Don't forget to double-check your spacing.
-+ [(wait for: code icontains "arcColor = color(255, 0, 0);")] (Done)
--> p5_16
-+ [(wait for: code icontains "arcColor = color(255,0,0);")] (Done)
--> p5_16
+TODO: Replace brute-force checks when we have a better check:
++ [(wait for: code contains "arcColor = color(255, 0, 0);")]
++ [(wait for: code contains "arcColor = color(255,0, 0);")]
++ [(wait for: code contains "arcColor = color(255, 0,0);")]
++ [(wait for: code contains "arcColor = color(255,0,0);")]
+-
+(Done)
+- -> p5_16
 
 
 === p5_16 ===
 # character: estelle
 - See how the arcs are red? Change the color triplet to <tt>(0, 255, 0);</tt> to give us some lucky green waves.
-+ [(wait for: code icontains "arcColor = color(0, 255, 0);")] (Done)
--> p5_18
-+ [(wait for: code icontains "arcColor = color(0,255,0);")] (Done)
--> p5_18
+TODO: Replace brute-force checks when we have a better check:
++ [(wait for: code contains "arcColor = color(0, 255, 0);")]
++ [(wait for: code contains "arcColor = color(0,255, 0);")]
++ [(wait for: code contains "arcColor = color(0, 255,0);")]
++ [(wait for: code contains "arcColor = color(0,255,0);")]
+-
+(Done)
+- -> p5_18
 
 
 === p5_18 ===
 # character: estelle
 - Now let’s try blending our RGB values: <tt>color(0, 255, 255);</tt>
-+ [(wait for: code icontains "arcColor = color(0, 255, 255);")] (Done)
--> p5_19
-+ [(wait for: code icontains "arcColor = color(0,255,255);")] (Done)
--> p5_19
+TODO: Replace brute-force checks when we have a better check:
++ [(wait for: code contains "arcColor = color(0, 255, 255);")]
++ [(wait for: code contains "arcColor = color(0,255, 255);")]
++ [(wait for: code contains "arcColor = color(0, 255,255);")]
++ [(wait for: code contains "arcColor = color(0,255,255);")]
+-
+(Done)
+- -> p5_19
 
 
 === p5_19 ===
 # character: estelle
 - Looks like green and blue make a lovely teal color! Let's try a more complex color - I love the purple you get with <tt>color(150, 0, 255)</tt>
-+ [(wait for: code icontains "arcColor = color(150, 0, 255);")] (Done)
--> p5_20
-+ [(wait for: code icontains "arcColor = color(150,0,255);")] (Done)
--> p5_20
+TODO: Replace brute-force checks when we have a better check:
++ [(wait for: code contains "arcColor = color(150, 0, 255);")]
++ [(wait for: code contains "arcColor = color(150,0, 255);")]
++ [(wait for: code contains "arcColor = color(150, 0,255);")]
++ [(wait for: code contains "arcColor = color(150,0,255);")]
+-
+(Done)
+- -> p5_20
 
 
 === p5_20 ===
@@ -147,7 +166,7 @@ VAR code = ""
 # character: estelle
 - Remember to be very careful of your spacing! Your code should look like this:
 {snippet_p5_21()}
-+ [(wait for: code icontains "if (mouseIsPressed) \{ doArcs(arcColor); \}")] (Done)
++ [(wait for: code contains "if (mouseIsPressed) \{ doArcs(arcColor); \}")] (Done)
 -> p5_22
 
 
@@ -162,7 +181,7 @@ if (mouseIsPressed) \{ doArcs(arcColor); \}
 # character: estelle
 - If you're having trouble, carefully check that everything you've typed is in the correct place, with the correct spacing. Your code should look like this:
 {snippet_p5_22()}
-+ [(wait for: code icontains "else \{ doArcs(128); \}")] (Done)
++ [(wait for: code contains "else \{ doArcs(128); \}")] (Done)
 -> p5_23
 
 
@@ -180,13 +199,13 @@ else \{ doArcs(128); \}
 # character: estelle
 - Your code should now look like this:
 {snippet_p5_23()}
-+ [(wait for: code icontains "if (mouseIsPressed) \{ background(255);")] (Done)
++ [(wait for: code contains "if (mouseIsPressed) \{ background(255);")] (Done)
 -> p5_24
 
 
 === function snippet_p5_23 ===
 # language: javascript
-if(mouseIsPressed)\{ background(255); doArcs(arcColor); \}
+if (mouseIsPressed) \{ background(255); doArcs(arcColor); \}
 else \{ background(20); \}
 
 
@@ -209,14 +228,14 @@ else \{ background(20); \}
 - First, let's get familiar with the numbers we'll be changing. Do you see the last line of our code, <tt>theta += 0.0523;</tt>? That number controls the speed of the wave.
 # character: estelle
 - <b>0.0523</b> is an awfully small number! Let's try increasing it to <tt>0.1</tt>. Remember to watch your spaces!
-+ [(wait for: code icontains "theta += 0.1;")] (Done)
++ [(wait for: code contains "theta += 0.1;")] (Done)
 -> p5_27
 
 
 === p5_27 ===
 # character: estelle
 - Wow, that's fast! What happens if we go even smaller than the original, say, <tt>0.001</tt>?
-+ [(wait for: code icontains "theta += 0.001;")] (Done)
++ [(wait for: code contains "theta += 0.001;")] (Done)
 -> p5_28
 
 === p5_28 ===
@@ -230,7 +249,7 @@ else \{ background(20); \}
 - Now, let’s use the map function to automate the things we did in the past few instructions. We'll make the vertical position of your mouse control the speed of the wave!
 # character: estelle
 - Change the number after <tt>theta +=</tt> to <tt>map(mouseY, height, 0, 0.001, 0.1);</tt> As usual, be careful to make sure your spaces and the numbers you're typing are correct.
-+ [(wait for: code icontains "theta += map(mouseY, height, 0, 0.001, 0.1);")] (Done)
++ [(wait for: code contains "theta += map(mouseY, height, 0, 0.001, 0.1);")] (Done)
 -> p5_30
 
 
