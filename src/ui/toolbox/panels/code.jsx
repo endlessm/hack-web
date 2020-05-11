@@ -119,7 +119,34 @@ const CodePanel = ({
       });
       setAnnotations(result.annotations || []);
     }
-    highlightCode(aceEditor.current);
+  };
+
+  useEffect(() => {
+    const result = compile(text, params);
+    if (result && result.annotations) {
+      setAnnotations(result.annotations);
+    }
+  }, [text, params, compile]);
+
+  // https://github.com/securingsincity/react-ace/issues/483
+  // react-ace has a bug with mixing custom annotations and worker annotations.
+  // This function adds custom annotations to the list of editor annotations
+  // when the worker removes them.
+  const onValidate = (editorAnnotations) => {
+    const editor = aceEditor.current;
+
+    if (editor) {
+      // custom annotations have an id, worker annotations doesn't
+      const customAnnotations = editor.getSession().getAnnotations().filter((a) => a.id);
+      // If the customAnnotations length is different from the annotations
+      // length, we only have the worker annotations so we should add the
+      // custom annotations here with setAnnotations. In other case the custom
+      // annotations are here and we shouldn't do anything more.
+      if (customAnnotations.length !== annotations.length) {
+        editor.getSession().setAnnotations([...editorAnnotations, ...annotations]);
+      }
+    }
+    highlightCode(editor);
   };
 
   const theme = useTheme();
@@ -128,6 +155,8 @@ const CodePanel = ({
   return (
     <AceEditor
       onLoad={highlightCode}
+      onValidate={onValidate}
+      annotations={annotations}
       width="100%"
       height={editorHeight}
       className={classes.root}
@@ -139,7 +168,6 @@ const CodePanel = ({
       name="editor"
       editorProps={{ $blockScrolling: true }}
       setOptions={{ fixedWidthGutter: false }}
-      annotations={annotations}
       wrapEnabled
       fontSize={14}
       showPrintMargin={false}

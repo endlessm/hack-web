@@ -188,7 +188,7 @@ function instructionCode(_p, code) {
   return code;
 }
 
-let lastAnnotationId = 0;
+let lastAnnotationId = 1;
 function compileCode(p, code) {
   const annotations = [];
 
