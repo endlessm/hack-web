@@ -126,10 +126,10 @@ const initialState = {
       description: 'Hey, Hacker! My name\'s Riley, and I\'m here to show off Endless OS and Hack! Pick a card and check out what we\'ve got to offer!',
       cards: [
         {
-          slug: '/web',
-          name: 'Web Tech',
-          subtitle: ' Explore web pages, and learn how to make your own!',
-          description: 'Have you ever wondered how web pages are made, or wanted to make your own? Come and take your first steps into web design - it\'s easier than you think!',
+          slug: '/art',
+          name: 'Processing',
+          subtitle: 'Take your first steps into programming!',
+          description: 'Processing is a language that connects programming to art, making it easy for anyone to understand and start learning. Check out the bascis of Javascript, a common programming language with many different uses!',
         },
         {
           slug: '/maker',
@@ -138,22 +138,22 @@ const initialState = {
           description: 'Learn some basic engineering in this fun (and tasty!) activity. The virtual world is useful, but there is no substitute for building with your own hands!',
         },
         {
-          slug: '/art',
-          name: 'Processing',
-          subtitle: 'Take your first steps into programming!',
-          description: 'Processing is a language that connects programming to art, making it easy for anyone to understand and start learning. Check out the bascis of Javascript, a common programming language with many different uses!',
+          slug: '/games',
+          name: 'Sidetrack',
+          subtitle: 'Take a break, and enjoy a game!',
+          description: 'Jump into a project from one of Hack\'s characters, Riley! Sidetrack isn\'t just a game, though - Playing will teach you programming basics, like order-of-instructions, basic code, and problem-solving through planning.',
+        },
+        {
+          slug: '/web',
+          name: 'Web Tech',
+          subtitle: ' Explore web pages, and learn how to make your own!',
+          description: 'Have you ever wondered how web pages are made, or wanted to make your own? Come and take your first steps into web design - it\'s easier than you think!',
         },
         {
           slug: '/os',
           name: 'Endless OS',
           subtitle: 'Dive deeper into hacking with the Endless Operating System!',
           description: 'Endless OS is the center of it all - an operating system designed to be easy for anyone to use. Easy doesn\'t mean less powerful, though - Endless OS has everything you need to work, learn, play, and connect, using the best of free and open-source software.',
-        },
-        {
-          slug: '/games',
-          name: 'Sidetrack',
-          subtitle: 'Take a break, and enjoy a game!',
-          description: 'Jump into a project from one of Hack\'s characters, Riley! Sidetrack isn\'t just a game, though - Playing will teach you programming basics, like order-of-instructions, basic code, and problem-solving through planning.',
         },
         {
           slug: '/t2',
