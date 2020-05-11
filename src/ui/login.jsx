@@ -34,7 +34,8 @@ const RequireAuth = ({ children }) => {
 
   const fakeAuth = process.env.NODE_ENV === 'development' && !(CONFIG.testAuth);
 
-  if (!auth.authenticated && fakeAuth) {
+  // No login for production site or fakeAuth
+  if (!auth.authenticated && (CONFIG.branch === 'stable' || fakeAuth)) {
     dispatch(actions.auth('test user'));
   }
 
