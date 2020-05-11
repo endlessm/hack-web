@@ -206,7 +206,7 @@ else \{ doArcs(128); \}
 === function snippet_p5_23 ===
 # language: javascript
 if (mouseIsPressed) \{ background(255); doArcs(arcColor); \}
-else \{ background(20); \}
+else \{ doArcs(128); \}
 
 
 === p5_24 ===
