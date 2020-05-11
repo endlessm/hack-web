@@ -166,8 +166,15 @@ TODO: Replace brute-force checks when we have a better check:
 # character: estelle
 - Remember to be very careful of your spacing! Your code should look like this:
 {snippet_p5_21()}
-+ [(wait for: code contains "if (mouseIsPressed) \{ doArcs(arcColor); \}")] (Done)
--> p5_22
+TODO: Replace brute-force checks when we have a better check:
++ [(wait for: code contains "if (mouseIsPressed) \{ doArcs(arcColor); \}")]
++ [(wait for: code contains "if(mouseIsPressed)\{ doArcs(arcColor); \}")]
++ [(wait for: code contains "if (mouseIsPressed) \{doArcs(arcColor);\}")]
++ [(wait for: code contains "if(mouseIsPressed)\{doArcs(arcColor);\}")]
++ [(wait for: code contains "if ( mouseIsPressed ) \{ doArcs(arcColor); \}")]
+-
+(Done)
+- -> p5_22
 
 
 === function snippet_p5_21 ===
@@ -181,8 +188,14 @@ if (mouseIsPressed) \{ doArcs(arcColor); \}
 # character: estelle
 - If you're having trouble, carefully check that everything you've typed is in the correct place, with the correct spacing. Your code should look like this:
 {snippet_p5_22()}
-+ [(wait for: code contains "else \{ doArcs(128); \}")] (Done)
--> p5_23
+TODO: Replace brute-force checks when we have a better check:
++ [(wait for: code contains "else \{ doArcs(128); \}")]
++ [(wait for: code contains "else\{ doArcs(128); \}")]
++ [(wait for: code contains "else\{doArcs(128);\}")]
++ [(wait for: code contains "else \{doArcs(128);\}")]
+-
+(Done)
+- -> p5_23
 
 
 === function snippet_p5_22 ===
@@ -199,8 +212,14 @@ else \{ doArcs(128); \}
 # character: estelle
 - Your code should now look like this:
 {snippet_p5_23()}
-+ [(wait for: code contains "if (mouseIsPressed) \{ background(255);")] (Done)
--> p5_24
+TODO: Replace brute-force checks when we have a better check:
++ [(wait for: code contains "if (mouseIsPressed) \{ background(255); ")]
++ [(wait for: code contains "if(mouseIsPressed)\{ background(255); ")]
++ [(wait for: code contains "if(mouseIsPressed)\{background(255);")]
++ [(wait for: code contains "if (mouseIsPressed) \{background(255);")]
+-
+(Done)
+- -> p5_24
 
 
 === function snippet_p5_23 ===
@@ -228,8 +247,13 @@ else \{ doArcs(128); \}
 - First, let's get familiar with the numbers we'll be changing. Do you see the last line of our code, <tt>theta += 0.0523;</tt>? That number controls the speed of the wave.
 # character: estelle
 - <b>0.0523</b> is an awfully small number! Let's try increasing it to <tt>0.1</tt>. Remember to watch your spaces!
-+ [(wait for: code contains "theta += 0.1;")] (Done)
--> p5_27
+TODO: Replace brute-force checks when we have a better check:
++ [(wait for: code contains "theta += 0.1;")]
++ [(wait for: code contains "theta +=0.1;")]
++ [(wait for: code contains "theta+=0.1;")]
+-
+(Done)
+- -> p5_27
 
 
 === p5_27 ===
@@ -249,8 +273,14 @@ else \{ doArcs(128); \}
 - Now, let’s use the map function to automate the things we did in the past few instructions. We'll make the vertical position of your mouse control the speed of the wave!
 # character: estelle
 - Change the number after <tt>theta +=</tt> to <tt>map(mouseY, height, 0, 0.001, 0.1);</tt> As usual, be careful to make sure your spaces and the numbers you're typing are correct.
-+ [(wait for: code contains "theta += map(mouseY, height, 0, 0.001, 0.1);")] (Done)
--> p5_30
+TODO: Replace brute-force checks when we have a better check:
++ [(wait for: code contains "theta += map(mouseY, height, 0, 0.001, 0.1);")]
++ [(wait for: code contains "theta += map(mouseY,height,0,0.001,0.1);")]
++ [(wait for: code contains "theta+=map(mouseY, height, 0, 0.001, 0.1);")]
++ [(wait for: code contains "theta+=map(mouseY,height,0,0.001,0.1);")]
+-
+(Done)
+- -> p5_30
 
 
 === p5_30 ===
