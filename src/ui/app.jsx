@@ -38,6 +38,8 @@ browserUpdate({
     // No Opera specified in Material-UI, so we guess the last 4 releases:
     o: -4,
   },
+  insecure: true,
+  api: 2020.05,
 });
 
 ReactGA.initialize('UA-160877903-1');
