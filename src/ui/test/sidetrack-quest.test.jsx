@@ -286,7 +286,12 @@ const SidetrackQuest = () => {
 
     focusApp();
 
-    return store.subscribe(handleChange);
+    const unsubscribe = store.subscribe(handleChange);
+    return () => {
+      unsubscribe();
+      // Reset hackableApp state on umount
+      dispatch(actions.resetHackableApp());
+    };
   }, [dispatch, setCurrentChoice]);
 
   // Update the app when the quest changes some variable
