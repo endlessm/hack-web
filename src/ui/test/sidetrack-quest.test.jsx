@@ -195,12 +195,6 @@ const SidetrackQuest = () => {
         loadNotify: () => {},
       };
 
-      // fake PauseApp, we don't need this on hack-web
-      app.contentWindow.wakeScenes = () => {};
-      app.contentWindow.sleepScenes = () => {};
-      app.contentWindow.needHackScreen = () => {};
-      app.contentWindow.hideNeedHackScreen = () => {};
-
       // preload all sounds
       SidetrackSounds.forEach((s) => {
         const sound = SoundsMeta[s];
@@ -243,11 +237,13 @@ const SidetrackQuest = () => {
       };
 
       // fake pauseToyApp
-      app.contentWindow.wakeScenes = () => {};
       app.contentWindow.sleepScenes = () => {};
       app.contentWindow.needHackScreen = () => {};
       app.contentWindow.hideNeedHackScreen = () => {};
       app.contentWindow.clearSleepTimer = () => {};
+      // force a call to wakeScenes to ensure that the game was not paused
+      // before the function override
+      app.contentWindow.wakeScenes();
 
       // center vertically
       app.contentDocument.body.style.height = '100vh';
