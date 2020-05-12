@@ -71,6 +71,9 @@ module.exports = {
         {
           from: 'node_modules/pdfjs-dist/build/pdf.worker.js',
         },
+        {
+          from: 'browser-update/update.min.js',
+        },
       ],
     }),
     (neutrino) => {
