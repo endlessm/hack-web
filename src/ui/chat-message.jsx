@@ -174,7 +174,7 @@ const ChatMessage = ({
                   {message.codeSnippet && (
                     <AceEditor
                       width="100%"
-                      height={theme.spacing(15)}
+                      height={`${theme.spacing(15)}px`}
                       mode={message.codeSnippet.language}
                       theme="monokai"
                       value={message.codeSnippet.text}
