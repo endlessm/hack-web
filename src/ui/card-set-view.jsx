@@ -71,7 +71,7 @@ const CardSetView = ({ slug }) => {
   const getContent = (card) => (
     <Grid container justify="flex-start">
       <Grid item>
-        <Box p={isSmall ? 0 : 2}>
+        <Box px={isSmall ? 0 : 2} py={isSmall ? 0 : 1}>
           <Typography variant="h4">
             {card.name}
           </Typography>
