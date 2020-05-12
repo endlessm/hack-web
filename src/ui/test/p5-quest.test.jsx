@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   Box,
@@ -36,24 +36,16 @@ const P5Quest = () => {
   const dispatch = useDispatch();
   const card = useCard();
 
-  const [firstTimeCode, setFirstTimeCode] = useState(true);
-
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
 
-  const updateQuestCode = (value) => {
-    quest.updateStoryVariable('code', value);
-    setCurrentChoice(undefined);
-  };
-
   useEffect(() => {
     const changeCallback = (params, firstTime = false) => {
-      if (firstTime && firstTimeCode) {
+      if (firstTime) {
         // only update the toolbox code editor the first time
         dispatch(actions.hackableAppSet(params));
         dispatch(actions.originalHackableAppSet(params));
-        setFirstTimeCode(false);
       }
     };
 
@@ -66,12 +58,19 @@ const P5Quest = () => {
           const app = document.querySelector('#app');
           app.contentWindow.reload();
 
-          updateQuestCode(value);
+          quest.updateStoryVariable('code', value);
+          setCurrentChoice(undefined);
         }
       });
     };
-    return store.subscribe(handleChange);
-  });
+
+    const unsubscribe = store.subscribe(handleChange);
+    return () => {
+      unsubscribe();
+      // Reset hackableApp state on umount
+      dispatch(actions.resetHackableApp());
+    };
+  }, [dispatch, quest, setCurrentChoice]);
 
   const resetToolbox = () => {
     const { originalHackableApp } = store.getState();

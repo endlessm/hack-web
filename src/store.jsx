@@ -34,6 +34,9 @@ const actions = {
     type: 'SET-PARAM',
     payload: { key, value },
   }),
+  resetHackableApp: () => ({
+    type: 'RESET',
+  }),
 };
 
 function authReducer(state = {}, action) {
@@ -91,6 +94,9 @@ function originalHackableAppReducer(state = {}, action) {
     case 'ORIG-SET': {
       return { ...action.payload };
     }
+    case 'RESET': {
+      return {};
+    }
     default:
       return state;
   }
@@ -104,6 +110,9 @@ function hackableAppReducer(state = {}, action) {
     case 'SET-PARAM': {
       const { key, value } = action.payload;
       return { ...state, [key]: value };
+    }
+    case 'RESET': {
+      return {};
     }
     default:
       return state;

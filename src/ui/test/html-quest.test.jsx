@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -37,19 +37,16 @@ const HtmlQuest = () => {
   const dispatch = useDispatch();
   const card = useCard();
 
-  const [firstTimeCode, setFirstTimeCode] = useState(true);
-
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
 
   useEffect(() => {
     const changeCallback = (params, firstTime = false) => {
-      if (firstTime && firstTimeCode) {
+      if (firstTime) {
         // only update the toolbox code editor the first time
         dispatch(actions.hackableAppSet(params));
         dispatch(actions.originalHackableAppSet(params));
-        setFirstTimeCode(false);
       }
     };
 
@@ -67,8 +64,14 @@ const HtmlQuest = () => {
         }
       });
     };
-    return store.subscribe(handleChange);
-  }, [firstTimeCode, dispatch, quest, setCurrentChoice]);
+
+    const unsubscribe = store.subscribe(handleChange);
+    return () => {
+      unsubscribe();
+      // Reset hackableApp state on umount
+      dispatch(actions.resetHackableApp());
+    };
+  }, [dispatch, quest, setCurrentChoice]);
 
   const toolbox = <Toolbox />;
 
