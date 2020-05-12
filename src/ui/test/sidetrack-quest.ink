@@ -99,7 +99,6 @@ INCLUDE sidetrack-2-quest.ink
 - You've got a choice here: Do you want to keep playing, or jump straight ahead to hacking the game?
 * [Keep Playing!] I'll keep going, I want to play all the way through.
 ~ availableLevels = 28
-~ startLevel = 2
 -> level2
 * [Let's get Hacking!] I can't wait to get a look inside!
 ~ availableLevels = 28
