@@ -214,6 +214,7 @@ const SidetrackQuest = () => {
       });
 
       app.contentWindow.Sounds = {
+        bgSound: null,
         getSound: (sound) => {
           const audio = app.contentDocument.getElementById(sound);
           return audio;
@@ -229,6 +230,11 @@ const SidetrackQuest = () => {
           audio.currentTime = 0;
         },
         playLoop: (sound) => {
+          if (app.contentWindow.Sounds.bgSound) {
+            app.contentWindow.Sounds.stop(app.contentWindow.Sounds.bgSound);
+          }
+          app.contentWindow.Sounds.bgSound = sound;
+
           const audio = app.contentWindow.Sounds.getSound(sound);
           audio.setAttribute('loop', 'true');
           audio.currentTime = 0;
