@@ -10,7 +10,6 @@ import { useSelector } from 'react-redux';
 import 'typeface-roboto';
 import ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
-import browserUpdate from 'browser-update';
 
 import './app.css';
 import theme from './theme';
@@ -23,22 +22,6 @@ import { P5Quest } from './test/p5-quest.test';
 import { HtmlQuest } from './test/html-quest.test';
 import { PdfQuest } from './test/pdf-quest.test';
 import { SidetrackQuest } from './test/sidetrack-quest.test';
-
-browserUpdate({
-  required: {
-    // From Material-UI, support Firefox >= 52
-    f: 52,
-    // From Material-UI, support Chrome >= 49
-    c: 49,
-    // From Material-UI, support IE/Edge >= 14
-    // 79 rest parameters
-    i: 79,
-    // From Material-UI, support Safari >= 10
-    s: 10,
-    // No Opera specified in Material-UI, so we guess the last 4 releases:
-    o: -4,
-  },
-});
 
 ReactGA.initialize('UA-160877903-1');
 const GAWrapper = ({ children }) => {
