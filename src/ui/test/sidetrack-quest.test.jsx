@@ -146,6 +146,11 @@ const SidetrackQuest = () => {
         return;
       }
 
+      // update toolbox state only if level changes
+      if (params.currentLevel === store.getState().hackableApp.currentLevel) {
+        return;
+      }
+
       const level = app.contentWindow[`globalLevel${params.currentLevel}Parameters`];
 
       if (questRef.current) {
