@@ -137,7 +137,8 @@ const CodePanel = ({
 
     if (editor) {
       // custom annotations have an id, worker annotations doesn't
-      const customAnnotations = editor.getSession().getAnnotations().filter((a) => a.id);
+      const customAnnotations = editor.getSession().getAnnotations()
+        .filter((a) => typeof a.id !== 'undefined');
       // If the customAnnotations length is different from the annotations
       // length, we only have the worker annotations so we should add the
       // custom annotations here with setAnnotations. In other case the custom
