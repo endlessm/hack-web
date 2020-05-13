@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 
+import './i18n';
+
 // Switch commented lines to hot-load tests instead of the main
 // application:
 
