@@ -74,6 +74,10 @@ module.exports = {
         {
           from: 'browser-update/update.min.js',
         },
+        {
+          from: 'src/locales',
+          to: 'locales',
+        },
       ],
     }),
     (neutrino) => {
