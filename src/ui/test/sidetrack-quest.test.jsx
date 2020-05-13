@@ -273,7 +273,6 @@ const SidetrackQuest = () => {
         robotBDirection: params.robotBDirection,
       };
 
-      updateApp('globalParameters', params);
       updateApp(`globalLevel${params.currentLevel}Parameters`, currentLevel, () => {
         changeCallback(params);
       });
