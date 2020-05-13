@@ -30,9 +30,9 @@ import questContent from './pdf-quest.ink';
 
 const questName = 'maker-make-change';
 
-const useStyles = makeStyles(({ palette, shadows }) => ({
+const useStyles = makeStyles(({ custom, palette, shadows }) => ({
   documentContainer: {
-    height: '100%',
+    height: `calc(100vh - ${custom.appBarHeight}px)`,
     overflowY: 'scroll',
     backgroundColor: palette.grey[500],
     '& .react-pdf__Page canvas': {
