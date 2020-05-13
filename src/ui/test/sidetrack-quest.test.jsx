@@ -240,10 +240,13 @@ const SidetrackQuest = () => {
       app.contentWindow.sleepScenes = () => {};
       app.contentWindow.needHackScreen = () => {};
       app.contentWindow.hideNeedHackScreen = () => {};
-      app.contentWindow.clearSleepTimer = () => {};
       // force a call to wakeScenes to ensure that the game was not paused
       // before the function override
+      if (app.contentWindow.game) {
+        app.contentWindow.clearSleepTimer(app.contentWindow.game.pauseToyAppTimeout);
+      }
       app.contentWindow.wakeScenes();
+
 
       // center vertically
       app.contentDocument.body.style.height = '100vh';
