@@ -75,9 +75,8 @@ const CodePanel = ({
     selector ? state.hackableApp[selector] : state.hackableApp
   ));
   const dispatch = useDispatch();
-  const text = code(params);
   const size = useWindowSize();
-
+  const [text, setText] = useState(code(params));
   const [annotations, setAnnotations] = useState([]);
 
   const classes = useStyles();
@@ -110,16 +109,29 @@ const CodePanel = ({
     });
   };
 
-  const build = (c) => {
-    const result = compile(c, params);
+  const timeoutId = useRef(null);
+  const delayBuild = (c) => {
+    clearTimeout(timeoutId.current);
+    timeoutId.current = setTimeout(() => {
+      const result = compile(c, params);
 
-    if (result) {
-      Object.keys(result).forEach((p) => {
-        dispatch(actions.hackableAppSetParam([p], result[p]));
-      });
-      setAnnotations(result.annotations || []);
-    }
+      if (result) {
+        Object.keys(result).forEach((p) => {
+          dispatch(actions.hackableAppSetParam([p], result[p]));
+        });
+        setAnnotations(result.annotations || []);
+      }
+    }, buildDelay);
   };
+
+  const build = (c) => {
+    setText(c);
+    delayBuild(c);
+  };
+
+  useEffect(() => (
+    () => { clearTimeout(timeoutId.current); }
+  ), []);
 
   useEffect(() => {
     const result = compile(text, params);
@@ -127,6 +139,16 @@ const CodePanel = ({
       setAnnotations(result.annotations);
     }
   }, [text, params, compile]);
+
+  // Recalculate the text when the params change, in other case it's not
+  // possible to update the editor code after creation
+  const textRef = useRef(text);
+  useEffect(() => {
+    const result = code(params);
+    if (result !== textRef.current) {
+      setText(result);
+    }
+  }, [params, code]);
 
   // https://github.com/securingsincity/react-ace/issues/483
   // react-ace has a bug with mixing custom annotations and worker annotations.
@@ -165,7 +187,6 @@ const CodePanel = ({
       theme="monokai"
       value={text}
       onChange={build}
-      debounceChangePeriod={buildDelay}
       name="editor"
       editorProps={{ $blockScrolling: true }}
       setOptions={{ fixedWidthGutter: false }}
