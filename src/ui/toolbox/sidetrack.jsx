@@ -229,7 +229,7 @@ const TOOLBOX = {
           xs: 12,
           code: instructionCode.bind(this, 'instructionCode'),
           compile: compileCode.bind(this, 'instructionCode'),
-          mode: 'javascript',
+          mode: '',
           buildDelay: 2000,
           fullHeight: true,
           selector: 'instructionCode',
