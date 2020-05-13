@@ -203,7 +203,7 @@ function useQuest(questContent) {
     if (currentChoice === null) return;
 
     if (currentChoice !== undefined) {
-      quest.choose(choices[currentChoice.index]);
+      quest.choose(currentChoice);
     }
 
     updateDialogueChoices();
