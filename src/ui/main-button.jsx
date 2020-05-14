@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   IconButton,
@@ -52,6 +53,7 @@ const MainIconButton = withStyles(({
 const GoButton = ({ card }) => {
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -64,7 +66,7 @@ const GoButton = ({ card }) => {
         href={card.href}
         target="_blank"
       >
-        Let&apos;s go
+        {t('Let\'s go')}
       </MainButton>
     );
   }
@@ -82,7 +84,7 @@ const GoButton = ({ card }) => {
       to={card.slug}
       onClick={onClick}
     >
-      Let&apos;s go
+      {t('Let\'s go')}
     </MainButton>
   );
 };

@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import {
   BrowserRouter as Router,
@@ -42,54 +42,56 @@ const App = () => {
   const cardsets = useSelector((state) => state.cardsets);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/reset-password">
-            <ResetPassword />
-          </Route>
-          <Route path="/games">
-            <RequireAuth>
-              <GAWrapper><SidetrackQuest /></GAWrapper>
-            </RequireAuth>
-          </Route>
-          <Route path="/art">
-            <RequireAuth>
-              <GAWrapper><P5Quest /></GAWrapper>
-            </RequireAuth>
-          </Route>
-          <Route path="/web">
-            <RequireAuth>
-              <GAWrapper><HtmlQuest /></GAWrapper>
-            </RequireAuth>
-          </Route>
-          <Route path="/maker">
-            <RequireAuth>
-              <GAWrapper><PdfQuest /></GAWrapper>
-            </RequireAuth>
-          </Route>
-          {cardsets.map((p) => (
-            <Route key={p.slug} path={p.slug}>
+    <Suspense fallback="loading">
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/signup">
+              <SignUp />
+            </Route>
+            <Route path="/reset-password">
+              <ResetPassword />
+            </Route>
+            <Route path="/games">
               <RequireAuth>
-                <GAWrapper><CardSetView slug={p.slug} /></GAWrapper>
+                <GAWrapper><SidetrackQuest /></GAWrapper>
               </RequireAuth>
             </Route>
-          ))}
-          <Route path="/">
-            <RequireAuth>
-              <GAWrapper><CardSetView slug="/home" /></GAWrapper>
-            </RequireAuth>
-          </Route>
-        </Switch>
-      </Router>
-    </ThemeProvider>
+            <Route path="/art">
+              <RequireAuth>
+                <GAWrapper><P5Quest /></GAWrapper>
+              </RequireAuth>
+            </Route>
+            <Route path="/web">
+              <RequireAuth>
+                <GAWrapper><HtmlQuest /></GAWrapper>
+              </RequireAuth>
+            </Route>
+            <Route path="/maker">
+              <RequireAuth>
+                <GAWrapper><PdfQuest /></GAWrapper>
+              </RequireAuth>
+            </Route>
+            {cardsets.map((p) => (
+              <Route key={p.slug} path={p.slug}>
+                <RequireAuth>
+                  <GAWrapper><CardSetView slug={p.slug} /></GAWrapper>
+                </RequireAuth>
+              </Route>
+            ))}
+            <Route path="/">
+              <RequireAuth>
+                <GAWrapper><CardSetView slug="/home" /></GAWrapper>
+              </RequireAuth>
+            </Route>
+          </Switch>
+        </Router>
+      </ThemeProvider>
+    </Suspense>
   );
 };
 
