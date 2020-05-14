@@ -50,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
   toolboxWhenFlipped: {
     opacity: 1,
     pointerEvents: 'auto',
+
+    '& .ace_tooltip': {
+      marginTop: `-${theme.custom.appBarHeight}px`,
+    },
   },
   canvas: {
     position: 'absolute',
