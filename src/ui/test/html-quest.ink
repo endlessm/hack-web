@@ -1,5 +1,5 @@
-INCLUDE common.ink
 # main character: riley
+INCLUDE common.ink
 
 VAR code = ""
 
@@ -22,7 +22,7 @@ VAR code = ""
 -> htmlintro1_2
 
 === htmlintro1_2 ===
-- On your left, we've got a sort of website operating room set up. The left half shows you the code, and the right side shows what you'd see if you found the page on the internet.
+- On your left, we've got a sort of website lab set up. The left half shows you the code, and the right side shows what that code creates, like if it were a page on the internet. This works just like a normal text editor, so you can always use Undo (<b>Ctrl + Z</b>) if you make a mistake.
 * [❯] ❯
 -> htmlintro1_2_2
 
@@ -42,14 +42,14 @@ VAR code = ""
 -> htmlintro1_3_3
 
 === htmlintro1_3_3 ===
-- Let's get our hands dirty! Find the text <b>Hello, World!</b> in the <b>code</b> part of this page, and change it - make it your name, your favorite food, whatever you like.
+- Let's get our hands dirty! Find the text <b>Hello, world!</b> in the <b>code</b> part of this page, and change it - make it your name, your favorite food, whatever you like.
 * [(wait for: code not icontains "Hello, world")] (Done)
 -> htmlintro1_4
 
 === htmlintro1_4 ===
 - Awesome! You just edited a webpage! That makes you a web designer, and that's pretty cool.
-Let's take it one step further. Do you see the text that says <b>Welcome to my test website</b> near the top of the webpage?
-Try finding that text in the <b>code</b> area and changing it.
+- Let's take it one step further. Do you see the text that says <b>Welcome to my test website</b> near the top of the webpage?
+- Try finding that text in the <b>code</b> area and changing it.
 * [(wait for: code not icontains "Welcome to my test website")] (Done)
 -> htmlintro1_5
 
@@ -58,8 +58,7 @@ Try finding that text in the <b>code</b> area and changing it.
 -> htmlintro2_2
 
 === htmlintro2_2 ===
-- Here's a fun fact: Based on what you did just now, you already know enough to make your own webpage!
-If you did, though, all you'd have is boring black text on a white background. Let's spice that up a little by coloring the text.
+- Here's a fun fact: Based on what you did just now, you already know enough to make your own webpage! If you did, though, all you'd have is boring black text on a white background. Let's spice that up a little by coloring the text.
 - Find the opening <tt>&lt;p&gt;</tt>tag in your code, and add <tt>style="color:blue"</tt>after the <tt>p</tt>.
 * [(wait for: code icontains "<p style=\"color:blue\">")](Done)
 -> htmlintro2_3
@@ -109,7 +108,7 @@ If you did, though, all you'd have is boring black text on a white background. L
 
 === htmlintro2_6 ===
 - To use this hex color in your webpage, replace one of your color words with that hex code: <tt>\#76EECF</tt> (You need the \"\#\" in front of it to tell the browser \"the next 6 letters or numbers are a hex color\")
-Let's edit the <tt>&lt;p&gt;</tt>tag to make the text that hex color.
+- Let's edit the <tt>&lt;p&gt;</tt>tag to make the text that hex color.
 * [(wait for: code icontains "<p style=\"color:\#76EECF\">")](Done)
 -> htmlintro2_7
 
@@ -123,14 +122,15 @@ Let's edit the <tt>&lt;p&gt;</tt>tag to make the text that hex color.
 
 
 === htmlintro2_7hexchars ===
-- So, those 6 digits in <b>hex colors</b> describe colors in terms of a mix of red, green and blue, <b>RRGGBB</b>. So <b>\#1155DD</b> would be a little red, some green, and LOT of blue.
-- But why the letters? <b>Hex colors</b> count using 1-9 and A-F because they have to express numbers above 9, but still stick to just 6 digits. That means they need a way to express 10, 11, and other numbers using only a single digit each. Tall order! So, hex colors use a number system called <b>hexadecimal</b>, where 10 = A, 11 = B, and so on, up until F. I could go into why we only go up to 16, but <b>THAT'S</b> even more off the track!
--  Anyway, with this way of describing colors, you've got 16,777,216 possible colors, so there's a fair amount of room - and if you'd like to use a color picker, check out <a href="https:\/\/htmlcolorcodes.com\/">the HTML color code list</a>.
+- So, those 6 digits in <b>hex colors</b> describe colors in terms of a mix of red, green and blue, <b>RRGGBB</b>. So <b>\#1155DD</b> means a little red, some green, and LOT of blue.
+- But why the letters? <b>Hex colors</b> count using 1-9 and A-F because they have to express numbers above 9, but can't use more than 6 digits in total. That means they need a way to express 10, 11, and other higher numbers using only a single digit. Tall order!
+- So, hex colors use a number system called <b>hexadecimal</b>, where 10 = A, 11 = B, and so on, up until F. I could go into why we only go up to 16, but <b>THAT'S</b> even more off track!
+- With this way of describing colors, you have 16,777,216 possible colors,so there's lots of room! If you'd like to use a color picker, check out <a href="https:\/\/htmlcolorcodes.com\/">the HTML color code list</a>.
 * [❯] ❯
 -> htmlintro2_8
 
 === htmlintro2_8 ===
--  Ok, so you've got some color chops now. But do you know what would <b>really</b> make this page look cool? A new background color!
+- Ok, so you've got some color chops now. But do you know what would <b>really</b> make this page look cool? A new background color!
 * [❯] ❯
 -> htmlintro2_8_2
 
@@ -142,7 +142,7 @@ Let's edit the <tt>&lt;p&gt;</tt>tag to make the text that hex color.
 
 === htmlintro2_8hints ===
 { once:
-    - Find the &lt;body&gt; tag near the top of the page, and then add the new color information into it, just like you did with the &lt;p&gt; tag.
+    - Find the <tt>&lt;body&gt;</tt> tag near the top of the page, and then add the new color information into it, just like you did with the <tt>&lt;p&gt;</tt> tag.
     - Don't forget that this time we're using <tt>background-color</tt>instead of just <tt>color</tt>.
     - -> htmlintro2_8hints_final
 }
@@ -157,6 +157,6 @@ Let's edit the <tt>&lt;p&gt;</tt>tag to make the text that hex color.
 -> htmlintro2_9
 
 === htmlintro2_9 ===
-- Niiice! Now that's going to turn some heads. I bet it feels pretty good to have the tools to paint the whole internet!
-- If you'd like to keep going with more activities like this, I've got a whole set available in Hack for Endless OS! You can learn how to write your own tags, explore and hack web pages with the inspector, and even create a whole professional-quality website using the latest web frameworks and tools! I'll be waiting for you!
+- Nice, that's going to turn some heads! I bet it feels pretty good to have the tools to paint the whole internet!
+- If you'd like more activities like this, I've got a whole bunch in Hack for Endless OS! You can learn how to write your own tags, explore and hack web pages with the inspector, and even create a whole website using the latest web frameworks and tools! Come on and join me!
 -> END
