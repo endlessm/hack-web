@@ -1,0 +1,11 @@
+{
+  "presets": [
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    ["i18next-extract", {
+      "locales": ["en", "es", "de"],
+      "outputPath": "src/locales/{{locale}}/{{ns}}.json"
+    }],
+  ]
+}

@@ -12,6 +12,7 @@
     "build": "webpack --mode production",
     "test": "jest --rootDir test/",
     "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test webpack-loaders",
+    "extract-translations": "babel 'src/**/*.{js,jsx,ts,tsx}'",
     "deploy": "node tools/deploy.js"
   },
   "dependencies": {
