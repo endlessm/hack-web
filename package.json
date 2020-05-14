@@ -12,6 +12,7 @@
     "build": "webpack --mode production",
     "test": "jest --rootDir test/",
     "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test webpack-loaders",
+    "extract-translations": "babel 'src/**/*.{js,jsx,ts,tsx}'",
     "deploy": "node tools/deploy.js"
   },
   "dependencies": {
@@ -43,12 +44,16 @@
     "typeface-roboto": "^0.0.75"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
     "@neutrinojs/airbnb": "^9.1.0",
     "@neutrinojs/copy": "^9.1.0",
     "@neutrinojs/jest": "^9.1.0",
     "@neutrinojs/react": "^9.1.0",
     "@svgr/webpack": "^5.2.0",
     "aws-sdk": "^2.637.0",
+    "babel-plugin-i18next-extract": "^0.7.2",
     "dotenv": "^8.2.0",
     "eslint": "^6",
     "eslint-plugin-unused-imports": "^0.1.2",

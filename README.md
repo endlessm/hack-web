@@ -40,6 +40,9 @@ We use the Ink DSL for user instructions in quests. See
 [WritingQuests](docs/WritingQuests.md) for the conventions added on
 top of Ink stories to support Hack quests.
 
+See [Translating](./docs/Translating.md) for how to contribute
+translations.
+
 ## Development
 
 See [HACKING.md](./HACKING.md) for general tips and instructions.
