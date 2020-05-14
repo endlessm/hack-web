@@ -44,6 +44,12 @@ const useStyles = makeStyles(({ spacing, zIndex, palette }) => ({
     // Converted from ace-monokai #272822, and with a small
     // transparency:
     backgroundColor: 'rgba(39, 40, 34, 0.6)',
+    '& .ace_tooltip': {
+      backgroundColor: palette.background.default,
+      color: palette.text.secondary,
+      border: `1px solid ${palette.error.dark}`,
+      padding: `${spacing(1)}px`,
+    },
     '& .ace_gutter': {
       backgroundColor: 'rgba(39, 40, 34, 0.8)',
       width: `${spacing(10)}px !important`,
