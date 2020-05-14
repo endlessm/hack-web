@@ -138,19 +138,19 @@ const initialState = {
           slug: '/art',
           name: 'Processing',
           subtitle: 'Take your first steps into programming!',
-          description: 'Processing is a language that connects programming to art, making it easy for anyone to understand and start learning. Check out the bascis of Javascript, a common programming language with many different uses!',
+          description: 'Processing is a language that connects programming to art, making it easy for anyone to understand. Check out the basics of JavaScript, a common programming language with many different uses!',
         },
         {
           slug: '/maker',
           name: 'Engineering',
           subtitle: 'Learn how strong buildings stay up!',
-          description: 'Learn some basic engineering in this fun (and tasty!) activity. The virtual world is useful, but there is no substitute for building with your own hands!',
+          description: 'Learn some basic engineering in this fun (and tasty!) activity. The virtual world is useful, but there\'s no substitute for building with your hands!',
         },
         {
           slug: '/games',
           name: 'Sidetrack',
           subtitle: 'Take a break, and enjoy a game!',
-          description: 'Jump into a project from one of Hack\'s characters, Riley! Sidetrack isn\'t just a game, though - Playing will teach you programming basics, like order-of-instructions, basic code, and problem-solving through planning.',
+          description: 'Join Riley as she presents one of her projects! Sidetrack isn\'t just a game - Playing will teach you programming basics, like how to arrange instructions, how to write basic code, and teach you to solve problems by planning.',
         },
         {
           slug: '/web',
@@ -162,11 +162,11 @@ const initialState = {
           slug: '/os',
           name: 'Endless OS',
           subtitle: 'Dive deeper into hacking with the Endless Operating System!',
-          description: 'Endless OS is the center of it all - an operating system designed to be easy for anyone to use. Easy doesn\'t mean less powerful, though - Endless OS has everything you need to work, learn, play, and connect, using the best of free and open-source software.',
+          description: 'Endless OS is the center of it all - an operating system that\'s easy for anyone to use. But easy doesn\'t mean less powerful - Endless OS has everything you need to work, learn, play, and connect, using the best free and open-source software.',
         },
         {
           slug: '/t2',
-          name: 'T2 Games',
+          name: 'Terminal Two',
           subtitle: 'Explore the world of Terminal Two!',
           description: 'Terminal Two is another branch of Endless, focused on delivering educational games. Journey through their worlds, hacking futuristic cities, discovering ancient ruins, and exploring alien planets!',
         },
@@ -176,7 +176,7 @@ const initialState = {
       slug: '/os',
       name: 'Endless OS',
       subtitle: 'Dive deeper into hacking with the Endless Operating System!',
-      description: 'Endless OS is the center of it all - an operating system designed to be easy for anyone to use. Easy doesn\'t mean less powerful, though - Endless OS has everything you need to work, learn, play, and connect, using the best of free and open-source software.',
+      description: 'Endless OS is the center of it all - an operating system that\'s easy for anyone to use. But easy doesn\'t mean less powerful - Endless OS has everything you need to work, learn, play, and connect, using the best free and open-source software.',
       cards: [
         {
           slug: '/os/os-win',
@@ -190,7 +190,7 @@ const initialState = {
           href: 'https://support.endlessm.com/hc/en-us/articles/115001629603-How-can-I-create-and-boot-an-Endless-USB-stick-from-macOS-',
           name: 'MacOS',
           subtitle: 'Endless OS power without restarting your Mac!',
-          description: 'Although our support for Apple devices is still in development, you can try out Endless OS on your Mac by running it in a virtual machine. We\'ve got detailed instructions walk you through running Endless OS inside your existing MacOS session, and we\'re working hard on bringing every option for running Endless OS to Apple products.',
+          description: 'Although our support for Apple devices is still in development, you can try out Endless OS on your Mac by running it in a virtual machine. We\'ve got detailed instructions to help you every step of the way.',
         },
         {
           slug: '/os/os-switch',
@@ -218,13 +218,13 @@ const initialState = {
           href: 'https://support.endlessm.com/hc/en-us/articles/360039665771-How-to-install-Endless-OS-on-Raspberry-Pi-',
           name: 'Raspberry Pi',
           subtitle: 'The ultimate DIY Hacking solution!',
-          description: 'If you own or are interested in owning a Raspberry Pi, Endless OS works there too! Turn your Raspberry Pi intto a media center, a robot control, a tiny desktop, a home file server, an electronics project station, and so much more! Whatever you choose, Endless OS will be there to support you.',
+          description: 'If you own or are interested in a Raspberry Pi, Endless OS works there too! Turn your Raspberry Pi into a media center, a robot controller, a tiny desktop, a home file server, an electronics project station, and so much more! Whatever you choose, Endless OS is there to support you.',
         },
       ],
     },
     {
       slug: '/t2',
-      name: 'T2 Games',
+      name: 'Terminal Two',
       subtitle: 'Explore the world of Terminal Two!',
       description: 'Terminal Two is another branch of Endless, focused on delivering educational games. Journey through their worlds, hacking futuristic cities, discovering ancient ruins, and exploring alien planets!',
       cards: [
