@@ -17,8 +17,7 @@ VAR playing = 1
 VAR controlsCutscene = 0
 # same but for the ending cutscene
 VAR escapeCutscene = 0
-# Ending a level early makes this >0
-# and shows all the remaining dialogue for the level
+# repurposed for level skip to 22
 VAR skip = 0
 # Flip to Hack
 VAR hasLockKey = 0
@@ -108,13 +107,12 @@ INCLUDE sidetrack-2-quest.ink
 === transition ===
 
 # character: riley
-- OK, a quick rundown of what we're doing here: See that little copy of me on the left? You're trying to get me to the exit, over on the right.
-# character: riley
-- You need to drag and drop the tiles with arrows on them so that when I follow them, I'll get to the exit safely!
+- OK, a quick rundown of what we're doing here: You need to drag and drop the tiles with arrows on them so that when I follow them, I'll get to the exit safely!
 # character: riley
 - If there's a Pit, I'll need to jump over it, and if there's a Wall, I need to go around it.
 # character: riley
 - Once you have the instructions arranged how you want, press the Play button to start - and no more changing instructions until I either win or lose!
 # character: riley
 - If I fail, you'll need to rearrange the instructions until we get it right.
+~ skip = 1
 -> level22
