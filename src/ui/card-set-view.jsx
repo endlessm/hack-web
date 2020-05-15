@@ -68,6 +68,10 @@ const CardSetView = ({ slug }) => {
     dispatch(actions.sidePanelSetOpen());
   }, [dispatch]);
 
+  if (!cardset) {
+    return <></>;
+  }
+
   const getContent = (card) => (
     <Grid container justify="flex-start">
       <Grid item>
