@@ -121,7 +121,7 @@ const useStyles = makeStyles(({
     },
     right: {
       borderTopRightRadius: 0,
-      backgroundColor: palette.primary.main,
+      backgroundColor: palette.grey[300],
     },
   };
 });
