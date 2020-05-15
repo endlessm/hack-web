@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { Link as RouterLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import {
   AppBar,
   Box,
   makeStyles,
+  Menu,
+  MenuItem,
   IconButton,
   Toolbar,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
 
 import {
   Home,
+  Language,
 } from '@material-ui/icons';
 
 
@@ -60,7 +65,24 @@ const useStyles = makeStyles(({
 const HackTopBar = ({ title, subtitle, isMainPage }) => {
   const classes = useStyles({ isMainPage });
 
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = useSelector((state) => state.ui.sidePanelOpen);
+  const { t, i18n } = useTranslation();
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+    // handleClose();
+
+    setAnchorEl(null);
+  };
 
   return (
     <Box>
@@ -84,11 +106,34 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
           )}
 
           {isMainPage ? (
-            <Box m="auto">
-              <Typography variant="h5" color="secondary">
-                <strong>{title}</strong>
-              </Typography>
-            </Box>
+            <>
+              <Box m="auto">
+                <Typography variant="h5" color="secondary">
+                  <strong>{title}</strong>
+                </Typography>
+              </Box>
+              <Tooltip title={t('Change language')} enterDelay={300}>
+                <IconButton
+                  edge="start"
+                  color="secondary"
+                  aria-controls="language-menu"
+                  aria-haspopup="true"
+                  onClick={handleClick}
+                >
+                  <Language />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                id="language-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={() => changeLanguage('en')}>English</MenuItem>
+                <MenuItem onClick={() => changeLanguage('es')}>Español</MenuItem>
+              </Menu>
+            </>
           ) : (
             <Box ml={4}>
               <Typography variant="h5" color="secondary">
