@@ -59,7 +59,7 @@
 
 === level7 ===
 # character: faber
--Hey Riley, I think your game has some <b>bugs</b>, LOL! What a cool bunch of robots. `Beep. Boop. Hello. Faber. I. Am. A. Bugbot.`
+-Hey Riley, I think your game has some <b>bugs</b>, LOL! What a cool bunch of robots. <tt>Beep. Boop. Hello. Faber. I. Am. A. Bugbot.</tt>
 * [❯] ❯
 -> level7_1
 * [(wait for: currentLevel is 8)] Level {currentLevel -1 } Complete!
@@ -84,6 +84,7 @@
 === level7_2===
 # character: estelle
 -Stay alert, {get_user_name()}! The bugbots move when you do, so you'll have to plan out your moves carefully.
+# character: estelle
 -Watch how the bugbots move and where they go, and think about the spaces they open up when they move.
 { currentLevel == 8:
     -> level7_3
@@ -96,9 +97,10 @@
 
 
 === level7_3 ===
+# character: estelle
+-These bugbots <b>only move down</b>, never left or right, so that might let you find a... bug... in their behavior. ^_^
 # character: riley
--These bugbots <b>only move down</b>, never left or right, so that might let you find a... bug... in their behavior.
-Oh, and when they walk off the bottom, they reappear at the top! So keep your eye out for that!
+Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your eye out for that!
 { currentLevel == 8:
     - Great job on that level!
     -> level8
@@ -119,7 +121,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 
 === level10 ===
 # character: riley
--Time for new bugbots! This new type <b>only moves up</b>, just like the first <b>only moves down</b>. Be sure to note which way they're facing...
+-Time for new bugbots! This new type <b>only moves up</b>, just like the first <b>only moves down</b>. Pay attention to which way they're facing!
 * [(wait for: currentLevel is 11)] Level {currentLevel -1 } Complete!
 -> level11
 
@@ -143,7 +145,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 
 === level14 ===
 # character: felix
-- <i>mjau ^ = ^ mjav \/\/\\\\ ngiyaw \/\\ ^  miav, meow!</i>
+- <b><i>mjau ^ = ^ mjav \/\/\\\\ ngiyaw \/\\ ^  miav, meow!</i></b>
 ~ controlsCutscene = 1
 * [(wait for: controlsCutscene is 0)](???)
 -> level14_postcs
@@ -164,7 +166,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 
 === level14_postcs_2 ===
 # character: ada
--I think we have a problem! Riley, it looks like the manual controls for your maze just disappeared. Any ideas?
+-I think we have a problem! Riley, it looks like the controls just disappeared. Any ideas?
 { currentLevel == 15:
     -> level14_postcs_3
 - else:
@@ -177,7 +179,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 
 === level14_postcs_3 ===
 # character: riley
--I was wondering when Felix would show up. For once, he's on time and doing exactly what I asked him to. <b>Now</b> things are going to get interesting!
+- I was wondering when Felix would show up! For once, he's on time, and doing exactly what I asked him to. <b>Now</b> things are going to get interesting!
 { currentLevel == 15:
     -> level14_postcs_4
 - else:
@@ -203,7 +205,7 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 
 === level14_postcs_5 ===
 # character: riley
--And now, we enter hard-mode! See that <b>Play</b> button? Try pushing it.
+-And now, we're in hard-mode! See that <b>Play</b> button on the left? Try pushing it.
 { currentLevel == 15:
     - Great job on that level!
     -> level15
@@ -214,15 +216,14 @@ Oh, and when they walk off the bottom, they reappear at the top! So keep your ey
 
 === level15 ===
 # character: riley
--In this mode, we can still move around the level, but you'll have to plan all your moves in advance. Just think it through, and you'll pass these levels in no time.
-Once your instructions are laid out in the order you want them, press <b>play</b> to start our journey through the maze.
+-In this mode, you have to plan all your moves around the level in advance. Drag the instructions into the order you want, then press <b>play</b> to start our journey through the maze. If you think it through, you'll pass these levels in no time.
 * [(wait for: currentLevel is 16)] Level {currentLevel -1 } Complete!
 -> level16
 
 
 === level16 ===
 # character: saniel
--Hmm, there's just no way this set of instructions could finish this level. You'll have to re-order them.
+-Hmm, there's no way these instructions could finish this level in this order! You'll have to re-order them to get through.
 * [❯] ❯
 -> level16_2
 * [(wait for: currentLevel is 17)] Level {currentLevel -1 } Complete!
@@ -231,7 +232,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 
 === level16_2 ===
 # character: riley
--Drag and drop instructions to re-order them, and press <b>Play</b> to start your run! Oh yeah, and once you press play... no changing instructions around until you succeed or fail!
+- Drag and drop the instructions to re-order them, and press <b>Play</b> to start your run! Oh yeah, and once you press play... no changing instructions around until you succeed or fail!
 { currentLevel == 17:
     - Great job on that level!
     -> level17
@@ -251,7 +252,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 
 === level17_2 ===
 # character: saniel
--Riley, I can see the progression from puzzle-solving to strategic planning in this game, and I'm impressed.
+- Riley, I can see the progression from puzzle-solving to strategic planning in this game, and I'm impressed.
 { currentLevel == 18:
     -> level17_3
 - else:
@@ -264,7 +265,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 
 === level17_3 ===
 # character: riley
--Woah. T-thanks, Saniel! That means a lot to me.
+-Woah, t-thanks, Saniel! That means a lot to me.
 { currentLevel == 18:
     - Great job on that level!
     -> level18
@@ -297,7 +298,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 
 === level18_3 ===
 # characte: ada
--Ah hah, look at your instructions carefully. You've only got one jump, so use it well - you might need other ways of getting around the pits.
+-Ah hah, look at your instructions carefully. You've only got one jump, so use it well - you might need to use a different way of getting around the pits.
 { currentLevel == 19:
     - Great job on that level!
     -> level19
@@ -317,7 +318,7 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 
 === level19_2 ===
 # character: ada
--It might look easier, but now you only have a single forward instruction. I'm pretty sure there's only one spot in this level that you absolutely <b>must</b> move forward, and not down or up. Can you find it?
+-This level might look easier, but now you only have a single forward instruction. I think there's only one spot in this level that you absolutely <b>must</b> move forward, and not down or up. Can you find it?
 { currentLevel == 20:
     - Great job on that level!
     -> level20
@@ -328,21 +329,24 @@ Once your instructions are laid out in the order you want them, press <b>play</b
 
 === level20 ===
 # character: faber
-I'd say something about this level bringing me <b>down</b>, but this game is too cool for that. How are you supposed to move forward when all you can do is go down, though? Might as well give it a shot!
+- I'd say something about this level bringing me <b>down</b>, but this game is too cool for that! Still, how are you supposed to move forward when all you can do is go down? I guess we can't do anything else but try it out!
 * [(wait for: currentLevel is 21)] Level {currentLevel -1 } Complete!
 -> level21
 
 
 === level21 ===
 # character: ada
--You know, you don't have to have a pit in front of you to use a jump instruction. Maybe you could use jump to go forward? You never know when that will come in handy!
+-You know, you don't have to have a pit in front of you to use a <b>jump</b> instruction. Maybe you could use a <b>jump</b> to go forward? You never know when that will come in handy!
 * [(wait for: currentLevel is 22)] Level {currentLevel -1 } Complete!
 -> level22
 
 
 === level22 ===
-# characer: ada
-- Ok, let's see what this one is about.
+# character: ada
+{ not skip:
+    - Ok, let's see what this level is about...
+    ~ skip = 0
+}
 * [(wait for: currentLevel is 23)] Level {currentLevel -1 } Complete!
 -> level23
 * [(wait for: success is 0)] Level {currentLevel} Failed!
@@ -351,6 +355,6 @@ I'd say something about this level bringing me <b>down</b>, but this game is too
 
 === level22_reorder ===
 # character: faber
-- You'll need to rearrange the instructions until you get it right.
+- I think we're going to need to rearrange the instructions until we get it right!
 * [(wait for: currentLevel is 23)] Level {currentLevel -1} Complete!
 -> level23
