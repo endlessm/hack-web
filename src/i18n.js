@@ -10,8 +10,11 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    debug: process.env.NODE_ENV !== 'production',
     fallbackLng: 'en',
-    debug: true,
+    returnEmptyString: false,
+    keySeparator: false,
+    nsSeparator: false,
     interpolation: {
       // not needed for react as it escapes by default
       escapeValue: false,
