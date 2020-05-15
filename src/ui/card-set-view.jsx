@@ -18,6 +18,7 @@ import SidePanel from './side-panel';
 import { GoButton } from './main-button';
 import QuestFTHView from './quest-fth-view';
 import HackCard from './hack-card';
+import useCardSets from './cardsets';
 
 const useStyles = makeStyles(({
   breakpoints, custom, spacing, zIndex,
@@ -58,7 +59,7 @@ const useStyles = makeStyles(({
 const CardSetView = ({ slug }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const cardset = useSelector((state) => state.cardsets.find((cs) => slug === cs.slug));
+  const cardset = useCardSets().find((cs) => slug === cs.slug);
   const selectedCard = useSelector((state) => state.ui.cardSelected[slug]);
 
   const theme = useTheme();
@@ -133,4 +134,4 @@ CardSetView.propTypes = {
   slug: PropTypes.string.isRequired,
 };
 
-export default CardSetView;
+export { CardSetView as default };

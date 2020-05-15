@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
@@ -20,8 +20,10 @@ import App from './ui/app';
 // import App from './ui/test/sidetrack-quest.test';
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Suspense fallback="loading">
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Suspense>,
   document.getElementById('root'),
 );

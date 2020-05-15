@@ -1,140 +1,12 @@
-import { createStore, combineReducers } from 'redux';
-import i18n from './i18n';
+import { useTranslation } from 'react-i18next';
 
-export
-const actions = {
-  auth: (username) => ({
-    type: 'AUTH',
-    payload: {
-      username,
-    },
-  }),
-  sidePanelSetOpen: () => ({
-    type: 'SIDE-PANEL-SET-OPEN',
-  }),
-  sidePanelToggleOpen: () => ({
-    type: 'SIDE-PANEL-TOGGLE-OPEN',
-  }),
-  selectCard: (cardset, card) => ({
-    type: 'SELECT-CARD',
-    payload: { cardset, card },
-  }),
-  deselectCards: () => ({
-    type: 'DESELECT-CARDS',
-  }),
-  logout: () => ({ type: 'LOGOUT' }),
-  originalHackableAppSet: (data) => ({
-    type: 'ORIG-SET',
-    payload: data,
-  }),
-  hackableAppSet: (data) => ({
-    type: 'SET',
-    payload: data,
-  }),
-  hackableAppSetParam: (key, value) => ({
-    type: 'SET-PARAM',
-    payload: { key, value },
-  }),
-  resetHackableApp: () => ({
-    type: 'RESET',
-  }),
-};
+function useCardSets() {
+  const { t } = useTranslation();
 
-function authReducer(state = {}, action) {
-  switch (action.type) {
-    case 'AUTH': {
-      const { username } = action.payload;
-      return {
-        ...state,
-        authenticated: true,
-        username,
-      };
-    }
-    case 'LOGOUT':
-      return {
-        ...state,
-        authenticated: false,
-        username: null,
-      };
-    default:
-      return state;
-  }
-}
-
-function uiReducer(state = {}, action) {
-  switch (action.type) {
-    case 'SIDE-PANEL-SET-OPEN': {
-      return { ...state, sidePanelOpen: true };
-    }
-    case 'SIDE-PANEL-TOGGLE-OPEN': {
-      return { ...state, sidePanelOpen: !state.sidePanelOpen };
-    }
-    case 'SELECT-CARD': {
-      const { cardset, card } = action.payload;
-      const newValue = {};
-      newValue[cardset.slug] = card;
-      return { ...state, cardSelected: { ...state.cardSelected, ...newValue } };
-    }
-    case 'DESELECT-CARDS': {
-      return { ...state, cardSelected: {} };
-    }
-    default:
-      return state;
-  }
-}
-
-function cardSetReducer(state = [], action) {
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
-
-function originalHackableAppReducer(state = {}, action) {
-  switch (action.type) {
-    case 'ORIG-SET': {
-      return { ...action.payload };
-    }
-    case 'RESET': {
-      return {};
-    }
-    default:
-      return state;
-  }
-}
-
-function hackableAppReducer(state = {}, action) {
-  switch (action.type) {
-    case 'SET': {
-      return { ...action.payload };
-    }
-    case 'SET-PARAM': {
-      const { key, value } = action.payload;
-      return { ...state, [key]: value };
-    }
-    case 'RESET': {
-      return {};
-    }
-    default:
-      return state;
-  }
-}
-
-const initialState = {
-  auth: {
-    authenticated: false,
-    username: null,
-  },
-  ui: {
-    sidePanelOpen: false,
-    cardSelected: {},
-  },
-  cardsets: [
+  const cardSets = [
     {
       slug: '/home',
-      // FIXME this doesn't work because i18next init didn't happen:
-      // name: i18n.t('Pick a dimension to explore!'),
-      name: 'Pick a dimension to explore!',
+      name: t('Pick a dimension to explore!'),
       description: 'Hey, Hacker! My name\'s Riley, and I\'m here to show off Endless OS and Hack! Pick a card and check out what we\'ve got to offer!',
       cards: [
         {
@@ -145,8 +17,8 @@ const initialState = {
         },
         {
           slug: '/maker',
-          name: 'Engineering',
-          subtitle: 'Learn how strong buildings stay up!',
+          name: t('Engineering'),
+          subtitle: t('Learn how strong buildings stay up!'),
           description: 'Learn some basic engineering in this fun (and tasty!) activity. The virtual world is useful, but there is no substitute for building with your own hands!',
         },
         {
@@ -275,25 +147,9 @@ const initialState = {
         },
       ],
     },
-  ],
-  hackableApp: {},
-  originalHackableApp: {},
-};
+  ];
 
-const store = createStore(combineReducers({
-  auth: authReducer,
-  ui: uiReducer,
-  cardsets: cardSetReducer,
-  hackableApp: hackableAppReducer,
-  originalHackableApp: originalHackableAppReducer,
-}), initialState);
+  return cardSets;
+}
 
-i18n
-  .loadNamespaces('translation')
-  .then(() => {
-    // FIXME
-    // console.log('translations loaded');
-    // store.dispatch(actions.loadSomeCards());
-  });
-
-export default store;
+export default useCardSets;

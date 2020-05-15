@@ -14,6 +14,7 @@ import {
 import { actions } from '../store';
 import { cardSetType, cardType } from './types';
 import { GoButton } from './main-button';
+import useCardSets from './cardsets';
 
 const defaultImage = '/assets/cards/default-card.png';
 
@@ -210,10 +211,8 @@ function useCard() {
   // eslint-disable-next-line no-restricted-globals
   const slug = location.pathname;
 
-  return useSelector((state) => {
-    const cardset = state.cardsets.find((cs) => cs.slug === '/home');
-    return cardset.cards.find((c) => slug === c.slug);
-  });
+  const cardset = useCardSets().find((cs) => cs.slug === '/home');
+  return cardset.cards.find((c) => slug === c.slug);
 }
 
 export { HackCard as default, useCard };
