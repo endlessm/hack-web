@@ -37,6 +37,10 @@ const actions = {
   resetHackableApp: () => ({
     type: 'RESET',
   }),
+  setCardSets: (data) => ({
+    type: 'CARDSETS',
+    payload: data,
+  }),
 };
 
 function authReducer(state = {}, action) {
@@ -84,6 +88,9 @@ function uiReducer(state = {}, action) {
 
 function cardSetReducer(state = [], action) {
   switch (action.type) {
+    case 'CARDSETS': {
+      return [...action.payload];
+    }
     default:
       return state;
   }
@@ -128,10 +135,24 @@ const initialState = {
     sidePanelOpen: false,
     cardSelected: {},
   },
-  cardsets: [
+  cardsets: [],
+  hackableApp: {},
+  originalHackableApp: {},
+};
+
+const store = createStore(combineReducers({
+  auth: authReducer,
+  ui: uiReducer,
+  cardsets: cardSetReducer,
+  hackableApp: hackableAppReducer,
+  originalHackableApp: originalHackableAppReducer,
+}), initialState);
+
+const initializeDefaultData = (t) => {
+  const defaultCardSets = [
     {
       slug: '/home',
-      name: 'Pick a dimension to explore!',
+      name: t('Pick a dimension to explore!'),
       description: 'Hey, Hacker! My name\'s Riley, and I\'m here to show off Endless OS and Hack! Pick a card and check out what we\'ve got to offer!',
       cards: [
         {
@@ -142,8 +163,8 @@ const initialState = {
         },
         {
           slug: '/maker',
-          name: 'Engineering',
-          subtitle: 'Learn how strong buildings stay up!',
+          name: t('Engineering'),
+          subtitle: t('Learn how strong buildings stay up!'),
           description: 'Learn some basic engineering in this fun (and tasty!) activity. The virtual world is useful, but there\'s no substitute for building with your hands!',
         },
         {
@@ -272,17 +293,8 @@ const initialState = {
         },
       ],
     },
-  ],
-  hackableApp: {},
-  originalHackableApp: {},
+  ];
+  store.dispatch(actions.setCardSets(defaultCardSets));
 };
 
-const store = createStore(combineReducers({
-  auth: authReducer,
-  ui: uiReducer,
-  cardsets: cardSetReducer,
-  hackableApp: hackableAppReducer,
-  originalHackableApp: originalHackableAppReducer,
-}), initialState);
-
-export default store;
+export { store as default, initializeDefaultData };
