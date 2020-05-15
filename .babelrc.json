@@ -5,6 +5,8 @@
   "plugins": [
     ["i18next-extract", {
       "locales": ["en", "es", "de"],
+      "keySeparator": null,
+      "nsSeparator": null,
       "outputPath": "src/locales/{{locale}}/{{ns}}.json"
     }],
   ]
