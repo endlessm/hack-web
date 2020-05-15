@@ -70,6 +70,7 @@ const CodePanel = ({
   fullHeight,
   selector,
   mode,
+  onErrors,
 }) => {
   const params = useSelector((state) => (
     selector ? state.hackableApp[selector] : state.hackableApp
@@ -168,7 +169,12 @@ const CodePanel = ({
       if (customAnnotations.length !== annotations.length) {
         editor.getSession().setAnnotations([...editorAnnotations, ...annotations]);
       }
+
+      if (onErrors) {
+        onErrors(editor.getSession().getAnnotations());
+      }
     }
+
     highlightCode(editor);
   };
 
@@ -203,6 +209,7 @@ CodePanel.propTypes = {
   fullHeight: PropTypes.bool,
   selector: PropTypes.string,
   mode: PropTypes.string,
+  onErrors: PropTypes.func,
 };
 
 CodePanel.defaultProps = {
@@ -210,6 +217,7 @@ CodePanel.defaultProps = {
   fullHeight: false,
   selector: null,
   mode: 'javascript',
+  onErrors: null,
 };
 
 export default CodePanel;

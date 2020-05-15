@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -41,6 +41,11 @@ const HtmlQuest = () => {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
 
+  const errorsRef = useRef(null);
+  const setErrors = (e) => {
+    errorsRef.current = e;
+  };
+
   useEffect(() => {
     const changeCallback = (params, firstTime = false) => {
       if (firstTime) {
@@ -54,6 +59,11 @@ const HtmlQuest = () => {
     proxyApp('globalParameters', changeCallback);
 
     const handleChange = () => {
+      if (errorsRef.current && errorsRef.current.length) {
+        // Do not update the app when there are errors in the code!
+        return;
+      }
+
       updateApp('globalParameters', store.getState().hackableApp, (prop, value) => {
         if (prop === 'code') {
           const app = document.querySelector('#app');
@@ -73,7 +83,7 @@ const HtmlQuest = () => {
     };
   }, [dispatch, quest, setCurrentChoice]);
 
-  const toolbox = <Toolbox />;
+  const toolbox = <Toolbox onErrors={setErrors} />;
 
   const resetToolbox = () => {
     const { originalHackableApp } = store.getState();

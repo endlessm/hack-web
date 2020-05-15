@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Code,
 } from '@material-ui/icons';
@@ -20,29 +21,40 @@ function compileCode(code) {
   return { code };
 }
 
-const TOOLBOX = {
-  tabs: [
-    {
-      name: 'Code',
-      icon: <Code />,
-      grid: [
-        {
-          title: 'Code',
-          type: 'code',
-          xs: 12,
-          code: regenerateCode,
-          compile: compileCode,
-          mode: 'html',
-          buildDelay: 500,
-          fullHeight: true,
-        },
-      ],
-    },
-  ],
+const Toolbox = ({ onErrors }) => {
+  const toolbox = {
+    tabs: [
+      {
+        name: 'Code',
+        icon: <Code />,
+        grid: [
+          {
+            title: 'Code',
+            type: 'code',
+            xs: 12,
+            code: regenerateCode,
+            compile: compileCode,
+            mode: 'html',
+            buildDelay: 500,
+            fullHeight: true,
+            onErrors,
+          },
+        ],
+      },
+    ],
+  };
+
+  return (
+    <DynToolbox toolbox={toolbox} xs={12} />
+  );
 };
 
-const Toolbox = () => (
-  <DynToolbox toolbox={TOOLBOX} xs={12} />
-);
+Toolbox.propTypes = {
+  onErrors: PropTypes.func,
+};
+
+Toolbox.defaultProps = {
+  onErrors: null,
+};
 
 export default Toolbox;
