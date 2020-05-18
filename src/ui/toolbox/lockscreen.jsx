@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -48,6 +48,21 @@ const LockScreen = ({
   const [showButton, setShowButton] = useState(true);
 
   const video = useRef(null);
+
+  // Preload images
+  // This will force the browser to request these images and keep cached so
+  // we'll have a faster render when they are needed
+  useEffect(() => {
+    const images = [
+      `${ASSETS}/${screen}/no-key.png`,
+      `${ASSETS}/${screen}/has-key.png`,
+    ];
+
+    images.forEach((path) => {
+      const image = new Image();
+      image.src = path;
+    });
+  }, [screen]);
 
   if (!locked) {
     return children;
