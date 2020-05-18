@@ -131,7 +131,12 @@ const CodePanel = ({
     }, buildDelay);
   };
 
+  // Ref to store the current value of text to be able to use in effects
+  // without triggering the callback on every user edit.
+  const textRef = useRef(null);
+
   const build = (c) => {
+    textRef.current = c;
     setText(c);
     delayBuild(c);
   };
@@ -149,10 +154,10 @@ const CodePanel = ({
 
   // Recalculate the text when the params change, in other case it's not
   // possible to update the editor code after creation
-  const textRef = useRef(text);
   useEffect(() => {
     const result = code(params);
     if (result !== textRef.current) {
+      textRef.current = result;
       setText(result);
     }
   }, [params, code]);
