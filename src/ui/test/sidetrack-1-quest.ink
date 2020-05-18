@@ -15,21 +15,13 @@
 === level4 ===
 # character: saniel
 -Oh ho! <b>Pits</b>, eh? I wonder how you'll cross those...
-* [❯] ❯
--> level4_1
-* [(wait for: currentLevel is 5)] Level {currentLevel -1 } Complete!
--> level4_1
+-> mid_level_check(5) -> level4_1
 
 
 === level4_1 ===
 # character: riley
 -You need to use the <b>Jump</b> instruction to cross <b>Pits</b>! There's a trick to it, though. <b>Jump</b> can only cross a <b>pit</b> if it's <b>directly</b> in front of you.
-{ currentLevel == 5:
-    - Great job on that level!
-    -> level5
-}
-* [(wait for: currentLevel is 5)] Level {currentLevel -1 } Complete!
--> level5
+-> end_level_check(5) -> level5
 
 
 === level5 ===
@@ -40,44 +32,26 @@
 === level6 ===
 # character: riley
 -BTW, those pits weren't easy to draw... it's tough trying to get that feeling of a deep, black hole, but only using colors.
-* [❯] ❯
--> level6_1
-* [(wait for: currentLevel is 7)] Level {currentLevel -1 } Complete!
--> level6_1
+-> mid_level_check(7) -> level6_1
 
 
 === level6_1 ===
 # character: ada
 -Riley, you did extremely well. I wish every student had your drive!
-{ currentLevel == 7:
-    - Great job on that level!
-    -> level7
-}
-* [(wait for: currentLevel is 7)] Level {currentLevel -1 } Complete!
--> level7
+-> end_level_check(7) -> level7
 
 
 === level7 ===
 # character: faber
 -Hey Riley, I think your game has some <b>bugs</b>, LOL! What a cool bunch of robots. <tt>Beep. Boop. Hello. Faber. I. Am. A. Bugbot.</tt>
-* [❯] ❯
--> level7_1
-* [(wait for: currentLevel is 8)] Level {currentLevel -1 } Complete!
--> level7_1
+-> mid_level_check(8) -> level7_1
 
 
 
 === level7_1 ===
 # character: riley
 -I knew you'd like that one, Faber :D
-{ currentLevel == 8:
-    -> level7_2
-- else:
-    * [❯] ❯
-    -> level7_2
-    * [(wait for: currentLevel is 8)] Level {currentLevel -1 } Complete!
-    -> level7_2
-}
+-> mid_level_check(8) -> level7_2
 
 
 
@@ -86,27 +60,14 @@
 -Stay alert, {get_user_name()}! The bugbots move when you do, so you'll have to plan out your moves carefully.
 # character: estelle
 -Watch how the bugbots move and where they go, and think about the spaces they open up when they move.
-{ currentLevel == 8:
-    -> level7_3
-- else:
-    * [❯] ❯
-    -> level7_3
-    * [(wait for: currentLevel is 8)] Level {currentLevel -1 } Complete!
-    -> level7_3
-}
-
+-> mid_level_check(8) -> level7_3
 
 === level7_3 ===
 # character: estelle
 -These bugbots <b>only move down</b>, never left or right, so that might let you find a... bug... in their behavior. ^_^
 # character: riley
 Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your eye out for that!
-{ currentLevel == 8:
-    - Great job on that level!
-    -> level8
-}
-* [(wait for: currentLevel is 8)] Level {currentLevel -1 } Complete!
--> level8
+-> end_level_check(8) -> level8
 
 
 === level8 ===
@@ -154,64 +115,32 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 === level14_postcs ===
 # character: faber
 -What was <b>that</b>? Riley?
-{ currentLevel == 15:
-    -> level14_postcs_2
-- else:
-    * [❯] ❯
-    -> level14_postcs_2
-    * [(wait for: currentLevel is 15)] Level {currentLevel -1 } Complete!
-    -> level14_postcs_2
-}
+-> mid_level_check(15) -> level14_postcs_2
 
 
 === level14_postcs_2 ===
 # character: ada
 -I think we have a problem! Riley, it looks like the controls just disappeared. Any ideas?
-{ currentLevel == 15:
-    -> level14_postcs_3
-- else:
-    * [❯] ❯
-    -> level14_postcs_3
-    * [(wait for: currentLevel is 15)] Level {currentLevel -1 } Complete!
-    -> level14_postcs_3
-}
+-> mid_level_check(15) -> level14_postcs_3
 
 
 === level14_postcs_3 ===
 # character: riley
 - I was wondering when Felix would show up! For once, he's on time, and doing exactly what I asked him to. <b>Now</b> things are going to get interesting!
-{ currentLevel == 15:
-    -> level14_postcs_4
-- else:
-    * [❯] ❯
-    -> level14_postcs_4
-    * [(wait for: currentLevel is 15)] Level {currentLevel -1 } Complete!
-    -> level14_postcs_4
-}
+-> mid_level_check(15) -> level14_postcs_4
 
 
 === level14_postcs_4 ===
 # character: estelle
 -Look, {get_user_name()} - there's a pre-made set of instructions already here.
-{ currentLevel == 15:
-    -> level14_postcs_5
-- else:
-    * [❯] ❯
-    -> level14_postcs_5
-    * [(wait for: currentLevel is 15)] Level {currentLevel -1 } Complete!
-    -> level14_postcs_5
-}
+-> mid_level_check(15) -> level14_postcs_5
 
 
 === level14_postcs_5 ===
 # character: riley
 -And now, we're in hard-mode! See that <b>Play</b> button on the left? Try pushing it.
-{ currentLevel == 15:
-    - Great job on that level!
-    -> level15
-}
-* [(wait for: currentLevel is 15)] Level {currentLevel -1 } Complete!
--> level15
+-> end_level_check(15) -> level15
+
 
 
 === level15 ===
@@ -224,107 +153,62 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 === level16 ===
 # character: saniel
 -Hmm, there's no way these instructions could finish this level in this order! You'll have to re-order them to get through.
-* [❯] ❯
--> level16_2
-* [(wait for: currentLevel is 17)] Level {currentLevel -1 } Complete!
--> level16_2
+-> mid_level_check(17) -> level16_2
 
 
 === level16_2 ===
 # character: riley
 - Drag and drop the instructions to re-order them, and press <b>Play</b> to start your run! Oh yeah, and once you press play... no changing instructions around until you succeed or fail!
-{ currentLevel == 17:
-    - Great job on that level!
-    -> level17
-}
-* [(wait for: currentLevel is 17)] Level {currentLevel -1 } Complete!
--> level17
+-> end_level_check(17) -> level17
+
 
 
 === level17 ===
 # character: saniel
 -Fantastic work, you practically sailed through that level, {get_user_name()}. Excellent planning!
-* [❯] ❯
--> level17_2
-* [(wait for: currentLevel is 18)] Level {currentLevel -1 } Complete!
--> level17_2
+-> mid_level_check(18) -> level17_2
 
 
 === level17_2 ===
 # character: saniel
 - Riley, I can see the progression from puzzle-solving to strategic planning in this game, and I'm impressed.
-{ currentLevel == 18:
-    -> level17_3
-- else:
-    * [❯] ❯
-    -> level17_3
-    * [(wait for: currentLevel is 18)] Level {currentLevel -1 } Complete!
-    -> level17_3
-}
+-> mid_level_check(18) -> level17_3
 
 
 === level17_3 ===
 # character: riley
 -Woah, t-thanks, Saniel! That means a lot to me.
-{ currentLevel == 18:
-    - Great job on that level!
-    -> level18
-}
-* [(wait for: currentLevel is 18)] Level {currentLevel -1 } Complete!
--> level18
+-> end_level_check(18) -> level18
 
 
 === level18 ===
 # character: faber
 -Hey Riley, how's your maze going?
-* [❯] ❯
--> level18_2
-* [(wait for: currentLevel is 19)] Level {currentLevel -1 } Complete!
--> level18_2
+-> mid_level_check(19) -> level18_2
 
 
 === level18_2 ===
 # character: riley
 -It's pretty... a-maze-ing! :D Seriously, {get_user_name()} I hope you're having as much fun as we are. It's so cool to see someone play something I helped build!
-{ currentLevel == 19:
-    -> level18_3
-- else:
-    * [❯] ❯
-    -> level18_3
-    * [(wait for: currentLevel is 18)] Level {currentLevel -1 } Complete!
-    -> level18_3
-}
+-> mid_level_check(19) -> level18_3
 
 
 === level18_3 ===
 # characte: ada
 -Ah hah, look at your instructions carefully. You've only got one jump, so use it well - you might need to use a different way of getting around the pits.
-{ currentLevel == 19:
-    - Great job on that level!
-    -> level19
-}
-* [(wait for: currentLevel is 19)] Level {currentLevel -1 } Complete!
--> level19
+-> end_level_check(19) -> level19
 
 
 === level19 ===
 # character: riley
 -Let's turn the heat up - now you've got 2 Jumps.
-* [❯] ❯
--> level19_2
-* [(wait for: currentLevel is 20)] Level {currentLevel -1 } Complete!
--> level19_2
+-> mid_level_check(20) -> level19_2
 
 
 === level19_2 ===
 # character: ada
 -This level might look easier, but now you only have a single forward instruction. I think there's only one spot in this level that you absolutely <b>must</b> move forward, and not down or up. Can you find it?
-{ currentLevel == 20:
-    - Great job on that level!
-    -> level20
-}
-* [(wait for: currentLevel is 20)] Level {currentLevel -1 } Complete!
--> level20
+-> end_level_check(20) -> level20
 
 
 === level20 ===
