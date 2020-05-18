@@ -105,39 +105,43 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
       >
         <Toolbar className={classes.toolbar}>
           {isMainPage ? (
-            <Box position="absolute">
-              <Tooltip title={t('Change language')} enterDelay={300}>
-                <Button
-                  color="secondary"
-                  size="large"
-                  aria-controls="language-menu"
-                  aria-haspopup="true"
-                  className={classes.languageButton}
-                  onClick={handleClick}
-                  startIcon={<Language />}
-                  endIcon={<ExpandMore />}
-                >
-                  {labelPerLanguageCode.get(i18n.language)}
-                </Button>
-              </Tooltip>
-              <Menu
-                id="language-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                {Array.from(labelPerLanguageCode, ([langId, langLabel]) => (
-                  <MenuItem
-                    key={langId}
-                    onClick={() => changeLanguage(langId)}
-                    selected={i18n.language === langId}
+            // FIXME: Temporarily hiding the language selector in
+            // the production site.
+            CONFIG.branch !== 'stable' && (
+              <Box position="absolute">
+                <Tooltip title={t('Change language')} enterDelay={300}>
+                  <Button
+                    color="secondary"
+                    size="large"
+                    aria-controls="language-menu"
+                    aria-haspopup="true"
+                    className={classes.languageButton}
+                    onClick={handleClick}
+                    startIcon={<Language />}
+                    endIcon={<ExpandMore />}
                   >
-                    {langLabel}
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
+                    {labelPerLanguageCode.get(i18n.language)}
+                  </Button>
+                </Tooltip>
+                <Menu
+                  id="language-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  {Array.from(labelPerLanguageCode, ([langId, langLabel]) => (
+                    <MenuItem
+                      key={langId}
+                      onClick={() => changeLanguage(langId)}
+                      selected={i18n.language === langId}
+                    >
+                      {langLabel}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            )
           ) : (
             <IconButton
               component={RouterLink}
