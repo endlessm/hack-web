@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import {
   AppBar,
   Box,
+  Button,
   makeStyles,
   Menu,
   MenuItem,
@@ -18,6 +19,7 @@ import {
 } from '@material-ui/core';
 
 import {
+  ExpandMore,
   Home,
   Language,
 } from '@material-ui/icons';
@@ -61,7 +63,15 @@ const useStyles = makeStyles(({
     ...mixins.toolbar,
     marginTop: spacing(2),
   },
+  languageButton: {
+    textTransform: 'none',
+  },
 }));
+
+const labelPerLanguageCode = new Map([
+  ['en', 'English'],
+  ['es', 'Español'],
+]);
 
 const HackTopBar = ({ title, subtitle, isMainPage }) => {
   const classes = useStyles({ isMainPage });
@@ -94,7 +104,41 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
         })}
       >
         <Toolbar className={classes.toolbar}>
-          {!isMainPage && (
+          {isMainPage ? (
+            <Box position="absolute">
+              <Tooltip title={t('Change language')} enterDelay={300}>
+                <Button
+                  color="secondary"
+                  size="large"
+                  aria-controls="language-menu"
+                  aria-haspopup="true"
+                  className={classes.languageButton}
+                  onClick={handleClick}
+                  startIcon={<Language />}
+                  endIcon={<ExpandMore />}
+                >
+                  {labelPerLanguageCode.get(i18n.language)}
+                </Button>
+              </Tooltip>
+              <Menu
+                id="language-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                {Array.from(labelPerLanguageCode, ([langId, langLabel]) => (
+                  <MenuItem
+                    key={langId}
+                    onClick={() => changeLanguage(langId)}
+                    selected={i18n.language === langId}
+                  >
+                    {langLabel}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          ) : (
             <IconButton
               component={RouterLink}
               to="/"
@@ -107,34 +151,11 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
           )}
 
           {isMainPage ? (
-            <>
-              <Box m="auto">
-                <Typography variant="h5" color="secondary">
-                  <strong>{title}</strong>
-                </Typography>
-              </Box>
-              <Tooltip title={t('Change language')} enterDelay={300}>
-                <IconButton
-                  edge="start"
-                  color="secondary"
-                  aria-controls="language-menu"
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                >
-                  <Language />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                id="language-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={() => changeLanguage('en')}>English</MenuItem>
-                <MenuItem onClick={() => changeLanguage('es')}>Español</MenuItem>
-              </Menu>
-            </>
+            <Box m="auto">
+              <Typography variant="h5" color="secondary">
+                <strong>{title}</strong>
+              </Typography>
+            </Box>
           ) : (
             <Box ml={4}>
               <Typography variant="h5" color="secondary">
