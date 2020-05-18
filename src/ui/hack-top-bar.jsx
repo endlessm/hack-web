@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +22,7 @@ import {
   Language,
 } from '@material-ui/icons';
 
+import { actions, initializeDefaultData } from '../store';
 
 const useStyles = makeStyles(({
   breakpoints, custom, palette, spacing, transitions, mixins,
@@ -67,6 +68,7 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = useSelector((state) => state.ui.sidePanelOpen);
+  const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
 
   const handleClick = (event) => {
@@ -78,9 +80,8 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
   };
 
   const changeLanguage = (language) => {
-    i18n.changeLanguage(language);
-    // handleClose();
-
+    i18n.changeLanguage(language).then(initializeDefaultData);
+    dispatch(actions.deselectCards());
     setAnchorEl(null);
   };
 
