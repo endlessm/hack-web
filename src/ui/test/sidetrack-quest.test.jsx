@@ -305,7 +305,6 @@ const SidetrackQuest = () => {
     setLastDialog(currentQuest.dialogueId);
 
     const params = {
-      highestAchievedLevel: currentQuest.getStoryVariable('highestAchievedLevel'),
       availableLevels: currentQuest.getStoryVariable('availableLevels'),
       controlsCutscene: currentQuest.getStoryVariable('controlsCutscene'),
       escapeCutscene: currentQuest.getStoryVariable('escapeCutscene'),
@@ -313,8 +312,14 @@ const SidetrackQuest = () => {
 
     // Only update startLevel if it's not 0 and if it's different from the current one
     const startLevel = currentQuest.getStoryVariable('startLevel');
-    if (startLevel !== 0 && app && app.contentWindow.globalParameters.currentLevel !== startLevel) {
-      params.startLevel = startLevel;
+    if (app) {
+      const gp = app.contentWindow.globalParameters;
+      if (startLevel !== 0
+          && startLevel !== gp.startLevel
+          && startLevel !== gp.currentLevel) {
+        params.startLevel = startLevel;
+        params.highestAchievedLevel = startLevel;
+      }
     }
 
     updateApp('globalParameters', params);
