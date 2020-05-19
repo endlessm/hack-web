@@ -215,7 +215,7 @@ const CodePanel = ({
       onChange={build}
       name="editor"
       editorProps={{ $blockScrolling: true }}
-      setOptions={{ fixedWidthGutter: false }}
+      setOptions={{ fixedWidthGutter: false, behavioursEnabled: false }}
       wrapEnabled
       fontSize={14}
       showPrintMargin={false}
