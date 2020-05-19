@@ -162,6 +162,15 @@ const CodePanel = ({
     }
   }, [params, code]);
 
+  const prevText = useRef();
+  useEffect(() => {
+    // Reset the undo if the previous text was empty
+    if (!prevText.current && text) {
+      aceEditor.current.getSession().getUndoManager().reset();
+    }
+    prevText.current = text;
+  }, [text]);
+
   // https://github.com/securingsincity/react-ace/issues/483
   // react-ace has a bug with mixing custom annotations and worker annotations.
   // This function adds custom annotations to the list of editor annotations
