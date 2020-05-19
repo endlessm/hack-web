@@ -50,25 +50,24 @@ const Dialogue = ({
   const classes = useStyles();
   const [previousMessageLength, setPreviousMessageLength] = useState(dialogue.length);
   const [newMessagesLength, setNewMessagesLength] = useState(0);
-  const [scrollTimeout, setScrollTimeout] = useState();
+  const scrollTimeout = useRef(null);
   const messagesEndRef = useRef(null);
 
   const theme = useTheme();
 
   useEffect(() => {
     // Scroll down when the dialogue changes.
-    clearTimeout(scrollTimeout);
-    const timeout = setTimeout(() => {
+    clearTimeout(scrollTimeout.current);
+    scrollTimeout.current = setTimeout(() => {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }, theme.transitions.duration.complex);
-    setScrollTimeout(timeout);
 
     // Store how many dialogue bubbles were added, for fading:
     setPreviousMessageLength(dialogue.length);
     setNewMessagesLength(dialogue.length - previousMessageLength);
 
     return () => {
-      clearTimeout(scrollTimeout);
+      clearTimeout(scrollTimeout.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dialogue]);
