@@ -8,10 +8,11 @@ VAR flipped = 0
 VAR startLevel = 0
 VAR currentLevel = 1
 VAR highestAchievedLevel = 1
-VAR availableLevels = 2
+VAR availableLevels = 1
 # will change to 0 on death
 VAR success = 1
 VAR playing = 1
+VAR levelCompleted = 0
 # Changing this to 1 plays the Felix cut scene
 # Value changes to 0 at cutscene end
 VAR controlsCutscene = 0
@@ -42,53 +43,53 @@ INCLUDE sidetrack-2-quest.ink
 -You've probably guessed whose project this is already - our star student, Riley!
 * [❯] ❯
 -> level1_2
-* [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
+* [(wait for: levelCompleted is 1)] Level {currentLevel -1 } Complete!
 -> level1_2
 
 === level1_2 ===
 # character: riley
 -Oh, jeez... I didn't do everything, I mean, Ada helped with design, and Saniel helped me with the code, and Felix--
-{ currentLevel == 2:
+{ levelCompleted == 1:
     -> level1_3
 - else:
     * [❯] ❯
     -> level1_3
-    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
+    * [(wait for: levelCompleted is 1)] Level {currentLevel -1 } Complete!
     -> level1_3
 }
 
 === level1_3 ===
 # character: faber
 -Don't sell yourself short, Riley! It takes a lot of skill and talent to put something like this together.
-{ currentLevel == 2:
+{ levelCompleted == 1:
     -> level1_4
 - else:
     * [❯] ❯
     -> level1_4
-    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
+    * [(wait for: levelCompleted is 1)] Level {currentLevel -1 } Complete!
     -> level1_4
 }
 
 === level1_4 ===
 # character: saniel
 -Let's dim the lights, shall we? Riley, the room is yours.
-{ currentLevel == 2:
+{ levelCompleted == 1:
     -> level1_5
 - else:
     * [❯] ❯
     -> level1_5
-    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
+    * [(wait for: levelCompleted is 1)] Level {currentLevel -1 } Complete!
     -> level1_5
 }
 
 === level1_5 ===
 # character: riley
 -Woohoo! Here we are! See that <b>Exit</b> on the far side of the screen? That's our goal! Let's get there! Use the FORWARD, UP, and DOWN <b>Instructions</b> to move through these obstacles, but watch out for those <b>Walls</b>!
-{ currentLevel == 2:
+{ levelCompleted == 1:
     - Great job on that level!
     -> the_choice
 }
-* [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
+* [(wait for: levelCompleted is 1)] Level {currentLevel -1 } Complete!
 -> the_choice
 
 === the_choice ===
@@ -98,6 +99,7 @@ INCLUDE sidetrack-2-quest.ink
 - You've got a choice here: Do you want to keep playing, or jump straight ahead to hacking the game?
 * [Keep Playing!] I'll keep going, I want to play all the way through.
 ~ availableLevels = 28
+~ startLevel = 2
 -> level2
 * [Let's get Hacking!] I can't wait to get a look inside!
 ~ availableLevels = 28

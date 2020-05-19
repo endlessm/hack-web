@@ -135,6 +135,7 @@ const SidetrackQuest = () => {
 
       // Only update quest if some variable changes, to avoid infinite loop
       if (questUpdated) {
+        currentQuest.updateStoryVariable('levelCompleted', !params.playing && params.success);
         setCurrentChoice(undefined);
       }
     };
