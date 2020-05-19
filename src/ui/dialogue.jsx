@@ -48,9 +48,9 @@ const Dialogue = ({
   dialogue, choices, onChoiceSelected, onRestartSelected, hasEnded, card,
 }) => {
   const classes = useStyles();
-  const [previousMessageLength, setPreviousMessageLength] = useState(dialogue.length);
-  const [newMessagesLength, setNewMessagesLength] = useState(0);
   const scrollTimeout = useRef(null);
+  const [bubbleAnimationCount, setBubbleAnimationCount] = useState(0);
+  const bubbleAnimationInterval = useRef(null);
   const messagesEndRef = useRef(null);
 
   const theme = useTheme();
@@ -60,21 +60,27 @@ const Dialogue = ({
     clearTimeout(scrollTimeout.current);
     scrollTimeout.current = setTimeout(() => {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }, theme.transitions.duration.complex);
-
-    // Store how many dialogue bubbles were added, for fading:
-    setPreviousMessageLength(dialogue.length);
-    setNewMessagesLength(dialogue.length - previousMessageLength);
+    }, theme.transitions.duration.bubbleAnimation);
 
     return () => {
       clearTimeout(scrollTimeout.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dialogue]);
+  }, [dialogue, theme.transitions.duration.bubbleAnimation]);
 
-  const getTimeout = (i) => (
-    theme.transitions.duration.complex * (i - dialogue.length + newMessagesLength + 1)
-  );
+  useEffect(() => {
+    // Run the animation for dialogue bubbles appearing:
+    clearInterval(bubbleAnimationInterval.current);
+    bubbleAnimationInterval.current = setInterval(() => {
+      if (bubbleAnimationCount <= dialogue.length) {
+        setBubbleAnimationCount(bubbleAnimationCount + 1);
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, theme.transitions.duration.bubbleAnimation);
+
+    return () => {
+      clearInterval(bubbleAnimationInterval.current);
+    };
+  }, [dialogue, bubbleAnimationCount, theme.transitions.duration.bubbleAnimation]);
 
   const getChoiceButton = (choice) => {
     if (choice.text in iconsByEmoji) {
@@ -90,7 +96,6 @@ const Dialogue = ({
       );
     }
 
-    // FIXME refactor ChoiceButton NOW
     return (
       <MainButton
         key={choice.index}
@@ -127,16 +132,18 @@ const Dialogue = ({
   const chatMessages = dialogue.map((d, i) => (
     <Fade
       key={d.id}
-      in
-      timeout={getTimeout(i)}
+      in={i < bubbleAnimationCount}
+      timeout={theme.transitions.duration.bubbleAnimation}
     >
       <ChatMessage
         side={d.character === 'user' ? 'right' : 'left'}
         avatar={`/assets/avatars/${d.character}.svg`}
         messages={[d]}
+        typing={d.character !== 'user' && i >= (bubbleAnimationCount - 1)}
       />
     </Fade>
-  ));
+  )).slice(0, bubbleAnimationCount);
+
 
   const content = (
     <>
@@ -151,7 +158,13 @@ const Dialogue = ({
     </>
   );
 
-  const buttons = hasEnded ? endChoices : <>{choices.map((choice) => getChoiceButton(choice))}</>;
+  const buttons = hasEnded ? endChoices : (
+    <>
+      {(bubbleAnimationCount <= dialogue.length) ? null : (
+        choices.map((choice) => getChoiceButton(choice))
+      )}
+    </>
+  );
 
   return <SidePanel content={content} buttons={buttons} card={card} />;
 };
