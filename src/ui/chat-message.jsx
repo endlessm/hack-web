@@ -18,6 +18,8 @@ import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-monokai';
 
+import typingAsset from './typing.gif';
+
 const sanitizeOptions = {
   allowedTags: ['b', 'i', 's', 'tt', 'u', 'a', 'p'],
   allowedAttributes: {
@@ -127,7 +129,7 @@ const useStyles = makeStyles(({
 });
 
 const ChatMessage = ({
-  avatar, messages, side, style,
+  avatar, messages, side, style, typing,
 }) => {
   const styles = useStyles();
 
@@ -169,23 +171,26 @@ const ChatMessage = ({
                 )}
               >
                 <Box my={side === 'left' ? 1.5 : 0}>
-                  {/* eslint-disable-next-line react/no-danger */}
-                  <Typography dangerouslySetInnerHTML={{ __html: sanitize(message.text) }} />
-                  {message.codeSnippet && (
-                    <AceEditor
-                      width="100%"
-                      height={`${theme.spacing(15)}px`}
-                      mode={message.codeSnippet.language}
-                      theme="monokai"
-                      value={message.codeSnippet.text}
-                      name="editor"
-                      readOnly
-                      showGutter={false}
-                      highlightActiveLine={false}
-                      editorProps={{ $blockScrolling: true }}
-                      setOptions={{ useWorker: false }}
-                      enableSnippets
-                    />
+                  {typing ? (<img height={theme.spacing(2)} src={typingAsset} alt="..." />) : (
+                    <>
+                      <Typography dangerouslySetInnerHTML={{ __html: sanitize(message.text) }} />
+                      {message.codeSnippet && (
+                        <AceEditor
+                          width="100%"
+                          height={`${theme.spacing(15)}px`}
+                          mode={message.codeSnippet.language}
+                          theme="monokai"
+                          value={message.codeSnippet.text}
+                          name="editor"
+                          readOnly
+                          showGutter={false}
+                          highlightActiveLine={false}
+                          editorProps={{ $blockScrolling: true }}
+                          setOptions={{ useWorker: false }}
+                          enableSnippets
+                        />
+                      )}
+                    </>
                   )}
                 </Box>
               </Paper>
@@ -206,6 +211,7 @@ ChatMessage.propTypes = {
   style: PropTypes.shape({
     opacity: PropTypes.number,
   }),
+  typing: PropTypes.bool,
 };
 
 ChatMessage.defaultProps = {
@@ -213,6 +219,7 @@ ChatMessage.defaultProps = {
   messages: [],
   side: 'left',
   style: {},
+  typing: false,
 };
 
 export default ChatMessage;

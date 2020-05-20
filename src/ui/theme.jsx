@@ -16,6 +16,7 @@ const theme = createMuiTheme({
     duration: {
       complex: 1000,
       triggeredByMouse: 4000,
+      bubbleAnimation: 1000,
     },
   },
   palette: {
