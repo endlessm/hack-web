@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader';
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import {
   BrowserRouter as Router,
@@ -27,9 +27,13 @@ ReactGA.initialize('UA-160877903-1');
 const GAWrapper = ({ children }) => {
   const { location } = window;
 
-  if (process.env.NODE_ENV === 'production') {
-    ReactGA.pageview(location.pathname);
-  }
+  // This should be done in a effect to get the children component rendered so
+  // we've the final document.title setted
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      ReactGA.pageview(location.pathname);
+    }
+  }, [location.pathname]);
 
   return children;
 };
