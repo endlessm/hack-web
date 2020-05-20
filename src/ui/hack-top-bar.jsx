@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import { Link as RouterLink } from 'react-router-dom';
@@ -80,6 +80,11 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
   const open = useSelector((state) => state.ui.sidePanelOpen);
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
+
+  // Update the document title to match the current title
+  useEffect(() => {
+    document.title = `Hack - ${title}`;
+  }, [title]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
