@@ -3,18 +3,14 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   Box,
-  Fab,
   makeStyles,
 } from '@material-ui/core';
-
-import {
-  SettingsBackupRestore,
-} from '@material-ui/icons';
 
 import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
 import { useCard } from '../hack-card';
 import QuestFTHView from '../quest-fth-view';
+import ReloadButton from '../reload-button';
 import questContent from './p5-quest.ink';
 
 import store, { actions } from '../../store';
@@ -107,15 +103,7 @@ const P5Quest = () => {
 
   const controls = (
     <Box m={1}>
-      <Fab
-        color="secondary"
-        aria-label="Reset toolbox"
-        edge="end"
-        size="medium"
-        onClick={resetToolbox}
-      >
-        <SettingsBackupRestore />
-      </Fab>
+      <ReloadButton onClick={resetToolbox} />
     </Box>
   );
 
