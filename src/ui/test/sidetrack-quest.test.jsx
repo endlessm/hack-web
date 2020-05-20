@@ -10,13 +10,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   VolumeOff,
   VolumeUp,
-  SettingsBackupRestore,
 } from '@material-ui/icons';
 
 import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
 import { useCard } from '../hack-card';
 import QuestFTHView from '../quest-fth-view';
+import ReloadButton from '../reload-button';
 import questContent from './sidetrack-quest.ink';
 
 import store, { actions } from '../../store';
@@ -436,15 +436,7 @@ const SidetrackQuest = () => {
       )}
       {isFlipped && !isLocked && (
         <Box m={1}>
-          <Fab
-            color="primary"
-            aria-label="Reset toolbox"
-            edge="end"
-            size="medium"
-            onClick={resetToolbox}
-          >
-            <SettingsBackupRestore />
-          </Fab>
+          <ReloadButton onClick={resetToolbox} color="primary" />
         </Box>
       )}
     </>
