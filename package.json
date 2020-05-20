@@ -52,6 +52,7 @@
     "@neutrinojs/jest": "^9.1.0",
     "@neutrinojs/react": "^9.1.0",
     "@svgr/webpack": "^5.2.0",
+    "@typescript-eslint/parser": "^2.34.0",
     "aws-sdk": "^2.637.0",
     "babel-plugin-i18next-extract": "^0.7.2",
     "dotenv": "^8.2.0",
