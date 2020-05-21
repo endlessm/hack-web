@@ -11,6 +11,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import clsx from 'clsx';
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -60,10 +61,14 @@ const useStyles = makeStyles(({ spacing, palette, zIndex }) => {
 
   return {
     root: {
+      fontFamily: 'Metropolis',
       backgroundImage: `url('${LoginBg}')`,
       backgroundSize: 'cover',
       minHeight: '100%',
       overflow: 'hidden',
+    },
+    metro: {
+      fontFamily: 'Metropolis-SemiBold',
     },
     hackIcon: {
       width: `${spacing(6)}px`,
@@ -90,8 +95,7 @@ const useStyles = makeStyles(({ spacing, palette, zIndex }) => {
       height: `${spacing(72)}px`,
     },
     cardContent: {
-      padding: spacing(3),
-      paddingTop: spacing(1),
+      padding: spacing(5),
 
       '& input': {
         border: `1px solid ${palette.grey[500]}`,
@@ -100,6 +104,9 @@ const useStyles = makeStyles(({ spacing, palette, zIndex }) => {
         paddingLeft: `${spacing(2)}px`,
         width: '100%',
       },
+    },
+    cardActions: {
+      paddingTop: 0,
     },
     backgroundBox: {
       background: `linear-gradient(${cardImageOverlay}, ${cardImageOverlay}), url('${loginBox}')`,
@@ -164,14 +171,14 @@ const Login = () => {
           <Box className={classes.backgroundBox}>
             <Box textAlign="center" color="common.white">
               <HackIconCloseWhite className={classes.hackIconBox} />
-              <Typography variant="h2" component="h1"> HACK </Typography>
-              <Typography variant="h4" component="h2"> WEB </Typography>
+              <Typography variant="h2" component="h1" className={classes.metro}> HACK </Typography>
+              <Typography variant="h4" component="h2" className={classes.metro}> WEB </Typography>
             </Box>
           </Box>
 
           <CardContent className={classes.cardContent}>
             { error && <Alert severity="error">{ error }</Alert> }
-            <Box mt={1}>
+            <Box>
               <input value={username} onChange={(ev) => setUsername(ev.target.value)} placeholder="email" />
             </Box>
             <Box mt={2}>
@@ -180,7 +187,7 @@ const Login = () => {
 
           </CardContent>
 
-          <CardActions className={classes.cardContent}>
+          <CardActions className={clsx(classes.cardContent, classes.cardActions)}>
             <Box ml="auto">
               <MainButton
                 variant="contained"

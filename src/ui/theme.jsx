@@ -1,6 +1,12 @@
 import { createMuiTheme } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 
+import {
+  metropolis,
+  metropolisBold,
+  metropolisSemiBold,
+} from './fonts';
+
 const colors = {
   hackGreen: '#37dcb1',
   hackGreenGradient: '#4a90e2',
@@ -12,6 +18,20 @@ const colors = {
 const { spacing, breakpoints } = createMuiTheme();
 
 const theme = createMuiTheme({
+  typography: {
+    fontFamily: 'Metropolis, Roboto, Arial',
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '@font-face': [
+          metropolis,
+          metropolisSemiBold,
+          metropolisBold,
+        ],
+      },
+    },
+  },
   transitions: {
     duration: {
       complex: 1000,
