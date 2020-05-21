@@ -56,7 +56,6 @@ async function fakeLogin(username, password) {
   });
 }
 
-// eslint-disable-next-line unused-imports/no-unused-vars
 function getUser(username = '') {
   const name = username || storage.getItem('currentUser');
   if (!name) {
@@ -91,7 +90,7 @@ async function signup(username, password) {
   });
 }
 
-// eslint-disable-next-line unused-imports/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 async function login(username, password) {
   const authenticationData = {
     Username: username,

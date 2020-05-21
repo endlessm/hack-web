@@ -56,7 +56,6 @@
     "babel-plugin-i18next-extract": "^0.7.2",
     "dotenv": "^8.2.0",
     "eslint": "^6",
-    "eslint-plugin-unused-imports": "^0.1.2",
     "jest": "^25",
     "mime-types": "^2.1.26",
     "neutrino": "^9.1.0",

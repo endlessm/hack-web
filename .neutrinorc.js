@@ -15,14 +15,8 @@ module.exports = {
     airbnb({
       eslint: {
         baseConfig: {
-          plugins: ['unused-imports'],
           globals: {
             CONFIG: true,
-          },
-          rules: {
-            'no-unused-vars': 'off',
-            'unused-imports/no-unused-imports': 2,
-            'unused-imports/no-unused-vars': 1,
           },
         },
       },
