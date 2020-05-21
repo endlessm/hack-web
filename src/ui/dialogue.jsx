@@ -3,6 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import {
+  Box,
   makeStyles,
   Fade,
   useTheme,
@@ -150,7 +151,9 @@ const Dialogue = ({
       <div
         style={{ marginTop: 'auto' }}
       />
-      {chatMessages}
+      <Box width="100%">
+        {chatMessages}
+      </Box>
       <div
         className={classes.scrollRef}
         ref={messagesEndRef}
