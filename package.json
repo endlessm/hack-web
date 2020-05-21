@@ -59,7 +59,6 @@
     "jest": "^25",
     "mime-types": "^2.1.26",
     "neutrino": "^9.1.0",
-    "redux-devtools": "^3.5.0",
     "typescript": "^2.8",
     "webpack": "^4",
     "webpack-cli": "^3",
