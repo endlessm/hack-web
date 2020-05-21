@@ -423,7 +423,7 @@ const SidetrackQuest = () => {
       {!isFlipped && (
         <Box m={1}>
           <Fab
-            color="primary"
+            color="secondary"
             aria-label="Mute volume"
             edge="end"
             size="medium"
@@ -436,7 +436,7 @@ const SidetrackQuest = () => {
       )}
       {isFlipped && !isLocked && (
         <Box m={1}>
-          <ReloadButton onClick={resetToolbox} color="primary" />
+          <ReloadButton onClick={resetToolbox} />
         </Box>
       )}
     </>
