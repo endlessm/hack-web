@@ -1,4 +1,5 @@
-FROM node:buster-slim
+# Using node 12 that's LTS
+FROM node:12-buster-slim
 
 RUN apt-get update && \
     apt-get -y install git unzip mono-runtime wget && \
