@@ -25,13 +25,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'yarn install'
             }
         }
         stage('Test') {
             steps {
-                sh 'npm run test'
-                sh 'npm run lint'
+                sh 'yarn test'
+                sh 'yarn lint'
             }
         }
         stage('Publish') {
@@ -40,8 +40,8 @@ pipeline {
                                   credentialsId: 'hack-computer-iam-user-jenkins-hack-web',
                                   accessKeyVariable: 'KEY',
                                   secretKeyVariable: 'SECRET']]) {
-                    sh 'npm run build'
-                    sh 'npm run deploy'
+                    sh 'yarn build'
+                    sh 'yarn deploy'
                 }
             }
         }
