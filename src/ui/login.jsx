@@ -13,6 +13,7 @@ import {
 import { Alert } from '@material-ui/lab';
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import HackTopBar from './hack-top-bar';
@@ -118,6 +119,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const { t } = useTranslation();
 
   const classes = useStyles();
 
@@ -155,7 +157,7 @@ const Login = () => {
 
   return (
     <div className={classes.root}>
-      <HackTopBar title="login to explore" isMainPage />
+      <HackTopBar title={t('Login to explore')} isMainPage />
       {HackIcon}
 
       <form noValidate autoComplete="off" onSubmit={callback}>
@@ -172,10 +174,10 @@ const Login = () => {
           <CardContent className={classes.cardContent}>
             { error && <Alert severity="error">{ error }</Alert> }
             <Box mt={1}>
-              <input value={username} onChange={(ev) => setUsername(ev.target.value)} placeholder="email" />
+              <input value={username} onChange={(ev) => setUsername(ev.target.value)} placeholder={t('Email')} />
             </Box>
             <Box mt={2}>
-              <input type="password" value={password} onChange={(ev) => setPassword(ev.target.value)} placeholder="password" />
+              <input type="password" value={password} onChange={(ev) => setPassword(ev.target.value)} placeholder={t('Password')} />
             </Box>
 
           </CardContent>
@@ -188,7 +190,7 @@ const Login = () => {
                 type="submit"
                 onClick={callback}
               >
-                LOGIN
+                {t('Login')}
               </MainButton>
             </Box>
           </CardActions>
