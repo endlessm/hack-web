@@ -82,6 +82,18 @@ const theme = createMuiTheme({
         containerWidth: spacing(28) * 3 + spacing(16),
       },
     },
+    glowAnimation: {
+      from: {
+        boxShadow: '0 0 0 0px rgba(255, 255, 255, 0.4);',
+      },
+      to: {
+        boxShadow: `
+          0 0 20px 10px #fff, /* inner white */
+          0 0 30px 20px #f0f, /* middle magenta */
+          0 0 40px 30px #0ff; /* outer cyan */
+        `,
+      },
+    },
   },
 });
 
