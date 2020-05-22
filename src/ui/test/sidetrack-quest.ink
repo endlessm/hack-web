@@ -24,11 +24,33 @@ VAR hasLockKey = 0
 VAR isLocked = 1
 VAR attractFTH = 0
 VAR codeErrors = 0
+VAR tunnelCount = 0
 
 INCLUDE sidetrack-1-quest.ink
 INCLUDE sidetrack-2-quest.ink
 
 -> begin
+
+=== mid_level_check(desiredlevel)
+{
+    - currentLevel == desiredlevel:
+        ->->
+    - else:
+        + [❯] ❯
+        ->->
+        + [(wait for: currentLevel is {desiredlevel})] #
+        ->->
+}
+
+=== end_level_check(desiredLevel)
+{
+    - currentLevel == desiredLevel:
+        Level {currentLevel -1 } Complete!
+        ->->
+    - else:
+        + [(wait for: currentLevel is {desiredLevel})] Level {currentLevel -1 } Complete!
+        ->->
+}
 
 === begin ===
 -> level1_1
@@ -40,52 +62,28 @@ INCLUDE sidetrack-2-quest.ink
 -Each student needed to own the project and manage it themselves, but they could ask anyone around The Academy for help.
 # character: ada
 -You've probably guessed whose project this is already - our star student, Riley!
-* [❯] ❯
--> level1_2
-* [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
--> level1_2
+-> mid_level_check(2) -> level1_2
 
 === level1_2 ===
 # character: riley
 -Oh, jeez... I didn't do everything, I mean, Ada helped with design, and Saniel helped me with the code, and Felix--
-{ currentLevel == 2:
-    -> level1_3
-- else:
-    * [❯] ❯
-    -> level1_3
-    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
-    -> level1_3
-}
+-> mid_level_check(2) -> level1_3
 
 === level1_3 ===
 # character: faber
 -Don't sell yourself short, Riley! It takes a lot of skill and talent to put something like this together.
-{ currentLevel == 2:
-    -> level1_4
-- else:
-    * [❯] ❯
-    -> level1_4
-    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
-    -> level1_4
-}
+-> mid_level_check(2) -> level1_4
 
 === level1_4 ===
 # character: saniel
 -Let's dim the lights, shall we? Riley, the room is yours.
-{ currentLevel == 2:
-    -> level1_5
-- else:
-    * [❯] ❯
-    -> level1_5
-    * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
-    -> level1_5
-}
+-> mid_level_check(2) -> level1_5
 
 === level1_5 ===
 # character: riley
 -Woohoo! Here we are! See that <b>Exit</b> on the far side of the screen? That's our goal! Let's get there! Use the FORWARD, UP, and DOWN <b>Instructions</b> to move through these obstacles, but watch out for those <b>Walls</b>!
 { currentLevel == 2:
-    - Great job on that level!
+    - Level {currentLevel -1 } Complete!
     -> the_choice
 }
 * [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
@@ -105,7 +103,6 @@ INCLUDE sidetrack-2-quest.ink
 -> transition
 
 === transition ===
-
 # character: riley
 - OK, a quick rundown of what we're doing here: You need to drag and drop the tiles with arrows on them so that when I follow them, I'll get to the exit safely!
 # character: riley
