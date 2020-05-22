@@ -9,6 +9,11 @@ const s3 = new AWS.S3({
   secretAccessKey: process.env.SECRET,
   region: 'us-east-2',
 });
+const cloudFront = new AWS.CloudFront({
+  accessKeyId: process.env.KEY,
+  secretAccessKey: process.env.SECRET,
+  region: 'us-east-2',
+});
 
 const fs = require('fs');
 const path = require('path');
@@ -52,3 +57,23 @@ getFiles('build')
     });
   })
   .catch((e) => console.error(e));
+
+// Invalidating CloudFront distribution cache
+if (branch === 'stable') {
+  console.log('Invalidating cloudfront cache...');
+  cloudFront.createInvalidation({
+    DistributionId: 'E16ECAJWT8UJVA',
+    InvalidationBatch: {
+      CallerReference: (+new Date()).toString(),
+      Paths: {
+        Quantity: 1,
+        Items: [ '/index.html' ],
+      },
+    },
+  }, (err, data) => {
+    if (err)
+      console.log(err, err.stack);
+    else
+      console.log('Cloudfront cache invalidated');
+  });
+}
