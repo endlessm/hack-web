@@ -37,12 +37,19 @@ function uploadToS3(bucketName, keyPrefix, filePath) {
 
   return new Promise(function(resolve, reject) {
     fileStream.once('error', reject);
-    s3.upload({
+    const params = {
       Bucket: bucketName,
       Key: keyName,
       Body: fileStream,
       ContentType: mime.lookup(filePath),
-    }).promise().then(resolve, reject);
+    };
+
+    // 10 minutes cache for index.html
+    if (fileName === 'index.html') {
+      params.CacheControl = 'max-age=600';
+    }
+
+    s3.upload(params).promise().then(resolve, reject);
   });
 }
 
