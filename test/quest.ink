@@ -95,3 +95,10 @@ Bye! -> END
 }
 + [Hint] -> test_hints
 * [❯] -> END
+
+== test_mods
+- This is a test for option modifications
++ First option -> END
++ [option with brackets] -> END
++ [(wait for: flipped)] -> END
++ [attracting: ❯] ❯ -> END

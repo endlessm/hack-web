@@ -11,7 +11,7 @@ VAR code = ""
 === p5_1 ===
 # character: estelle
 - Hey {get_user_name()}, I've got something <b>super</b> cool for you! I've been learning a new programming language for making interactive art  called <b>p5.js</b> - The "js" part comes from <b>JavaScript</b> - you've probably heard of that before, it's a programming language used to run lots of websites.
-+ [❯] ❯
++ [attracting: ❯] ❯
 -> p5_2
 
 === p5_2 ===

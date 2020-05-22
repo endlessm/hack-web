@@ -89,6 +89,7 @@ const Dialogue = ({
         <MainIconButton
           key={choice.index}
           size="medium"
+          attracting={choice.modifiers.attracting}
           className={classes.button}
           onClick={() => onChoiceSelected(choice)}
         >

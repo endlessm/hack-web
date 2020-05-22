@@ -146,6 +146,16 @@ For example:
     + [(wait for: code not contains "bug")] -> something_changed2
     + [(wait for: level is 24)] -> something_changed3
 
+## Attract user attention to an option
+
+You can activate the glow effect on a option just adding the `attracting: `
+prefix like this:
+
+```
+* [attracting: 👍] Let's keep moving!  -> p5_21
+* [👎] I'm going to stay here and keep experimenting! -> END
+```
+
 ## Recommendations
 
 - You should use at most 3 choices. The UI is optimized for that.

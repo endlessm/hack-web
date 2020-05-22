@@ -21,6 +21,17 @@ const extractLineCharacter = (currentTags) => (
   extractInfoFromTags(currentTags, lineCharacterRegex, null)
 );
 
+const extractChoiceModifiers = (choice) => {
+  const choiceModified = { ...choice, modifiers: { attracting: false } };
+  const match = choice.text.match(/attracting: (.*)/);
+  if (match) {
+    choiceModified.modifiers.attracting = true;
+    [, choiceModified.text] = match;
+  }
+
+  return choiceModified;
+};
+
 const extractWaitForVariables = (choiceText) => {
   const result = choiceText.match(/\(wait for: (.*)\)/);
   if (!result) return [];
@@ -180,9 +191,6 @@ export default class Quest {
     this.waitFor = {};
     this.story.currentChoices.forEach((c) => {
       const waitForVariables = extractWaitForVariables(c.text);
-      if (!waitForVariables.length) {
-        choices = [...choices, c];
-      }
       waitForVariables.forEach((variable) => {
         const waitForContext = {
           choice: c,
@@ -200,6 +208,11 @@ export default class Quest {
           };
         }
       });
+
+      if (!waitForVariables.length) {
+        const choiceModified = extractChoiceModifiers(c);
+        choices = [...choices, choiceModified];
+      }
     });
     return { dialogue, choices };
   }

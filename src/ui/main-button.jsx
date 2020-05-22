@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -8,12 +9,57 @@ import {
   useMediaQuery,
   useTheme,
   withStyles,
+  makeStyles,
 } from '@material-ui/core';
+import clsx from 'clsx';
 
 import { actions } from '../store';
 import { cardType } from './types';
 
-const MainButton = withStyles(({ palette, spacing }) => ({
+const attractStyles = makeStyles(({ custom }) => ({
+  glow: {
+    position: 'relative',
+    '&:before': {
+      content: '""',
+      width: '50%',
+      height: '50%',
+      position: 'absolute',
+      top: '25%',
+      left: '25%',
+      animation: '$glow 1s alternate infinite',
+      borderRadius: '100%',
+    },
+  },
+
+  '@keyframes glow': custom.glowAnimation,
+}));
+
+const AttractWrapper = (WrappedComponent) => {
+  const Wrapper = ({ attracting, ...props }) => {
+    const classes = attractStyles();
+
+    return (
+      <div className={clsx({ [classes.glow]: attracting })}>
+        <WrappedComponent
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...props}
+        />
+      </div>
+    );
+  };
+
+  Wrapper.propTypes = {
+    attracting: PropTypes.bool,
+  };
+
+  Wrapper.defaultProps = {
+    attracting: false,
+  };
+
+  return memo(Wrapper);
+};
+
+const MainButton = AttractWrapper(withStyles(({ palette, spacing }) => ({
   root: {
     color: palette.primary.contrastText,
     background: palette.primary.main,
@@ -27,9 +73,9 @@ const MainButton = withStyles(({ palette, spacing }) => ({
   label: {
     textTransform: 'none',
   },
-}))(Button);
+}))(Button));
 
-const MainIconButton = withStyles(({
+const MainIconButton = AttractWrapper(withStyles(({
   palette, shadows, spacing, transitions,
 }) => ({
   root: {
@@ -48,9 +94,9 @@ const MainIconButton = withStyles(({
       backgroundColor: palette.secondary.main,
     },
   },
-}))(IconButton);
+}))(IconButton));
 
-const GoButton = ({ card }) => {
+const GoButton = AttractWrapper(({ card }) => {
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
@@ -87,7 +133,7 @@ const GoButton = ({ card }) => {
       {t('Let\'s go')}
     </MainButton>
   );
-};
+});
 
 GoButton.propTypes = {
   card: cardType.isRequired,
