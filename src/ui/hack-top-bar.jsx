@@ -113,7 +113,7 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
             // FIXME: Temporarily hiding the language selector in
             // the production site.
             CONFIG.branch !== 'stable' && (
-              <Box position="absolute" right={0} mr={1}>
+              <Box position="absolute" right={0} mr={!open ? 10 : 1}>
                 <Tooltip title={t('Change language')} enterDelay={300}>
                   <Button
                     color="secondary"
