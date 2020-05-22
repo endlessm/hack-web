@@ -268,4 +268,26 @@ describe('libquest', () => {
       quest.continueStory();
     }).not.toThrow();
   });
+
+  it('choice modifiers', () => {
+    const quest = new Quest(questContent);
+
+    quest.story.ChoosePathString('test_mods');
+    const { choices } = quest.continueStory();
+    expect(choices.length).toEqual(3);
+
+    const [first, second, attractChoice] = choices;
+    expect(first.text).toEqual('First option');
+    expect(second.text).toEqual('option with brackets');
+    expect(attractChoice.text).toEqual('❯');
+
+    expect(first.modifiers).toEqual({ attracting: false });
+    expect(second.modifiers).toEqual({ attracting: false });
+    expect(attractChoice.modifiers).toEqual({ attracting: true });
+
+    quest.choose(choices[0]);
+    expect(() => {
+      quest.continueStory();
+    }).not.toThrow();
+  });
 });
