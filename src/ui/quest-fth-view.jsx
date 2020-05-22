@@ -252,14 +252,7 @@ const QuestFTHView = ({
         anchor="right"
         open={open}
       >
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="stretch"
-          height="100%"
-        >
-          {sidebar}
-        </Box>
+        {sidebar}
       </Drawer>
     </div>
   );

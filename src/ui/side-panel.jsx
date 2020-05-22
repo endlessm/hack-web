@@ -59,23 +59,30 @@ const SidePanel = ({
   const isExpanded = isSmall ? false : expanded;
 
   return (
-    <>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="stretch"
+      height="100%"
+    >
       <div className={clsx(classes.offset, isExpanded && classes.offsetExpanded)} />
       <Divider />
       <Box className={clsx(classes.dialogue, isExpanded && classes.dialogueExpanded)} px={1} py={2}>
         {content}
       </Box>
       <Divider />
-      <Box
-        my={1}
-        mr={2}
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="flex-end"
-      >
-        {buttons}
+      <Box>
+        <Box
+          my={1}
+          mr={2}
+          display="flex"
+          flexWrap="wrap"
+          justifyContent="flex-end"
+        >
+          {buttons}
+        </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 
