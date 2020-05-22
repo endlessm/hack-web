@@ -18,7 +18,7 @@ VAR code = ""
 
 === htmlintro1_1 ===
 - Hi, {get_user_name()}! I know you've used the internet before - but have you ever wondered what goes into showing you all those web pages? Well, I decided to go find out!
-* [❯] ❯
+* [attracting: ❯] ❯
 -> htmlintro1_2
 
 === htmlintro1_2 ===
