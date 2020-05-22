@@ -156,6 +156,54 @@ prefix like this:
 * [👎] I'm going to stay here and keep experimenting! -> END
 ```
 
+## Translating Quests
+
+To support translations, the UI can pass the current language to the
+quest through a variable. You should define the following global
+variable:
+
+    VAR language = "en"
+
+the UI will set this variable to the current language before playing
+the story. Is up to the quest to use this variable in any way. A good
+option is to have different versions of the quest in separate files,
+one per language, include these files, and divert at the very begin:
+
+```
+INCLUDE my-quest-es.ink
+INCLUDE my-quest-de.ink
+
+// The UI will set this variable:
+VAR language = "en"
+
+{
+- language == "es":
+  -> begin_es
+- language == "de":
+  -> begin_de
+- else:
+  -> begin
+}
+
+=== begin ===
+- Hello in English!
+- -> DONE
+```
+
+Content of `my-quest-es.ink`:
+```
+=== begin_es ===
+- Hola en español!
+- -> DONE
+```
+
+Content of `my-quest-de.ink`:
+```
+=== begin_de ===
+- Hallo auf deutsch!
+- -> DONE
+```
+
 ## Recommendations
 
 - You should use at most 3 choices. The UI is optimized for that.
