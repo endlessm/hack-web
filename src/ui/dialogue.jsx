@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import {
   Box,
   makeStyles,
@@ -202,6 +203,7 @@ function useQuest(questContent) {
   const [currentChoice, setCurrentChoice] = useState(null);
   const [hasEnded, setHasEnded] = useState(false);
   const dispatch = useDispatch();
+  const { i18n } = useTranslation();
 
   const updateDialogueChoices = () => {
     const { dialogue: dia, choices: cho } = quest.continueStory();
@@ -214,8 +216,12 @@ function useQuest(questContent) {
   };
 
   useEffect(() => {
-    // Initial setup of dialogue and choices.
     if (quest === undefined) return;
+    // Update language global variable if needed:
+    if (quest.getStoryVariable('language')) {
+      quest.updateStoryVariable('language', i18n.language);
+    }
+    // Initial setup of dialogue and choices:
     updateDialogueChoices();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quest]);
