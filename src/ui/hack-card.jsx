@@ -212,6 +212,19 @@ function useCard() {
 
   return useSelector((state) => {
     const cardset = state.cardsets.find((cs) => cs.slug === '/home');
+
+    if (!cardset) {
+      // default state if it's not initialized yet, this is needed because with
+      // translations the cardset is lazy loaded and we can try to get the current
+      // quest card when the cardset is undefined
+      return {
+        slug: '',
+        name: '',
+        subtitle: '',
+        description: '',
+      };
+    }
+
     return cardset.cards.find((c) => slug === c.slug);
   });
 }
