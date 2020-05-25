@@ -55,6 +55,7 @@ function uploadToS3(bucketName, keyPrefix, filePath) {
 
 const branch = path.basename(process.env.HOME).split('-').slice(-1).pop();
 const bucket = branch === 'stable' ? 'try.hack-computer.com' : 'dev.hack-computer.com';
+const cloudFrontId = branch === 'stable' ? 'E16ECAJWT8UJVA' : 'E35AUTY1DEB5BT';
 
 getFiles('build')
   .then((files) => {
@@ -66,21 +67,19 @@ getFiles('build')
   .catch((e) => console.error(e));
 
 // Invalidating CloudFront distribution cache
-if (branch === 'stable') {
-  console.log('Invalidating cloudfront cache...');
-  cloudFront.createInvalidation({
-    DistributionId: 'E16ECAJWT8UJVA',
-    InvalidationBatch: {
-      CallerReference: (+new Date()).toString(),
-      Paths: {
-        Quantity: 1,
-        Items: [ '/index.html' ],
-      },
+console.log('Invalidating cloudfront cache...');
+cloudFront.createInvalidation({
+  DistributionId: cloudFrontId,
+  InvalidationBatch: {
+    CallerReference: (+new Date()).toString(),
+    Paths: {
+      Quantity: 1,
+      Items: [ '/index.html' ],
     },
-  }, (err, data) => {
-    if (err)
-      console.log(err, err.stack);
-    else
-      console.log('Cloudfront cache invalidated');
-  });
-}
+  },
+}, (err, data) => {
+  if (err)
+    console.log(err, err.stack);
+  else
+    console.log('Cloudfront cache invalidated');
+});
