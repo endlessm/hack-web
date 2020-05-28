@@ -19,6 +19,9 @@ import { cardType } from './types';
 const attractStyles = makeStyles(({ custom }) => ({
   glow: {
     position: 'relative',
+    '&:hover:before': {
+      animation: 'none',
+    },
     '&:before': {
       content: '""',
       width: '50%',
