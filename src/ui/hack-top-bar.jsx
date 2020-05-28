@@ -12,7 +12,6 @@ import {
   makeStyles,
   Menu,
   MenuItem,
-  IconButton,
   Toolbar,
   Tooltip,
   Typography,
@@ -24,6 +23,7 @@ import {
   Language,
 } from '@material-ui/icons';
 
+import { MainIconButton } from './main-button';
 import { actions, initializeDefaultData } from '../store';
 
 const useStyles = makeStyles(({
@@ -148,7 +148,7 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
               </Box>
             )
           ) : (
-            <IconButton
+            <MainIconButton
               component={RouterLink}
               to="/"
               edge="start"
@@ -156,7 +156,7 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
               aria-label="menu"
             >
               <Home />
-            </IconButton>
+            </MainIconButton>
           )}
 
           {isMainPage ? (
