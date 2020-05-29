@@ -1,7 +1,8 @@
 # main character: riley
 INCLUDE common.ink
 
-VAR code = ""
+VAR html = ""
+VAR css = ""
 
 -> begin
 
@@ -43,14 +44,14 @@ VAR code = ""
 
 === htmlintro1_3_3 ===
 - Let's get our hands dirty! Find the text <b>Hello, world!</b> in the <b>code</b> part of this page, and change it - make it your name, your favorite food, whatever you like.
-* [(wait for: code not icontains "Hello, world")] (Done)
+* [(wait for: html not icontains "Hello, world")] (Done)
 -> htmlintro1_4
 
 === htmlintro1_4 ===
 - Awesome! You just edited a webpage! That makes you a web designer, and that's pretty cool.
 - Let's take it one step further. Do you see the text that says <b>Welcome to my test website</b> near the top of the webpage?
 - Try finding that text in the <b>code</b> area and changing it.
-* [(wait for: code not icontains "Welcome to my test website")] (Done)
+* [(wait for: html not icontains "Welcome to my test website")] (Done)
 -> htmlintro1_5
 
 === htmlintro1_5 ===
@@ -60,20 +61,20 @@ VAR code = ""
 === htmlintro2_2 ===
 - Here's a fun fact: Based on what you did just now, you already know enough to make your own webpage! If you did, though, all you'd have is boring black text on a white background. Let's spice that up a little by coloring the text.
 - Find the opening <tt>&lt;p&gt;</tt>tag in your code, and add <tt>style="color:blue"</tt>after the <tt>p</tt>.
-* [(wait for: code icontains "<p style=\"color:blue\">")](Done)
+* [(wait for: html icontains "<p style=\"color:blue\">")](Done)
 -> htmlintro2_3
 
 
 === htmlintro2_3 ===
 - Congratulations! You just <b>styled</b> some text! Let's get even fancier - Now make the text in that <tt>&lt;p&gt;</tt>tag orange.
-* [(wait for: code icontains "<p style=\"color:orange\">")](Done)
+* [(wait for: html icontains "<p style=\"color:orange\">")](Done)
 -> htmlintro2_4
 
 
 === htmlintro2_4 ===
 - I wonder what happens if you try that with the <tt>&lt;h1&gt;</tt> tag? Try making that text purple.
 * [Hint] -> htmlintro2_4hints
-* [(wait for: code icontains "<h1 style=\"color:purple\">")](Done)
+* [(wait for: html icontains "<h1 style=\"color:purple\">")](Done)
 -> htmlintro2_5
 
 
@@ -86,13 +87,13 @@ VAR code = ""
     - -> htmlintro2_4hints_final
 }
 + [Hint] -> htmlintro2_4hints
-* [(wait for: code icontains "<h1 style=\"color:purple\">")](Done)
+* [(wait for: html icontains "<h1 style=\"color:purple\">")](Done)
 -> htmlintro2_5
 
 === htmlintro2_4hints_final ===
 - Your code should look like this:
 - {snippet_h1()}
-* [(wait for: code icontains "<h1 style=\"color:purple\">")](Done)
+* [(wait for: html icontains "<h1 style=\"color:purple\">")](Done)
 -> htmlintro2_5
 
 === htmlintro2_5 ===
@@ -109,7 +110,7 @@ VAR code = ""
 === htmlintro2_6 ===
 - To use this hex color in your webpage, replace one of your color words with that hex code: <tt>\#76EECF</tt> (You need the \"\#\" in front of it to tell the browser \"the next 6 letters or numbers are a hex color\")
 - Let's edit the <tt>&lt;p&gt;</tt>tag to make the text that hex color.
-* [(wait for: code icontains "<p style=\"color:\#76EECF\">")](Done)
+* [(wait for: html icontains "<p style=\"color:\#76EECF\">")](Done)
 -> htmlintro2_7
 
 
@@ -137,7 +138,7 @@ VAR code = ""
 === htmlintro2_8_2 ===
 - Look for the <tt>&lt;body&gt;</tt>tag in the code, near the top of the page. Just like we did for the <tt>&lt;p&gt;</tt> and <tt>&lt;h1&gt;</tt> tags, we're going to insert some new information in there. This time, though, we need a slightly different wording - <tt>style="background-color:coral"</tt>
 + [Hint] -> htmlintro2_8hints
-* [(wait for: code icontains "<body style=\"background-color:coral\">")](Done)
+* [(wait for: html icontains "<body style=\"background-color:coral\">")](Done)
 -> htmlintro2_9
 
 === htmlintro2_8hints ===
@@ -147,13 +148,13 @@ VAR code = ""
     - -> htmlintro2_8hints_final
 }
 + [Hint] -> htmlintro2_8hints
-* [(wait for: code icontains "<body style=\"background-color:coral\">")](Done)
+* [(wait for: html icontains "<body style=\"background-color:coral\">")](Done)
 -> htmlintro2_9
 
 === htmlintro2_8hints_final ===
 - Your body tag should look like this:
 - {snippet_bodytag()}
-* [(wait for: code icontains "<body style=\"background-color:coral\">")](Done)
+* [(wait for: html icontains "<body style=\"background-color:coral\">")](Done)
 -> htmlintro2_9
 
 === htmlintro2_9 ===
