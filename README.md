@@ -23,6 +23,21 @@ You can find the built app inside the `build/` folder. You can also
 call `yarn` in multiple ways while developing. See [the development
 doc](./HACKING.md#run-test-build) for the available options.
 
+## Project maintenance
+
+Sometimes you need to perform actions after you sync your checked-out
+version of the project with master. There are 2 cases:
+
+Each time dependencies change in the `package.json` file, you should
+run again:
+
+    yarn install
+
+Each time the submodules get updated in the remote, you'll see a diff
+in the `apps/` folder. You should run:
+
+    git submodule update
+
 ## Target Devices
 
 Here are the target devices we support:
