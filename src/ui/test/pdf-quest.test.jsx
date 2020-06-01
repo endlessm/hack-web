@@ -7,7 +7,6 @@ import {
   Box,
   CircularProgress,
   Divider,
-  Fab,
   makeStyles,
   useTheme,
 } from '@material-ui/core';
@@ -26,6 +25,7 @@ import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
 import { useCard } from '../hack-card';
 import QuestFTHView from '../quest-fth-view';
+import SecondaryIconButton from '../secondary-icon-button';
 import questContent from './pdf-quest.ink';
 
 const questName = 'maker-make-change';
@@ -171,39 +171,36 @@ const PdfQuest = () => {
   const controls = (
     <>
       <Box m={1}>
-        <Fab
+        <SecondaryIconButton
           color="secondary"
           aria-label="switch fullscreen"
-          edge="end"
           size="medium"
           onClick={onSwitchFullscreen}
           disabled={state.fullscreen}
         >
           <Fullscreen />
-        </Fab>
+        </SecondaryIconButton>
       </Box>
       <Divider />
       <Box m={1}>
-        <Fab
+        <SecondaryIconButton
           color="secondary"
           aria-label="zoom out"
-          edge="end"
           size="medium"
           onClick={onZoomOut}
         >
           <ZoomOut />
-        </Fab>
+        </SecondaryIconButton>
       </Box>
       <Box m={1}>
-        <Fab
+        <SecondaryIconButton
           color="secondary"
           aria-label="zoom in"
-          edge="end"
           size="medium"
           onClick={onZoomIn}
         >
           <ZoomIn />
-        </Fab>
+        </SecondaryIconButton>
       </Box>
     </>
   );

@@ -23,7 +23,7 @@ import {
   Language,
 } from '@material-ui/icons';
 
-import { MainIconButton } from './main-button';
+import MainIconButton from './main-icon-button';
 import { actions, initializeDefaultData } from '../store';
 
 const useStyles = makeStyles(({

@@ -13,7 +13,7 @@ import {
 
 import { actions } from '../store';
 import { cardSetType, cardType } from './types';
-import { GoButton } from './main-button';
+import GoButton from './go-button';
 
 const defaultImage = '/assets/cards/default-card.png';
 
