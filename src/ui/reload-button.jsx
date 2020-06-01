@@ -4,7 +4,7 @@ import { Tooltip } from '@material-ui/core';
 import { SettingsBackupRestore } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 
-import { SecondaryIconButton } from './main-button';
+import SecondaryIconButton from './secondary-icon-button';
 
 const ReloadButton = ({ onClick }) => {
   const { t } = useTranslation();

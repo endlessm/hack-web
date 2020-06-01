@@ -25,7 +25,7 @@ import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
 import { useCard } from '../hack-card';
 import QuestFTHView from '../quest-fth-view';
-import { SecondaryIconButton } from '../main-button';
+import SecondaryIconButton from '../secondary-icon-button';
 import questContent from './pdf-quest.ink';
 
 const questName = 'maker-make-change';

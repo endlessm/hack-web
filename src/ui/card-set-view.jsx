@@ -15,7 +15,7 @@ import {
 import { actions } from '../store';
 import ImageMainBg from './background.png';
 import SidePanel from './side-panel';
-import { GoButton } from './main-button';
+import GoButton from './go-button';
 import QuestFTHView from './quest-fth-view';
 import HackCard from './hack-card';
 

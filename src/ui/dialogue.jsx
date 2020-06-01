@@ -25,9 +25,8 @@ import { cardType } from './types';
 import Quest from '../libquest';
 import ChatMessage from './chat-message';
 import SidePanel from './side-panel';
-import {
-  MainButton, MainIconButton,
-} from './main-button';
+import MainButton from './main-button';
+import MainIconButton from './main-icon-button';
 
 const iconsByEmoji = {
   '❯': NextIcon,

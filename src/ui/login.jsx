@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import HackTopBar from './hack-top-bar';
-import { MainButton } from './main-button';
+import MainButton from './main-button';
 import HackIconClose from './hack-icon-close.svg';
 import HackIconCloseWhite from './hack-icon-close-white.svg';
 
