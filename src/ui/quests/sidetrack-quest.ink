@@ -55,42 +55,18 @@ INCLUDE sidetrack-2-quest.ink
 }
 
 === begin ===
--> level1_1
-
-=== level1_1 ===
-# character: ada
--Last summer, we decided to try something new - All the students here, at The Academy, had to build a game.
-# character: ada
--Each student needed to own the project and manage it themselves, but they could ask anyone around The Academy for help.
-# character: ada
--You've probably guessed whose project this is already - our star student, Riley!
--> mid_level_check(2) -> level1_2
-
-=== level1_2 ===
-# character: riley
--Oh, jeez... I didn't do everything, I mean, Ada helped with design, and Saniel helped me with the code, and Felix--
--> mid_level_check(2) -> level1_3
-
-=== level1_3 ===
-# character: faber
--Don't sell yourself short, Riley! It takes a lot of skill and talent to put something like this together.
--> mid_level_check(2) -> level1_4
-
-=== level1_4 ===
-# character: saniel
--Let's dim the lights, shall we? Riley, the room is yours.
--> mid_level_check(2) -> level1_5
+-> level1_5
 
 === level1_5 ===
 # character: riley
--Woohoo! Here we are! See that <b>Exit</b> on the far side of the screen? That's our goal! Let's get there! Use the FORWARD, UP, and DOWN <b>Instructions</b> to move through these obstacles, but watch out for those <b>Walls</b>!
+-Hey, {get_user_name()}, welcome to Sidetrack! See that <b>Exit</b> on the far side of the screen? That's our goal! Use the FORWARD, UP, and DOWN <b>Instructions</b> to move through these obstacles, but watch out for the <b>Walls</b>!
 -> end_level_check(2) -> the_choice
 
 === the_choice ===
 # character: riley
-- Haha, another level! What, you thought I'd just let you go after the exit? Nope, this is only the beginning!
+- Oh, there's way more than one level here. This is only the beginning!
 # character: riley
-- You've got a choice here: Do you want to keep playing, or jump straight ahead to hacking the game?
+- You've got a choice here: Do you want to keep playing normally, or jump straight ahead to hacking the game?
 * [Keep Playing!] I'll keep going, I want to play all the way through.
 ~ availableLevels = 28
 -> level2

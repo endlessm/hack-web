@@ -2,15 +2,34 @@
 # character: riley
 - Let's go! Remember, my objective is to get to the exit, and try to avoid the walls!
 * [(wait for: currentLevel is 3)] Level {currentLevel -1 } Complete!
--> level3
+-> level3_1
 
+=== level3_1 ===
+# character: ada
+- Hey, {get_user_name()}, did you know that Riley actually made this game?
+-> mid_level_check(4) -> level3_2
 
-=== level3 ===
+=== level3_2 ===
+# character: riley
+- Well, I didn't do everything... You helped with design, Ada, and Saniel helped me with the code, and Felix--
+-> mid_level_check(4) -> level3_3
+
+=== level3_3 ===
 # character: faber
-- Nice job on the music, Riley. Looks like all our jam sessions paid off!
-* [(wait for: currentLevel is 4)] Level {currentLevel -1 } Complete!
--> level4
+- Don't put yourself down, Riley! It takes a lot of skill to put something like this together.
+-> mid_level_check(4) -> level3_4
 
+=== level3_4 ===
+# character: ada
+- It does! Riley made this as one of her projects at The Academy - She had to own the project and manage it herself, but anyone around The Academy could help. I think it's easy to see why she's our star student!
+-> mid_level_check(4) -> level3_5
+
+=== level3_5 ===
+# character: riley
+- Aw, come on...don't make such a big deal out of it, it's embarassing -_-;;
+# character: riley
+- Um, let's concentrate on beating this level, {get_user_name()}!
+-> end_level_check(4) -> level4
 
 === level4 ===
 # character: saniel
