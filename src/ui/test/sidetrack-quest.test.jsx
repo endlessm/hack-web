@@ -6,6 +6,7 @@ import {
   Box,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import ReactGA from 'react-ga';
 
 import {
   VolumeOff,
@@ -135,6 +136,15 @@ const SidetrackQuest = () => {
 
       // Only update quest if some variable changes, to avoid infinite loop
       if (questUpdated) {
+        // Record the level completed event in metrics
+        if (!params.playing && params.success) {
+          ReactGA.event({
+            category: 'User',
+            action: 'Sidetrack level completed',
+            value: params.currentLevel,
+            label: `Sidetrack level completed: ${params.currentLevel}`,
+          });
+        }
         setCurrentChoice(undefined);
       }
     };
