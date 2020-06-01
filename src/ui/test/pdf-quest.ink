@@ -1,9 +1,16 @@
 # main character: faber
 INCLUDE common.ink
+INCLUDE pdf-quest.es.ink
 
+VAR language = "en"
 VAR loaded = false
 
--> begin
+{
+- language == "es":
+  -> begin_es
+- else:
+  -> begin
+}
 
 === begin ===
 - Wait a minute while the activity loads...
