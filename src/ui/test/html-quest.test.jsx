@@ -61,11 +61,11 @@ const HtmlQuest = () => {
       }
 
       updateApp('globalParameters', store.getState().hackableApp, (prop, value) => {
-        if (prop === 'code') {
+        if (prop === 'html' || prop === 'css') {
           const app = document.querySelector('#app');
           app.contentWindow.reload();
 
-          quest.updateStoryVariable('code', value);
+          quest.updateStoryVariable(prop, value);
           setCurrentChoice(undefined);
         }
       });

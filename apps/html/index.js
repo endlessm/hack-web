@@ -1,5 +1,9 @@
 var globalParameters = {
-  code: `<!DOCTYPE html>
+  css: `body {
+    padding: 10px;
+}
+`,
+  html: `<!DOCTYPE html>
 <html>
    <head>
       <title>This is a Test Web Page!</title>
@@ -14,5 +18,7 @@ var globalParameters = {
 
 function reload() {
   const content = document.getElementById('content');
-  content.srcdoc = globalParameters.code;
+  const styles = `<style>${globalParameters.css}</style>`;
+  const code = globalParameters.html.replace(/<\/head>/, `${styles}</head>`);
+  content.srcdoc = code;
 }
