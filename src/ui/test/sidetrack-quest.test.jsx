@@ -136,8 +136,10 @@ const SidetrackQuest = () => {
 
       // Only update quest if some variable changes, to avoid infinite loop
       if (questUpdated) {
+        const levelCompleted = !params.playing && params.success;
+        currentQuest.updateStoryVariable('levelCompleted', levelCompleted);
         // Record the level completed event in metrics
-        if (!params.playing && params.success) {
+        if (levelCompleted) {
           ReactGA.event({
             category: 'User',
             action: 'Sidetrack level completed',

@@ -12,6 +12,7 @@ VAR availableLevels = 2
 # will change to 0 on death
 VAR success = 1
 VAR playing = 1
+VAR levelCompleted = 0
 # Changing this to 1 plays the Felix cut scene
 # Value changes to 0 at cutscene end
 VAR controlsCutscene = 0
