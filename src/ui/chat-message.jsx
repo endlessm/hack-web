@@ -108,6 +108,12 @@ const useStyles = makeStyles(({
         maxWidth: custom.chatMessageMaxWidths.onlyXl,
       },
     },
+    messageTyping: {
+      backgroundPosition: 'center',
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat',
+      backgroundImage: `url('${typingAsset}')`,
+    },
     left: {
       minHeight: spacing(8),
       [breakpoints.down('md')]: {
@@ -167,11 +173,12 @@ const ChatMessage = ({
                 className={clsx(
                   styles.message,
                   message.codeSnippet && styles.messageWithSnippet,
+                  typing && styles.messageTyping,
                   styles[side],
                 )}
               >
                 <Box my={side === 'left' ? 1.5 : 0}>
-                  {typing ? (<img height={theme.spacing(2)} src={typingAsset} alt="..." />) : (
+                  {typing ? (<div />) : (
                     <>
                       <Typography dangerouslySetInnerHTML={{ __html: sanitize(message.text) }} />
                       {message.codeSnippet && (
