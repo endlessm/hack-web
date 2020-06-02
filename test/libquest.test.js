@@ -1,5 +1,6 @@
 import fs from 'fs';
 import Quest from '../src/libquest';
+import store from '../src/store';
 
 describe('libquest', () => {
   const path = './test/quest.ink.json';
@@ -286,6 +287,26 @@ describe('libquest', () => {
     expect(attractChoice.modifiers).toEqual({ attracting: true });
 
     quest.choose(choices[0]);
+    expect(() => {
+      quest.continueStory();
+    }).not.toThrow();
+  });
+
+  it('can get and set game state', () => {
+    const quest = new Quest(questContent);
+
+    quest.story.ChoosePathString('test_game_state');
+    const { choices, dialogue } = quest.continueStory();
+    expect(choices.length).toEqual(1);
+    expect(store.getState().gameState['test.value']).toEqual('test');
+    expect(store.getState().gameState['test.val']).toEqual({
+      'with': {
+        'deep': 'test2',
+      },
+    });
+
+    expect(dialogue[0].text).toEqual('<p>This is a test for game state: test, test2</p>');
+
     expect(() => {
       quest.continueStory();
     }).not.toThrow();

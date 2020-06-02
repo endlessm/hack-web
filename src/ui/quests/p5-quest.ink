@@ -254,6 +254,7 @@ TODO: Replace brute-force checks when we have a better check:
 
 
 === p5_31 ===
+{set_game_state("quest.P5/complete", true)}
 - We're done for the moment, but there's so much to explore in <b>p5.js</b>! Feel free to change any of the variables you’ve learned, and play around as much as you like. If you'd like to keep going with more activities like this, I've got a whole set available in Hack for Endless OS!
 -You can learn how to use complex shapes, random numbers, programming tools like variables and loops, and even "paint" with sound or create your own games. I'd love to see you there!
 ->END

@@ -158,6 +158,7 @@ VAR css = ""
 -> htmlintro2_9
 
 === htmlintro2_9 ===
+{set_game_state("quest.Web/complete", true)}
 - Nice, that's going to turn some heads! I bet it feels pretty good to have the tools to paint the whole internet!
 - If you'd like more activities like this, I've got a whole bunch in Hack for Endless OS! You can learn how to write your own tags, explore and hack web pages with the inspector, and even create a whole website using the latest web frameworks and tools! Come on and join me!
 -> END

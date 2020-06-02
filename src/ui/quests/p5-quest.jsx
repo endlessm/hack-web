@@ -13,7 +13,7 @@ import QuestFTHView from '../quest-fth-view';
 import ReloadButton from '../reload-button';
 import questContent from './p5-quest.ink';
 
-import store, { actions } from '../../store';
+import store, { actions, setGameState } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
 import Toolbox from '../toolbox/p5';
 
@@ -35,6 +35,11 @@ const P5Quest = () => {
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
   } = useQuest(questContent);
+
+  useEffect(() => {
+    const now = new Date();
+    setGameState('quest.P5/last_launch_date', `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`);
+  }, []);
 
   useEffect(() => {
     const changeCallback = (params, firstTime = false) => {
