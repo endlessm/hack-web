@@ -23,13 +23,13 @@ describe('libquest', () => {
     const { dialogue: firstDialogue, choices } = quest.continueStory();
     const name = 'radius';
     quest.choose(choices[0]);
-    expect(quest.story.variablesState[name]).toEqual(30);
+    expect(quest.getStoryVariable(name)).toEqual(30);
     quest.continueStory();
     expect(quest.hasEnded()).toBe(true);
     quest.updateStoryVariable(name, 55);
-    expect(quest.story.variablesState[name]).toEqual(55);
+    expect(quest.getStoryVariable(name)).toEqual(55);
     quest.restart();
-    expect(quest.story.variablesState[name]).toEqual(30);
+    expect(quest.getStoryVariable(name)).toEqual(30);
     const { dialogue: secondDialogue } = quest.continueStory();
     expect(secondDialogue).toEqual(firstDialogue);
   });
@@ -65,9 +65,9 @@ describe('libquest', () => {
   it('can update story variables', () => {
     const quest = new Quest(questContent);
     const name = 'radius';
-    expect(quest.story.variablesState[name]).toEqual(30);
+    expect(quest.getStoryVariable(name)).toEqual(30);
     quest.updateStoryVariable(name, 55);
-    expect(quest.story.variablesState[name]).toEqual(55);
+    expect(quest.getStoryVariable(name)).toEqual(55);
   });
 
   it('throws trying to update an undefined story variable', () => {
@@ -86,16 +86,16 @@ describe('libquest', () => {
     // updated:
     quest.updateStoryVariable(name, false);
     expect(spyOnUpdate).toHaveBeenCalledTimes(0);
-    expect(quest.story.variablesState[name]).toEqual(0);
+    expect(quest.getStoryVariable(name)).toEqual(0);
 
     quest.updateStoryVariable(name, true);
     expect(spyOnUpdate).toHaveBeenCalledTimes(1);
-    expect(quest.story.variablesState[name]).toEqual(1);
+    expect(quest.getStoryVariable(name)).toEqual(1);
 
     // Already in 1 (true), it shouldn't be updated:
     quest.updateStoryVariable(name, true);
     expect(spyOnUpdate).toHaveBeenCalledTimes(1);
-    expect(quest.story.variablesState[name]).toEqual(1);
+    expect(quest.getStoryVariable(name)).toEqual(1);
 
     spyOnUpdate.mockRestore();
   });
