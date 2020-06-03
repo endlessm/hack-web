@@ -162,12 +162,6 @@ const initializeDefaultData = (t) => {
           description: t('Processing is a language that connects programming to art, making it easy for anyone to understand. Check out the basics of JavaScript, a common programming language with many different uses!'),
         },
         {
-          slug: '/maker',
-          name: t('Engineering'),
-          subtitle: t('Learn how strong buildings stay up!'),
-          description: t('Learn some basic engineering in this fun (and tasty!) activity. The virtual world is useful, but there\'s no substitute for building with your hands!'),
-        },
-        {
           slug: '/games',
           name: t('Sidetrack'),
           subtitle: t('Take a break, and enjoy a game!'),
@@ -178,6 +172,12 @@ const initializeDefaultData = (t) => {
           name: t('Web Tech'),
           subtitle: t('Explore web pages, and learn how to make your own!'),
           description: t('Have you ever wondered how web pages are made, or wanted to make your own? Come and take your first steps into web design - it\'s easier than you think!'),
+        },
+        {
+          slug: '/maker',
+          name: t('Engineering'),
+          subtitle: t('Learn how strong buildings stay up!'),
+          description: t('Learn some basic engineering in this fun (and tasty!) activity. The virtual world is useful, but there\'s no substitute for building with your hands!'),
         },
         {
           slug: '/os',
