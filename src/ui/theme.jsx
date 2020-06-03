@@ -84,12 +84,11 @@ const theme = createMuiTheme({
     },
     glowAnimation: {
       from: {
-        boxShadow: '0 0 0 0px rgba(255, 255, 255, 0.4);',
+        boxShadow: '0 0 0 0 rgba(255, 255, 255, 0.4);',
       },
       to: {
         boxShadow: `
-          0 0 20px 10px #fff, /* inner */
-          0 0 40px 30px ${colors.hackGreen}; /* outer */
+          0 0 20px 20px ${colors.hackGreen}; /* outer */
         `,
       },
     },
