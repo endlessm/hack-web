@@ -10,14 +10,10 @@ import './i18n';
 // application:
 
 import App from './ui/app';
-// import App from './ui/test/flip-to-hack.test';
-// import App from './ui/test/quest-fth-view.test';
-// import App from './ui/test/dialogue.test';
-// import App from './ui/test/toolbox.test';
-// import App from './ui/test/p5-quest.test';
-// import App from './ui/test/html-quest.test';
-// import App from './ui/test/pdf-quest.test';
-// import App from './ui/test/sidetrack-quest.test';
+// import App from './ui/quests/p5-quest';
+// import App from './ui/quests/html-quest';
+// import App from './ui/quests/pdf-quest';
+// import App from './ui/quests/sidetrack-quest';
 
 render(
   <Provider store={store}>

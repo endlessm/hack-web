@@ -18,10 +18,10 @@ import Login, { RequireAuth } from './login';
 import SignUp from './signup';
 import ResetPassword from './reset';
 
-import { P5Quest } from './test/p5-quest.test';
-import { HtmlQuest } from './test/html-quest.test';
-import { PdfQuest } from './test/pdf-quest.test';
-import { SidetrackQuest } from './test/sidetrack-quest.test';
+import { P5Quest } from './quests/p5-quest';
+import { HtmlQuest } from './quests/html-quest';
+import { PdfQuest } from './quests/pdf-quest';
+import { SidetrackQuest } from './quests/sidetrack-quest';
 
 ReactGA.initialize('UA-160877903-1');
 const GAWrapper = ({ children }) => {
