@@ -88,9 +88,8 @@ const theme = createMuiTheme({
       },
       to: {
         boxShadow: `
-          0 0 20px 10px #fff, /* inner white */
-          0 0 30px 20px #f0f, /* middle magenta */
-          0 0 40px 30px #0ff; /* outer cyan */
+          0 0 20px 10px #fff, /* inner */
+          0 0 40px 30px ${colors.hackGreen}; /* outer */
         `,
       },
     },
