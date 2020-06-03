@@ -36,7 +36,9 @@ INCLUDE sidetrack-2-quest.ink
     - currentLevel == desiredlevel:
         ->->
     - else:
-        + [attracting: ❯] ❯
+        + {mid_level_check < 2} [attracting: ❯] ❯
+        ->->
+        + {mid_level_check >= 2} ❯
         ->->
         + [(wait for: currentLevel is {desiredlevel})] #
         ->->
