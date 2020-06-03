@@ -221,7 +221,7 @@ export default class Quest {
     this.story.ChooseChoiceIndex(choice.index);
   }
 
-  hasEnded() {
+  get hasEnded() {
     return !this.story.canContinue && !this.story.currentChoices.length;
   }
 

@@ -9,13 +9,13 @@ describe('libquest', () => {
   it('should load the story, knows when it ended', () => {
     const quest = new Quest(questContent);
     expect(quest.story).not.toBe(undefined);
-    expect(quest.hasEnded()).toBe(false);
+    expect(quest.hasEnded).toBe(false);
     const { choices } = quest.continueStory();
-    expect(quest.hasEnded()).toBe(false);
+    expect(quest.hasEnded).toBe(false);
     quest.choose(choices[0]);
-    expect(quest.hasEnded()).toBe(false);
+    expect(quest.hasEnded).toBe(false);
     quest.continueStory();
-    expect(quest.hasEnded()).toBe(true);
+    expect(quest.hasEnded).toBe(true);
   });
 
   it('can restart the story', () => {
@@ -25,7 +25,7 @@ describe('libquest', () => {
     quest.choose(choices[0]);
     expect(quest.getStoryVariable(name)).toEqual(30);
     quest.continueStory();
-    expect(quest.hasEnded()).toBe(true);
+    expect(quest.hasEnded).toBe(true);
     quest.updateStoryVariable(name, 55);
     expect(quest.getStoryVariable(name)).toEqual(55);
     quest.restart();
