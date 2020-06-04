@@ -208,7 +208,7 @@ function useQuest(questContent) {
     const { dialogue: dia, choices: cho } = quest.continueStory();
     setDialogue((oldDialogue) => [...oldDialogue, ...dia]);
     setChoices(cho);
-    if (quest.hasEnded()) {
+    if (quest.hasEnded) {
       setHasEnded(true);
     }
     dispatch(actions.sidePanelSetOpen());
