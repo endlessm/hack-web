@@ -43,6 +43,18 @@ const useStyles = makeStyles(({
       duration: transitions.duration.leavingScreen,
     }),
   },
+  homeButton: {
+    boxShadow: 'none',
+    borderRadius: 0,
+    width: spacing(10),
+    height: spacing(10),
+    marginTop: -spacing(1),
+    marginBottom: -spacing(1),
+    marginLeft: -spacing(3.5),
+    '&:hover': {
+      boxShadow: 'none',
+    },
+  },
   appbarShift: {
     [breakpoints.down('md')]: {
       width: `calc(100% - ${custom.drawerWidths.downMd}px)`,
@@ -150,6 +162,7 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
           ) : (
             <MainIconButton
               component={RouterLink}
+              className={classes.homeButton}
               to="/"
               edge="start"
               color="secondary"
