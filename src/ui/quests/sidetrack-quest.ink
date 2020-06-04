@@ -24,7 +24,6 @@ VAR hasLockKey = 0
 VAR isLocked = 1
 VAR attractFTH = 0
 VAR codeErrors = 0
-VAR tunnelCount = 0
 
 INCLUDE sidetrack-1-quest.ink
 INCLUDE sidetrack-2-quest.ink
@@ -47,6 +46,7 @@ INCLUDE sidetrack-2-quest.ink
 === end_level_check(desiredLevel)
 {
     - currentLevel == desiredLevel:
+        # character: user
         Level {currentLevel -1 } Complete!
         ->->
     - else:
@@ -84,12 +84,7 @@ INCLUDE sidetrack-2-quest.ink
 === level1_5 ===
 # character: riley
 -Woohoo! Here we are! See that <b>Exit</b> on the far side of the screen? That's our goal! Let's get there! Use the FORWARD, UP, and DOWN <b>Instructions</b> to move through these obstacles, but watch out for those <b>Walls</b>!
-{ currentLevel == 2:
-    - Level {currentLevel -1 } Complete!
-    -> the_choice
-}
-* [(wait for: currentLevel is 2)] Level {currentLevel -1 } Complete!
--> the_choice
+-> end_level_check(2) -> the_choice
 
 === the_choice ===
 # character: riley
