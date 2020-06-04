@@ -24,6 +24,7 @@ import { PdfQuest } from './quests/pdf-quest';
 import { SidetrackQuest } from './quests/sidetrack-quest';
 
 ReactGA.initialize('UA-160877903-1');
+ReactGA.set({ anonymizeIp: true });
 const GAWrapper = ({ children }) => {
   const { location } = window;
 
