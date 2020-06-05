@@ -1,4 +1,5 @@
 import { createStore, combineReducers } from 'redux';
+import ReactGA from 'react-ga';
 
 export
 const actions = {
@@ -41,7 +42,22 @@ const actions = {
     type: 'CARDSETS',
     payload: data,
   }),
+  setGameState: (key, value) => ({
+    type: 'GAME-STATE',
+    payload: { key, value },
+  }),
 };
+
+function gameStateReducer(state = {}, action) {
+  switch (action.type) {
+    case 'GAME-STATE': {
+      const { key, value } = action.payload;
+      return { ...state, [key]: value };
+    }
+    default:
+      return state;
+  }
+}
 
 function authReducer(state = {}, action) {
   switch (action.type) {
@@ -141,6 +157,7 @@ const initialState = {
 };
 
 const store = createStore(combineReducers({
+  gameState: gameStateReducer,
   auth: authReducer,
   ui: uiReducer,
   cardsets: cardSetReducer,
@@ -297,4 +314,93 @@ const initializeDefaultData = (t) => {
   store.dispatch(actions.setCardSets(defaultCardSets));
 };
 
-export { store as default, initializeDefaultData };
+function trackGameStateChanges(key) {
+  const ev = {
+    category: 'User',
+    action: null,
+    value: 0,
+    label: null,
+  };
+
+  // track game state changes in analytics
+  switch (key) {
+    case 'quest.Web/complete':
+    case 'quest.P5/complete':
+    case 'quest.Sidetrack1/complete':
+    case 'quest.Sidetrack2/complete': {
+      const quest = key.split('/')[0].split('.')[1];
+      ev.category = quest;
+      ev.action = `${quest} completed`;
+      break;
+    }
+
+    default:
+      return;
+  }
+
+  ReactGA.event(ev);
+}
+
+function setGameState(key, value) {
+  trackGameStateChanges(key, value);
+
+  let finalKey = key;
+  let finalValue = value;
+
+  // slash is used to define nesting
+  const [basek, ...rest] = key.split('/');
+
+  // Nested values
+  if (rest.length > 0) {
+    const state = store.getState().gameState;
+    finalKey = basek;
+
+    finalValue = state[basek] || {};
+    const lastKey = rest[rest.length - 1];
+    const keys = rest.slice(0, -1);
+
+    let object = finalValue;
+    keys.forEach((k) => {
+      if (!(k in object)) {
+        object[k] = {};
+      }
+      object = object[k];
+    });
+    object[lastKey] = value;
+  }
+
+  store.dispatch(actions.setGameState(finalKey, finalValue));
+}
+
+function getGameState(key) {
+  const { gameState } = store.getState();
+  if (key in gameState) {
+    return gameState[key];
+  }
+
+  // slash is used to define nesting
+  const [basek, ...rest] = key.split('/');
+  if (basek in gameState) {
+    let object = gameState[basek];
+    // eslint-disable-next-line no-restricted-syntax
+    for (const k of rest) {
+      if (!(k in object)) {
+        object = null;
+        break;
+      }
+      object = object[k];
+    }
+    return object;
+  }
+
+  return null;
+}
+
+window.store = store;
+
+export {
+  store as default,
+  initializeDefaultData,
+  getGameState,
+  setGameState,
+};

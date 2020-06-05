@@ -1,5 +1,8 @@
 # main character: saniel
 
+EXTERNAL get_game_state(key)
+EXTERNAL set_game_state(key, value)
+
 VAR radius = 30
 VAR flipped = false
 VAR filter = "sample text"
@@ -102,3 +105,9 @@ Bye! -> END
 + [option with brackets] -> END
 + [(wait for: flipped)] -> END
 + [attracting: ❯] ❯ -> END
+
+== test_game_state
+{set_game_state("test.value", "test")}
+{set_game_state("test.val/with/deep", "test2")}
+- This is a test for game state: {get_game_state("test.value")}, {get_game_state("test.val/with/deep")}
++ First option -> END

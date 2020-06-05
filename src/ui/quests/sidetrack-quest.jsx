@@ -20,7 +20,7 @@ import QuestFTHView from '../quest-fth-view';
 import ReloadButton from '../reload-button';
 import questContent from './sidetrack-quest.ink';
 
-import store, { actions } from '../../store';
+import store, { actions, setGameState } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
 import Toolbox, { validateInstructions, validateLevel } from '../toolbox/sidetrack';
 import LockScreen from '../toolbox/lockscreen';
@@ -73,6 +73,11 @@ const SidetrackQuest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const card = useCard();
+
+  useEffect(() => {
+    const now = new Date();
+    setGameState('quest.Sidetrack/last_launch_date', `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`);
+  }, []);
 
   // This is here to trigger a reload when the sidepanel changes so we can
   // focus the APP

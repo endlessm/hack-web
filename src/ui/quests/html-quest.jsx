@@ -14,7 +14,7 @@ import QuestFTHView from '../quest-fth-view';
 import ReloadButton from '../reload-button';
 import questContent from './html-quest.ink';
 
-import store, { actions } from '../../store';
+import store, { actions, setGameState } from '../../store';
 import { proxyApp, updateApp } from '../toolbox/tools';
 import Toolbox from '../toolbox/html';
 
@@ -41,6 +41,11 @@ const HtmlQuest = () => {
   const setErrors = (e) => {
     errorsRef.current = e;
   };
+
+  useEffect(() => {
+    const now = new Date();
+    setGameState('quest.Web/last_launch_date', `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`);
+  }, []);
 
   useEffect(() => {
     const changeCallback = (params, firstTime = false) => {

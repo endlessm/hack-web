@@ -1,4 +1,5 @@
 import { Story } from 'inkjs';
+import { getGameState, setGameState } from './store';
 
 const defaultCharacter = 'ada';
 const userCharacter = 'user';
@@ -108,6 +109,9 @@ export default class Quest {
     this.mainCharacter = extractMainCharacter(this.story.globalTags);
     this.dialogueId = 0;
     this.waitFor = {};
+
+    this.story.BindExternalFunction('get_game_state', getGameState);
+    this.story.BindExternalFunction('set_game_state', setGameState);
   }
 
   codeSnippetBegins() {

@@ -1,7 +1,7 @@
 import { hot } from 'react-hot-loader';
 import { useSelector } from 'react-redux';
 import React, {
-  useLayoutEffect, useRef, useState,
+  useLayoutEffect, useRef, useState, useEffect,
 } from 'react';
 import {
   Box,
@@ -21,6 +21,7 @@ import { Document, Page } from 'react-pdf';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
+import { setGameState } from '../../store';
 import TestWrapper from './test-wrapper';
 import Dialogue, { useQuest } from '../dialogue';
 import { useCard } from '../hack-card';
@@ -51,6 +52,11 @@ const useStyles = makeStyles(({ custom, palette, shadows }) => ({
 const PdfQuest = () => {
   const classes = useStyles();
   const card = useCard();
+
+  useEffect(() => {
+    const now = new Date();
+    setGameState('quest.PDF/last_launch_date', `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`);
+  }, []);
 
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
