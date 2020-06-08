@@ -27,16 +27,5 @@ pipeline {
                 sh 'yarn lint'
             }
         }
-        stage('Publish') {
-            steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                                  credentialsId: 'hack-computer-iam-user-jenkins-hack-web',
-                                  accessKeyVariable: 'KEY',
-                                  secretKeyVariable: 'SECRET']]) {
-                    sh 'yarn build'
-                    sh 'yarn deploy'
-                }
-            }
-        }
     }
 }
