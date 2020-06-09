@@ -300,8 +300,8 @@ describe('libquest', () => {
     expect(choices.length).toEqual(1);
     expect(store.getState().gameState['test.value']).toEqual('test');
     expect(store.getState().gameState['test.val']).toEqual({
-      'with': {
-        'deep': 'test2',
+      with: {
+        deep: 'test2',
       },
     });
 
