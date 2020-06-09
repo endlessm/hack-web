@@ -154,7 +154,13 @@ const initialState = {
   cardsets: [],
   hackableApp: {},
   originalHackableApp: {},
+  gameState: {},
 };
+
+// load gameState from localStorage
+if (localStorage.getItem('gameState')) {
+  initialState.gameState = JSON.parse(localStorage.getItem('gameState'));
+}
 
 const store = createStore(combineReducers({
   gameState: gameStateReducer,
@@ -396,7 +402,10 @@ function getGameState(key) {
   return null;
 }
 
-window.store = store;
+// Persist gameState between sessions in local storage
+store.subscribe(() => {
+  localStorage.setItem('gameState', JSON.stringify(store.getState().gameState));
+});
 
 export {
   store as default,
