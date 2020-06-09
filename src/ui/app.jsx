@@ -32,9 +32,9 @@ const GAWrapper = ({ children }) => {
   // we've the final document.title setted
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
-      ReactGA.pageview(location.pathname);
+      ReactGA.pageview(location.pathname + location.search);
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.search]);
 
   return children;
 };
