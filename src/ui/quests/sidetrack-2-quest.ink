@@ -4,33 +4,16 @@
 }
 * [(wait for: currentLevel is 23)] Level {currentLevel -1 } Complete!
 -> level23
-* [(wait for: success is 0)] Level {currentLevel} Failed!
--> level22_reorder
-
-
-=== level22_reorder ===
-# character: faber
-- I think we're going to need to rearrange the instructions until we get it right!
--> end_level_check(23) -> level23
 
 === level23 ===
 - Hey, check out that instruction in the middle of the set. That's not a good symbol!
-* ❯
+# character: ada
+- I suppose we should try out the level anyway, just to see what happens...
 -> level23_2
 * [(wait for: success is 0)] Level {currentLevel} Failed!
 -> level23_fail
 * [(wait for: flipped)] Flipped!
 -> level23_fail
-
-
-=== level23_2 ===
-# character: ada
-- Well, I suppose we should try out the level anyway, just to see what happens...
-* [(wait for: success is 0)] Level {currentLevel} Failed!
--> level23_fail
-* [(wait for: flipped)] Flipped!
--> level23_fail
-
 
 === level23_fail ===
 # character: estelle
@@ -70,7 +53,7 @@
 
 === level23_cont_4 ===
 # character: saniel
-- Let's see what we have. A line of pits, an invalid instruction... It <b>appears</b> we're stuck, but I don't think so! Riley, is there a way for us to look into the code and debug that instruction?
+- Ahem. Now, what do we have? A line of pits, an invalid instruction... It <b>appears</b> we're stuck, but we won't be defeated this easily! Riley, is there a way for us to look into the code and debug that instruction?
 { flipped == true:
 	-> level23_cont_5
 }
@@ -82,7 +65,7 @@
 
 === level23_cont_5 ===
 ~ attractFTH = 1
-- You got it, Dr. Rowe! That's exactly what the next step is. Do you see that button on the <b>left side</b> of the screen, {get_user_name()}? That's the <b>Flip to Hack</b> button! You can use it to go behind the scenes and hack the game with the <b>Toolbox</b>. Let's go!
+- Exactly, Dr. Rowe! That's what the next step is - debug the broken code! Do you see that button on the <b>left side</b> of the screen, {get_user_name()}? That's the <b>Flip to Hack</b> button! You can use it to go behind the scenes and hack the game with the <b>Toolbox</b>. Let's go!
 { flipped:
 	-> level23_cont_8
 }
@@ -101,7 +84,8 @@
 
 
 === level23_cont_10 ===
-- Take a close look at the instructions. When you write code, it has to be <b>exactly</b> how the computer expects... So, do you see anything weird? Try and fix any problems you see. You can always Undo any mistakes you make (<b>Ctrl + Z</b>), and if everything get really bad, you can always  reset the code by clicking the <b>Reload</b> button in the upper right.
+- Take a close look at the instructions. If you see anything weird, try and fix it.
+- You can always Undo any mistakes you make (<b>Ctrl + Z</b>), and if everything get really bad, you can always reset the code by clicking the <b>Reload</b> button in the upper right. Got it?
 * [👍] I think I see the problem!
 -> level23_cont_11
 * [👎] I'm a little lost.
@@ -125,13 +109,13 @@
 
 === level23_flip ===
 ~ attractFTH = 1
-- Awesome, I think you fixed it! Now <b>flip</b> back to the front of Sidetrack.
+- Now <b>flip</b> back to the front of Sidetrack.
 * [(wait for: flipped)]  Flipped back!
 -> level23_play
 
 === level23_play ===
 ~ attractFTH = 0
-- Ok, let's give it a shot! Press the <b>Play</b> button.
+- Ok, press the <b>Play</b> button!
 * [(wait for: currentLevel is 24)] Level {currentLevel -1} Complete!
 -> level24
 
@@ -145,7 +129,11 @@
 - Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to the <b>Instructions</b> again!
 * [(wait for: flipped)] Flipped!
 -> level24_3
-* [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
+* [(wait for: currentLevel is 25)] #
+# character: saniel
+Gibbering heffalumps! That's quite a gambit, {get_user_name()}! I think I might say... how does it go... that "you're the man now, dog!"
+# character: user
+Level {currentLevel -1} Complete!
 -> level25
 
 
@@ -163,7 +151,7 @@
 === level24_flip ===
 ~ attractFTH = 1
 # character: saniel
-- Awesome! No errors anymore. Now <b>flip</b> back to the front of Sidetrack.
+- Good. You've corrected the errors, now <b>flip</b> back to the front of Sidetrack.
 * [(wait for: flipped)]  Flipped back!
 -> level24_play
 
@@ -218,14 +206,14 @@
 
 === level25_fix ===
 # character: saniel
-- Nice work, you fixed it. Remember, now we need to <b>flip</b> back and check if you can get through the maze. If not, you might need different instructions.
+- Well done, you've fixed the errors. Now, <b>flip</b> back and see if you can complete the level. Don't forget that you might still need to re-order or change in instructions to get through.
 * [(wait for: currentLevel is 26)] Level {currentLevel -1} Complete!
 -> level26
 
 
 === level26 ===
 # character: ada
-- I'm not so sure these errors are a mistake, every instruction in this set is wrong! Statistically, the probability of that occurring is quite low.
+- I don't think these errors are a mistake! Every instruction in this set is wrong, and statistically, that's very unlikely.
 * ❯
 -> level26_2
 * [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
@@ -233,7 +221,7 @@
 
 
 === level26_2 ===
-- Now you're getting it! Head to the <b>Instructions</b> again by <b>flipping</b> Sidetrack!
+- Hey {get_user_name()}, you know the drill now! <b>Flip</b> and hack!
 * [(wait for: flipped)] Flipped!
 -> level26_3
 * [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
@@ -241,8 +229,6 @@
 
 
 === level26_3 ===
-# character: ada
-- Once you've fixed the errors, you still might need to re-order the instructions in order to beat this level.
 * [(wait for: codeErrors is 0)] Fixed it!
 -> level26_fix
 * [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
@@ -251,34 +237,14 @@
 
 === level26_fix ===
 # character: faber
-- Excellent!
+Just because you fixed the errors doesn't mean the instructions are correct, you'll probably have to re-order them... or maybe even re-write them completely!
 * [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
 -> level27
-* [(wait for: success is 0)] Level {currentLevel} Failed!
--> level26_reorder
-
-
-=== level26_reorder ===
-# character: faber
-- You'll need to rearrange the instructions until you get it right.
-* [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
--> level27
-* [(wait for: success is 0)] Level {currentLevel} Failed!
--> level26_reorder
 
 
 === level27 ===
 # character: ada
 - It looks like this level has only two incorrect instructions - that's an improvement.
-* [(wait for: codeErrors is 0)] Fixed it!
--> level27_fix
-* [(wait for: currentLevel is 28)] Level {currentLevel -1} Complete!
--> level28
-
-
-=== level27_fix ===
-# character: saniel
-- Great work. You've got it!
 * [(wait for: currentLevel is 28)] Level {currentLevel -1} Complete!
 -> level28
 

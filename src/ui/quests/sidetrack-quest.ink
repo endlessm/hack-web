@@ -69,6 +69,8 @@ INCLUDE sidetrack-2-quest.ink
 }
 
 === begin ===
+// Disable the level selector in Sidetrack:
+~ levelSelectorsEnabled = 0
 -> level1
 
 === level1 ===
@@ -76,8 +78,6 @@ INCLUDE sidetrack-2-quest.ink
 -> end_level_check(2) -> the_choice
 
 === the_choice ===
-// Disable the level selector in Sidetrack:
-~ levelSelectorsEnabled = 0
 - Oh, there's way more than one level here. This is only the beginning!
 - You've got a choice here: Do you want to keep playing normally, or jump straight ahead to hacking the game?
 * [Keep Playing!] I'll keep going, I want to play all the way through.

@@ -2,6 +2,7 @@
 - Let's go! Remember, my objective is to get to the exit, and try to avoid the walls!
 -> end_level_check(3) -> level3_1
 
+
 === level3_1 ===
 # character: ada
 - Hey, {get_user_name()}, did you know that Riley actually made this game?
@@ -26,11 +27,11 @@
 - Um, let's concentrate on beating this level, {get_user_name()}!
 -> end_level_check(4) -> level4
 
+
 === level4 ===
 # character: saniel
 -Oh ho! <b>Pits</b>, eh? I wonder how you'll cross those...
 -> mid_level_check(5) -> level4_1
-
 
 === level4_1 ===
 -You need to use the <b>Jump</b> instruction to cross <b>Pits</b>! There's a trick to it, though. <b>Jump</b> can only cross a <b>pit</b> if it's <b>directly</b> in front of you.
@@ -45,7 +46,6 @@
 -BTW, those pits weren't easy to draw... it's tough trying to get that feeling of a deep, black hole, but only using colors.
 -> mid_level_check(7) -> level6_1
 
-
 === level6_1 ===
 # character: ada
 -Riley, you did extremely well. I wish every student had your drive!
@@ -57,13 +57,9 @@
 -Hey Riley, I think your game has some <b>bugs</b>, LOL! What a cool bunch of robots. <tt>Beep. Boop. Hello. Faber. I. Am. A. Bugbot.</tt>
 -> mid_level_check(8) -> level7_1
 
-
-
 === level7_1 ===
 -I knew you'd like that one, Faber :D
 -> mid_level_check(8) -> level7_2
-
-
 
 === level7_2===
 # character: estelle
@@ -119,28 +115,23 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 -What was <b>that</b>? Riley?
 -> mid_level_check(15) -> level14_postcs_2
 
-
 === level14_postcs_2 ===
 # character: ada
 -I think we have a problem! Riley, it looks like the controls just disappeared. Any ideas?
 -> mid_level_check(15) -> level14_postcs_3
 
-
 === level14_postcs_3 ===
 - I was wondering when Felix would show up! For once, he's on time, and doing exactly what I asked him to. <b>Now</b> things are going to get interesting!
 -> mid_level_check(15) -> level14_postcs_4
-
 
 === level14_postcs_4 ===
 # character: estelle
 -Look, {get_user_name()} - there's a pre-made set of instructions already here.
 -> mid_level_check(15) -> level14_postcs_5
 
-
 === level14_postcs_5 ===
 -And now, we're in hard-mode! See that <b>Play</b> button on the left? Try pushing it.
 -> end_level_check(15) -> level15
-
 
 
 === level15 ===
@@ -153,11 +144,9 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 -Hmm, there's no way these instructions could finish this level in this order! You'll have to re-order them to get through.
 -> mid_level_check(17) -> level16_2
 
-
 === level16_2 ===
 - Drag and drop the instructions to re-order them, and press <b>Play</b> to start your run! Oh yeah, and once you press play... no changing instructions around until you succeed or fail!
 -> end_level_check(17) -> level17
-
 
 
 === level17 ===
@@ -165,12 +154,10 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 -Fantastic work, you practically sailed through that level, {get_user_name()}. Excellent planning!
 -> mid_level_check(18) -> level17_2
 
-
 === level17_2 ===
 # character: saniel
 - Riley, I can see the progression from puzzle-solving to strategic planning in this game, and I'm impressed.
 -> mid_level_check(18) -> level17_3
-
 
 === level17_3 ===
 -Woah, t-thanks, Saniel! That means a lot to me.
@@ -182,11 +169,9 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 -Hey Riley, how's your maze going?
 -> mid_level_check(19) -> level18_2
 
-
 === level18_2 ===
 -It's pretty... a-maze-ing! :D Seriously, {get_user_name()} I hope you're having as much fun as we are. It's so cool to see someone play something I helped build!
 -> mid_level_check(19) -> level18_3
-
 
 === level18_3 ===
 # character: ada
@@ -197,7 +182,6 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 === level19 ===
 -Let's turn the heat up - now you've got 2 Jumps.
 -> mid_level_check(20) -> level19_2
-
 
 === level19_2 ===
 # character: ada
