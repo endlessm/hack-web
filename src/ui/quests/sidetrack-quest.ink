@@ -17,34 +17,39 @@ VAR playing = 1
 VAR controlsCutscene = 0
 // Same but for the ending cutscene
 VAR escapeCutscene = 0
-// Repurposed for level skip to 22
+// Used for level skip to 22
 VAR skip = 0
 // Flip to Hack
 VAR hasLockKey = 0
 VAR isLocked = 1
 VAR attractFTH = 0
 VAR codeErrors = 0
+VAR doHint = 0
 
 INCLUDE sidetrack-1-quest.ink
 INCLUDE sidetrack-2-quest.ink
 
 -> begin
 
-=== mid_level_check(desiredlevel)
+=== mid_level_check(desiredLevel)
 {
-    - currentLevel == desiredlevel:
+    - currentLevel == desiredLevel - 2:
+        -> wrong_level(desiredLevel) -> mid_level_check(desiredLevel)
+    - currentLevel == desiredLevel:
         ->->
     - else:
         + {mid_level_check < 2} [attracting: ❯] ❯
         ->->
         + {mid_level_check >= 2} ❯
         ->->
-        + [(wait for: currentLevel is {desiredlevel})] #
+        + [(wait for: currentLevel is {desiredLevel})] #
         ->->
 }
 
 === end_level_check(desiredLevel)
 {
+    - currentLevel == desiredLevel - 2:
+        -> wrong_level(desiredLevel) -> end_level_check(desiredLevel)
     - currentLevel == desiredLevel:
         # character: user
         Level {currentLevel -1 } Complete!
@@ -54,10 +59,17 @@ INCLUDE sidetrack-2-quest.ink
         ->->
 }
 
-=== begin ===
--> level1_5
+=== wrong_level(desiredLevel)
+# character: riley
+- Oops! We need to go back to Level {desiredLevel - 1}!
++ [(wait for: currentLevel is {desiredLevel - 1})] #
+->->
 
-=== level1_5 ===
+
+=== begin ===
+-> level1
+
+=== level1 ===
 # character: riley
 -Hey, {get_user_name()}, welcome to Sidetrack! See that <b>Exit</b> on the far side of the screen? That's our goal! Use the FORWARD, UP, and DOWN <b>Instructions</b> to move through these obstacles, but watch out for the <b>Walls</b>!
 -> end_level_check(2) -> the_choice
