@@ -20,6 +20,7 @@ import {
 import {
   ExpandMore,
   Home,
+  AccountCircle,
   Language,
 } from '@material-ui/icons';
 
@@ -55,6 +56,9 @@ const useStyles = makeStyles(({
       boxShadow: 'none',
     },
   },
+  inventoryButton: {
+    boxShadow: 'none',
+  },
   appbarShift: {
     [breakpoints.down('md')]: {
       width: `calc(100% - ${custom.drawerWidths.downMd}px)`,
@@ -85,18 +89,13 @@ const labelPerLanguageCode = new Map([
   ['es', 'Español'],
 ]);
 
-const HackTopBar = ({ title, subtitle, isMainPage }) => {
+const LanguageSelector = ({ isMainPage }) => {
   const classes = useStyles({ isMainPage });
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = useSelector((state) => state.ui.sidePanelOpen);
-  const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
 
-  // Update the document title to match the current title
-  useEffect(() => {
-    document.title = `Hack - ${title}`;
-  }, [title]);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const dispatch = useDispatch();
+  const open = useSelector((state) => state.ui.sidePanelOpen);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -112,6 +111,68 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
     setAnchorEl(null);
   };
 
+  if (CONFIG.branch === 'stable') {
+    // FIXME: Temporarily hiding the language selector in
+    // the production site.
+    return <></>;
+  }
+
+  return (
+    <Box position="absolute" right={0} mr={!open ? 10 : 1}>
+      <Tooltip title={t('Change language')} enterDelay={300}>
+        <Button
+          color="secondary"
+          size="large"
+          aria-controls="language-menu"
+          aria-haspopup="true"
+          className={classes.languageButton}
+          onClick={handleClick}
+          startIcon={<Language />}
+          endIcon={<ExpandMore />}
+        >
+          {labelPerLanguageCode.get(i18n.language)}
+        </Button>
+      </Tooltip>
+      <Menu
+        id="language-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {Array.from(labelPerLanguageCode, ([langId, langLabel]) => (
+          <MenuItem
+            key={langId}
+            onClick={() => changeLanguage(langId)}
+            selected={i18n.language === langId}
+          >
+            {langLabel}
+          </MenuItem>
+        ))}
+      </Menu>
+    </Box>
+  );
+};
+
+LanguageSelector.propTypes = {
+  isMainPage: PropTypes.bool,
+};
+
+LanguageSelector.defaultProps = {
+  isMainPage: false,
+};
+
+const HackTopBar = ({ title, subtitle, isMainPage }) => {
+  const classes = useStyles({ isMainPage });
+
+  const dispatch = useDispatch();
+  const open = useSelector((state) => state.ui.sidePanelOpen);
+
+  // Update the document title to match the current title
+  useEffect(() => {
+    document.title = `Hack - ${title}`;
+  }, [title]);
+
   return (
     <Box>
       <AppBar
@@ -122,43 +183,17 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
       >
         <Toolbar className={classes.toolbar}>
           {isMainPage ? (
-            // FIXME: Temporarily hiding the language selector in
-            // the production site.
-            CONFIG.branch !== 'stable' && (
-              <Box position="absolute" right={0} mr={!open ? 10 : 1}>
-                <Tooltip title={t('Change language')} enterDelay={300}>
-                  <Button
-                    color="secondary"
-                    size="large"
-                    aria-controls="language-menu"
-                    aria-haspopup="true"
-                    className={classes.languageButton}
-                    onClick={handleClick}
-                    startIcon={<Language />}
-                    endIcon={<ExpandMore />}
-                  >
-                    {labelPerLanguageCode.get(i18n.language)}
-                  </Button>
-                </Tooltip>
-                <Menu
-                  id="language-menu"
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  {Array.from(labelPerLanguageCode, ([langId, langLabel]) => (
-                    <MenuItem
-                      key={langId}
-                      onClick={() => changeLanguage(langId)}
-                      selected={i18n.language === langId}
-                    >
-                      {langLabel}
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-            )
+            <>
+              <MainIconButton
+                className={classes.inventoryButton}
+                edge="start"
+                aria-label="menu"
+                onClick={() => dispatch(actions.inventoryToggle())}
+              >
+                <AccountCircle />
+              </MainIconButton>
+              <LanguageSelector isMainPage={isMainPage} />
+            </>
           ) : (
             <MainIconButton
               component={RouterLink}
