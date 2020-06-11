@@ -22,6 +22,9 @@ const actions = {
   deselectCards: () => ({
     type: 'DESELECT-CARDS',
   }),
+  inventoryToggle: () => ({
+    type: 'INVENTORY-TOGGLE',
+  }),
   logout: () => ({ type: 'LOGOUT' }),
   originalHackableAppSet: (data) => ({
     type: 'ORIG-SET',
@@ -97,6 +100,9 @@ function uiReducer(state = {}, action) {
     case 'DESELECT-CARDS': {
       return { ...state, cardSelected: {} };
     }
+    case 'INVENTORY-TOGGLE': {
+      return { ...state, inventory: !state.inventory };
+    }
     default:
       return state;
   }
@@ -150,6 +156,7 @@ const initialState = {
   ui: {
     sidePanelOpen: false,
     cardSelected: {},
+    inventory: false,
   },
   cardsets: [],
   hackableApp: {},
