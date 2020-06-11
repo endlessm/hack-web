@@ -1,4 +1,5 @@
 import fs from 'fs';
+import i18next from 'i18next';
 import Quest from '../src/libquest';
 import store from '../src/store';
 
@@ -310,5 +311,25 @@ describe('libquest', () => {
     expect(() => {
       quest.continueStory();
     }).not.toThrow();
+  });
+
+  it('reads achievements', () => {
+    i18next.init({
+      lng: 'en',
+      debug: true,
+    }, () => {
+      const quest = new Quest(questContent);
+
+      quest.story.ChoosePathString('test_achievement');
+      const { choices, dialogue } = quest.continueStory();
+      expect(choices.length).toEqual(1);
+      expect(store.getState().gameState['quests.achievements']).toEqual({ custom: 1 });
+      expect(dialogue[0].text).toEqual('<p>This is a dialogue</p>');
+      expect(dialogue[1].text).toEqual('<p>Conglatulations! New achievement reached: <b>custom</b></p><img src="/assets/badges/custom.svg" alt="custom"/>');
+
+      expect(() => {
+        quest.continueStory();
+      }).not.toThrow();
+    });
   });
 });

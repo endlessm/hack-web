@@ -111,3 +111,8 @@ Bye! -> END
 {set_game_state("test.val/with/deep", "test2")}
 - This is a test for game state: {get_game_state("test.value")}, {get_game_state("test.val/with/deep")}
 + First option -> END
+
+== test_achievement
+{set_game_state("quests.achievements/custom", true)}
+- This is a dialogue
++ First option -> END

@@ -1,5 +1,6 @@
 import { Story } from 'inkjs';
-import { getGameState, setGameState } from './store';
+import i18next from 'i18next';
+import store, { getGameState, setGameState } from './store';
 
 const defaultCharacter = 'ada';
 const userCharacter = 'user';
@@ -109,9 +110,25 @@ export default class Quest {
     this.mainCharacter = extractMainCharacter(this.story.globalTags);
     this.dialogueId = 0;
     this.waitFor = {};
+    this.achievements = new Set();
 
     this.story.BindExternalFunction('get_game_state', getGameState);
-    this.story.BindExternalFunction('set_game_state', setGameState);
+    this.story.BindExternalFunction('set_game_state', this.setGameState.bind(this));
+  }
+
+  setGameState(key, value) {
+    // Handle achievements
+    if (key.startsWith('quests.achievements')) {
+      const [, achievement] = key.split('/');
+      const { gameState } = store.getState();
+      const achievements = gameState['quests.achievements'];
+      const exists = achievements && achievements[achievement];
+      if (!exists) {
+        this.achievements.add(achievement);
+      }
+    }
+
+    setGameState(key, value);
   }
 
   codeSnippetBegins() {
@@ -190,6 +207,28 @@ export default class Quest {
         }
       }
     }
+
+    // Add achievements to the dialogue
+    this.achievements.forEach((achievement) => {
+      const { achievementsData } = store.getState();
+      const achievementHeader = i18next.t('Conglatulations! New achievement reached');
+
+      const text = achievementsData[achievement] || achievement;
+      const img = `/assets/badges/${achievement}.svg`;
+      const imgHtml = `<img src="${img}" alt="${achievement}"/>`;
+      const html = `<p>${achievementHeader}: <b>${text}</b></p>${imgHtml}`;
+
+      const d = {
+        id: this.dialogueId,
+        text: html,
+        character: extractLineCharacter(this.story.currentTags)
+                || this.mainCharacter,
+      };
+
+      dialogue = [...dialogue, d];
+      this.dialogueId += 1;
+    });
+    this.achievements.clear();
 
     let choices = [];
     this.waitFor = {};
