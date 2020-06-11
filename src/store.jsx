@@ -22,6 +22,9 @@ const actions = {
   deselectCards: () => ({
     type: 'DESELECT-CARDS',
   }),
+  inventoryToggle: () => ({
+    type: 'INVENTORY-TOGGLE',
+  }),
   logout: () => ({ type: 'LOGOUT' }),
   originalHackableAppSet: (data) => ({
     type: 'ORIG-SET',
@@ -45,6 +48,10 @@ const actions = {
   setGameState: (key, value) => ({
     type: 'GAME-STATE',
     payload: { key, value },
+  }),
+  setAchievementsData: (data) => ({
+    type: 'ACHIEVEMENTS',
+    payload: data,
   }),
 };
 
@@ -97,6 +104,9 @@ function uiReducer(state = {}, action) {
     case 'DESELECT-CARDS': {
       return { ...state, cardSelected: {} };
     }
+    case 'INVENTORY-TOGGLE': {
+      return { ...state, inventory: !state.inventory };
+    }
     default:
       return state;
   }
@@ -142,6 +152,16 @@ function hackableAppReducer(state = {}, action) {
   }
 }
 
+function achievementsDataReducer(state = {}, action) {
+  switch (action.type) {
+    case 'ACHIEVEMENTS': {
+      return { ...action.payload };
+    }
+    default:
+      return state;
+  }
+}
+
 const initialState = {
   auth: {
     authenticated: false,
@@ -150,11 +170,13 @@ const initialState = {
   ui: {
     sidePanelOpen: false,
     cardSelected: {},
+    inventory: false,
   },
   cardsets: [],
   hackableApp: {},
   originalHackableApp: {},
   gameState: {},
+  achievementsData: {},
 };
 
 // load gameState from localStorage
@@ -169,6 +191,7 @@ const store = createStore(combineReducers({
   cardsets: cardSetReducer,
   hackableApp: hackableAppReducer,
   originalHackableApp: originalHackableAppReducer,
+  achievementsData: achievementsDataReducer,
 }), initialState);
 
 const initializeDefaultData = (t) => {
@@ -318,6 +341,15 @@ const initializeDefaultData = (t) => {
     },
   ];
   store.dispatch(actions.setCardSets(defaultCardSets));
+
+  const defaultAchievements = {
+    'web-complete': t('Web Tech hacker'),
+    'p5-complete': t('Art hacker'),
+    'pdf-complete': t('Maker hacker'),
+    'sidetrack1-complete': t('Sidetrack gamer'),
+    'sidetrack2-complete': t('Sidetrack hacker'),
+  };
+  store.dispatch(actions.setAchievementsData(defaultAchievements));
 };
 
 function trackGameStateChanges(key) {

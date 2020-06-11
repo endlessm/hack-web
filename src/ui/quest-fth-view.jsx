@@ -25,6 +25,8 @@ import FlipToHack from './flip-to-hack';
 import HackIconOpen from './hack-icon-open.svg';
 import HackIconClose from './hack-icon-close.svg';
 
+import Inventory from './inventory';
+
 const useStyles = makeStyles((theme) => {
   const marginTransition = theme.transitions.create(['opacity', 'margin'], {
     easing: theme.transitions.easing.sharp,
@@ -189,6 +191,7 @@ const QuestFTHView = ({
           [classes.contentShift]: open,
         })}
       >
+        { isMainPage && <Inventory /> }
         <HackTopBar title={title} subtitle={subtitle} isMainPage={isMainPage} />
         {toolbox ? (
           <>
