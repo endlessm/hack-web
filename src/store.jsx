@@ -49,6 +49,10 @@ const actions = {
     type: 'GAME-STATE',
     payload: { key, value },
   }),
+  setAchievementsData: (data) => ({
+    type: 'ACHIEVEMENTS',
+    payload: data,
+  }),
 };
 
 function gameStateReducer(state = {}, action) {
@@ -148,6 +152,16 @@ function hackableAppReducer(state = {}, action) {
   }
 }
 
+function achievementsDataReducer(state = {}, action) {
+  switch (action.type) {
+    case 'ACHIEVEMENTS': {
+      return { ...action.payload };
+    }
+    default:
+      return state;
+  }
+}
+
 const initialState = {
   auth: {
     authenticated: false,
@@ -162,6 +176,7 @@ const initialState = {
   hackableApp: {},
   originalHackableApp: {},
   gameState: {},
+  achievementsData: {},
 };
 
 // load gameState from localStorage
@@ -176,6 +191,7 @@ const store = createStore(combineReducers({
   cardsets: cardSetReducer,
   hackableApp: hackableAppReducer,
   originalHackableApp: originalHackableAppReducer,
+  achievementsData: achievementsDataReducer,
 }), initialState);
 
 const initializeDefaultData = (t) => {
@@ -325,6 +341,15 @@ const initializeDefaultData = (t) => {
     },
   ];
   store.dispatch(actions.setCardSets(defaultCardSets));
+
+  const defaultAchievements = {
+    'web-complete': t('Web Tech hacker'),
+    'p5-complete': t('Art hacker'),
+    'pdf-complete': t('Maker hacker'),
+    'sidetrack1-complete': t('Sidetrack gamer'),
+    'sidetrack2-complete': t('Sidetrack hacker'),
+  };
+  store.dispatch(actions.setAchievementsData(defaultAchievements));
 };
 
 function trackGameStateChanges(key) {
