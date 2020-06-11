@@ -373,14 +373,26 @@ const SidetrackQuest = () => {
     />
   );
 
+  const resetAllLevels = () => {
+    const app = appRef.current.contentWindow;
+    Array.from({ length: app.globalParameters.highestAchievedLevel + 1 })
+      .forEach((v, i) => {
+        const level = app.defaultLevelParameters.find((l) => l.level === i);
+        if (level) {
+          app[`globalLevel${i}Parameters`].instructionCode = level.instructionCode;
+          app[`globalLevel${i}Parameters`].levelCode = level.levelCode;
+        }
+      });
+  };
+
   const restartApp = () => {
     const { originalHackableApp } = store.getState();
     const { startLevel, highestAchievedLevel } = originalHackableApp;
     const app = appRef.current.contentWindow;
 
+    resetAllLevels();
     app.globalParameters.highestAchievedLevel = highestAchievedLevel;
-    const level = app[`globalLevel${startLevel}Parameters`];
-    app.game.scene.start('Game', level);
+    app.globalParameters.startLevel = startLevel;
   };
 
   const onRestartSelected = () => {
