@@ -18,6 +18,7 @@ VAR loaded = false
   -> article_loaded
 
 === article_loaded ===
+{set_game_state("quests.achievements/pdf-complete", true)}
 - Click the Hack button above to close this conversation, so you have more space to read.
 - If you'd like to go back to the main page, click the Home button.
 -> END
