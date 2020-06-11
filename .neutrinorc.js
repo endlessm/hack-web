@@ -39,6 +39,10 @@ module.exports = {
           to: 'assets/avatars',
         },
         {
+          from: 'src/badges',
+          to: 'assets/badges',
+        },
+        {
           from: 'src/cards',
           to: 'assets/cards',
         },
