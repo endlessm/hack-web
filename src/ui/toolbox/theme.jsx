@@ -17,6 +17,9 @@ const theme = createMuiTheme({
         '@media (min-width: 600px)': {
           minWidth: 72,
         },
+        '&:disabled': {
+          opacity: 0.2,
+        },
       },
     },
     MuiPopover: {
