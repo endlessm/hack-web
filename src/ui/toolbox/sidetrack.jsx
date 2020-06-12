@@ -239,6 +239,7 @@ const TOOLBOX = {
     {
       name: 'Level',
       icon: <Casino />,
+      disabled: true,
       grid: [
         {
           title: 'Code',
@@ -256,6 +257,7 @@ const TOOLBOX = {
     {
       name: 'Robots',
       icon: <BugReport />,
+      disabled: true,
       grid: [
         {
           title: 'Robots',
