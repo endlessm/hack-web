@@ -21,9 +21,13 @@ import 'ace-builds/src-noconflict/theme-monokai';
 import typingAsset from './typing.gif';
 
 const sanitizeOptions = {
-  allowedTags: ['b', 'i', 's', 'tt', 'u', 'a', 'p'],
+  allowedTags: ['b', 'i', 's', 'tt', 'u', 'a', 'p', 'img'],
   allowedAttributes: {
     a: ['href', 'target'],
+    img: ['src'],
+  },
+  allowedSchemesByTag: {
+    img: [],
   },
   transformTags: {
     a: sanitizeHtml.simpleTransform('a', { target: '_blank' }),
