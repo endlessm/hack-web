@@ -49,6 +49,9 @@ const actions = {
     type: 'GAME-STATE',
     payload: { key, value },
   }),
+  gameStateReset: () => ({
+    type: 'GAME-STATE-RESET',
+  }),
   setAchievementsData: (data) => ({
     type: 'ACHIEVEMENTS',
     payload: data,
@@ -60,6 +63,9 @@ function gameStateReducer(state = {}, action) {
     case 'GAME-STATE': {
       const { key, value } = action.payload;
       return { ...state, [key]: value };
+    }
+    case 'GAME-STATE-RESET': {
+      return {};
     }
     default:
       return state;

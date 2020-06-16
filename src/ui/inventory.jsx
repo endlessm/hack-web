@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
   Box,
+  Button,
   IconButton,
   Drawer,
   Grid,
   makeStyles,
   Tooltip,
   Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  useTheme,
+  useMediaQuery,
 } from '@material-ui/core';
 
 import {
   Close,
+  Delete,
 } from '@material-ui/icons';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -55,27 +64,79 @@ HackBadge.propTypes = {
   achievement: PropTypes.string.isRequired,
 };
 
+const ResetGameStateDialog = ({ open, setOpen }) => {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+
+  const reset = () => {
+    dispatch(actions.gameStateReset());
+    setOpen(false);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <Dialog
+      fullScreen={fullScreen}
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="responsive-dialog-title"
+    >
+      <DialogTitle id="responsive-dialog-title">{t('Do you want to remove the game state?')}</DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+          {t('Removing the Game State will remove the progress in all quests and all the achievements reached.')}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus onClick={handleClose} color="primary">
+          {t('No')}
+        </Button>
+        <Button onClick={reset}>
+          {t('Yes')}
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+ResetGameStateDialog.propTypes = {
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
+};
+
 const InventoryContent = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const gameState = useSelector((state) => state.gameState);
   const classes = useStyles();
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const questAchievements = gameState['quests.achievements'] || {};
   const achievements = Object.keys(questAchievements);
 
   return (
     <Box px={4} py={2} className={classes.inventory}>
+      <ResetGameStateDialog open={dialogOpen} setOpen={setDialogOpen} />
       <Grid container>
-        <Grid item xs={11}>
+        <Grid item xs={8}>
           <Typography variant="h4">
             {t('Inventory')}
           </Typography>
         </Grid>
-        <Grid item xs={1}>
-          <IconButton aria-label="close" onClick={() => dispatch(actions.inventoryToggle())}>
-            <Close />
-          </IconButton>
+        <Grid item xs={4}>
+          <Typography align="right">
+            <IconButton aria-label="reset" edge="end" onClick={() => setDialogOpen(true)}>
+              <Delete />
+            </IconButton>
+            <IconButton aria-label="close" edge="end" onClick={() => dispatch(actions.inventoryToggle())}>
+              <Close />
+            </IconButton>
+          </Typography>
         </Grid>
         { achievements.length ? (
           achievements.map((a) => (
