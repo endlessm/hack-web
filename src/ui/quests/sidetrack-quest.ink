@@ -1,88 +1,108 @@
+# main character: ada
+
 INCLUDE common.ink
 
-# Global vars declarations:
+// Variables relevant to this demo:
 VAR flipped = 0
-# The start level should be 0 by default, modifying this
-# will change the currentLevel
-# The starting level will be the highestAchievedLevel
-VAR startLevel = 0
-VAR currentLevel = 1
-VAR highestAchievedLevel = 1
-VAR availableLevels = 2
-# will change to 0 on death
+VAR currentLevel = -1
 VAR success = 1
-VAR playing = 1
-# Changing this to 1 plays the Felix cut scene
-# Value changes to 0 at cutscene end
-VAR controlsCutscene = 0
-# same but for the ending cutscene
-VAR escapeCutscene = 0
-# repurposed for level skip to 22
-VAR skip = 0
-# Flip to Hack
-VAR hasLockKey = 0
-VAR isLocked = 1
-VAR attractFTH = 0
 VAR codeErrors = 0
 
-INCLUDE sidetrack-1-quest.ink
-INCLUDE sidetrack-2-quest.ink
+// Other variables needed by the quest, but not relevant to this demo:
+VAR startLevel = 0
+VAR highestAchievedLevel = 1
+VAR availableLevels = 2
+VAR playing = 1
+VAR controlsCutscene = 0
+VAR escapeCutscene = 0
+VAR skip = 0
+VAR hasLockKey = 1
+VAR isLocked = 0
+VAR attractFTH = 0
 
--> begin
-
-=== mid_level_check(desiredlevel)
-{
-    - currentLevel == desiredlevel:
-        ->->
-    - else:
-        + {mid_level_check < 2} [attracting: ❯] ❯
-        ->->
-        + {mid_level_check >= 2} ❯
-        ->->
-        + [(wait for: currentLevel is {desiredlevel})] #
-        ->->
-}
-
-=== end_level_check(desiredLevel)
-{
-    - currentLevel == desiredLevel:
-        # character: user
-        Level {currentLevel -1 } Complete!
-        ->->
-    - else:
-        + [(wait for: currentLevel is {desiredLevel})] Level {currentLevel -1 } Complete!
-        ->->
-}
+// Before we begin, let's wait for the app to update all the read-only
+// variables. We do that by waiting for one of them, currentLevel.
++ [(wait for: currentLevel is 1)] -> begin
 
 === begin ===
--> level1_5
+Hello, {get_user_name()}! Let's see if you can pass this level.
+-> playing_level
 
-=== level1_5 ===
-# character: riley
--Hey, {get_user_name()}, welcome to Sidetrack! See that <b>Exit</b> on the far side of the screen? That's our goal! Use the FORWARD, UP, and DOWN <b>Instructions</b> to move through these obstacles, but watch out for the <b>Walls</b>!
--> end_level_check(2) -> the_choice
+=== playing_level ===
+/*
+We display a different message, depending on where the flow is coming
+from (the previous level, level restarted, etc).
+*/
+~ temp at_level = currentLevel
+{came_from(-> player_died): Let's try again.}
+{came_from(-> at_toolbox): Let's see if we can pass the level now, with those changes.}
+{came_from(-> reach_level): OK, we are back at level {currentLevel}.}
+{came_from(-> level_succeed): OK, we are now at level {currentLevel}.}
++ [(wait for: currentLevel success flipped)]
+  {
+    - not success:
+      Player died.
+      -> player_died
+    - flipped:
+      App flipped!
+      -> at_toolbox
+    - currentLevel < at_level:
+      Previous level selected
+      -> reach_level(at_level)
+    - currentLevel > at_level:
+      Level complete!
+      -> level_succeed(at_level)
+  }
++ [Ok, enough.]
+  -> END
+- -> playing_level
 
-=== the_choice ===
-# character: riley
-- Oh, there's way more than one level here. This is only the beginning!
-# character: riley
-- You've got a choice here: Do you want to keep playing normally, or jump straight ahead to hacking the game?
-* [Keep Playing!] I'll keep going, I want to play all the way through.
-~ availableLevels = 28
--> level2
-* [Let's get Hacking!] I can't wait to get a look inside!
-~ availableLevels = 28
-~ startLevel = 22
--> transition
+=== level_succeed(level) ===
+Yay! you beated level {level}!
+-> playing_level
 
-=== transition ===
-# character: riley
-- OK, a quick rundown of what we're doing here: You need to drag and drop the tiles with arrows on them so that when I follow them, I'll get to the exit safely!
-# character: riley
-- If there's a Pit, I'll need to jump over it, and if there's a Wall, I need to go around it.
-# character: riley
-- Once you have the instructions arranged how you want, press the Play button to start - and no more changing instructions until I either win or lose!
-# character: riley
-- If I fail, you'll need to rearrange the instructions until we get it right.
-~ skip = 1
--> level22
+=== player_died ===
+/*
+Wait until the player clicks Restart in the "game over" screen. We
+need to consider that the player can flip the app in this screen too.
+*/
+Ouch! Something went wrong.
++ [(wait for: flipped success)]
+  {
+    - success:
+      Restarting...
+      -> playing_level
+    - flipped:
+      App flipped!
+      -> at_toolbox
+  }
+
+=== at_toolbox ===
+Here we are at the toolbox{at_toolbox != 1: again}.
+// After the first visit, Faber appears to give hints:
+{at_toolbox == 2: Try changing X this time.} # character: faber
+{at_toolbox == 3: What about doing Y?} # character: faber
++ [(wait for: flipped)] Flipped back!
+// If the player left any errors in the editor, Saniel appears to rant:
+{codeErrors > 0: Hmm... {print_errors(codeErrors)} in that code editor.} # character: saniel
+- -> playing_level
+
+=== reach_level(desired_level) ===
+/*
+At this point, it doesn't matter if the player flips the app, plays or
+dies. All we want is that they go back to the level in question.
+*/
+Hey! We are not done yet! Come back to level {desired_level}!
++ [(wait for: currentLevel is {desired_level})] Back at level {desired_level}
+- -> playing_level
+
+=== function came_from(-> x) ===
+~ return TURNS_SINCE(x) == 1
+
+=== function print_errors(x) ===
+{
+  - x == 1:
+    there was one error
+  - else:
+    there were multiple errors
+}
