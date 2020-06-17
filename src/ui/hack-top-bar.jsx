@@ -226,7 +226,8 @@ const HackTopBar = ({ title, subtitle, isMainPage }) => {
           {isMainPage ? (
             <Box m="auto">
               <Typography variant="h5" color="secondary">
-                <strong>{title}</strong>
+                {/* Note: not translated on purpose. It's the brand name. */}
+                <strong>Hack Lab</strong>
               </Typography>
             </Box>
           ) : (
