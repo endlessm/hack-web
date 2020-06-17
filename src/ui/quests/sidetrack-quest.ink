@@ -1,25 +1,25 @@
 INCLUDE common.ink
 
-# Global vars declarations:
+// Global vars declarations:
 VAR flipped = 0
-# The start level should be 0 by default, modifying this
-# will change the currentLevel
-# The starting level will be the highestAchievedLevel
+// The start level should be 0 by default, modifying this
+// will change the currentLevel
+// The starting level will be the highestAchievedLevel
 VAR startLevel = 0
 VAR currentLevel = 1
 VAR highestAchievedLevel = 1
 VAR availableLevels = 2
-# will change to 0 on death
+// Will change to 0 on death
 VAR success = 1
 VAR playing = 1
-# Changing this to 1 plays the Felix cut scene
-# Value changes to 0 at cutscene end
+// Changing this to 1 plays the Felix cut scene
+// Value changes to 0 at cutscene end
 VAR controlsCutscene = 0
-# same but for the ending cutscene
+// Same but for the ending cutscene
 VAR escapeCutscene = 0
-# repurposed for level skip to 22
+// Repurposed for level skip to 22
 VAR skip = 0
-# Flip to Hack
+// Flip to Hack
 VAR hasLockKey = 0
 VAR isLocked = 1
 VAR attractFTH = 0
