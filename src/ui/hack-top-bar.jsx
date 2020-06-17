@@ -103,6 +103,7 @@ const useStyles = makeStyles(({
 const labelPerLanguageCode = new Map([
   ['en', 'English'],
   ['es', 'Español'],
+  ['de', 'Deutsch'],
 ]);
 
 const LanguageSelector = ({ isMainPage }) => {

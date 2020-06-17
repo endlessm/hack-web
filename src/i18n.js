@@ -27,7 +27,7 @@ i18n
   .use(initReactI18next)
   .init({
     debug: process.env.NODE_ENV !== 'production',
-    whitelist: ['en', 'es'],
+    whitelist: ['en', 'es', 'de'],
     fallbackLng: 'en',
     returnEmptyString: false,
     keySeparator: false,
