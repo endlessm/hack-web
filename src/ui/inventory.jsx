@@ -51,9 +51,17 @@ import ThumbsDownIcon from './icons/hack-thumbsdown-symbolic.svg';
 
 const defaultBadge = '/assets/badges/default.svg';
 
-const useStyles = makeStyles(({ spacing }) => ({
-  inventory: {
-    minWidth: spacing(50),
+const useStyles = makeStyles(({ spacing, breakpoints, custom }) => ({
+  drawerPaper: {
+    [breakpoints.down('md')]: {
+      width: custom.drawerWidths.downMd,
+    },
+    [breakpoints.only('lg')]: {
+      width: custom.drawerWidths.onlyLg,
+    },
+    [breakpoints.only('xl')]: {
+      width: custom.drawerWidths.onlyXl,
+    },
   },
   badgeDisabled: {
     filter: 'grayscale(1) opacity(0.5)',
@@ -145,7 +153,6 @@ const InventoryContent = () => {
   const dispatch = useDispatch();
   const gameState = useSelector((state) => state.gameState);
   const achievementsData = useSelector((state) => state.achievementsData);
-  const classes = useStyles();
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const questAchievements = gameState['quests.achievements'] || {};
@@ -156,7 +163,7 @@ const InventoryContent = () => {
   }));
 
   return (
-    <Box px={4} py={2} className={classes.inventory}>
+    <Box px={4} py={2}>
       <ResetGameStateDialog open={dialogOpen} setOpen={setDialogOpen} />
       <Grid container>
         <Grid item xs={8}>
@@ -185,11 +192,19 @@ const InventoryContent = () => {
 };
 
 const Inventory = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const open = useSelector((state) => state.ui.inventory);
 
   return (
-    <Drawer anchor="left" open={open} onClose={() => dispatch(actions.inventoryToggle())}>
+    <Drawer
+      anchor="left"
+      open={open}
+      classes={{
+        paper: classes.drawerPaper,
+      }}
+      onClose={() => dispatch(actions.inventoryToggle())}
+    >
       <InventoryContent />
     </Drawer>
   );
