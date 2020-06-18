@@ -15,6 +15,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Code,
 } from '@material-ui/icons';
@@ -57,8 +58,16 @@ const TOOLBOX = {
   ],
 };
 
-const Toolbox = () => (
-  <DynToolbox toolbox={TOOLBOX} xs={12} />
+const Toolbox = ({ controls }) => (
+  <DynToolbox toolbox={TOOLBOX} xs={12} controls={controls} />
 );
+
+Toolbox.propTypes = {
+  controls: PropTypes.element,
+};
+
+Toolbox.defaultProps = {
+  controls: null,
+};
 
 export default Toolbox;
