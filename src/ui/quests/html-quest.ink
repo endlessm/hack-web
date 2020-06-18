@@ -20,72 +20,146 @@ VAR css = ""
         # character: riley
         Great work! All fixed!
         ->->
+    * [Hint] Can I have a hint?
+        -> baditems_hint
+
+=== baditems_hint
+    # character: riley
+    Check out those wierd ingredients - Gadolinium, Swedish fish, and what the heck is a cross borehole... thing? Those are definitely not part of a cookie recipe!
+    -> baditems_minder
+
 
 === dry_ingredients_minder
-    *  (flour) {not flour_alt} [(wait for: html icontains "<li>1 3/4 cups of flour.</li>")] #
+    *  (flour) {not flour_alt} {not flour_alt2} {not flour_alt3} [(wait for: html icontains "<li>1 3/4 cups of flour.</li>")] #
         Flour, check!
         -> dry_ingredients_minder
-    * (flour_alt) {not flour} [(wait for: html icontains "<li> 1 3/4 cups of flour. </li>")] #
+    * (flour_alt) {not flour} {not flour_alt2} {not flour_alt3} [(wait for: html icontains "<li> 1 3/4 cups of flour. </li>")] #
         Flour, check!
         -> dry_ingredients_minder
-    * (salt) {not salt_alt} [(wait for: html icontains "<li>2 teaspoons salt.</li>")] #
+    * (flour_alt2) {not flour} {not flour_alt} {not flour_alt3} [(wait for: html icontains "<li> 1 3/4 cups of flour.</li>")] #
+        Flour, check!
+        -> dry_ingredients_minder
+    * (flour_alt3) {not flour} {not flour_alt} {not flour_alt2} [(wait for: html icontains "<li>1 3/4 cups of flour. </li>")] #
+        Flour, check!
+        -> dry_ingredients_minder
+
+    * (salt) {not salt_alt} {not salt_alt2} {not salt_alt3} [(wait for: html icontains "<li>2 teaspoons salt.</li>")] #
         Salt looks good!
         -> dry_ingredients_minder
-    * (salt_alt) {not salt} [(wait for: html icontains "<li> 2 teaspoons salt. </li>")] #
+    * (salt_alt) {not salt} {not salt_alt2} {not salt_alt3} [(wait for: html icontains "<li> 2 teaspoons salt. </li>")] #
         Salt looks good!
         -> dry_ingredients_minder
-    * (bksoda) {not bksoda_alt} [(wait for: html icontains "<li>1 teaspoon baking soda.</li>")] #
+    * (salt_alt2) {not salt} {not salt_alt} {not salt_alt3} [(wait for: html icontains "<li> 2 teaspoons salt.</li>")] #
+        Salt looks good!
+        -> dry_ingredients_minder
+    * (salt_alt3) {not salt} {not salt_alt} {not salt_alt2} [(wait for: html icontains "<li>2 teaspoons salt. </li>")] #
+        Salt looks good!
+        -> dry_ingredients_minder
+
+    * (bksoda) {not bksoda_alt} {not bksoda_alt2} {not bksoda_alt3} [(wait for: html icontains "<li>1 teaspoon baking soda.</li>")] #
         Baking soda: Done!
         -> dry_ingredients_minder
-    * (bksoda_alt) {not bksoda} [(wait for: html icontains "<li> 1 teaspoon baking soda. </li>")] #
+    * (bksoda_alt) {not bksoda} {not bksoda_alt2} {not bksoda_alt3} [(wait for: html icontains "<li> 1 teaspoon baking soda. </li>")] #
         Baking soda: Done!
         -> dry_ingredients_minder
-    * (choc) {not choc_alt} [(wait for: html icontains "<li>About 2/3 cup chocolate, broken up into pieces about the size of a fingernail.</li>")] #
+    * (bksoda_alt2) {not bksoda} {not bksoda_alt} {not bksoda_alt3} [(wait for: html icontains "<li> 1 teaspoon baking soda.</li>")] #
+        Baking soda: Done!
+        -> dry_ingredients_minder
+    * (bksoda_alt3) {not bksoda} {not bksoda_alt} {not bksoda_alt2} [(wait for: html icontains "<li>1 teaspoon baking soda. </li>")] #
+        Baking soda: Done!
+        -> dry_ingredients_minder
+
+    * (choc) {not choc_alt} {not choc_alt2} {not choc_alt3} [(wait for: html icontains "<li>About 2/3 cup chocolate, broken up into pieces about the size of a fingernail.</li>")] #
         Chocolate's good to go!
         -> dry_ingredients_minder
-    * (choc_alt) {not choc} [(wait for: html icontains "<li> About 2/3 cup chocolate, broken up into pieces about the size of a fingernail. </li>")] #
+    * (choc_alt) {not choc} {not choc_alt2} {not choc_alt3} [(wait for: html icontains "<li> About 2/3 cup chocolate, broken up into pieces about the size of a fingernail. </li>")] #
         Chocolate's good to go!
         -> dry_ingredients_minder
-    * {flour + salt + bksoda + choc + flour_alt + salt_alt + bksoda_alt + choc_alt > 3}
+    * (choc_alt2) {not choc} {not choc_alt} {not choc_alt3} [(wait for: html icontains "<li> About 2/3 cup chocolate, broken up into pieces about the size of a fingernail.</li>")] #
+        Chocolate's good to go!
+        -> dry_ingredients_minder
+    * (choc_alt3) {not choc} {not choc_alt} {not choc_alt2} [(wait for: html icontains "<li>About 2/3 cup chocolate, broken up into pieces about the size of a fingernail. </li>")] #
+        Chocolate's good to go!
+        -> dry_ingredients_minder
+
+
+    * {flour + salt + bksoda + choc + flour_alt + salt_alt + bksoda_alt + choc_alt + flour_alt2 + salt_alt2 + bksoda_alt2 + choc_alt2 + flour_alt3 + salt_alt3 + bksoda_alt3 + choc_alt3 > 3}
         # character: riley
         Great work! Everything's in the list!
         ->->
 
+
 === instructions_minder
-    * (mix) {not mix_alt} [(wait for: html icontains "<li>Mix the dry ingredients together in one bowl, then mix the wet ingredients together in a different bowl.</li>")] #
+    * (mix) {not mix_alt} {not mix_alt2} {not mix_alt3} [(wait for: html icontains "<li>Mix the dry ingredients together in one bowl, then mix the wet ingredients together in a different bowl.</li>")] #
         Mix it up!
         -> instructions_minder
-    * (mix_alt) {not mix} [(wait for: html icontains "<li> Mix the dry ingredients together in one bowl, then mix the wet ingredients together in a different bowl. </li>")] #
+    * (mix_alt) {not mix} {not mix_alt2} {not mix_alt3} [(wait for: html icontains "<li> Mix the dry ingredients together in one bowl, then mix the wet ingredients together in a different bowl. </li>")] #
         Mix it up!
         -> instructions_minder
-    * (pour) {not pour_alt} [(wait for: html icontains "<li>Pour both bowls together and mix everything until it looks pretty smooth.</li>")] #
+    * (mix_alt2) {not mix} {not mix_alt} {not mix_alt3} [(wait for: html icontains "<li> Mix the dry ingredients together in one bowl, then mix the wet ingredients together in a different bowl.</li>")] #
+        Mix it up!
+        -> instructions_minder
+    * (mix_alt3) {not mix} {not mix_alt} {not mix_alt2} [(wait for: html icontains "<li>Mix the dry ingredients together in one bowl, then mix the wet ingredients together in a different bowl. </li>")] #
+        Mix it up!
+        -> instructions_minder
+
+    * (pour) {not pour_alt} {not pour_alt2} {not pour_alt3} [(wait for: html icontains "<li>Pour both bowls together and mix everything until it looks pretty smooth.</li>")] #
         Combine...
         -> instructions_minder
-    * (pour_alt) {not pour} [(wait for: html icontains "<li> Pour both bowls together and mix everything until it looks pretty smooth. </li>")] #
+    * (pour_alt) {not pour} {not pour_alt2} {not pour_alt3} [(wait for: html icontains "<li> Pour both bowls together and mix everything until it looks pretty smooth. </li>")] #
         Combine...
         -> instructions_minder
-    * (tray) {not tray_alt} [(wait for: html icontains "<li>Make the dough into balls about half as big as an egg, and leave 3 or 4 inches between them on your baking tray. (You might have enough for almost 3 baking trays!)</li>")] #
+    * (pour_alt2) {not pour} {not pour_alt} {not pour_alt3} [(wait for: html icontains "<li> Pour both bowls together and mix everything until it looks pretty smooth.</li>")] #
+        Combine...
+        -> instructions_minder
+    * (pour_alt3) {not pour} {not pour_alt} {not pour_alt2} [(wait for: html icontains "<li>Pour both bowls together and mix everything until it looks pretty smooth. </li>")] #
+        Combine...
+        -> instructions_minder
+
+    * (tray) {not tray_alt} {not tray_alt2} {not tray_alt3} [(wait for: html icontains "<li>Make the dough into balls about half as big as an egg, and leave 3 or 4 inches between them on your baking tray. (You might have enough for almost 3 baking trays!)</li>")] #
         Let's get this on a tray, nice.
         -> instructions_minder
-    * (tray_alt) {not tray} [(wait for: html icontains "<li> Make the dough into balls about half as big as an egg, and leave 3 or 4 inches between them on your baking tray. (You might have enough for almost 3 baking trays!) </li>")] #
+    * (tray_alt) {not tray} {not tray_alt2} {not tray_alt3} [(wait for: html icontains "<li> Make the dough into balls about half as big as an egg, and leave 3 or 4 inches between them on your baking tray. (You might have enough for almost 3 baking trays!) </li>")] #
         Let's get this on a tray, nice.
         -> instructions_minder
-    * (bake) {not bake_alt} [(wait for: html icontains "<li>Set your oven to 350 degrees (about 180 degrees Celcius if you're outside the USA), and bake for 15 minutes.</li>")] #
+    * (tray_alt2) {not tray} {not tray_alt} {not tray_alt3} [(wait for: html icontains "<li> Make the dough into balls about half as big as an egg, and leave 3 or 4 inches between them on your baking tray. (You might have enough for almost 3 baking trays!)</li>")] #
+        Let's get this on a tray, nice.
+        -> instructions_minder
+    * (tray_alt3) {not tray} {not tray_alt} {not tray_alt2} [(wait for: html icontains "<li>Make the dough into balls about half as big as an egg, and leave 3 or 4 inches between them on your baking tray. (You might have enough for almost 3 baking trays!) </li>")] #
+        Let's get this on a tray, nice.
+        -> instructions_minder
+
+    * (bake) {not bake_alt} {not bake_alt2} {not bake_alt3} [(wait for: html icontains "<li>Set your oven to 350 degrees (about 180 degrees Celcius if you're outside the USA), and bake for 15 minutes.</li>")] #
         Bake!
         -> instructions_minder
-    * (bake_alt) {not bake} [(wait for: html icontains "<li> Set your oven to 350 degrees (about 180 degrees Celcius if you're outside the USA), and bake for 15 minutes. </li>")] #
+    * (bake_alt) {not bake} {not bake_alt2} {not bake_alt3} [(wait for: html icontains "<li> Set your oven to 350 degrees (about 180 degrees Celcius if you're outside the USA), and bake for 15 minutes. </li>")] #
         Bake!
         -> instructions_minder
-    * (eat) {not eat_alt} [(wait for: html icontains "<li>Eat your delicious, awesome, home-made cookies! (But not all at once.)</li>")] #
+    * (bake_alt2) {not bake} {not bake_alt} {not bake_alt3} [(wait for: html icontains "<li> Set your oven to 350 degrees (about 180 degrees Celcius if you're outside the USA), and bake for 15 minutes.</li>")] #
+        Bake!
+        -> instructions_minder
+    * (bake_alt3) {not bake} {not bake_alt} {not bake_alt2} [(wait for: html icontains "<li>Set your oven to 350 degrees (about 180 degrees Celcius if you're outside the USA), and bake for 15 minutes. </li>")] #
+        Bake!
+        -> instructions_minder
+
+    * (eat) {not eat_alt} {not eat_alt2} {not eat_alt3} [(wait for: html icontains "<li>Eat your delicious, awesome, home-made cookies! (But not all at once.)</li>")] #
         Sweet, sweet rewards!
         -> instructions_minder
-    * (eat_alt) {not eat} [(wait for: html icontains "<li> Eat your delicious, awesome, home-made cookies! (But not all at once.) </li>")] #
+    * (eat_alt) {not eat} {not eat_alt2} {not eat_alt3} [(wait for: html icontains "<li> Eat your delicious, awesome, home-made cookies! (But not all at once.) </li>")] #
         Sweet, sweet rewards!
         -> instructions_minder
-    * {mix + pour + tray + bake + eat + mix_alt + pour_alt + tray_alt + bake_alt + eat_alt > 4}
+    * (eat_alt2) {not eat} {not eat_alt} {not eat_alt3} [(wait for: html icontains "<li> Eat your delicious, awesome, home-made cookies! (But not all at once.)</li>")] #
+        Sweet, sweet rewards!
+        -> instructions_minder
+    * (eat_alt3) {not eat} {not eat_alt} {not eat_alt2} [(wait for: html icontains "<li>Eat your delicious, awesome, home-made cookies! (But not all at once.) </li>")] #
+        Sweet, sweet rewards!
+        -> instructions_minder
+
+    * {mix + pour + tray + bake + eat + mix_alt + pour_alt + tray_alt + bake_alt + eat_alt + mix_alt2 + pour_alt2 + tray_alt2 + bake_alt2 + eat_alt2 + mix_alt3 + pour_alt3 + tray_alt3 + bake_alt3 + eat_alt3 > 4}
         # character: riley
         Instructions done!
         ->->
+
 
 === css1_minder
     * (cssol) [(wait for: css icontains "ol li \{")] #
@@ -112,18 +186,29 @@ VAR css = ""
 -> html1_2
 
 === html1_2 ===
-- Since I love cooking, I had Felix write up one of my favorite recipes as a website, and put it into our website testing area! The left half shows you the HTML code, and the right side shows the result, like if this were an actual page on the internet.
+- Since I love cooking, I had my friend Felix write up one of my favorite recipes as a website, and put it into our website testing area! The left half shows you the HTML code, and the right side shows the result, like if this were an actual page on the internet.
+- The left half works just like any text editor:
+You can copy and paste (<b>Ctrl + C</b> and <b>Ctrl + V</b> on PC or Linux, <b>⌘ + C</b> and <b>⌘ + V</b> on a Mac)
+You can undo (<b>Ctrl + Z</b> on PC and Linux, <b>⌘ + Z</b> on Mac)
+If you really get lost, you can reset all the text by pressing the <b>Reset</b> button in the upper right corner of the website testing area.
 * ❯
 -> html1_3
 
 === html1_3 ===
 - Oops, looks like Felix made a mistake when he was setting up the page... That's not a good title for a cookie recipe at all!
-- Let's fix it - Find that nonsense title in the <b>HTML</b> part of this page, and change it to <b>Super-Awesome Cookies</b>!
-* [(wait for: html icontains "Super-Awesome Cookies")] (Done)
+- Let's fix it - Find those nonsense words in the <b>HTML</b> part of this page, and change it to <b>Super-Awesome Cookies</b>!
+-
+* [(wait for: html icontains "<h1>Super-Awesome Cookies</h1>")] (Done)
+-> html1_4
+* [(wait for: html icontains "<h1> Super-Awesome Cookies </h1>")] (Done)
+-> html1_4
+* [(wait for: html icontains "<h1>Super-Awesome Cookies </h1>")] (Done)
+-> html1_4
+* [(wait for: html icontains "<h1> Super-Awesome Cookies</h1>")] (Done)
 -> html1_4
 
 === html1_4 ===
-- Great job, you just edited a webpage! Now, let's move on to making this recipe a litt--- wait. Do you see what I see in the ingredient list and directions?
+- Great job, you just edited a webpage! Now, let's move on to making this recipe a litt--- wait. Do you see what I see in the ingredient list and instructions?
 * [👍] Yeah, I think so!
 -> html1_fix
 * [👎] Not really...
@@ -167,7 +252,7 @@ VAR css = ""
 -> dry_ingredients_minder -> html1_list3
 
 === html1_list3 ===
-- Now that both of our sets of ingredients are looking good, let's move on to the directions. I'm having a little trouble reading them, so let's fix that.
+- Now that both of our sets of ingredients are looking good, let's move on to the instructions. I'm having a little trouble reading them, so let's fix that.
 * ❯
 -> html1_list4
 
@@ -197,11 +282,15 @@ VAR css = ""
 - Let's change our page's background color. Look for <tt>body</tt> in the CSS tab. Between the two <b>braces</b> ( <b>\{ \}</b>), you'll see <tt>background-color: white;</tt>. This tells the browser "I want the background of the <b>body</b> tag to be white." Let's set that to something different -  change <tt>white</tt> to <tt>slateblue</tt>.
 * [(wait for: css icontains "background-color: slateblue;")](Done)
 -> html2_3
+* [(wait for: css icontains "background-color:slateblue;")](Done)
+-> html2_3
 
 === html2_3 ===
 - Congratulations! You just wrote some CSS! Let's get a little fancier and style some text. On a new line below the <b>closing brace</b> (  <b>\}</b> ) of the <b>body</b> CSS, type <tt>li \{</tt>(press Enter)<tt>color: orange;</tt>(press Enter again)<tt>\}</tt>.
 - You should end up with 3 lines of CSS that look similar to the <tt>body</tt> lines.
 * [(wait for: css icontains "color: orange;")](Done)
+-> html2_4
+* [(wait for: css icontains "color:orange;")](Done)
 -> html2_4
 
 === html2_4 ===
@@ -222,6 +311,8 @@ VAR css = ""
 === html2_6 ===
 - To use this hex color, let's replace <b>orange</b> in the CSS with this color - <tt>\#76EECF</tt> (You need the \"\#\" in front of it to tell the browser \"the next 6 letters or numbers are a hex color\")
 * [(wait for: css icontains "color: \#76EECF")](Done)
+-> html2_7
+* [(wait for: css icontains "color:\#76EECF")](Done)
 -> html2_7
 
 === html2_7 ===
@@ -246,7 +337,7 @@ VAR css = ""
 
 === html2_8_2 ===
 - First, want to duplicate our existing <tt>li</tt> CSS, so that the other <tt>li</tt> tags still have a color when we're done. Highlight all 3 lines of the <tt>li</tt> CSS (<tt>li \{</tt>, the color, and the final <tt>\}</tt>), copy all that text, and then paste it down below.
-- If you're on a PC or Linux computer, you can use <b>Ctrl + C</b> to copy and <b>Ctrl + V</b> to paste. If you're on a Mac, use <b>⌘ + C</b> and <b>⌘ + V</b> instead.
+- Remember, if you're on a PC or Linux computer, you can use <b>Ctrl + C</b> to copy and <b>Ctrl + V</b> to paste. If you're on a Mac, use <b>⌘ + C</b> and <b>⌘ + V</b> instead.
 * ❯
 -> html2_9
 
@@ -277,6 +368,8 @@ VAR css = ""
 type <tt>h1 \{</tt>(press Enter)<tt>color: coral;</tt>(press Enter again)<tt>\}</tt>.
 * [(wait for: css icontains "color: coral;")](Done)
 -> html2_13
+* [(wait for: css icontains "color:coral;")](Done)
+-> html2_13
 
 === html2_13 ===
 - Great. You can change the color if you like, I just always like to use a really eye-catching color first to make sure I can see what I'm changing.
@@ -295,6 +388,8 @@ type <tt>h1 \{</tt>(press Enter)<tt>color: coral;</tt>(press Enter again)<tt>\}<
 === html2_15 ===
 - Great! The image looks a little big, though. Let's limit the width a little. Add <tt>width = 400</tt> just before the final caret (<b>&gt;</b>).
 * [(wait for: html contains "img src = \"cookies.png\" width = 400")](Done)
+-> html2_16
+* [(wait for: html contains "img src = \"cookies.png\" width=400")](Done)
 -> html2_16
 
 === html2_16 ===
