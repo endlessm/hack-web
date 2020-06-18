@@ -220,8 +220,7 @@ const initializeDefaultData = (t) => {
   const defaultCardSets = [
     {
       slug: '/home',
-      // Note: not translated on purpose. It's the brand name.
-      name: 'Hack Lab',
+      name: t('Pick a dimension to explore!'),
       description: t('Hey, Hacker! My name\'s Riley, and I\'m here to show off Endless OS and Hack! Pick a card and check out what we\'ve got to offer!'),
       cards: [
         {
