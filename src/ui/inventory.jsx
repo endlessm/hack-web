@@ -16,6 +16,7 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 import {
   Box,
@@ -51,6 +52,9 @@ const useStyles = makeStyles(({ spacing }) => ({
   inventory: {
     minWidth: spacing(50),
   },
+  badgeDisabled: {
+    filter: 'grayscale(1) opacity(0.5)',
+  },
   badge: {
     backgroundImage: ({ achievement }) => `url('/assets/badges/${achievement}.svg'), url('${defaultBadge}')`,
     backgroundSize: 'auto 100%',
@@ -64,20 +68,25 @@ const useStyles = makeStyles(({ spacing }) => ({
   },
 }));
 
-const HackBadge = ({ achievement }) => {
+const HackBadge = ({ achievement, disabled }) => {
   const classes = useStyles({ achievement });
   const achievementsData = useSelector((state) => state.achievementsData);
   const tooltip = achievementsData[achievement] || achievement;
 
   return (
     <Tooltip title={tooltip}>
-      <Box mt={2} className={classes.badge} />
+      <Box mt={2} className={clsx(classes.badge, { [classes.badgeDisabled]: disabled })} />
     </Tooltip>
   );
 };
 
 HackBadge.propTypes = {
   achievement: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+};
+
+HackBadge.defaultProps = {
+  disabled: false,
 };
 
 const ResetGameStateDialog = ({ open, setOpen }) => {
@@ -129,11 +138,16 @@ const InventoryContent = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const gameState = useSelector((state) => state.gameState);
+  const achievementsData = useSelector((state) => state.achievementsData);
   const classes = useStyles();
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const questAchievements = gameState['quests.achievements'] || {};
   const achievements = Object.keys(questAchievements);
+  const allAchievements = Object.keys(achievementsData).map((a) => ({
+    achievement: a,
+    disabled: !achievements.includes(a),
+  }));
 
   return (
     <Box px={4} py={2} className={classes.inventory}>
@@ -154,19 +168,11 @@ const InventoryContent = () => {
             </IconButton>
           </Typography>
         </Grid>
-        { achievements.length ? (
-          achievements.map((a) => (
-            <Grid key={a} item xs={6}>
-              <HackBadge achievement={a} />
-            </Grid>
-          ))
-        ) : (
-          <Grid item xs={12}>
-            <Typography gutterBottom variant="subtitle1" color="textSecondary">
-              {t('Nothing here. Explore the Hack web to win badges')}
-            </Typography>
+        { allAchievements.map(({ achievement, disabled }) => (
+          <Grid key={achievement} item xs={6}>
+            <HackBadge achievement={achievement} disabled={disabled} />
           </Grid>
-        )}
+        ))}
       </Grid>
     </Box>
   );
