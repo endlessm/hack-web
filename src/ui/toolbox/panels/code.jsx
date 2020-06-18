@@ -68,13 +68,6 @@ const useStyles = makeStyles(({ spacing, zIndex, palette }) => ({
     },
     '& .ace_gutter': {
       backgroundColor: 'rgba(39, 40, 34, 0.8)',
-      width: `${spacing(10)}px !important`,
-    },
-    '& .ace_scroller': {
-      left: `${spacing(10)}px !important`,
-    },
-    '& .ace_gutter-layer': {
-      width: `${spacing(10)}px !important`,
     },
   },
   errorHighlight: {
@@ -231,7 +224,7 @@ const CodePanel = ({
       onChange={build}
       name="editor"
       editorProps={{ $blockScrolling: true }}
-      setOptions={{ fixedWidthGutter: false, behavioursEnabled: false }}
+      setOptions={{ behavioursEnabled: false }}
       wrapEnabled
       fontSize={14}
       showPrintMargin={false}
