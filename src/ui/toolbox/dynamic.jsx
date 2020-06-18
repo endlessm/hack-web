@@ -16,7 +16,6 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {
   Box,
   Grid,
@@ -40,9 +39,6 @@ const useStyles = makeStyles(({ spacing, toolbox }) => ({
   toolboxTabContent: {
     width: `calc(100% - ${spacing(10)}px)`,
   },
-  toolboxTabContentSingle: {
-    width: '100%',
-  },
 }));
 
 const ToolBoxGrid = ({
@@ -51,35 +47,28 @@ const ToolBoxGrid = ({
   const [tab, setTab] = useState(0);
   const classes = useStyles();
 
-  const showTabs = toolbox.tabs.length > 1;
-
   return (
     <Box className={classes.root} height="100vh" overflow="auto">
       <Grid container>
-        { showTabs && (
-          <Grid className={classes.toolboxTab}>
-            <Box boxShadow={4} bgcolor={ToolboxTheme.toolbox.colors.tabBackground}>
-              <Tabs
-                orientation="vertical"
-                variant="scrollable"
-                value={tab}
-                onChange={(ev, newValue) => setTab(newValue)}
-                textColor="primary"
-                aria-label="Toolbox tabs"
-              >
-                { toolbox.tabs.map(({ name, icon, disabled }) => (
-                  <Tab key={name} label={name} icon={icon} disabled={disabled} />
-                )) }
-              </Tabs>
-            </Box>
-          </Grid>
-        )}
-
+        <Grid className={classes.toolboxTab}>
+          <Box boxShadow={4} bgcolor={ToolboxTheme.toolbox.colors.tabBackground}>
+            <Tabs
+              orientation="vertical"
+              variant="scrollable"
+              value={tab}
+              onChange={(ev, newValue) => setTab(newValue)}
+              textColor="primary"
+              aria-label="Toolbox tabs"
+            >
+              { toolbox.tabs.map(({ name, icon, disabled }) => (
+                <Tab key={name} label={name} icon={icon} disabled={disabled} />
+              )) }
+            </Tabs>
+          </Box>
+        </Grid>
         <Grid
           item
-          className={clsx(classes.toolboxTabContent, {
-            [classes.toolboxTabContentSingle]: !showTabs,
-          })}
+          className={classes.toolboxTabContent}
         >
           { toolbox.tabs.map(({ name, grid }, index) => (
             <GridTabPanel key={name} index={index} tab={tab} grid={grid} />
