@@ -1,15 +1,15 @@
 # main character: faber
 INCLUDE common.ink
 INCLUDE pdf-quest.es.ink
+INCLUDE pdf-quest.de.ink
 
 VAR language = "en"
 VAR loaded = false
 
-{
-- language == "es":
-  -> begin_es
-- else:
-  -> begin
+{ language:
+- "es": -> begin_es
+- "de": -> begin_de
+- else: -> begin
 }
 
 === begin ===
