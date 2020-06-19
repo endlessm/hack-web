@@ -239,6 +239,7 @@ export default class Quest {
         text: html,
         character: extractLineCharacter(this.story.currentTags)
                 || this.mainCharacter,
+        achievement,
       };
 
       dialogue = [...dialogue, d];
