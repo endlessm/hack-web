@@ -241,12 +241,15 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 # character: ada
 -You know, you don't have to have a pit in front of you to use a <b>jump</b> instruction. Maybe you could use a <b>jump</b> to go forward? You never know when that will come in handy!
 * [(wait for: currentLevel is 22)] Level {currentLevel -1 } Complete!
-{set_game_state("quest.Sidetrack1/complete", true)}
-{set_game_state("quests.achievements/sidetrack1-complete", true)}
 -> level22
 
 
 === level22 ===
+# character: riley
+- You sailed through all those levels. For that, I'm giving you a reward.
+{set_game_state("quests.achievements/sidetrack1-complete", true)}
+{set_game_state("quest.Sidetrack1/complete", true)}
+* [❯] ❯
 # character: ada
 { not skip:
     - Ok, let's see what this level is about...
