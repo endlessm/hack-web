@@ -38,7 +38,7 @@ function compileCode(sourceName, code) {
   return { [sourceName]: code };
 }
 
-const Toolbox = ({ onErrors }) => {
+const Toolbox = ({ onErrors, controls }) => {
   const toolbox = {
     tabs: [
       {
@@ -79,16 +79,18 @@ const Toolbox = ({ onErrors }) => {
   };
 
   return (
-    <DynToolbox toolbox={toolbox} xs={12} />
+    <DynToolbox toolbox={toolbox} xs={12} controls={controls} />
   );
 };
 
 Toolbox.propTypes = {
   onErrors: PropTypes.func,
+  controls: PropTypes.element,
 };
 
 Toolbox.defaultProps = {
   onErrors: null,
+  controls: null,
 };
 
 export default Toolbox;

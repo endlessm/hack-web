@@ -100,12 +100,18 @@ const HtmlQuest = () => {
     };
   }, [dispatch, quest, setCurrentChoice]);
 
-  const toolbox = <Toolbox onErrors={setErrors} />;
-
   const resetToolbox = () => {
     const { originalHackableApp } = store.getState();
     dispatch(actions.hackableAppSet(originalHackableApp));
   };
+
+  const controls = (
+    <Box m={1}>
+      <ReloadButton onClick={resetToolbox} />
+    </Box>
+  );
+
+  const toolbox = <Toolbox onErrors={setErrors} controls={controls} />;
 
   const onRestartSelected = () => {
     resetToolbox();
@@ -133,18 +139,11 @@ const HtmlQuest = () => {
     />
   );
 
-  const controls = (
-    <Box m={1}>
-      <ReloadButton onClick={resetToolbox} />
-    </Box>
-  );
-
   return (
     <QuestFTHView
       toolbox={toolbox}
       canvas={canvas}
       sidebar={sidebar}
-      controls={controls}
       hideControls={false}
       sideBySide
       title={card.name}

@@ -83,26 +83,52 @@ ToolBoxGrid.propTypes = {
   toolbox: PropTypes.shape({ tabs: PropTypes.arrayOf(TabType) }).isRequired,
 };
 
+const controlsStyles = makeStyles(({ spacing, zIndex }) => ({
+  toolboxWrap: {
+    position: 'relative',
+  },
+  controlsContainer: {
+    position: 'absolute',
+    top: 0,
+    right: spacing(2),
+    zIndex: zIndex.drawer + 1,
+  },
+}));
+
 const DynToolbox = ({
+  controls,
   toolbox,
   xs,
-}) => (
-  <ThemeProvider theme={ToolboxTheme}>
-    <Grid container>
-      <Grid item xs={xs}>
-        <ToolBoxGrid toolbox={toolbox} />
-      </Grid>
-    </Grid>
-  </ThemeProvider>
-);
+}) => {
+  const classes = controlsStyles();
+
+  return (
+    <Box className={classes.toolboxWrap}>
+      {controls && (
+        <Box className={classes.controlsContainer}>
+          {controls}
+        </Box>
+      )}
+      <ThemeProvider theme={ToolboxTheme}>
+        <Grid container>
+          <Grid item xs={xs}>
+            <ToolBoxGrid toolbox={toolbox} />
+          </Grid>
+        </Grid>
+      </ThemeProvider>
+    </Box>
+  );
+};
 
 DynToolbox.propTypes = {
   toolbox: PropTypes.shape({ tabs: PropTypes.arrayOf(TabType) }).isRequired,
   xs: PropTypes.number,
+  controls: PropTypes.element,
 };
 
 DynToolbox.defaultProps = {
   xs: 12,
+  controls: null,
 };
 
 export default DynToolbox;

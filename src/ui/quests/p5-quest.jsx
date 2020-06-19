@@ -94,7 +94,13 @@ const P5Quest = () => {
     dispatch(actions.hackableAppSet(originalHackableApp));
   };
 
-  const toolbox = <Toolbox />;
+  const controls = (
+    <Box m={1}>
+      <ReloadButton onClick={resetToolbox} />
+    </Box>
+  );
+
+  const toolbox = <Toolbox controls={controls} />;
 
   const canvas = (
     <iframe
@@ -122,20 +128,11 @@ const P5Quest = () => {
     />
   );
 
-  const controls = (
-    <Box m={1}>
-      <ReloadButton onClick={resetToolbox} />
-    </Box>
-  );
-
-  /* p5.js captures all movements so we need to avoid to hide controls to make it visible */
   return (
     <QuestFTHView
       toolbox={toolbox}
       canvas={canvas}
       sidebar={sidebar}
-      controls={controls}
-      hideControls={false}
       sideBySide
       title={card.name}
       subtitle={card.subtitle}
