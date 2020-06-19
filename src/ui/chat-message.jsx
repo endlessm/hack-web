@@ -151,6 +151,14 @@ const useStyles = makeStyles(({
       borderTopRightRadius: 0,
       backgroundColor: palette.grey[300],
     },
+    achievement: {
+      '& img': {
+        width: spacing(20),
+        height: spacing(20),
+        margin: '0 auto',
+        display: 'block',
+      },
+    },
   };
 });
 
@@ -197,7 +205,12 @@ const ChatMessage = ({
                   styles[side],
                 )}
               >
-                <Box my={side === 'left' ? 1.5 : 0}>
+                <Box
+                  my={side === 'left' ? 1.5 : 0}
+                  className={clsx({
+                    [styles.achievement]: !!message.achievement,
+                  })}
+                >
                   {typing ? (<div />) : (
                     <>
                       <Typography dangerouslySetInnerHTML={{ __html: sanitize(message.text) }} />
