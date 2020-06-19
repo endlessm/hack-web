@@ -221,7 +221,7 @@ const initializeDefaultData = (t) => {
     {
       slug: '/home',
       name: t('Pick a dimension to explore!'),
-      description: t('Hey, Hacker! My name\'s Riley, and I\'m here to show off Endless OS and Hack! Pick a card and check out what we\'ve got to offer!'),
+      description: t('Hey, Hacker! My name\'s Riley, and I\'m here to show off Endless OS and Hack! Pick a card and check out what we\'ve got to offer! Completing the coding lessons will give you a badge as a reward. Let\'s see how many badges you can collect. The inventory at the top left in the Home page shows you how many you have collected.'),
       cards: [
         {
           slug: '/art',
