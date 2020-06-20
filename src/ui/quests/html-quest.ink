@@ -25,7 +25,7 @@ VAR css = ""
 
 === baditems_hint
     # character: riley
-    Check out those wierd ingredients - Gadolinium, Swedish fish, and what the heck is a cross borehole... thing? Those are definitely not part of a cookie recipe!
+    Check out those weird ingredients - Gadolinium, Swedish fish, and what the heck is a cross borehole... thing? Those are definitely not part of a cookie recipe!
     -> baditems_minder
 
 
@@ -241,7 +241,7 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 -> html1_list1
 
 === html1_list1 ===
-- If you look at the <b>wet ingredients</b>, there's a set of <b>tags</b> the that lets us display lists. Now, let's apply those to the <b>dry ingredients</b>.
+- If you look at the <b>wet ingredients</b>, there's a set of <b>tags</b> that lets us display lists. Now, let's apply those to the <b>dry ingredients</b>.
 - First, surround the entire list of <b>dry ingredients</b> with <tt>&lt;ul&gt;</tt> and <tt>&lt;/ul&gt;</tt> - you can replace the <tt>&lt;p&gt;</tt> and <tt>&lt;/p&gt;</tt> tags that are already there.
 - You won't see any huge change immediately, so let me know when you're ready to move on.
 * ❯
@@ -279,7 +279,7 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 -> html2_css1
 
 === html2_css1 ===
-- <b>CSS</b> lives in the <b>CSS tab</b>, just underneath the <b>HTML tab</b> on the far left of your screen. You can click to swtich between the two tabs.
+- <b>CSS</b> lives in the <b>CSS tab</b>, just underneath the <b>HTML tab</b> on the far left of your screen. You can click to switch between the two tabs.
 - Let's change our page's background color. Look for <tt>body</tt> in the <b>CSS tab</b>. Between the two <b>braces</b> ( <b>\{ \}</b>), you'll see <tt>background-color: lightgrey;</tt>. This tells the browser "I want the background of the <b>body</b> tag to be light grey." Let's set that to something different -  change <tt>lightgrey</tt> to <tt>darkslateblue</tt>.
 * [(wait for: css icontains "background-color: darkslateblue;")](Done)
 -> html2_3
@@ -343,7 +343,7 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 -> html2_9
 
 === html2_9 ===
-- Now, let's modify that text you pasted. We need to make the CSS more specfic, so instead of all <tt>li</tt> tags it only affects <tt>li</tt> tags inside an <tt>ol</tt> tag. To do that, we say it like we'd ask someone to pick a specific object from a specfic group - "Hand me a potato from the pile of purple potatoes, not the red potatoes or brown potatoes."
+- Now, let's modify that text you pasted. We need to make the CSS more specific, so instead of all <tt>li</tt> tags it only affects <tt>li</tt> tags inside an <tt>ol</tt> tag. To do that, we say it like we'd ask someone to pick a specific object from a specific group - "Hand me a potato from the pile of purple potatoes, not the red potatoes or brown potatoes."
 - We'll do the same thing here. Change the first line of our new CSS to <tt>ol li \{</tt>, and change the <b>color</b> to <tt>violet</tt>, so we can see the change better.
 -> css1_minder -> html2_10
 
