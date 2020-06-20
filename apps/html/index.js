@@ -1,7 +1,7 @@
 var globalParameters = {
 css: `
 body {
-  background-color: white;
+  background-color: lightgrey;
 }
 `,
 html: `<!DOCTYPE html>
