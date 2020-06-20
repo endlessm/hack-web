@@ -365,11 +365,11 @@ const initializeDefaultData = (t) => {
   store.dispatch(actions.setCardSets(defaultCardSets));
 
   const defaultAchievements = {
-    'web-complete': t('Web Tech hacker'),
-    'p5-complete': t('Art hacker'),
-    'pdf-complete': t('Maker hacker'),
-    'sidetrack1-complete': t('Sidetrack gamer'),
-    'sidetrack2-complete': t('Sidetrack hacker'),
+    'web-complete': t('Web Crawler'),
+    'p5-complete': t('Process This!'),
+    'pdf-complete': t('Get Excited And Make Things'),
+    'sidetrack1-complete': t('Sidetrack Player'),
+    'sidetrack2-complete': t('Sidetrack Hacker'),
   };
   store.dispatch(actions.setAchievementsData(defaultAchievements));
 };

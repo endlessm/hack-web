@@ -227,7 +227,7 @@ export default class Quest {
     // Add achievements to the dialogue
     this.achievements.forEach((achievement) => {
       const { achievementsData } = store.getState();
-      const achievementHeader = i18next.t('Conglatulations! New achievement reached');
+      const achievementHeader = i18next.t('Badge Awarded');
 
       const text = achievementsData[achievement] || achievement;
       const img = `/assets/badges/${achievement}.svg`;

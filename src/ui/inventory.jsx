@@ -111,10 +111,10 @@ const ResetGameStateDialog = ({ open, setOpen }) => {
       onClose={handleClose}
       aria-labelledby="responsive-dialog-title"
     >
-      <DialogTitle id="responsive-dialog-title">{t('Do you want to remove the game state?')}</DialogTitle>
+      <DialogTitle id="responsive-dialog-title">{t('Are you sure you want to reset your progress?')}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          {t('Removing the Game State will remove the progress in all quests and all the achievements reached.')}
+          {t('This will reset your progress in all quests, and erase all your achievements!')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
