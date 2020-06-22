@@ -25,6 +25,9 @@ const actions = {
       username,
     },
   }),
+  gaInitialized: () => ({
+    type: 'GA-INIT',
+  }),
   sidePanelSetOpen: () => ({
     type: 'SIDE-PANEL-SET-OPEN',
   }),
@@ -111,6 +114,9 @@ function authReducer(state = {}, action) {
 
 function uiReducer(state = {}, action) {
   switch (action.type) {
+    case 'GA-INIT': {
+      return { ...state, gaInit: true };
+    }
     case 'SIDE-PANEL-SET-OPEN': {
       return { ...state, sidePanelOpen: true };
     }
@@ -190,6 +196,7 @@ const initialState = {
     username: null,
   },
   ui: {
+    gaInit: false,
     sidePanelOpen: false,
     cardSelected: {},
     inventory: false,
