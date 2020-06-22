@@ -1,6 +1,8 @@
 INCLUDE common.ink
+INCLUDE sidetrack-quest.es.ink
 
 // Global vars declarations:
+VAR language = "en"
 VAR flipped = 0
 // The start level should be 0 by default, modifying this
 // will change the currentLevel
@@ -28,7 +30,10 @@ VAR codeErrors = 0
 INCLUDE sidetrack-1-quest.ink
 INCLUDE sidetrack-2-quest.ink
 
--> begin
+{ language:
+- "es": -> begin_es
+- else: -> begin
+}
 
 === mid_level_check(desiredlevel)
 {
@@ -43,14 +48,19 @@ INCLUDE sidetrack-2-quest.ink
         ->->
 }
 
+=== function say_level_complete
+{ language:
+  - "es": ¡Nivel {currentLevel -1 } completado!
+  - else: Level {currentLevel -1 } Complete!
+}
+
 === end_level_check(desiredLevel)
 {
     - currentLevel == desiredLevel:
-        # character: user
-        Level {currentLevel -1 } Complete!
+        {say_level_complete()}
         ->->
     - else:
-        + [(wait for: currentLevel is {desiredLevel})] Level {currentLevel -1 } Complete!
+        + [(wait for: currentLevel is {desiredLevel})] {say_level_complete()}
         ->->
 }
 
