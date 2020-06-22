@@ -136,12 +136,7 @@ export default class Quest {
     // Handle achievements
     if (key.startsWith('quests.achievements')) {
       const [, achievement] = key.split('/');
-      const { gameState } = store.getState();
-      const achievements = gameState['quests.achievements'];
-      const exists = achievements && achievements[achievement];
-      if (!exists) {
-        this.achievements.add(achievement);
-      }
+      this.achievements.add(achievement);
     }
 
     setGameState(key, value);
