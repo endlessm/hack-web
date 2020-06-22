@@ -1,5 +1,4 @@
 === level2 ===
-# character: riley
 - Let's go! Remember, my objective is to get to the exit, and try to avoid the walls!
 * [(wait for: currentLevel is 3)] Level {currentLevel -1 } Complete!
 -> level3_1
@@ -10,7 +9,6 @@
 -> mid_level_check(4) -> level3_2
 
 === level3_2 ===
-# character: riley
 - Well, I didn't do everything... You helped with design, Ada, and Saniel helped me with the code, and Felix--
 -> mid_level_check(4) -> level3_3
 
@@ -25,9 +23,7 @@
 -> mid_level_check(4) -> level3_5
 
 === level3_5 ===
-# character: riley
 - Aw, come on...don't make such a big deal out of it, it's embarassing -_-;;
-# character: riley
 - Um, let's concentrate on beating this level, {get_user_name()}!
 -> end_level_check(4) -> level4
 
@@ -38,7 +34,6 @@
 
 
 === level4_1 ===
-# character: riley
 -You need to use the <b>Jump</b> instruction to cross <b>Pits</b>! There's a trick to it, though. <b>Jump</b> can only cross a <b>pit</b> if it's <b>directly</b> in front of you.
 -> end_level_check(5) -> level5
 
@@ -49,7 +44,6 @@
 
 
 === level6 ===
-# character: riley
 -BTW, those pits weren't easy to draw... it's tough trying to get that feeling of a deep, black hole, but only using colors.
 -> mid_level_check(7) -> level6_1
 
@@ -68,7 +62,6 @@
 
 
 === level7_1 ===
-# character: riley
 -I knew you'd like that one, Faber :D
 -> mid_level_check(8) -> level7_2
 
@@ -84,7 +77,6 @@
 === level7_3 ===
 # character: estelle
 -These bugbots <b>only move down</b>, never left or right, so that might let you find a... bug... in their behavior. ^_^
-# character: riley
 Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your eye out for that!
 -> end_level_check(8) -> level8
 
@@ -100,7 +92,6 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 
 
 === level10 ===
-# character: riley
 -Time for new bugbots! This new type <b>only moves up</b>, just like the first <b>only moves down</b>. Pay attention to which way they're facing!
 * [(wait for: currentLevel is 11)] Level {currentLevel -1 } Complete!
 -> level11
@@ -144,7 +135,6 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 
 
 === level14_postcs_3 ===
-# character: riley
 - I was wondering when Felix would show up! For once, he's on time, and doing exactly what I asked him to. <b>Now</b> things are going to get interesting!
 -> mid_level_check(15) -> level14_postcs_4
 
@@ -156,14 +146,12 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 
 
 === level14_postcs_5 ===
-# character: riley
 -And now, we're in hard-mode! See that <b>Play</b> button on the left? Try pushing it.
 -> end_level_check(15) -> level15
 
 
 
 === level15 ===
-# character: riley
 -In this mode, you have to plan all your moves around the level in advance. Drag the instructions into the order you want, then press <b>play</b> to start our journey through the maze. If you think it through, you'll pass these levels in no time.
 * [(wait for: currentLevel is 16)] Level {currentLevel -1 } Complete!
 -> level16
@@ -176,7 +164,6 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 
 
 === level16_2 ===
-# character: riley
 - Drag and drop the instructions to re-order them, and press <b>Play</b> to start your run! Oh yeah, and once you press play... no changing instructions around until you succeed or fail!
 -> end_level_check(17) -> level17
 
@@ -195,7 +182,6 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 
 
 === level17_3 ===
-# character: riley
 -Woah, t-thanks, Saniel! That means a lot to me.
 -> end_level_check(18) -> level18
 
@@ -207,7 +193,6 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 
 
 === level18_2 ===
-# character: riley
 -It's pretty... a-maze-ing! :D Seriously, {get_user_name()} I hope you're having as much fun as we are. It's so cool to see someone play something I helped build!
 -> mid_level_check(19) -> level18_3
 
@@ -219,7 +204,6 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 
 
 === level19 ===
-# character: riley
 -Let's turn the heat up - now you've got 2 Jumps.
 -> mid_level_check(20) -> level19_2
 

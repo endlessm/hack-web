@@ -1,5 +1,4 @@
 === level23 ===
-# character: riley
 - Hey, check out that instruction in the middle of the set. That's not a good symbol!
 * [❯] ❯
 -> level23_2
@@ -68,7 +67,6 @@
 
 === level23_cont_5 ===
 ~ attractFTH = 1
-# character: riley
 - You got it, Dr. Rowe! That's exactly what the next step is. Do you see that button on the <b>left side</b> of the screen, {get_user_name()}? That's the <b>Flip to Hack</b> button! You can use it to go behind the scenes and hack the game with the <b>Toolbox</b>. Let's go!
 { flipped:
 	-> level23_cont_8
@@ -80,7 +78,6 @@
 === level23_cont_8 ===
 ~ attractFTH = 0
 ~ hasLockKey = 1
-# character: riley
 - There's a lock here, but never fear, {get_user_name()}, here's the key! Click the lock to open it, and you'll be able to see the <b>Instructions</b>. They're the code version of the icons you dragged around on the front side of Sidetrack.
 * [(wait for: isLocked is 0)]  Unlocked!
 -> level23_cont_10
@@ -89,7 +86,6 @@
 
 
 === level23_cont_10 ===
-# character: riley
 - Take a close look at the instructions. When you write code, it has to be <b>exactly</b> how the computer expects... So, do you see anything weird? Try and fix any problems you see. You can always Undo any mistakes you make (<b>Ctrl + Z</b>), and if everything get really bad, you can always  reset the code by clicking the <b>Reload</b> button in the upper right.
 * [👍] I think I see the problem!
 -> level23_cont_11
@@ -108,21 +104,18 @@
 -> level23_flip
 
 === level23_cont_11 ===
-# character: riley
 - Awesome! Fix the problem, <b>flip</b> back to the front of Sidetrack, and then press the <b>Play</b> button!
 * [(wait for: codeErrors is 0)] Fixed it!
 -> level23_flip
 
 === level23_flip ===
 ~ attractFTH = 1
-# character: riley
 - Awesome, I think you fixed it! Now <b>flip</b> back to the front of Sidetrack.
 * [(wait for: flipped)]  Flipped back!
 -> level23_play
 
 === level23_play ===
 ~ attractFTH = 0
-# character: riley
 - Ok, let's give it a shot! Press the <b>Play</b> button.
 * [(wait for: currentLevel is 24)] Level {currentLevel -1} Complete!
 -> level24
@@ -143,7 +136,6 @@ Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to 
 
 === level24_3 ===
 ~ attractFTH = 0
-# character: riley
 - I think I can see the problem here!
 * [Hint] (Hint)
 -> level24_3_hints
@@ -226,7 +218,6 @@ Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to 
 
 
 === level26_2 ===
-# character: riley
 - Now you're getting it! Head to the <b>Instructions</b> again by <b>flipping</b> Sidetrack!
 * [(wait for: flipped)] Flipped!
 -> level26_3
@@ -299,7 +290,6 @@ Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to 
 
 
 === level28_4 ===
-# character: riley
 - Not yet, Faber! I haven't finished getting everything into this web version of Sidetrack, yet. If you want to solve this puzzle right now, you'll have to go into Endless OS and check out Sidetrack there!
 * [❯] ❯
 -> level28_5
