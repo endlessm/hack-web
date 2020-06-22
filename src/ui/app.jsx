@@ -15,7 +15,7 @@
  */
 
 import { hot } from 'react-hot-loader';
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import {
   BrowserRouter as Router,
@@ -24,8 +24,6 @@ import {
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import 'typeface-roboto';
-import ReactGA from 'react-ga';
-import PropTypes from 'prop-types';
 
 import './app.css';
 import theme from './theme';
@@ -33,31 +31,12 @@ import CardSetView from './card-set-view';
 import Login, { RequireAuth } from './login';
 import SignUp from './signup';
 import ResetPassword from './reset';
+import GAWrapper from './ga';
 
 import { P5Quest } from './quests/p5-quest';
 import { HtmlQuest } from './quests/html-quest';
 import { PdfQuest } from './quests/pdf-quest';
 import { SidetrackQuest } from './quests/sidetrack-quest';
-
-ReactGA.initialize('UA-160877903-1');
-ReactGA.set({ anonymizeIp: true });
-const GAWrapper = ({ children }) => {
-  const { location } = window;
-
-  // This should be done in a effect to get the children component rendered so
-  // we've the final document.title setted
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'production') {
-      ReactGA.pageview(location.pathname + location.search);
-    }
-  }, [location.pathname, location.search]);
-
-  return children;
-};
-
-GAWrapper.propTypes = {
-  children: PropTypes.element.isRequired,
-};
 
 const App = () => {
   const cardsets = useSelector((state) => state.cardsets);
