@@ -33,6 +33,8 @@ import SignUp from './signup';
 import ResetPassword from './reset';
 import GAWrapper from './ga';
 
+import CookieDialog from './cookie-dialog';
+
 import { P5Quest } from './quests/p5-quest';
 import { HtmlQuest } from './quests/html-quest';
 import { PdfQuest } from './quests/pdf-quest';
@@ -45,6 +47,7 @@ const App = () => {
     <Suspense fallback="loading">
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <CookieDialog />
         <Router>
           <Switch>
             <Route path="/login">
