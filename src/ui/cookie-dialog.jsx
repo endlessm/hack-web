@@ -85,7 +85,7 @@ const CookieDialog = () => {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary" autoFocus>
-          {t('Agree')}
+          {t('I Agree')}
         </Button>
       </DialogActions>
     </Dialog>
