@@ -25,6 +25,10 @@ const actions = {
       username,
     },
   }),
+  setMute: (value) => ({
+    type: 'MUTE',
+    payload: value,
+  }),
   sidePanelSetOpen: () => ({
     type: 'SIDE-PANEL-SET-OPEN',
   }),
@@ -111,6 +115,9 @@ function authReducer(state = {}, action) {
 
 function uiReducer(state = {}, action) {
   switch (action.type) {
+    case 'MUTE': {
+      return { ...state, mute: action.payload };
+    }
     case 'SIDE-PANEL-SET-OPEN': {
       return { ...state, sidePanelOpen: true };
     }
@@ -190,6 +197,7 @@ const initialState = {
     username: null,
   },
   ui: {
+    mute: false,
     sidePanelOpen: false,
     cardSelected: {},
     inventory: false,

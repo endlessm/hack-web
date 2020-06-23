@@ -98,6 +98,7 @@ const SidetrackQuest = () => {
   // This is here to trigger a reload when the sidepanel changes so we can
   // focus the APP
   const open = useSelector((state) => state.ui.sidePanelOpen);
+  const mute = useSelector((state) => state.ui.mute);
 
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
@@ -109,7 +110,9 @@ const SidetrackQuest = () => {
   const [hasLockKey, setHasLockKey] = useState(false);
   const [isLocked, setIsLocked] = useState(true);
 
-  const [mute, setMute] = useState(false);
+  const setMute = (value) => {
+    dispatch(actions.setMute(value));
+  };
 
   // FIXME, this is a copy of the same state as in the FlipToHack
   // component. In the future we should have two kind of controls: one
@@ -236,6 +239,7 @@ const SidetrackQuest = () => {
           audio.volume = sound.volume;
         }
         app.contentDocument.body.appendChild(audio);
+        audio.muted = mute;
       });
 
       app.contentWindow.Sounds = {
