@@ -25,7 +25,6 @@ import {
   Drawer,
   Grid,
   makeStyles,
-  Tooltip,
   Typography,
   Dialog,
   DialogTitle,
@@ -61,22 +60,14 @@ const useStyles = makeStyles(({ spacing }) => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     minHeight: spacing(20),
-    opacity: 0.8,
-    '&:hover': {
-      opacity: 1,
-    },
   },
 }));
 
 const HackBadge = ({ achievement, disabled }) => {
   const classes = useStyles({ achievement });
-  const achievementsData = useSelector((state) => state.achievementsData);
-  const tooltip = achievementsData[achievement] || achievement;
 
   return (
-    <Tooltip title={tooltip}>
-      <Box mt={2} className={clsx(classes.badge, { [classes.badgeDisabled]: disabled })} />
-    </Tooltip>
+    <Box mt={2} className={clsx(classes.badge, { [classes.badgeDisabled]: disabled })} />
   );
 };
 
