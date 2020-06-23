@@ -15,6 +15,7 @@
  */
 
 import React, { useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   Fab,
   makeStyles,
@@ -93,6 +94,8 @@ const FTHButton = ({
   onClick,
   ...props
 }) => {
+  const mute = useSelector((state) => state.ui.mute);
+
   FTHButton.muiName = Fab.muiName;
   const classes = useStyles();
 
@@ -102,7 +105,7 @@ const FTHButton = ({
   const inverseClickRef = useRef(null);
 
   const playSound = (ref) => {
-    if (!ref.current) {
+    if (mute || !ref.current) {
       return;
     }
 
