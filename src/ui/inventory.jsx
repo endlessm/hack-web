@@ -20,7 +20,6 @@ import clsx from 'clsx';
 
 import {
   Box,
-  Button,
   IconButton,
   Drawer,
   Grid,
@@ -33,6 +32,7 @@ import {
   DialogActions,
   useTheme,
   useMediaQuery,
+  SvgIcon,
 } from '@material-ui/core';
 
 import {
@@ -44,6 +44,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { actions } from '../store';
+
+import MainIconButton from './main-icon-button';
+import ThumbsUpIcon from './icons/hack-thumbsup-symbolic.svg';
+import ThumbsDownIcon from './icons/hack-thumbsdown-symbolic.svg';
 
 const defaultBadge = '/assets/badges/default.svg';
 
@@ -80,11 +84,22 @@ HackBadge.defaultProps = {
   disabled: false,
 };
 
+const dialogStyles = makeStyles(({ palette, spacing }) => ({
+  button: {
+    color: 'white',
+    margin: spacing(1),
+  },
+  grey: {
+    backgroundColor: palette.grey[500],
+  },
+}));
+
 const ResetGameStateDialog = ({ open, setOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const classes = dialogStyles();
 
   const reset = () => {
     dispatch(actions.gameStateReset());
@@ -109,12 +124,12 @@ const ResetGameStateDialog = ({ open, setOpen }) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={handleClose} color="primary">
-          {t('No')}
-        </Button>
-        <Button onClick={reset}>
-          {t('Yes')}
-        </Button>
+        <MainIconButton size="medium" onClick={reset} className={clsx(classes.button, classes.grey)}>
+          <SvgIcon component={ThumbsUpIcon} viewBox="0 0 16 16" />
+        </MainIconButton>
+        <MainIconButton size="medium" onClick={handleClose} className={classes.button}>
+          <SvgIcon component={ThumbsDownIcon} viewBox="0 0 16 16" />
+        </MainIconButton>
       </DialogActions>
     </Dialog>
   );
