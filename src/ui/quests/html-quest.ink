@@ -295,7 +295,7 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 
 === html2_4 ===
 - Fantastic! Do you see what that did to all the entries in all the lists? What you typed was telling the browser "I want all the text that is inside the <b>li</b> tag to be colored orange."
-+ [❯] ❯
++ ❯
 -> html2_5
 
 === html2_5 ===
@@ -401,7 +401,7 @@ type <tt>h1 \{</tt>(press Enter)<tt>color: coral;</tt>(press Enter again)<tt>\}<
 - Whew! That was a lot to take in, I'll bet, and we've only scratched the surface of what you can do with HTML and CSS. I hope I'll see you in the Desktop version of Hack, sometime in the future, and we can keep going and learn even more cool stuff! You deserve a reward.
 {set_game_state("quest.Web/complete", true)}
 {set_game_state("quests.achievements/web-complete", true)}
-* [❯] ❯
+* ❯
 # character: felix
 - <i>prrrow^r, brbrbrbr mrrr*&$0w!</i>
 - Good point, Felix! Hey {get_user_name()}, why don't you head off to the kitchen and bake yourself some of these cookies? I promise they're good!
