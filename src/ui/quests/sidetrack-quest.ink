@@ -51,8 +51,8 @@ INCLUDE sidetrack-2-quest.ink
 
 === function say_level_complete
 { language:
-  - "es": ¡Nivel {currentLevel -1 } completado!
-  - else: Level {currentLevel -1 } Complete!
+  - "es": ¡Nivel {currentLevel - 1 } superado!
+  - else: Level {currentLevel - 1 } Complete!
 }
 
 === end_level_check(desiredLevel)
