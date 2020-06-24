@@ -4,7 +4,7 @@
   -> article_loaded_de
 
 === article_loaded_de ===
-{set_game_state("quests.achievements/pdf-complete", true)}
+~ set_game_state("quests.achievements/pdf-complete", true)
 - Moment mal Faber, diese Aktivität ist in Englisch? # character: ada
 - Ja richtig!
 - Dies ist sozusagen eine Englischstunde :) Versuch es doch mal! 

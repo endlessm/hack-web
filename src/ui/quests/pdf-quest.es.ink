@@ -4,7 +4,7 @@
   -> article_loaded_es
 
 === article_loaded_es ===
-{set_game_state("quests.achievements/pdf-complete", true)}
+~ set_game_state("quests.achievements/pdf-complete", true)
 - Un momento Faber, esta actividad está disponible solo en inglés. # character: ada
 - ¡Así es!
 - {get_user_name()}, en caso de que prefieras sólo contenido en español, puedes pulsar el botón de la casita para volver a la página principal.
