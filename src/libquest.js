@@ -136,12 +136,7 @@ export default class Quest {
     // Handle achievements
     if (key.startsWith('quests.achievements')) {
       const [, achievement] = key.split('/');
-      const { gameState } = store.getState();
-      const achievements = gameState['quests.achievements'];
-      const exists = achievements && achievements[achievement];
-      if (!exists) {
-        this.achievements.add(achievement);
-      }
+      this.achievements.add(achievement);
     }
 
     setGameState(key, value);
@@ -228,7 +223,6 @@ export default class Quest {
     this.achievements.forEach((achievement) => {
       const { achievementsData } = store.getState();
       const achievementHeader = i18next.t('Badge Awarded');
-
       const text = achievementsData[achievement] || achievement;
       const img = `/assets/badges/${achievement}.svg`;
       const imgHtml = `<img src="${img}" alt="${achievement}"/>`;
