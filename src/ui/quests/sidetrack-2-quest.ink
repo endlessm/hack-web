@@ -131,7 +131,7 @@
 ~ attractFTH = 1
 # character: riley
 - Ah, much better! I see you've got a knack for hacking! For that, I'm giving you a reward.
-{set_game_state("quests.achievements/sidetrack2-complete", true)}
+set_game_state("quests.achievements/sidetrack2-complete", true)
 * [❯] ❯
 # character: faber
 Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to the <b>Instructions</b> again!
@@ -307,6 +307,6 @@ Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to 
 
 === level28_5 ===
 # character: saniel
-{set_game_state("quest.Sidetrack2/complete", true)}
+set_game_state("quest.Sidetrack2/complete", true)
 - Ahem. I think I speak for all of us, here, when I say that we've had a great time with you, {get_user_name()}. I hope we'll see you soon in Endless OS!
 -> END

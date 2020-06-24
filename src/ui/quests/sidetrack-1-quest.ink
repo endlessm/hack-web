@@ -247,8 +247,8 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 === level22 ===
 # character: riley
 - You sailed through all those levels. For that, I'm giving you a reward.
-{set_game_state("quests.achievements/sidetrack1-complete", true)}
-{set_game_state("quest.Sidetrack1/complete", true)}
+set_game_state("quests.achievements/sidetrack1-complete", true)
+set_game_state("quest.Sidetrack1/complete", true)
 * [❯] ❯
 # character: ada
 { not skip:
