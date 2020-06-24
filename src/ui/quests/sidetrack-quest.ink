@@ -9,7 +9,7 @@ VAR flipped = 0
 // will change the currentLevel
 // The starting level will be the highestAchievedLevel
 VAR startLevel = 0
-VAR currentLevel = 1
+VAR currentLevel = -1
 VAR highestAchievedLevel = 1
 VAR availableLevels = 2
 // Will change to 0 on death
@@ -31,6 +31,9 @@ VAR codeErrors = 0
 INCLUDE sidetrack-1-quest.ink
 INCLUDE sidetrack-2-quest.ink
 
+// Before we begin, let's wait for the app to update all the read-only
+// variables. We do that by waiting for one of them, currentLevel.
++ [(wait for: currentLevel is 1)]
 { language:
 - "es": -> begin_es
 - else: -> begin
