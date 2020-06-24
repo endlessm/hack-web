@@ -221,7 +221,7 @@ const initializeDefaultData = (t) => {
     {
       slug: '/home',
       name: t('Pick a dimension to explore!'),
-      description: t('Hey, Hacker! My name\'s Riley, and I\'m here to show off Endless OS and Hack! Pick a card and check out what we\'ve got to offer!'),
+      description: t('Hey, Hacker! My name\'s Riley, and I\'m here to show off Endless OS and Hack! Pick a card and check out what we\'ve got to offer! Completing the coding lessons will give you a badge as a reward. Let\'s see how many badges you can collect. The inventory at the top left in the Home page shows you how many you have collected.'),
       cards: [
         {
           slug: '/art',
@@ -365,11 +365,11 @@ const initializeDefaultData = (t) => {
   store.dispatch(actions.setCardSets(defaultCardSets));
 
   const defaultAchievements = {
-    'web-complete': t('Web Tech hacker'),
-    'p5-complete': t('Art hacker'),
-    'pdf-complete': t('Maker hacker'),
-    'sidetrack1-complete': t('Sidetrack gamer'),
-    'sidetrack2-complete': t('Sidetrack hacker'),
+    'web-complete': t('Web Crawler'),
+    'p5-complete': t('Process This!'),
+    'pdf-complete': t('Get Excited And Make Things'),
+    'sidetrack1-complete': t('Sidetrack Player'),
+    'sidetrack2-complete': t('Sidetrack Hacker'),
   };
   store.dispatch(actions.setAchievementsData(defaultAchievements));
 };

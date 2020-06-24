@@ -25,7 +25,6 @@ import {
   Drawer,
   Grid,
   makeStyles,
-  Tooltip,
   Typography,
   Dialog,
   DialogTitle,
@@ -61,22 +60,14 @@ const useStyles = makeStyles(({ spacing }) => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     minHeight: spacing(20),
-    opacity: 0.8,
-    '&:hover': {
-      opacity: 1,
-    },
   },
 }));
 
 const HackBadge = ({ achievement, disabled }) => {
   const classes = useStyles({ achievement });
-  const achievementsData = useSelector((state) => state.achievementsData);
-  const tooltip = achievementsData[achievement] || achievement;
 
   return (
-    <Tooltip title={tooltip}>
-      <Box mt={2} className={clsx(classes.badge, { [classes.badgeDisabled]: disabled })} />
-    </Tooltip>
+    <Box mt={2} className={clsx(classes.badge, { [classes.badgeDisabled]: disabled })} />
   );
 };
 
@@ -111,10 +102,10 @@ const ResetGameStateDialog = ({ open, setOpen }) => {
       onClose={handleClose}
       aria-labelledby="responsive-dialog-title"
     >
-      <DialogTitle id="responsive-dialog-title">{t('Do you want to remove the game state?')}</DialogTitle>
+      <DialogTitle id="responsive-dialog-title">{t('Are you sure you want to reset your progress?')}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          {t('Removing the Game State will remove the progress in all quests and all the achievements reached.')}
+          {t('This will reset your progress in all quests, and erase all your achievements!')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

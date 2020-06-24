@@ -117,7 +117,7 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 
 
 === level13 ===
-# charcter: ada
+# character: ada
 -Bugbots, pits... Riley, you've done a great job here.
 * [(wait for: currentLevel is 14)] Level {currentLevel -1 } Complete!
 -> level14
@@ -213,7 +213,7 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 
 
 === level18_3 ===
-# characte: ada
+# character: ada
 -Ah hah, look at your instructions carefully. You've only got one jump, so use it well - you might need to use a different way of getting around the pits.
 -> end_level_check(19) -> level19
 

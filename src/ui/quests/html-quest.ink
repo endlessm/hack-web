@@ -25,7 +25,7 @@ VAR css = ""
 
 === baditems_hint
     # character: riley
-    Check out those wierd ingredients - Gadolinium, Swedish fish, and what the heck is a cross borehole... thing? Those are definitely not part of a cookie recipe!
+    Check out those weird ingredients - Gadolinium, Swedish fish, and what the heck is a cross borehole... thing? Those are definitely not part of a cookie recipe!
     -> baditems_minder
 
 
@@ -190,7 +190,7 @@ VAR css = ""
 - The left half works just like any text editor:
 You can copy and paste (<b>Ctrl + C</b> and <b>Ctrl + V</b> on PC or Linux, <b>⌘ + C</b> and <b>⌘ + V</b> on a Mac)
 You can undo (<b>Ctrl + Z</b> on PC and Linux, <b>⌘ + Z</b> on Mac)
-If you really get lost, you can reset all the text by pressing the <b>Reset</b> button in the upper right corner of the website testing area.
+If you really get lost, you can reset all the text by pressing the <b>Reset</b> button in the upper right corner of the code area.
 * ❯
 -> html1_3
 
@@ -225,7 +225,7 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 -> baditems_minder -> html1_5
 
 === html1_5 ===
-- Great, we've cleaned out all those ingredients and instructions that don't make sense. Let's look at how the recipe's <b>formatting</b> now - the way it shows up on the page.
+- Now that we've cleaned out all those ingredients and instructions that don't make sense, we can look at the recipe's <b>format</b> - the way it shows up on the page.
 - The <b>wet ingredients</b> look good, they're <b>formatted</b> in a clear list, but the <b>dry ingredients</b> could use some help.
 * ❯
 -> html1_6
@@ -241,7 +241,7 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 -> html1_list1
 
 === html1_list1 ===
-- If you look at the <b>wet ingredients</b>, there's a set of <b>tags</b> the that lets us display lists. Now, let's apply those to the <b>dry ingredients</b>.
+- If you look at the <b>wet ingredients</b>, there's a set of <b>tags</b> that lets us display lists. Now, let's apply those to the <b>dry ingredients</b>.
 - First, surround the entire list of <b>dry ingredients</b> with <tt>&lt;ul&gt;</tt> and <tt>&lt;/ul&gt;</tt> - you can replace the <tt>&lt;p&gt;</tt> and <tt>&lt;/p&gt;</tt> tags that are already there.
 - You won't see any huge change immediately, so let me know when you're ready to move on.
 * ❯
@@ -257,7 +257,8 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 -> html1_list4
 
 === html1_list4 ===
-- First, we need to replace the <tt>&lt;p&gt;</tt> and <tt>&lt;/p&gt;</tt> tags around the instructions with <tt>&lt;ol&gt;</tt> and <tt>&lt;/ol&gt;</tt> - <tt>&lt;ol&gt;</tt> means that we're creating an <b>ordered list</b>, as opposed to the <b>unordered list</b> that <tt>&lt;ul&gt;</tt> creates.
+- First, we need to replace the <tt>&lt;p&gt;</tt> and <tt>&lt;/p&gt;</tt> tags around the instructions with <tt>&lt;ol&gt;</tt> and <tt>&lt;/ol&gt;</tt>.
+- <tt>&lt;ol&gt;</tt> means that we're creating an <b>ordered list</b> (a numbered list), as opposed to the <b>unordered list</b> that <tt>&lt;ul&gt;</tt> creates.
 - Like before, you won't see any huge change immediately, so let me know when you're ready to move on.
 * ❯
 -> html1_list5
@@ -267,27 +268,27 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 -> instructions_minder -> html1_list6
 
 === html1_list6 ===
-- Fantastic work! Now we've got a clear and well-built recipe.
+- Now we've got a clear and well-built recipe!
 * ❯
 -> html1_list7
 
 === html1_list7 ===
 - I still think we can improve this page, though.
-- This is where a new type of code comes in - CSS. CSS can change all sorts of things, from where the text sits on the page, to the color of every part of the page, to the font... I'll show you a quick example!
+- This is where a new type of code comes in - <b>CSS</b>. <b>CSS</b> can change all sorts of things, from where the text sits on the page, to the color of every part of the page, to the font... Let me show you a quick example!
 * ❯
 -> html2_css1
 
 === html2_css1 ===
-- CSS lives in the <b>CSS tab</b>, just underneath the <b>HTML tab</b> on the far left of your screen. You can click to swtich between the two tabs.
-- Let's change our page's background color. Look for <tt>body</tt> in the CSS tab. Between the two <b>braces</b> ( <b>\{ \}</b>), you'll see <tt>background-color: white;</tt>. This tells the browser "I want the background of the <b>body</b> tag to be white." Let's set that to something different -  change <tt>white</tt> to <tt>slateblue</tt>.
-* [(wait for: css icontains "background-color: slateblue;")](Done)
+- <b>CSS</b> lives in the <b>CSS tab</b>, just underneath the <b>HTML tab</b> on the far left of your screen. You can click to switch between the two tabs.
+- Let's change our page's background color. Look for <tt>body</tt> in the <b>CSS tab</b>. Between the two <b>braces</b> ( <b>\{ \}</b>), you'll see <tt>background-color: lightgrey;</tt>. This tells the browser "I want the background of the <b>body</b> tag to be light grey." Let's set that to something different -  change <tt>lightgrey</tt> to <tt>darkslateblue</tt>.
+* [(wait for: css icontains "background-color: darkslateblue;")](Done)
 -> html2_3
-* [(wait for: css icontains "background-color:slateblue;")](Done)
+* [(wait for: css icontains "background-color:darkslateblue;")](Done)
 -> html2_3
 
 === html2_3 ===
-- Congratulations! You just wrote some CSS! Let's get a little fancier and style some text. On a new line below the <b>closing brace</b> (  <b>\}</b> ) of the <b>body</b> CSS, type <tt>li \{</tt>(press Enter)<tt>color: orange;</tt>(press Enter again)<tt>\}</tt>.
-- You should end up with 3 lines of CSS that look similar to the <tt>body</tt> lines.
+- Congratulations! You just wrote some <b>CSS</b>! Let's get a little fancier and style some text. On a new line below the <b>closing brace</b> (  <b>\}</b> ) of the <b>body CSS</b>, type <tt>li \{</tt>(press Enter)<tt>color: orange;</tt>(press Enter again)<tt>\}</tt>.
+- You should end up with 3 lines of <b>CSS</b> that look similar to the <tt>body</tt> lines.
 * [(wait for: css icontains "color: orange;")](Done)
 -> html2_4
 * [(wait for: css icontains "color:orange;")](Done)
@@ -299,7 +300,7 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 -> html2_5
 
 === html2_5 ===
-- Now, what if we had a very specific color in mind instead of just "orange"? You'd need a way to describe that exact color, like a painter might describe a new color she mixed...
+- Now, what if we had a very specific color in mind instead of just "orange"? You'd need a way to describe that exact color, like two painters might describe a new color they mixed...
 * ❯
 -> html2_5_2
 
@@ -342,7 +343,7 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 -> html2_9
 
 === html2_9 ===
-- Now, let's modify that text you pasted. We need to make the CSS more specfic, so instead of all <tt>li</tt> tags it only affects <tt>li</tt> tags inside an <tt>ol</tt> tag. To do that, we say it like we'd ask someone to pick a specific object from a specfic group - "Hand me a potato from the pile of purple potatoes, not the red potatoes or brown potatoes."
+- Now, let's modify that text you pasted. We need to make the CSS more specific, so instead of all <tt>li</tt> tags it only affects <tt>li</tt> tags inside an <tt>ol</tt> tag. To do that, we say it like we'd ask someone to pick a specific object from a specific group - "Hand me a potato from the pile of purple potatoes, not the red potatoes or brown potatoes."
 - We'll do the same thing here. Change the first line of our new CSS to <tt>ol li \{</tt>, and change the <b>color</b> to <tt>violet</tt>, so we can see the change better.
 -> css1_minder -> html2_10
 
@@ -365,10 +366,10 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 
 === html2_12 ===
 - OK! Let's try those other tags. Switch back to the CSS tab and create some new lines below your existing CSS rules. In those blank lines,
-type <tt>h1 \{</tt>(press Enter)<tt>color: coral;</tt>(press Enter again)<tt>\}</tt>.
-* [(wait for: css icontains "color: coral;")](Done)
+type <tt>h1 \{</tt>(press Enter)<tt>color: MediumSpringGreen;</tt>(press Enter again)<tt>\}</tt>.
+* [(wait for: css icontains "color: mediumspringgreen;")](Done)
 -> html2_13
-* [(wait for: css icontains "color:coral;")](Done)
+* [(wait for: css icontains "color:mediumspringgreen;")](Done)
 -> html2_13
 
 === html2_13 ===
@@ -379,17 +380,19 @@ type <tt>h1 \{</tt>(press Enter)<tt>color: coral;</tt>(press Enter again)<tt>\}<
 -> html2_14
 
 === html2_14 ===
-- Now for the finishing touch - an image! Switch back to the HTML tab.
+- Now for the finishing touch - an image! Switch back to the <b>HTML</b> tab.
 - Let's put the image right at the top, just after the title. Put your cursor right after <tt>&lt;/h1&gt;</tt> and press <b>Enter</b>, that should give us a new line.
 - Once you've got the new line, we can link the image - type <tt>&lt;img src = "cookies.png"&gt;</tt>
-* [(wait for: html contains "img src = \"cookies.png\"")](Done)
+* [(wait for: html icontains "img src = \"cookies.png\"")](Done)
+-> html2_15
+* [(wait for: html icontains "img src=\"cookies.png\"")](Done)
 -> html2_15
 
 === html2_15 ===
 - Great! The image looks a little big, though. Let's limit the width a little. Add <tt>width = 400</tt> just before the final caret (<b>&gt;</b>).
-* [(wait for: html contains "img src = \"cookies.png\" width = 400")](Done)
+* [(wait for: html icontains " width = 400")](Done)
 -> html2_16
-* [(wait for: html contains "img src = \"cookies.png\" width=400")](Done)
+* [(wait for: html icontains " width=400")](Done)
 -> html2_16
 
 === html2_16 ===

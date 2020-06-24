@@ -21,7 +21,7 @@ VAR code = ""
 
 === p5_3 ===
 - Let's start off with something simple - How about we change that background color. Find the line that says <tt>background(20);</tt>, and change it to read <tt>background('green');</tt>.
-- Dont forget the semicolon ( <b>;</b> ) at the end of the line, and pay attention to your spaces!
+- Don't forget the semicolon ( <b>;</b> ) at the end of the line, and pay attention to your spaces!
 TODO: Replace brute-force checks when we have a better check:
 + [(wait for: code contains "background('green');")]
 + [(wait for: code contains "background('Green');")]
@@ -52,7 +52,7 @@ TODO: Replace brute-force checks when we have a better check:
 -> p5_8
 
 === p5_8 ===
-- Hmm, looks like we're going to need a bigger window to contain this wave! We can make the <b>canvas</b> (that's the name of the area the program draws things in) larger by changing the line that says <tt>createCanvas(400, 400)</tt>. Those two numbers control the width and height of your canvas, so let's make that a little bigger - increase the wdith to <b>600</b>.
+- Hmm, looks like we're going to need a bigger window to contain this wave! We can make the <b>canvas</b> (that's the name of the area the program draws things in) larger by changing the line that says <tt>createCanvas(400, 400)</tt>. Those two numbers control the width and height of your canvas, so let's make that a little bigger - increase the width to <b>600</b>.
 + [(wait for: code contains "createCanvas(600, 400);")] (Done)
 -> p5_10
 
@@ -136,7 +136,7 @@ TODO: Replace brute-force checks when we have a better check:
 
 
 === p5_21 ===
-- OK, let's get complex. We'll make the arcs change color only when you click (or touch, if you're using a tablet) that part of the sceeen.
+- OK, let's get complex. We'll make the arcs change color only when you click (or touch, if you're using a tablet) that part of the screen.
 - First, surround your existing <tt>doArcs(...</tt> code with <tt>if (mouseIsPressed) \{</tt>, and <tt>\}</tt>
 - Remember to be very careful of your spacing! Your code should look like this:
 {snippet_p5_21()}
