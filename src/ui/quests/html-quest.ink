@@ -402,8 +402,8 @@ type <tt>h1 \{</tt>(press Enter)<tt>color: MediumSpringGreen;</tt>(press Enter a
 
 === complete ===
 - Whew! That was a lot to take in, I'll bet, and we've only scratched the surface of what you can do with HTML and CSS. I hope I'll see you in the Desktop version of Hack, sometime in the future, and we can keep going and learn even more cool stuff! You deserve a reward.
-set_game_state("quest.Web/complete", true)
-set_game_state("quests.achievements/web-complete", true)
+~ set_game_state("quest.Web/complete", true)
+~ set_game_state("quests.achievements/web-complete", true)
 * ❯
 # character: felix
 - <i>prrrow^r, brbrbrbr mrrr*&$0w!</i>
