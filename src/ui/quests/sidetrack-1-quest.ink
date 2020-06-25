@@ -223,10 +223,8 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 ~ set_game_state("quests.achievements/sidetrack1-complete", true)
 ~ set_game_state("quest.Sidetrack1/complete", true)
 * [❯] ❯
-# character: ada
 { not skip:
-    - Ok, let's see what this level is about...
-    ~ skip = 0
+    Ok, let's see what this level is about... # character: ada
 }
 * [(wait for: currentLevel is 23)] Level {currentLevel -1 } Complete!
 -> level23

@@ -1,8 +1,6 @@
 === hacking_es ===
-# character: ada
 { not skip:
-  - Ok, veamos de qué se trata este nivel...
-  ~ skip = 0
+  Ok, veamos de qué se trata este nivel... # character: ada
 }
 * [(wait for: currentLevel is 23)] {say_level_complete()}
   -> level23_es
