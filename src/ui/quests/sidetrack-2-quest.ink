@@ -1,6 +1,6 @@
 === level23 ===
 - Hey, check out that instruction in the middle of the set. That's not a good symbol!
-* [❯] ❯
+* ❯
 -> level23_2
 * [(wait for: success is 0)] Level {currentLevel} Failed!
 -> level23_fail
@@ -23,7 +23,7 @@
 { flipped == true:
 	-> level23_fail_2
 }
-* [❯] ❯
+* ❯
 -> level23_fail_2
 * [(wait for: flipped)] Flipped!
 -> level23_fail_2
@@ -35,7 +35,7 @@
 { flipped == true:
 	-> level23_cont_3
 }
-* [❯] ❯
+* ❯
 -> level23_cont_3
 * [(wait for: flipped)] Flipped!
 -> level23_cont_3
@@ -47,7 +47,7 @@
 { flipped == true:
 	-> level23_cont_4
 }
-* [❯] ❯
+* ❯
 -> level23_cont_4
 * [(wait for: flipped)] Flipped!
 -> level23_cont_4
@@ -59,7 +59,7 @@
 { flipped == true:
 	-> level23_cont_5
 }
-* [❯] ❯
+* ❯
 -> level23_cont_5
 * [(wait for: flipped)] Flipped!
 -> level23_cont_5
@@ -125,7 +125,7 @@
 # character: riley
 - Ah, much better! I see you've got a knack for hacking! For that, I'm giving you a reward.
 ~ set_game_state("quests.achievements/sidetrack2-complete", true)
-* [❯] ❯
+* ❯
 # character: faber
 Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to the <b>Instructions</b> again!
 * [(wait for: flipped)] Flipped!
@@ -211,7 +211,7 @@ Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to 
 === level26 ===
 # character: ada
 - I'm not so sure these errors are a mistake, every instruction in this set is wrong! Statistically, the probability of that occurring is quite low.
-* [❯] ❯
+* ❯
 -> level26_2
 * [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
 -> level26_2
@@ -271,27 +271,27 @@ Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to 
 === level28 ===
 # character: faber
 - Uh... That's a big wall. Can we jump a wall? Does that work?
-* [❯] ❯
+* ❯
 -> level28_2
 
 
 === level28_2 ===
 # character: saniel
 - You can experiment with that if you like, Faber, but judging from previous levels... probably not. I think we'll need a new tool to solve this puzzle.
-* [❯] ❯
+* ❯
 -> level28_3
 
 
 === level28_3 ===
 # character: faber
 - Darn. Well, do we have that tool?
-* [❯] ❯
+* ❯
 -> level28_4
 
 
 === level28_4 ===
 - Not yet, Faber! I haven't finished getting everything into this web version of Sidetrack, yet. If you want to solve this puzzle right now, you'll have to go into Endless OS and check out Sidetrack there!
-* [❯] ❯
+* ❯
 -> level28_5
 
 
