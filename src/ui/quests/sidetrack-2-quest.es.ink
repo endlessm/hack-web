@@ -1,4 +1,4 @@
-=== hacking_es ===
+=== hack_es ===
 { not skip:
   Ok, veamos de qué se trata este nivel... # character: ada
 }
