@@ -1,3 +1,18 @@
+=== hack ===
+{ not skip:
+    Ok, let's see what this level is about... # character: ada
+}
+* [(wait for: currentLevel is 23)] Level {currentLevel -1 } Complete!
+-> level23
+* [(wait for: success is 0)] Level {currentLevel} Failed!
+-> level22_reorder
+
+
+=== level22_reorder ===
+# character: faber
+- I think we're going to need to rearrange the instructions until we get it right!
+-> end_level_check(23) -> level23
+
 === level23 ===
 - Hey, check out that instruction in the middle of the set. That's not a good symbol!
 * ❯

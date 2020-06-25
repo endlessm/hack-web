@@ -1,4 +1,4 @@
-=== level2 ===
+=== play ===
 - Let's go! Remember, my objective is to get to the exit, and try to avoid the walls!
 -> end_level_check(3) -> level3_1
 
@@ -214,25 +214,9 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 === level21 ===
 # character: ada
 -You know, you don't have to have a pit in front of you to use a <b>jump</b> instruction. Maybe you could use a <b>jump</b> to go forward? You never know when that will come in handy!
--> end_level_check(22) -> level22
-
-
-=== level22 ===
-# character: riley
-- You sailed through all those levels. For that, I'm giving you a reward.
+-> end_level_check(22) ->
+You sailed through all those levels. For that, I'm giving you a reward.
 ~ set_game_state("quests.achievements/sidetrack1-complete", true)
 ~ set_game_state("quest.Sidetrack1/complete", true)
 * ❯
-{ not skip:
-    Ok, let's see what this level is about... # character: ada
-}
-* [(wait for: currentLevel is 23)] Level {currentLevel -1 } Complete!
--> level23
-* [(wait for: success is 0)] Level {currentLevel} Failed!
--> level22_reorder
-
-
-=== level22_reorder ===
-# character: faber
-- I think we're going to need to rearrange the instructions until we get it right!
--> end_level_check(23) -> level23
+  -> hack
