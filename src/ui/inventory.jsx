@@ -24,6 +24,7 @@ import {
   Drawer,
   Grid,
   makeStyles,
+  Tooltip,
   Typography,
   Dialog,
   DialogTitle,
@@ -44,6 +45,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { actions } from '../store';
+import SecondaryIconButton from './secondary-icon-button';
 
 import MainIconButton from './main-icon-button';
 import ThumbsUpIcon from './icons/hack-thumbsup-symbolic.svg';
@@ -51,9 +53,37 @@ import ThumbsDownIcon from './icons/hack-thumbsdown-symbolic.svg';
 
 const defaultBadge = '/assets/badges/default.svg';
 
-const useStyles = makeStyles(({ spacing }) => ({
-  inventory: {
-    minWidth: spacing(50),
+const useStyles = makeStyles(({
+  spacing,
+  breakpoints,
+  custom,
+  palette,
+}) => ({
+  bottomButtons: {
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    [breakpoints.down('md')]: {
+      width: custom.drawerWidths.downMd,
+    },
+    [breakpoints.only('lg')]: {
+      width: custom.drawerWidths.onlyLg,
+    },
+    [breakpoints.only('xl')]: {
+      width: custom.drawerWidths.onlyXl,
+    },
+    backgroundColor: palette.background.paper,
+  },
+  drawerPaper: {
+    [breakpoints.down('md')]: {
+      width: custom.drawerWidths.downMd,
+    },
+    [breakpoints.only('lg')]: {
+      width: custom.drawerWidths.onlyLg,
+    },
+    [breakpoints.only('xl')]: {
+      width: custom.drawerWidths.onlyXl,
+    },
   },
   badgeDisabled: {
     filter: 'grayscale(1) opacity(0.5)',
@@ -64,6 +94,20 @@ const useStyles = makeStyles(({ spacing }) => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     minHeight: spacing(20),
+  },
+  resetButton: {
+    minHeight: spacing(20),
+    minWidth: spacing(20),
+    marginTop: spacing(2),
+    textAlign: 'center',
+    position: 'relative',
+
+    '& button': {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translateY(-50%) translateX(-50%)',
+    },
   },
 }));
 
@@ -140,13 +184,36 @@ ResetGameStateDialog.propTypes = {
   setOpen: PropTypes.func.isRequired,
 };
 
+const ResetButton = () => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const gameState = useSelector((state) => state.gameState);
+  const { t } = useTranslation();
+  const classes = useStyles();
+
+  return (
+    <>
+      <ResetGameStateDialog open={dialogOpen} setOpen={setDialogOpen} />
+      <Tooltip title={t('Delete inventory')}>
+        <Box className={classes.resetButton}>
+          <SecondaryIconButton
+            aria-label="reset"
+            edge="end"
+            disabled={Object.keys(gameState).length === 0}
+            onClick={() => setDialogOpen(true)}
+          >
+            <Delete />
+          </SecondaryIconButton>
+        </Box>
+      </Tooltip>
+    </>
+  );
+};
+
 const InventoryContent = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const gameState = useSelector((state) => state.gameState);
   const achievementsData = useSelector((state) => state.achievementsData);
-  const classes = useStyles();
-  const [dialogOpen, setDialogOpen] = useState(false);
 
   const questAchievements = gameState['quests.achievements'] || {};
   const achievements = Object.keys(questAchievements);
@@ -156,8 +223,7 @@ const InventoryContent = () => {
   }));
 
   return (
-    <Box px={4} py={2} className={classes.inventory}>
-      <ResetGameStateDialog open={dialogOpen} setOpen={setDialogOpen} />
+    <Box px={4} py={2} pb={8}>
       <Grid container>
         <Grid item xs={8}>
           <Typography variant="h4">
@@ -166,9 +232,6 @@ const InventoryContent = () => {
         </Grid>
         <Grid item xs={4}>
           <Typography align="right">
-            <IconButton aria-label="reset" edge="end" onClick={() => setDialogOpen(true)}>
-              <Delete />
-            </IconButton>
             <IconButton aria-label="close" edge="end" onClick={() => dispatch(actions.inventoryToggle())}>
               <Close />
             </IconButton>
@@ -179,17 +242,28 @@ const InventoryContent = () => {
             <HackBadge achievement={achievement} disabled={disabled} />
           </Grid>
         ))}
+        <Grid item xs={6}>
+          <ResetButton />
+        </Grid>
       </Grid>
     </Box>
   );
 };
 
 const Inventory = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const open = useSelector((state) => state.ui.inventory);
 
   return (
-    <Drawer anchor="left" open={open} onClose={() => dispatch(actions.inventoryToggle())}>
+    <Drawer
+      anchor="left"
+      open={open}
+      classes={{
+        paper: classes.drawerPaper,
+      }}
+      onClose={() => dispatch(actions.inventoryToggle())}
+    >
       <InventoryContent />
     </Drawer>
   );
