@@ -8,9 +8,8 @@
   -> reorder_es
 
 = reorder_es
-# character: faber
-- Creo que vamos a tener que reordenar las instrucciones, ¡hasta que estén correctas!
-- end_level_check(23) -> level23_es
+Creo que vamos a tener que reordenar las instrucciones, ¡hasta que estén correctas! # character: faber
+-> end_level_check(23) -> level23_es
 
 === level23_es ===
 TODO: Translate from here:
