@@ -67,13 +67,15 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
   },
   badges: {
     position: 'absolute',
-    bottom: spacing(2),
-    left: spacing(2),
+    bottom: 0,
+    left: 0,
+    paddingLeft: spacing(1),
 
     '& img': {
       width: spacing(10),
       height: spacing(10),
     },
+    background: 'linear-gradient(to top, #212625, transparent)',
   },
   badge: {
     filter: 'grayscale(1) contrast(60%) brightness(150%)',
