@@ -15,6 +15,7 @@
  */
 
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -23,6 +24,7 @@ import {
   makeStyles,
   useMediaQuery,
   useTheme,
+  Grid,
 } from '@material-ui/core';
 
 import { cardType } from './types';
@@ -46,6 +48,7 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
       easing: transitions.easing.easeInOut,
       duration: transitions.duration.short,
     }),
+    position: 'relative',
   },
   offsetExpanded: {
     flexGrow: 1,
@@ -62,7 +65,61 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
   dialogueExpanded: {
     height: 'fit-content',
   },
+  badges: {
+    position: 'absolute',
+    bottom: spacing(2),
+    left: spacing(2),
+
+    '& img': {
+      width: spacing(10),
+      height: spacing(10),
+    },
+  },
+  badge: {
+    filter: 'grayscale(1) contrast(60%) brightness(150%)',
+  },
+
+  badgeReached: {
+    filter: 'none',
+  },
 }));
+
+const CardBadges = ({ card }) => {
+  const classes = useStyles({ card });
+  const gameState = useSelector((state) => state.gameState);
+  const achievementsData = useSelector((state) => state.achievementsData);
+  const questAchievements = gameState['quests.achievements'] || {};
+  const achievements = Object.keys(questAchievements);
+
+  if (!card.character) {
+    return <></>;
+  }
+
+  return (
+    <Grid container direction="row" className={classes.badges} spacing={1}>
+      <Grid item>
+        <img src={`/assets/avatars/${card.character}.svg`} alt={card.character} />
+      </Grid>
+      { card.achievements.map((a) => (
+        <Grid item key={a}>
+          <img
+            src={`/assets/badges/${a}.svg`}
+            alt={achievementsData[a]}
+            className={clsx(classes.badge, { [classes.badgeReached]: achievements.includes(a) })}
+          />
+        </Grid>
+      ))}
+    </Grid>
+  );
+};
+
+CardBadges.propTypes = {
+  card: cardType,
+};
+
+CardBadges.defaultProps = {
+  card: null,
+};
 
 const SidePanel = ({
   content, buttons, card, expanded,
@@ -81,7 +138,9 @@ const SidePanel = ({
       alignItems="stretch"
       height="100%"
     >
-      <div className={clsx(classes.offset, isExpanded && classes.offsetExpanded)} />
+      <div className={clsx(classes.offset, isExpanded && classes.offsetExpanded)}>
+        { isExpanded && <CardBadges card={card} /> }
+      </div>
       <Divider />
       <Box className={clsx(classes.dialogue, isExpanded && classes.dialogueExpanded)} px={1} py={2}>
         {content}
