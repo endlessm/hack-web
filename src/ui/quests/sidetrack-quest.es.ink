@@ -2,9 +2,9 @@ INCLUDE sidetrack-1-quest.es.ink
 INCLUDE sidetrack-2-quest.es.ink
 
 === begin_es ===
--> level1_5_es
+-> level1_es
 
-=== level1_5_es ===
+=== level1_es ===
 Ey, {get_user_name()}, ¡te doy la bienvenida a Sidetrack! ¿Ves la <b>salida</b> en el otro extremo de la pantalla? ¡Ese es nuestro objetivo! Usa las <b>instrucciones</b> ADELANTE, ARRIBA, y ABAJO para moverte a través de los obstáculos. ¡Pero ten cuidado con las <b>paredes</b>!
 -> end_level_check(2) -> the_choice_es
 

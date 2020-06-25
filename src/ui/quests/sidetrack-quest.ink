@@ -69,9 +69,9 @@ INCLUDE sidetrack-2-quest.ink
 }
 
 === begin ===
--> level1_5
+-> level1
 
-=== level1_5 ===
+=== level1 ===
 -Hey, {get_user_name()}, welcome to Sidetrack! See that <b>Exit</b> on the far side of the screen? That's our goal! Use the FORWARD, UP, and DOWN <b>Instructions</b> to move through these obstacles, but watch out for the <b>Walls</b>!
 -> end_level_check(2) -> the_choice
 
@@ -86,7 +86,7 @@ INCLUDE sidetrack-2-quest.ink
 ~ startLevel = 22
 -> transition
 
-=== transition ===
+= transition
 - OK, a quick rundown of what we're doing here: You need to drag and drop the tiles with arrows on them so that when I follow them, I'll get to the exit safely!
 - If there's a Pit, I'll need to jump over it, and if there's a Wall, I need to go around it.
 - Once you have the instructions arranged how you want, press the Play button to start - and no more changing instructions until I either win or lose!
