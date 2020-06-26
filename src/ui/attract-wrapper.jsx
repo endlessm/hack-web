@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import React, { memo } from 'react';
+import React, { memo, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core';
@@ -42,18 +42,19 @@ const attractStyles = makeStyles(({ custom }) => ({
 }));
 
 const AttractWrapper = (WrappedComponent) => {
-  const Wrapper = ({ attracting, ...props }) => {
+  const Wrapper = forwardRef(({ attracting, ...props }, ref) => {
     const classes = attractStyles();
 
     return (
       <div className={clsx({ [classes.glow]: attracting })}>
         <WrappedComponent
+          ref={ref}
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...props}
         />
       </div>
     );
-  };
+  });
 
   Wrapper.propTypes = {
     attracting: PropTypes.bool,
