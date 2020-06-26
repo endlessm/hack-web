@@ -142,7 +142,7 @@
 ~ set_game_state("quests.achievements/sidetrack2-complete", true)
 * ❯
 # character: faber
-Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to the <b>Instructions</b> again!
+- Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to the <b>Instructions</b> again!
 * [(wait for: flipped)] Flipped!
 -> level24_3
 * [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
