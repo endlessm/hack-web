@@ -193,8 +193,8 @@ const ResetButton = () => {
   return (
     <>
       <ResetGameStateDialog open={dialogOpen} setOpen={setDialogOpen} />
-      <Tooltip title={t('Delete inventory')}>
-        <Box className={classes.resetButton}>
+      <Box className={classes.resetButton}>
+        <Tooltip title={t('Delete inventory')}>
           <SecondaryIconButton
             aria-label="reset"
             edge="end"
@@ -203,8 +203,8 @@ const ResetButton = () => {
           >
             <Delete />
           </SecondaryIconButton>
-        </Box>
-      </Tooltip>
+        </Tooltip>
+      </Box>
     </>
   );
 };
