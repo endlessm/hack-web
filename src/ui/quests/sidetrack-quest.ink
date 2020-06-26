@@ -83,8 +83,11 @@ INCLUDE sidetrack-2-quest.ink
 -> play
 * [Let's get Hacking!] I can't wait to get a look inside!
 ~ availableLevels = 28
+// We change the level and wait for the app to update:
 ~ startLevel = 22
--> transition
+-
++ [(wait for: currentLevel is {startLevel})] #
+- -> transition
 
 = transition
 - OK, a quick rundown of what we're doing here: You need to drag and drop the tiles with arrows on them so that when I follow them, I'll get to the exit safely!
