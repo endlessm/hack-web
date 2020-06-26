@@ -74,6 +74,7 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
     '& img': {
       width: spacing(10),
       height: spacing(10),
+      margin: spacing(0.5),
     },
     background: 'linear-gradient(to top, #212625, transparent)',
   },
@@ -98,7 +99,7 @@ const CardBadges = ({ card }) => {
   }
 
   return (
-    <Grid container direction="row" className={classes.badges} spacing={1}>
+    <Grid container direction="row" className={classes.badges}>
       <Grid item>
         <img src={`/assets/avatars/${card.character}.svg`} alt={card.character} />
       </Grid>
