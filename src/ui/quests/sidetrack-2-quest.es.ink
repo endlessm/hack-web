@@ -4,7 +4,7 @@
 }
 * [(wait for: currentLevel is 23)] {say_level_complete()}
   -> level23_es
-* [(wait for: success is 0)] ¡Has fallado!
+* [(wait for: success is 0)] ¡Has fallado en el nivel {currentLevel}!
   -> reorder_es
 
 = reorder_es
@@ -12,280 +12,238 @@ Creo que vamos a tener que reordenar las instrucciones, ¡hasta que estén corre
 -> end_level_check(23) -> level23_es
 
 === level23_es ===
-TODO: Translate from here:
-FIN! -> END
+Ey, Échale un vistazo a esa instrucción en el medio del conjunto. ¡Ese no es un buen símbolo!
+* ❯
+  -> level23_2_es
+* [(wait for: success is 0)] ¡Has fallado en el nivel {currentLevel}!
+  -> level23_fail_es
+* [(wait for: flipped)] ¡Volteada!
+  -> level23_fail_es
 
-/*
+=== level23_2_es ===
+Bueno, supongo que deberíamos probar el nivel de todas formas, al menos para ver qué sucede... # character: ada
+* [(wait for: success is 0)] ¡Has fallado en el nivel {currentLevel}!
+  -> level23_fail_es
+* [(wait for: flipped)] ¡Volteada!
+  -> level23_fail_es
 
-=== level23 ===
-- Hey, check out that instruction in the middle of the set. That's not a good symbol!
-* [❯] ❯
--> level23_2
-* [(wait for: success is 0)] Level {currentLevel} Failed!
--> level23_fail
-* [(wait for: flipped)] ¡Volteado!
--> level23_fail
-
-=== level23_2 ===
-# character: ada
-- Well, I suppose we should try out the level anyway, just to see what happens...
-* [(wait for: success is 0)] Level {currentLevel} Failed!
--> level23_fail
-* [(wait for: flipped)] ¡Volteado!
--> level23_fail
-
-=== level23_fail ===
-# character: estelle
-- I think we actually have 2 problems - First, the middle instruction looks like an error. Second, even if you put that error somewhere else, we still need a <b>jump()</b> to cross those pits!
+=== level23_fail_es ===
+Creo que en realidad tenemos dos problemas. Primero, la instrucción del medio parece un error. Segundo, incluso si colocas ese error en otro lugar, ¡todavía necesitamos un <b><i>jump()</i></b> (un salto) para cruzar esos hoyos! # character: estelle
 { flipped == true:
-	-> level23_fail_2
+  -> level23_fail_2_es
 }
-* [❯] ❯
--> level23_fail_2
-* [(wait for: flipped)] ¡Volteado!
--> level23_fail_2
+* ❯
+  -> level23_fail_2_es
+* [(wait for: flipped)] ¡Volteada!
+  -> level23_fail_2_es
 
-=== level23_fail_2 ===
-# character: estelle
-- Good thing I know just the person to help! Saniel, are you there?
+=== level23_fail_2_es ===
+¡Lo bueno es que conozco justo a la persona que puede ayudar! Saniel, ¿estás ahí? # character: estelle
 { flipped == true:
-	-> level23_cont_3
+  -> level23_cont_3_es
 }
-* [❯] ❯
--> level23_cont_3
-* [(wait for: flipped)] ¡Volteado!
--> level23_cont_3
+* ❯
+  -> level23_cont_3_es
+* [(wait for: flipped)] ¡Volteada!
+  -> level23_cont_3_es
 
-=== level23_cont_3 ===
-# character: saniel
-- What? Yes, yes, I am here. I was... <i>inemuri</i>, as the Japanese say. Sleeping while present, if you will.
+=== level23_cont_3_es ===
+¿Qué? Sí, sí. Estoy aquí. Estaba... <i>inemuri</i>, como dicen los japoneses. Algo así como durmiendo, pero a la vez presente. # character: saniel
 { flipped == true:
-	-> level23_cont_4
+  -> level23_cont_4_es
 }
-* [❯] ❯
--> level23_cont_4
-* [(wait for: flipped)] ¡Volteado!
--> level23_cont_4
+* ❯
+  -> level23_cont_4_es
+* [(wait for: flipped)] ¡Volteada!
+  -> level23_cont_4_es
 
-=== level23_cont_4 ===
-# character: saniel
-- Let's see what we have. A line of pits, an invalid instruction... It <b>appears</b> we're stuck, but I don't think so! Riley, is there a way for us to look into the code and debug that instruction?
+=== level23_cont_4_es ===
+Veamos qué tenemos aquí. Una línea de hoyos, una instrucción inválida... <b>Parece</b> que estamos atrapados, ¡Pero no lo creo! Riley, ¿hay alguna manera de que le echemos una mirada al código y depuremos esa instrucción? # character: saniel
 { flipped == true:
-	-> level23_cont_5
+  -> level23_cont_5_es
 }
-* [❯] ❯
--> level23_cont_5
-* [(wait for: flipped)] ¡Volteado!
--> level23_cont_5
+* ❯
+  -> level23_cont_5_es
+* [(wait for: flipped)] ¡Volteada!
+  -> level23_cont_5_es
 
-=== level23_cont_5 ===
+=== level23_cont_5_es ===
 ~ attractFTH = 1
-- You got it, Dr. Rowe! That's exactly what the next step is. Do you see that button on the <b>left side</b> of the screen, {get_user_name()}? That's the <b>Flip to Hack</b> button! You can use it to go behind the scenes and hack the game with the <b>Toolbox</b>. Let's go!
+¡Ahí lo tienes, Dr. Rowe! Exactamente ese es el próximo paso. ¿Ves ese botón en el <b>lado izquierdo</b> de la pantalla, {get_user_name()}? ¡Ese es el botón <b>Voltear para hackear</b>! Puedes usarlo para ir detrás de escenas y hackear el juego con la <b>caja de herramientas</b>. ¡Vayamos!
 { flipped:
-	-> level23_cont_8
+  -> level23_cont_8_es
 }
-* [(wait for: flipped)] ¡Volteado!
--> level23_cont_8
+* [(wait for: flipped)] ¡Volteada!
+  -> level23_cont_8_es
 
-=== level23_cont_8 ===
+=== level23_cont_8_es ===
 ~ attractFTH = 0
 ~ hasLockKey = 1
-- There's a lock here, but never fear, {get_user_name()}, here's the key! Click the lock to open it, and you'll be able to see the <b>Instructions</b>. They're the code version of the icons you dragged around on the front side of Sidetrack.
-* [(wait for: isLocked is 0)]  Unlocked!
--> level23_cont_10
-* [(wait for: currentLevel is 24)] Level {currentLevel -1} Complete!
--> level24
+Hay una cerradura aquí. Pero no temas, {get_user_name()}, ¡aquí está la llave! Haz click sobre la cerradura para abrirla, y podrás ver las <b>instrucciones</b>. Son la versión en código de los iconos que has estado arrastrando en el lado anverso de Sidetrack.
+* [(wait for: isLocked is 0)] ¡Destrabado!
+  -> level23_cont_10_es
+* [(wait for: currentLevel is 24)] {say_level_complete()}
+  -> level24_es
 
-=== level23_cont_10 ===
-- Take a close look at the instructions. When you write code, it has to be <b>exactly</b> how the computer expects... So, do you see anything weird? Try and fix any problems you see. You can always Undo any mistakes you make (<b>Ctrl + Z</b>), and if everything get really bad, you can always  reset the code by clicking the <b>Reload</b> button in the upper right.
-* [👍] I think I see the problem!
--> level23_cont_11
-* [👎] I'm a little lost.
--> level23_cont_12
-* [(wait for: codeErrors is 0)] Fixed it!
--> level23_flip
+=== level23_cont_10_es ===
+Mira de cerca a las instrucciones. Cuando escribes código, tiene que ser <b>exactamente</b> como el ordenador lo espera... Así que, ¿ves algo extraño? Intenta corregir cualquier problema que veas. Siempre puedes deshacer cualquier error por accidente que cometas (<b>Ctrl + Z</b>). Y si todo se pone realmente mal, siempre puedes reiniciar el código haciendo click en el botón <b>Reiniciar</b> en la parte superior derecha.
+* [👍] ¡Creo que veo el problema!
+  -> level23_cont_11_es
+* [👎] Estoy un poco perdido/a.
+  -> level23_cont_12_es
+* [(wait for: codeErrors is 0)] ¡Corregido!
+  -> level23_flip_es
 
-=== level23_cont_12 ===
-# character: ada
-- Look at that middle instruction, {get_user_name()}. I'm pretty sure <b>jumpp</b> isn't a real word - and I'm positive it's not a correct <b>instruction</b>, either! Fix that, <b>flip</b> back to the front of Sidetrack, and then press the <b>Play</b> button!
-* [(wait for: currentLevel is 24)] Level {currentLevel -1 } Complete!
--> level24
-* [(wait for: codeErrors is 0)] Fixed it!
--> level23_flip
+=== level23_cont_12_es ===
+Observa esa instrucción del medio, {get_user_name()}. Estoy bastante segura de que <b>jumpp</b> no es una palabra que exista en inglés. ¡Y estoy segura de que tampoco es una <b>instrucción</b> correcta! Arréglala, vuelve a <b>voltear</b> para ver el anverso de Sidetrack, ¡y luego presiona el botón <b><i>Play</i></b>! # character: ada
+* [(wait for: currentLevel is 24)] {say_level_complete()}
+  -> level24_es
+* [(wait for: codeErrors is 0)] ¡Corregido!
+  -> level23_flip_es
 
-=== level23_cont_11 ===
-- Awesome! Fix the problem, <b>flip</b> back to the front of Sidetrack, and then press the <b>Play</b> button!
-* [(wait for: codeErrors is 0)] Fixed it!
--> level23_flip
+=== level23_cont_11_es ===
+¡Asombroso! Corrige el problema, vuelve a <b>voltear</b> para ver el anverso de Sidetrack, ¡y luego presiona el botón <b><i>Play</i></b>! # character: ada
+* [(wait for: codeErrors is 0)] ¡Corregido!
+  -> level23_flip_es
 
-=== level23_flip ===
+=== level23_flip_es ===
 ~ attractFTH = 1
-- Awesome, I think you fixed it! Now <b>flip</b> back to the front of Sidetrack.
-* [(wait for: flipped)] ¡Vuelto a voltear!
--> level23_play
+Asombroso, ¡creo que lo has corregido! Ahora vuelve a <b>voltear</b> para ver el anverso de Sidetrack.
+* [(wait for: flipped)] ¡Vuelta a voltear!
+  -> level23_play_es
 
-=== level23_play ===
+=== level23_play_es ===
 ~ attractFTH = 0
-- Ok, let's give it a shot! Press the <b>Play</b> button.
-* [(wait for: currentLevel is 24)] Level {currentLevel -1} Complete!
--> level24
+OK, ¡vamos a intentarlo! Presiona el botón <b><i>Play</i></b>.
+* [(wait for: currentLevel is 24)] {say_level_complete()}
+  -> level24_es
 
-=== level24 ===
+=== level24_es ===
 ~ attractFTH = 1
-# character: faber
-Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to the <b>Instructions</b> again!
-* [(wait for: flipped)] ¡Volteado!
--> level24_3
-* [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
--> level25
+Ah, ¡mucho mejor! ¡Veo que tienes talento para hackear! Por eso, voy a darte una recompensa.
+~ set_game_state("quests.achievements/sidetrack2-complete", true)
+* ❯
+- Guau, ¡parece que este nivel tiene dos errores! Hora de <b>voltear</b> la aplicación y volver a las <b>instrucciones</b>! # character: faber
+* [(wait for: flipped)] ¡Volteada!
+  -> level24_3_es
+* [(wait for: currentLevel is 25)] {say_level_complete()}
+  -> level25_es
 
-=== level24_3 ===
+=== level24_3_es ===
 ~ attractFTH = 0
-- I think I can see the problem here!
-* [Hint] (Hint)
--> level24_3_hints
-* [(wait for: codeErrors is 0)] Fixed it!
--> level24_flip
-* [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
--> level25
+- ¡Creo que puedo ver el problema aquí!
+* [Consejo] (Consejo)
+  -> level24_3_hints_es
+* [(wait for: codeErrors is 0)] ¡Corregido!
+  -> level24_flip_es
+* [(wait for: currentLevel is 25)] {say_level_complete()}
+  -> level25_es
 
-=== level24_flip ===
+=== level24_flip_es ===
 ~ attractFTH = 1
-# character: saniel
-- Awesome! No errors anymore. Now <b>flip</b> back to the front of Sidetrack.
-* [(wait for: flipped)] ¡Vuelto a voltear!
--> level24_play
+¡Increíble! Ya no hay más errores. Ahora volvamos a <b>voltear</b> al lado anverso de Sidetrack. # character: saniel
+* [(wait for: flipped)] ¡Vuelta a voltear!
+  -> level24_play_es
 
-=== level24_play ===
+=== level24_play_es ===
 ~ attractFTH = 0
-# character: estelle
-- Ok, let's give it a shot. Press the <b>Play</b> button! If you don't make it through, you might need different instructions, or a different order of instructions.
-* [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
--> level25
+OK, vamos a intentarlo. ¡Presiona el botón <b><i>Play</i></b>! Si no lo logras, es posible que necesites instrucciones diferentes. O un orden distinto en las instrucciones. # character: estelle
+* [(wait for: currentLevel is 25)] {say_level_complete()}
+  -> level25_es
 
-=== level24_3_hints ===
-# character: estelle
-- Look for <b>Instructions</b> that might be spelled wrong, or that don't make any sense. Remember, if you accidentally create any new errors, you can always Undo your mistakes (<b>Ctrl + Z</b>) or reset the code by clicking the <b>Reload</b> button in the upper right.
-* [Hint] (Hint)
--> level24_3_hints_2
-* [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
--> level25
-* [(wait for: codeErrors is 0)] Fixed it!
--> level24_flip
+=== level24_3_hints_es ===
+Busca <b>instrucciones</b> que puedan estar mal deletreadas en inglés, o que no tengan ningún sentido. Recuerda, si agregas un nuevo error por accidente, siempre puedes deshacer (<b>Ctrl + Z</b>) o reiniciar el código haciendo click en el botón <b>Reiniciar</b> en la esquina superior derecha. # character: estelle
+* [Consejo] (Consejo)
+  -> level24_3_hints_2_es
+* [(wait for: currentLevel is 25)] {say_level_complete()}
+  -> level25_es
+* [(wait for: codeErrors is 0)] ¡Corregido!
+  -> level24_flip_es
 
-=== level24_3_hints_2 ===
-# character: estelle
-- Do you see where it says <tt>riley.fooorward();</tt>? I don't think that's correct...
-* [Hint] (Hint)
--> level24_3_hints_final
-* [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
--> level25
-* [(wait for: codeErrors is 0)] Fixed it!
--> level24_flip
+=== level24_3_hints_2_es ===
+¿Ves donde dice <tt>riley.fooorward();</tt>? No creo que eso esté correcto... # character: estelle
+* [Consejo] (Consejo)
+  -> level24_3_hints_final_es
+* [(wait for: currentLevel is 25)] {say_level_complete()}
+  -> level25_es
+* [(wait for: codeErrors is 0)] ¡Corregido!
+  -> level24_flip_es
 
-=== level24_3_hints_final ===
-# character: faber
-- Oh, hey, I think I see another problem. Look at the capitalization in the code. I think it should be <tt>riley.jump()</tt>, not <tt>riley.<b>J</b>ump()</tt>!
-* [(wait for: currentLevel is 25)] Level {currentLevel -1} Complete!
--> level25
-* [(wait for: codeErrors is 0)] Fixed it!
--> level24_flip
+=== level24_3_hints_final_es ===
+Oh, ey, creo que veo otro problema. Observa las mayúsculas en ese código. ¡Creo que debería ser <tt>riley.jump()</tt>, no <tt>riley.<b>J</b>ump()</tt>! # character: faber
+* [(wait for: currentLevel is 25)] {say_level_complete()}
+  -> level25_es
+* [(wait for: codeErrors is 0)] ¡Corregido!
+  -> level24_flip_es
 
-=== level25 ===
-# character: estelle
-- Riley, did you remember to test your code? We've hit quite a lot of errors!
-* [(wait for: codeErrors is 0)] Fixed it!
--> level25_fix
-* [(wait for: currentLevel is 26)] Level {currentLevel -1} Complete!
--> level26
+=== level25_es ===
+Riley, ¿has olvidado probar tu código? ¡Nos hemos chocado con unos cuantos errores! # character: estelle
+* [(wait for: codeErrors is 0)] ¡Corregido!
+  -> level25_fix_es
+* [(wait for: currentLevel is 26)] {say_level_complete()}
+  -> level26_es
 
-=== level25_fix ===
-# character: saniel
-- Nice work, you fixed it. Remember, now we need to <b>flip</b> back and check if you can get through the maze. If not, you might need different instructions.
-* [(wait for: currentLevel is 26)] Level {currentLevel -1} Complete!
--> level26
+=== level25_fix_es ===
+Buen trabajo, lo has corregido. Recuerda, ahora debemos volver a <b>voltear</b> y probar si puedes atravezar el laberinto. Si no puedes, tal vez necesites instrucciones diferentes. # character: saniel
+* [(wait for: currentLevel is 26)] {say_level_complete()}
+-> level26_es
 
-=== level26 ===
-# character: ada
-- I'm not so sure these errors are a mistake, every instruction in this set is wrong! Statistically, the probability of that occurring is quite low.
-* [❯] ❯
--> level26_2
-* [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
--> level26_2
+=== level26_es ===
+No estoy segura de que esos errores sean un problema. ¡Cada instrucción en este conjunto está mal! Estadísticamente, la probabilidad de que esto ocurra es muy baja. # character: ada
+* ❯
+  -> level26_2_es
+* [(wait for: currentLevel is 27)] {say_level_complete()}
+  -> level26_2_es
 
-=== level26_2 ===
-- Now you're getting it! Head to the <b>Instructions</b> again by <b>flipping</b> Sidetrack!
-* [(wait for: flipped)] ¡Volteado!
--> level26_3
-* [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
--> level27
+=== level26_2_es ===
+¡Ya lo estás entendiendo! ¡Ve a las <b>instrucciones</b> de nuevo <b>volteando</b> Sidetrack!
+* [(wait for: flipped)] ¡Volteada!
+  -> level26_3_es
+* [(wait for: currentLevel is 27)] {say_level_complete()}
+  -> level27_es
 
-=== level26_3 ===
-# character: ada
-- Once you've fixed the errors, you still might need to re-order the instructions in order to beat this level.
-* [(wait for: codeErrors is 0)] Fixed it!
--> level26_fix
-* [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
--> level27
+=== level26_3_es ===
+Una vez que corrijas los errores, es posible que aún necesites volver a ordenar las instrucciones para superar el nivel. # character: ada
+* [(wait for: codeErrors is 0)] ¡Corregido!
+  -> level26_fix_es
+* [(wait for: currentLevel is 27)] {say_level_complete()}
+  -> level27_es
 
-=== level26_fix ===
-# character: faber
-- Excellent!
-* [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
--> level27
-* [(wait for: success is 0)] Level {currentLevel} Failed!
--> level26_reorder
+=== level26_fix_es ===
+¡Excelente! # character: faber
+* [(wait for: currentLevel is 27)] {say_level_complete()}
+  -> level27_es
+* [(wait for: success is 0)] ¡Has fallado en el nivel {currentLevel}!
+  -> level26_reorder_es
 
-=== level26_reorder ===
-# character: faber
-- You'll need to rearrange the instructions until you get it right.
-* [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
--> level27
-* [(wait for: success is 0)] Level {currentLevel} Failed!
--> level26_reorder
+=== level26_reorder_es ===
+Tendrás que reordenar las instrucciones hasta que estén en el orden correcto. # character: faber
+* [(wait for: currentLevel is 27)] {say_level_complete()}
+  -> level27_es
+* [(wait for: success is 0)] ¡Has fallado en el nivel {currentLevel}!
+  -> level26_reorder_es
 
-=== level27 ===
-# character: ada
-- It looks like this level has only two incorrect instructions - that's an improvement.
-* [(wait for: codeErrors is 0)] Fixed it!
--> level27_fix
-* [(wait for: currentLevel is 28)] Level {currentLevel -1} Complete!
--> level28
+=== level27_es ===
+Parece que este nivel solo tiene dos instrucciones incorrectas. Es un poco mejor. # character: ada
+* [(wait for: codeErrors is 0)] ¡Corregido!
+  -> level27_fix_es
+* [(wait for: currentLevel is 28)] {say_level_complete()}
+  -> level28_es
 
-=== level27_fix ===
-# character: saniel
-- Great work. You've got it!
-* [(wait for: currentLevel is 28)] Level {currentLevel -1} Complete!
--> level28
+=== level27_fix_es ===
+Gran trabajo. ¡Ya lo tienes! # character: saniel
+* [(wait for: currentLevel is 28)] {say_level_complete()}
+  -> level28_es
 
-=== level28 ===
-# character: faber
-- Uh... That's a big wall. Can we jump a wall? Does that work?
-* [❯] ❯
--> level28_2
-
-=== level28_2 ===
-# character: saniel
-- You can experiment with that if you like, Faber, but judging from previous levels... probably not. I think we'll need a new tool to solve this puzzle.
-* [❯] ❯
--> level28_3
-
-=== level28_3 ===
-# character: faber
-- Darn. Well, do we have that tool?
-* [❯] ❯
--> level28_4
-
-=== level28_4 ===
-- Not yet, Faber! I haven't finished getting everything into this web version of Sidetrack, yet. If you want to solve this puzzle right now, you'll have to go into Endless OS and check out Sidetrack there!
-* [❯] ❯
--> level28_5
-
-=== level28_5 ===
-# character: saniel
-{set_game_state("quest.Sidetrack2/complete", true)}
-{set_game_state("quests.achievements/sidetrack2-complete", true)}
-- Ahem. I think I speak for all of us, here, when I say that we've had a great time with you, {get_user_name()}. I hope we'll see you soon in Endless OS!
+=== level28_es ===
+- Uh... esa es una gran pared. ¿Podemos saltar una pared? ¿Funcionará? # character: faber
+* ❯
+- Puedes experimentar con eso si lo deseas, Faber. Pero a juzgar por los niveles anteriores... probablemente no. Creo que necesitaremos una nueva herramienta para resolver este acertijo. # character: saniel
+* ❯
+- Oh, bueno. ¿Tenemos esa herramienta? # character: faber
+* ❯
+- ¡No todavía, Faber! No he terminado de implementar del todo esta versión web de Sidetrack, todavía. Si quieres resolver este acertijo ahora mismo, ¡tendrás que ir a Endless OS y jugar Sidetrack ahí!
+* ❯
+- Ejem. Creo que hablo por todos nosotros, aquí, cuando digo que lo hemos pasado muy bien contigo, {get_user_name()}. ¡Espero verte pronto en Endless OS! # character: saniel
+~ set_game_state("quest.Sidetrack2/complete", true)
 -> END
-
-*/
