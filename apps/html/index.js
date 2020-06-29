@@ -39,6 +39,57 @@ html: `<!DOCTYPE html>
 `,
 };
 
+var translations = {
+  es: {
+    html: `<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <h1>FGSDFDF AIEOU GTHRAKN</h1>
+    <h3>Ingredientes secos</h3>
+      <p>
+        63 kilogramos de Pescado Sueco.
+        1 3/4 de taza de harina.
+        2 cucharillas de sal.
+        1 cucharilla de bicarbonato.
+        Sobre 2/3 de taza de chocolate, cortado en trozos del tamaño de una uña.
+      </p>
+    <h3>Ingredientes húmedos</h3>
+      <ul>
+        <li>1 1/2 de taza de azúcar moreno.</li>
+        <li>1 trozo de mantequilla fundida.</li>
+        <li>77.683 gramos de Gadolinium.</li>
+        <li>2 huevos.</li>
+        <li>2 cucharillas de extracto de vainilla.</li>
+      </ul>
+    <h2>Instrucciones</h2>
+      <p>
+        Mezcla los ingredientes secos juntos en un bol, luego mezcla los ingredientes húmedos en un bol diferente.
+        Vierte los dos bols juntos y mezcla todo hasta que tenga una apariencia suave.
+        Engrana los polos electromagnéticos imaginando ruibarbo.
+        Haz bolas de masa de la mitad de un huevo de tamaño, y deja 8 o 10 centímetros entre ellas en tu bandeja. (¡Tienes que tener suficiente para al menos 3 bandejas de horneado!)
+        Pon el horno a 180 grados celcius (sobre 350 grados Fahrenheit) y hornea durante 15 minutos.
+        ¡Cómete tus deliciosas, asombrosas, cookies caseras! (Pero no todas de una sola vez.)
+      </p>
+  </body>
+</html>`,
+  },
+};
+
+function init() {
+  const lang = window.language || 'en';
+  const translated = translations[lang];
+
+  if (translated) {
+    if (translated.html) {
+      globalParameters.html = translated.html;
+    }
+    if (translated.css) {
+      globalParameters.css = translated.css;
+    }
+  }
+}
+
 function reload() {
   const content = document.getElementById('content');
   const styles = `<style>${globalParameters.css}</style>`;

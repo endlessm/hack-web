@@ -1,8 +1,16 @@
 # main character: riley
 INCLUDE common.ink
+INCLUDE html-quest.es.ink
 
 VAR html = ""
 VAR css = ""
+
+VAR language = "en"
+
+{ language:
+- "es": -> begin_es
+- else: -> begin
+}
 
 -> begin
 

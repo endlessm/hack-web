@@ -17,6 +17,7 @@
 import { hot } from 'react-hot-loader';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -48,6 +49,7 @@ const HtmlQuest = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const card = useCard();
+  const { i18n } = useTranslation();
 
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
@@ -74,6 +76,9 @@ const HtmlQuest = () => {
 
     // Creates a proxy to track iframe globalParameters
     proxyApp('globalParameters', changeCallback);
+    // Setting the current language
+    const app = document.querySelector('#app');
+    app.contentWindow.language = i18n.language;
 
     const handleChange = () => {
       if (errorsRef.current && errorsRef.current.length) {
@@ -83,7 +88,6 @@ const HtmlQuest = () => {
 
       updateApp('globalParameters', store.getState().hackableApp, (prop, value) => {
         if (prop === 'html' || prop === 'css') {
-          const app = document.querySelector('#app');
           app.contentWindow.reload();
 
           quest.updateStoryVariable(prop, value);
@@ -98,7 +102,7 @@ const HtmlQuest = () => {
       // Reset hackableApp state on umount
       dispatch(actions.resetHackableApp());
     };
-  }, [dispatch, quest, setCurrentChoice]);
+  }, [dispatch, quest, setCurrentChoice, i18n.language]);
 
   const resetToolbox = () => {
     const { originalHackableApp } = store.getState();
