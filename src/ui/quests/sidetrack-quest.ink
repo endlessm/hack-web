@@ -27,6 +27,7 @@ VAR hasLockKey = 0
 VAR isLocked = 1
 VAR attractFTH = 0
 VAR codeErrors = 0
+VAR levelSelectorsEnabled = 1
 
 INCLUDE sidetrack-1-quest.ink
 INCLUDE sidetrack-2-quest.ink

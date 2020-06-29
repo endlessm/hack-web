@@ -154,6 +154,10 @@ const SidetrackQuest = () => {
         currentQuest.updateStoryVariable('escapeCutscene', params.escapeCutscene);
         questUpdated = true;
       }
+      if (params.levelSelectorsEnabled !== Boolean(currentQuest.getStoryVariable('levelSelectorsEnabled'))) {
+        currentQuest.updateStoryVariable('levelSelectorsEnabled', params.levelSelectorsEnabled);
+        questUpdated = true;
+      }
 
       // Only update quest if some variable changes, to avoid infinite loop
       if (questUpdated) {
@@ -339,6 +343,7 @@ const SidetrackQuest = () => {
       availableLevels: currentQuest.getStoryVariable('availableLevels'),
       controlsCutscene: currentQuest.getStoryVariable('controlsCutscene'),
       escapeCutscene: currentQuest.getStoryVariable('escapeCutscene'),
+      levelSelectorsEnabled: currentQuest.getStoryVariable('levelSelectorsEnabled'),
     };
 
     // Only update startLevel if it's not 0 and if it's different from the current one
