@@ -9,6 +9,8 @@ Ey, {get_user_name()}, ¡te doy la bienvenida a Sidetrack! ¿Ves la <b>salida</b
 -> end_level_check(2) -> the_choice_es
 
 === the_choice_es ===
+// Disable the level selector in Sidetrack:
+~ levelSelectorsEnabled = 0
 Oh, hay muchos más niveles aquí. ¡Este es sólo el principio!
 Aquí tienes una opción: ¿Quieres continuar jugando normalmente, o saltar directo a hackear el juego?
 * [¡Seguir jugando!] Voy a seguir jugando. Quiero completar todos los niveles.
