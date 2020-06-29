@@ -48,7 +48,7 @@ INCLUDE sidetrack-2-quest.ink
         ->->
         + {mid_level_check >= 2} ❯
         ->->
-        + [(wait for: currentLevel is {desiredlevel})] #
+        + [(wait for: currentLevel is {desiredlevel})] {say_level_complete()}
         ->->
 }
 
@@ -61,7 +61,6 @@ INCLUDE sidetrack-2-quest.ink
 === end_level_check(desiredLevel)
 {
     - currentLevel == desiredLevel:
-        {say_level_complete()}
         ->->
     - else:
         + [(wait for: currentLevel is {desiredLevel})] {say_level_complete()}
