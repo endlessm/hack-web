@@ -52,6 +52,48 @@ The UI mimics a chat box. It's a conversation between the Hack
 characters and the user. By convention, the text right after a choice
 is the user answer, and will be presented as such.
 
+In the following example, the user answer will be "App Flipped!" when
+the choice is selected. The choice will be automatically selected when
+the user flips the app:
+
+    === flip_step ===
+    Try to flip the app...
+    + [(wait for: flipped)] App Flipped!
+    - Ok let's continue.
+
+This will produce the following chat:
+
+      Try to flip the app
+    __/
+
+                  App Flipped!
+                             \__
+
+      Ok let's continue
+    __/
+
+
+Currently there is a workaround to skip the user answer: add an empty
+tag to the choice. In the next example, there won't be any user
+answer:
+
+    === flip_step ===
+    Try to flip the app...
+    + [(wait for: flipped)] #
+    - Ok let's continue.
+
+Which will produce the following chat:
+
+      Try to flip the app
+    __/
+
+      Ok let's continue
+    __/
+
+However this quest flow is discouraged. There should always be a user
+answer after a choice, to keep the chat box readable as a
+conversation.
+
 ## Rich text formatting
 
 The following HTML tags are allowed:
