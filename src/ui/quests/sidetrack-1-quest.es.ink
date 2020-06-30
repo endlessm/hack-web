@@ -1,4 +1,4 @@
-=== playing_es ===
+=== play_es ===
 
 = 2_to_6_es
 ¡Vamos! Recuerda, mi objetivo es llegar a la salida, ¡y tratar de evitar las paredes!
@@ -85,6 +85,8 @@ Diría que algo acerca de este nivel me <b>baja</b> el ánimo, ¡pero este juego
 -> end_level_check(21) ->
 Ya lo sabes, no es necesario que haya un hoyo frente a tí para usar la instrucción <b>salto</b>. ¿Tal vez podrías usar un <b>salto</b> para ir adelante? ¡Nunca se sabe cuándo esto puede ser útil! # character: ada
 -> end_level_check(22) ->
+Has navegado a lo largo de todos esos niveles. Por lo tanto, voy a darte una recompensa.
 ~ set_game_state("quest.Sidetrack1/complete", true)
 ~ set_game_state("quests.achievements/sidetrack1-complete", true)
--> hacking_es
+* ❯
+  -> hack_es

@@ -1,7 +1,6 @@
-=== level2 ===
+=== play ===
 - Let's go! Remember, my objective is to get to the exit, and try to avoid the walls!
-* [(wait for: currentLevel is 3)] Level {currentLevel -1 } Complete!
--> level3_1
+-> end_level_check(3) -> level3_1
 
 === level3_1 ===
 # character: ada
@@ -39,8 +38,7 @@
 
 
 === level5 ===
-* [(wait for: currentLevel is 6)] Level {currentLevel -1 } Complete!
--> level6
+-> end_level_check(6) -> level6
 
 
 === level6 ===
@@ -82,36 +80,30 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 
 
 === level8 ===
-* [(wait for: currentLevel is 9)] Level {currentLevel -1 } Complete!
--> level9
+-> end_level_check(9) -> level9
 
 
 === level9 ===
-* [(wait for: currentLevel is 10)] Level {currentLevel -1 } Complete!
--> level10
+-> end_level_check(10) -> level10
 
 
 === level10 ===
 -Time for new bugbots! This new type <b>only moves up</b>, just like the first <b>only moves down</b>. Pay attention to which way they're facing!
-* [(wait for: currentLevel is 11)] Level {currentLevel -1 } Complete!
--> level11
+-> end_level_check(11) -> level11
 
 
 === level11 ===
-* [(wait for: currentLevel is 12)] Level {currentLevel -1 } Complete!
--> level12
+-> end_level_check(12) -> level12
 
 
 === level12 ===
-* [(wait for: currentLevel is 13)] Level {currentLevel -1 } Complete!
--> level13
+-> end_level_check(13) -> level13
 
 
 === level13 ===
 # character: ada
 -Bugbots, pits... Riley, you've done a great job here.
-* [(wait for: currentLevel is 14)] Level {currentLevel -1 } Complete!
--> level14
+-> end_level_check(14) -> level14
 
 
 === level14 ===
@@ -153,8 +145,7 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 
 === level15 ===
 -In this mode, you have to plan all your moves around the level in advance. Drag the instructions into the order you want, then press <b>play</b> to start our journey through the maze. If you think it through, you'll pass these levels in no time.
-* [(wait for: currentLevel is 16)] Level {currentLevel -1 } Complete!
--> level16
+-> end_level_check(16) -> level16
 
 
 === level16 ===
@@ -217,36 +208,15 @@ Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your 
 === level20 ===
 # character: faber
 - I'd say something about this level bringing me <b>down</b>, but this game is too cool for that! Still, how are you supposed to move forward when all you can do is go down? I guess we can't do anything else but try it out!
-* [(wait for: currentLevel is 21)] Level {currentLevel -1 } Complete!
--> level21
+-> end_level_check(21) -> level21
 
 
 === level21 ===
 # character: ada
 -You know, you don't have to have a pit in front of you to use a <b>jump</b> instruction. Maybe you could use a <b>jump</b> to go forward? You never know when that will come in handy!
-* [(wait for: currentLevel is 22)] Level {currentLevel -1 } Complete!
--> level22
-
-
-=== level22 ===
-# character: riley
-- You sailed through all those levels. For that, I'm giving you a reward.
+-> end_level_check(22) ->
+You sailed through all those levels. For that, I'm giving you a reward.
 ~ set_game_state("quests.achievements/sidetrack1-complete", true)
 ~ set_game_state("quest.Sidetrack1/complete", true)
-* [❯] ❯
-# character: ada
-{ not skip:
-    - Ok, let's see what this level is about...
-    ~ skip = 0
-}
-* [(wait for: currentLevel is 23)] Level {currentLevel -1 } Complete!
--> level23
-* [(wait for: success is 0)] Level {currentLevel} Failed!
--> level22_reorder
-
-
-=== level22_reorder ===
-# character: faber
-- I think we're going to need to rearrange the instructions until we get it right!
-* [(wait for: currentLevel is 23)] Level {currentLevel -1} Complete!
--> level23
+* ❯
+  -> hack

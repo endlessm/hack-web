@@ -1,8 +1,6 @@
-=== hacking_es ===
-# character: ada
+=== hack_es ===
 { not skip:
-  - Ok, veamos de qué se trata este nivel...
-  ~ skip = 0
+  Ok, veamos de qué se trata este nivel... # character: ada
 }
 * [(wait for: currentLevel is 23)] {say_level_complete()}
   -> level23_es
@@ -10,9 +8,8 @@
   -> reorder_es
 
 = reorder_es
-# character: faber
-- Creo que vamos a tener que reordenar las instrucciones, ¡hasta que estén correctas!
-- end_level_check(23) -> level23_es
+Creo que vamos a tener que reordenar las instrucciones, ¡hasta que estén correctas! # character: faber
+-> end_level_check(23) -> level23_es
 
 === level23_es ===
 TODO: Translate from here:
