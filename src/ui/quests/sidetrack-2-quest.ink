@@ -1,6 +1,6 @@
 === hack ===
 { not skip:
-    Ok, let's see what this level is about... # character: ada
+    Congratulations on your badge, {get_user_name()}! Now, let's see what this level is about... # character: ada
 }
 * [(wait for: currentLevel is 23)] Level {currentLevel -1 } Complete!
 -> level23
@@ -9,7 +9,6 @@
 - Hey, check out that instruction in the middle of the set. That's not a good symbol!
 # character: ada
 - I suppose we should try out the level anyway, just to see what happens...
--> level23_2
 * [(wait for: success is 0)] Level {currentLevel} Failed!
 -> level23_fail
 * [(wait for: flipped)] Flipped!
@@ -31,70 +30,70 @@
 # character: estelle
 - Good thing I know just the person to help! Saniel, are you there?
 { flipped == true:
-	-> level23_cont_3
+	-> level23_3
 }
 * ❯
--> level23_cont_3
+-> level23_3
 * [(wait for: flipped)] Flipped!
--> level23_cont_3
+-> level23_3
 
 
-=== level23_cont_3 ===
+=== level23_3 ===
 # character: saniel
 - What? Yes, yes, I am here. I was... <i>inemuri</i>, as the Japanese say. Sleeping while present, if you will.
 { flipped == true:
-	-> level23_cont_4
+	-> level23_4
 }
 * ❯
--> level23_cont_4
+-> level23_4
 * [(wait for: flipped)] Flipped!
--> level23_cont_4
+-> level23_4
 
 
-=== level23_cont_4 ===
+=== level23_4 ===
 # character: saniel
 - Ahem. Now, what do we have? A line of pits, an invalid instruction... It <b>appears</b> we're stuck, but we won't be defeated this easily! Riley, is there a way for us to look into the code and debug that instruction?
 { flipped == true:
-	-> level23_cont_5
+	-> level23_5
 }
 * ❯
--> level23_cont_5
+-> level23_5
 * [(wait for: flipped)] Flipped!
--> level23_cont_5
+-> level23_5
 
 
-=== level23_cont_5 ===
+=== level23_5 ===
 ~ attractFTH = 1
 - Exactly, Dr. Rowe! That's what the next step is - debug the broken code! Do you see that button on the <b>left side</b> of the screen, {get_user_name()}? That's the <b>Flip to Hack</b> button! You can use it to go behind the scenes and hack the game with the <b>Toolbox</b>. Let's go!
 { flipped:
-	-> level23_cont_8
+	-> level23_8
 }
 * [(wait for: flipped)]  Flipped!
--> level23_cont_8
+-> level23_8
 
 
-=== level23_cont_8 ===
+=== level23_8 ===
 ~ attractFTH = 0
 ~ hasLockKey = 1
 - There's a lock here, but never fear, {get_user_name()}, here's the key! Click the lock to open it, and you'll be able to see the <b>Instructions</b>. They're the code version of the icons you dragged around on the front side of Sidetrack.
 * [(wait for: isLocked is 0)]  Unlocked!
--> level23_cont_10
+-> level23_10
 * [(wait for: currentLevel is 24)] Level {currentLevel -1} Complete!
 -> level24
 
 
-=== level23_cont_10 ===
+=== level23_10 ===
 - Take a close look at the instructions. If you see anything weird, try and fix it.
 - You can always Undo any mistakes you make (<b>Ctrl + Z</b>), and if everything get really bad, you can always reset the code by clicking the <b>Reload</b> button in the upper right. Got it?
-* [👍] I think I see the problem!
--> level23_cont_11
+* [👍] Gotcha!
+-> level23_11
 * [👎] I'm a little lost.
--> level23_cont_12
+-> level23_12
 * [(wait for: codeErrors is 0)] Fixed it!
 -> level23_flip
 
 
-=== level23_cont_12 ===
+=== level23_12 ===
 # character: ada
 - Look at that middle instruction, {get_user_name()}. I'm pretty sure <b>jumpp</b> isn't a real word - and I'm positive it's not a correct <b>instruction</b>, either! Fix that, <b>flip</b> back to the front of Sidetrack, and then press the <b>Play</b> button!
 * [(wait for: currentLevel is 24)] Level {currentLevel -1 } Complete!
@@ -102,7 +101,7 @@
 * [(wait for: codeErrors is 0)] Fixed it!
 -> level23_flip
 
-=== level23_cont_11 ===
+=== level23_11 ===
 - Awesome! Fix the problem, <b>flip</b> back to the front of Sidetrack, and then press the <b>Play</b> button!
 * [(wait for: codeErrors is 0)] Fixed it!
 -> level23_flip
@@ -112,6 +111,8 @@
 - Now <b>flip</b> back to the front of Sidetrack.
 * [(wait for: flipped)]  Flipped back!
 -> level23_play
+* [(wait for: currentLevel is 24)] Level {currentLevel -1} Complete!
+-> level24
 
 === level23_play ===
 ~ attractFTH = 0
@@ -122,18 +123,17 @@
 === level24 ===
 ~ attractFTH = 1
 # character: riley
-- Ah, much better! I see you've got a knack for hacking! For that, I'm giving you a reward.
-~ set_game_state("quests.achievements/sidetrack2-complete", true)
+- Great work! On to the next challenge!
 * ❯
 # character: faber
-- Wow, looks like this level has 2 errors! Time to <b>flip</b> the app and get to the <b>Instructions</b> again!
+- Yikes, looks like this level has 2 errors! Time to <b>flip</b> the app and get to the <b>Instructions</b> again!
 * [(wait for: flipped)] Flipped!
 -> level24_3
 * [(wait for: currentLevel is 25)] #
 # character: saniel
-Gibbering heffalumps! That's quite a gambit, {get_user_name()}! I think I might say... how does it go... that "you're the man now, dog!"
+- Gibbering heffalumps! That's quite a gambit, {get_user_name()}! I think I might say... how does it go... that "you're the man now, dog!"
 # character: user
-Level {currentLevel -1} Complete!
+- Level {currentLevel -1} Complete!
 -> level25
 
 
@@ -221,7 +221,10 @@ Level {currentLevel -1} Complete!
 
 
 === level26_2 ===
-- Hey {get_user_name()}, you know the drill now! <b>Flip</b> and hack!
+- Yeah, almost like... it's intentional... :D
+# character: felix
+- <b><i>m*::>^_^<::&rr0w>!</i></b>
+- You said it, Felix! Hey {get_user_name()}, you know the drill now! <b>Flip</b> and hack!
 * [(wait for: flipped)] Flipped!
 -> level26_3
 * [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
@@ -237,7 +240,7 @@ Level {currentLevel -1} Complete!
 
 === level26_fix ===
 # character: faber
-Just because you fixed the errors doesn't mean the instructions are correct, you'll probably have to re-order them... or maybe even re-write them completely!
+- Just because you fixed the errors doesn't mean the instructions are correct, you'll probably have to re-order them... or maybe even re-write them completely!
 * [(wait for: currentLevel is 27)] Level {currentLevel -1} Complete!
 -> level27
 
@@ -278,6 +281,7 @@ Just because you fixed the errors doesn't mean the instructions are correct, you
 
 === level28_5 ===
 # character: saniel
+- Ahem. I think I speak for all of us, here, when I say that we've had a great time with you, {get_user_name()}. Here, take this badge as a reward for your excellent work. I hope we'll see you soon in Endless OS!
 ~ set_game_state("quest.Sidetrack2/complete", true)
-- Ahem. I think I speak for all of us, here, when I say that we've had a great time with you, {get_user_name()}. I hope we'll see you soon in Endless OS!
+~ set_game_state("quests.achievements/sidetrack2-complete", true)
 -> END

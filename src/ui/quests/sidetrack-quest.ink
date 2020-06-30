@@ -87,7 +87,6 @@ INCLUDE sidetrack-2-quest.ink
 ~ availableLevels = 28
 // We change the level and wait for the app to update:
 ~ startLevel = 22
--
 + [(wait for: currentLevel is {startLevel})] #
 - -> transition
 
