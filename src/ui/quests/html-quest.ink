@@ -204,7 +204,7 @@ If you really get lost, you can reset all the text by pressing the <b>Reset</b> 
 
 === html1_3 ===
 - Oops, looks like Felix made a mistake when he was setting up the page... That's not a good title for a cookie recipe at all!
-- Let's fix it - Find those nonsense words in the <b>HTML</b> part of this page, and change it to <b>Super-Awesome Cookies</b>!
+- Let's fix it - Find those nonsense words in the <b>HTML</b> part of this page, and change it to <tt>Super-Awesome Cookies</tt>.
 -
 * [(wait for: html icontains "<h1>Super-Awesome Cookies</h1>")] (Done)
 -> html1_4

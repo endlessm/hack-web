@@ -188,7 +188,7 @@ Si te encuentras perdido, siempre puedes reiniciar todo el texto con el botón <
 
 === html1_3_es ===
 - Ups, parece que Felix se equivocó cuando estaba configurando la página... ¡Este no es un buen título para una receta de galletas!
-- Vamos a arreglarlo. Encuentra esas palabras sin sentido en el <b>HTML</b> de esta página, y cámbialo a <b>Galletas Super-Fantásticas</b>
+- Vamos a arreglarlo. Encuentra esas palabras sin sentido en el <b>HTML</b> de esta página, y cámbialo a <tt>Galletas Super-Fantásticas</tt>.
 -
 * [(wait for: html icontains "<h1>Galletas Super-Fantásticas</h1>")] (Hecho)
 -> html1_4_es
