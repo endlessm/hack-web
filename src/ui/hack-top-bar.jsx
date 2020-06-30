@@ -103,7 +103,8 @@ const useStyles = makeStyles(({
 const labelPerLanguageCode = new Map([
   ['en', 'English'],
   ['es', 'Español'],
-  ['de', 'Deutsch'],
+  // TODO: will enable when we have the German translation
+  // ['de', 'Deutsch'],
 ]);
 
 const LanguageSelector = ({ isMainPage }) => {
@@ -127,12 +128,6 @@ const LanguageSelector = ({ isMainPage }) => {
     dispatch(actions.deselectCards());
     setAnchorEl(null);
   };
-
-  if (CONFIG.branch === 'stable') {
-    // FIXME: Temporarily hiding the language selector in
-    // the production site.
-    return <></>;
-  }
 
   return (
     <Box position="absolute" right={0} mr={!open ? 10 : 1}>
