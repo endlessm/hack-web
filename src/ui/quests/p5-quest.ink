@@ -1,9 +1,14 @@
 # main character: estelle
 INCLUDE common.ink
+INCLUDE p5-quest.es.ink
 
+VAR language = "en"
 VAR code = ""
 
--> begin
+{ language:
+- "es": -> begin_es
+- else: -> begin
+}
 
 === begin ===
 -> p5_1
