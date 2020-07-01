@@ -200,7 +200,7 @@
 - You know, you don't have to have a pit in front of you to use a <b>jump</b> instruction. Maybe you could use a <b>jump</b> to go forward? You never know when that will come in handy!
 -> end_level_check(22) ->
 - Wow, fantastic job, {get_user_name()}! That's 21 levels solved! Let's celebrate your progress with a Badge!
-~ set_game_state("quests.achievements/sidetrack1- complete", true)
+~ set_game_state("quests.achievements/sidetrack1-complete", true)
 ~ set_game_state("quest.Sidetrack1/complete", true)
 * ❯
   -> hack
