@@ -60,15 +60,14 @@ const CookieBanner = () => {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
-    const cookies = document.cookie.split('; ');
-    const allCookies = cookies.includes('cookies=all');
+    const cookies = localStorage.getItem('cookies');
 
-    if (allCookies && !gaInit) {
+    if (cookies === 'analytics' && !gaInit) {
       ReactGA.initialize(GATrackingId);
       ReactGA.set({ anonymizeIp: true });
       dispatch(actions.gaInitialized());
       setOpen(false);
-    } else if (cookies.includes('cookies=required')) {
+    } else if (cookies === 'none') {
       setOpen(false);
     }
   }, [dispatch, gaInit]);
@@ -78,12 +77,12 @@ const CookieBanner = () => {
     ReactGA.set({ anonymizeIp: true });
     dispatch(actions.gaInitialized());
     setOpen(false);
-    document.cookie = 'cookies=all';
+    localStorage.setItem('cookies', 'analytics');
   };
 
   const block = () => {
     setOpen(false);
-    document.cookie = 'cookies=required';
+    localStorage.setItem('cookies', 'none');
   };
 
   return (
