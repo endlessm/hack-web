@@ -98,7 +98,7 @@ const CookieBanner = () => {
           >
             <Grid item xs={8}>
               <Typography variant="body2" gutterBottom className={classes.text}>
-                {t('To help improve our service and provide the best experience we work with Google Analytics. They do not share you data. For more information please review the Google Analytics privacy policy here:')}
+                {t('We\'d appreciate it if you let us use Google Analytics cookies on this site. These cookies help us see how this site is used. We collect this information so we can make better decisions about what content we make in the future, and who we make it for. You can read the Google Analytics privacy policy here:')}
                 &nbsp;
                 <a
                   href="https://policies.google.com/privacy"
@@ -111,7 +111,7 @@ const CookieBanner = () => {
             </Grid>
             <Grid item xs={2} className={classes.button}>
               <Button onClick={block} variant="contained">
-                {t('Block')}
+                {t('Deny')}
               </Button>
             </Grid>
             <Grid item xs={2} className={classes.button}>
