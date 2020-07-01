@@ -21,15 +21,15 @@ import ReactGA from 'react-ga';
 
 const GoogleAnalyticsWrapper = ({ children }) => {
   const { location } = window;
-  const { gaInit } = useSelector((state) => state.ui);
+  const { googleAnalyticsEnabled } = useSelector((state) => state.ui);
 
   // This should be done in a effect to get the children component rendered so
   // we've the final document.title setted
   useEffect(() => {
-    if (gaInit && process.env.NODE_ENV === 'production') {
+    if (googleAnalyticsEnabled && process.env.NODE_ENV === 'production') {
       ReactGA.pageview(location.pathname + location.search);
     }
-  }, [location.pathname, location.search, gaInit]);
+  }, [location.pathname, location.search, googleAnalyticsEnabled]);
 
   return children;
 };

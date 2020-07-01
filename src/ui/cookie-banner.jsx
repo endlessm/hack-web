@@ -52,7 +52,7 @@ const useStyles = makeStyles(({ zIndex, shadows, spacing }) => ({
 const CookieBanner = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { gaInit } = useSelector((state) => state.ui);
+  const { googleAnalyticsEnabled } = useSelector((state) => state.ui);
   const classes = useStyles();
 
   const [open, setOpen] = useState(true);
@@ -60,20 +60,20 @@ const CookieBanner = () => {
   useEffect(() => {
     const cookies = localStorage.getItem('cookies');
 
-    if (cookies === 'analytics' && !gaInit) {
+    if (cookies === 'analytics' && !googleAnalyticsEnabled) {
       ReactGA.initialize(GATrackingId);
       ReactGA.set({ anonymizeIp: true });
-      dispatch(actions.gaInitialized());
+      dispatch(actions.enableGoogleAnalytics());
       setOpen(false);
     } else if (cookies === 'none') {
       setOpen(false);
     }
-  }, [dispatch, gaInit]);
+  }, [dispatch, googleAnalyticsEnabled]);
 
   const handleClose = () => {
     ReactGA.initialize(GATrackingId);
     ReactGA.set({ anonymizeIp: true });
-    dispatch(actions.gaInitialized());
+    dispatch(actions.enableGoogleAnalytics());
     setOpen(false);
     localStorage.setItem('cookies', 'analytics');
   };
