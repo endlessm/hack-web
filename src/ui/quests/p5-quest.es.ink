@@ -4,7 +4,7 @@ Ey {get_user_name()}, ¡tengo algo <b>super</b> interesante para tí! He estado 
 - En esta actividad, el código <b>p5.js</b> está en el lado izquierdo, y el resultado de ese código está en el centro. A medida que escribes, el código intentará ejecutarse constantemente y actualizará el área central.
 - ¡Es <b>super</b> importante que escribas el código <b>exactamente</b> como te lo mostramos! ¡Los ordenadores pueden ser muy detallistas con cosas como los espacios! Si cometes algún error, siempre puedes deshacer (<b>Ctrl + Z</b>), o si se pone realmente malo, puedes reiniciar el código completamente con el botón <b>Reiniciar</b> que se encuentra en la esquina superior derecha.
 + ❯
-- Comencemos con algo simple: ¿qué tal si cambiamos ese color de fondo? Busca la línea que dice <tt>background (20);</tt> y cámbiala para que se lea <tt>background ('green');</tt>.
+- Comencemos con algo simple: ¿qué tal si cambiamos ese color de fondo? Busca la línea que dice <tt>background(20);</tt> y cámbiala para que se lea <tt>background('green');</tt>.
 - No olvides el punto y coma ( <b>;</b> ) al final de la línea, ¡y presta atención a los espacios!
 TODO: Replace brute-force checks when we have a better check:
 + [(wait for: code contains "background('green');")]
@@ -73,7 +73,7 @@ TODO: Replace brute-force checks when we have a better check:
 * [👍] ¡Sigamos!
   -> p5_21_es
 * [👎] ¡Voy a quedarme aquí y continuar experimentando!
-  ¡Que te diviertas! Recuerda, siempre puede reiniciar esta actividad si cambias de opinión.
+  ¡Que te diviertas! Recuerda, siempre puedes reiniciar esta actividad si cambias de opinión.
   -> END
 
 === p5_21_es ===
@@ -156,4 +156,3 @@ TODO: Replace brute-force checks when we have a better check:
 - Hemos terminado por el momento, ¡pero hay mucho más por explorar en <b>p5.js</b>! Siéntete libre de cambiar cualquiera de las variables que has aprendido, y juega con el código todo lo que quieras. Si deseas continuar con más actividades como esta, ¡tengo un conjunto completo disponible en Hack para Endless OS!
 -Puedes aprender a usar figuras complejas, números aleatorios, herramientas de programación como variables y bucles, e incluso "pintar" con sonido o crear tus propios juegos. ¡Me encantaría verte allí!
 -> END
-
