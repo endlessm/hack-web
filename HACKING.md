@@ -40,6 +40,25 @@ further information. Here is a quick check-list:
 - [ ] Use `theme.palette.common` for Hack-specific colors.
 - [ ] Use `theme.custom` for other Hack-specific values.
 
+## Testing changes in submodules
+
+We have a few dependencies as git submodules. There might be cases
+where you want to try a different branch of these mudules. For
+instance, when quest changes depend on changes introduced in the
+hack-toy-apps module.
+
+To test a different branch, edit `.gitmodules` and change branch from
+"master" to the branch name you want to test. For example:
+
+    [submodule "hack-toy-apps"]
+        path = apps/hack-toy-apps
+        url = git@github.com:endlessm/hack-toy-apps.git
+        branch = T30359-disable-level-selector
+
+Then call:
+
+    git submodule update --remote
+
 ## Tip: working with multiple branches
 
 If you switch branches often, you will find that the `node_modules/`
