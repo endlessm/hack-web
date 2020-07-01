@@ -19,7 +19,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import ReactGA from 'react-ga';
 
-const GAWrapper = ({ children }) => {
+const GoogleAnalyticsWrapper = ({ children }) => {
   const { location } = window;
   const { gaInit } = useSelector((state) => state.ui);
 
@@ -34,8 +34,8 @@ const GAWrapper = ({ children }) => {
   return children;
 };
 
-GAWrapper.propTypes = {
+GoogleAnalyticsWrapper.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export default GAWrapper;
+export default GoogleAnalyticsWrapper;

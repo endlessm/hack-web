@@ -31,7 +31,7 @@ import CardSetView from './card-set-view';
 import Login, { RequireAuth } from './login';
 import SignUp from './signup';
 import ResetPassword from './reset';
-import GAWrapper from './ga';
+import GoogleAnalyticsWrapper from '../google-analytics';
 
 import CookieBanner from './cookie-banner';
 
@@ -61,34 +61,34 @@ const App = () => {
             </Route>
             <Route path="/games">
               <RequireAuth>
-                <GAWrapper><SidetrackQuest /></GAWrapper>
+                <GoogleAnalyticsWrapper><SidetrackQuest /></GoogleAnalyticsWrapper>
               </RequireAuth>
             </Route>
             <Route path="/art">
               <RequireAuth>
-                <GAWrapper><P5Quest /></GAWrapper>
+                <GoogleAnalyticsWrapper><P5Quest /></GoogleAnalyticsWrapper>
               </RequireAuth>
             </Route>
             <Route path="/web">
               <RequireAuth>
-                <GAWrapper><HtmlQuest /></GAWrapper>
+                <GoogleAnalyticsWrapper><HtmlQuest /></GoogleAnalyticsWrapper>
               </RequireAuth>
             </Route>
             <Route path="/maker">
               <RequireAuth>
-                <GAWrapper><PdfQuest /></GAWrapper>
+                <GoogleAnalyticsWrapper><PdfQuest /></GoogleAnalyticsWrapper>
               </RequireAuth>
             </Route>
             {cardsets.map((p) => (
               <Route key={p.slug} path={p.slug}>
                 <RequireAuth>
-                  <GAWrapper><CardSetView slug={p.slug} /></GAWrapper>
+                  <GoogleAnalyticsWrapper><CardSetView slug={p.slug} /></GoogleAnalyticsWrapper>
                 </RequireAuth>
               </Route>
             ))}
             <Route path="/">
               <RequireAuth>
-                <GAWrapper><CardSetView slug="/home" /></GAWrapper>
+                <GoogleAnalyticsWrapper><CardSetView slug="/home" /></GoogleAnalyticsWrapper>
               </RequireAuth>
             </Route>
           </Switch>
