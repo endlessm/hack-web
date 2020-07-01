@@ -115,7 +115,7 @@ const CookieBanner = () => {
                   </HackButton>
                 </Box>
                 <Box mx={1}>
-                  <MainButton onClick={handleClose} variant="contained" color="primary" autoFocus>
+                  <MainButton onClick={handleClose} variant="contained">
                     {t('Allow')}
                   </MainButton>
                 </Box>
