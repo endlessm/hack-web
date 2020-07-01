@@ -15,6 +15,10 @@ VAR language = "en"
 -> begin
 
 === baditems_minder
+    { gadolinium + fish + bore > 2:
+        Great work! All fixed!
+        ->->
+    }
     * (gadolinium) [(wait for: html not contains "<li>77.683 grams of Gadolinium.</li>")] #
         No idea why a radioactive isotope was in this list...
         -> baditems_minder
@@ -24,10 +28,6 @@ VAR language = "en"
     * (bore) [(wait for: html not contains "Engage cross borehole electromagnetic imaging rhubarb")] #
         ... cross borehole ... rhubarb? I'm going to have to look THAT up later...
         -> baditems_minder
-    * {gadolinium + fish + bore > 2}
-        # character: riley
-        Great work! All fixed!
-        ->->
     * [Hint] Can I have a hint?
         -> baditems_hint
 

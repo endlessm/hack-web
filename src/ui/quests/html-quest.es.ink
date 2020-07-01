@@ -1,4 +1,8 @@
 === baditems_minder_es
+    { gadolinium + fish + bore > 2:
+        ¡Buen trabajo! ¡Todo arreglado!
+        ->->
+    }
     * (gadolinium) [(wait for: html not contains "<li>77.683 gramos de Gadolinium.</li>")] #
         Ni idea de qué hace aquí un isótopo radioactivo...
         -> baditems_minder_es
@@ -8,10 +12,6 @@
     * (bore) [(wait for: html not contains "Engrana los polos electromagnéticos imaginando ruibarbo.")] #
         ¿... polos electromagnéticos ... ruibarbo? Tendré que buscar eso más tarde...
         -> baditems_minder_es
-    * {gadolinium + fish + bore > 2}
-        # character: riley
-        ¡Buen trabajo! ¡Todo arreglado!
-        ->->
     * [Pista] ¿Me puedes dar una pista?
         -> baditems_hint_es
 
