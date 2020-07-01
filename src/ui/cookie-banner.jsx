@@ -20,16 +20,17 @@ import ReactGA from 'react-ga';
 import { useTranslation } from 'react-i18next';
 
 import {
-  Grid,
-  Button,
-  Slide,
-  Paper,
-  Typography,
-  makeStyles,
+  Box,
   Container,
+  Grid,
+  makeStyles,
+  Paper,
+  Slide,
+  Typography,
 } from '@material-ui/core';
 
 import { actions } from '../store';
+import MainButton, { HackButton } from './main-button';
 
 const GATrackingId = 'UA-160877903-1';
 
@@ -45,9 +46,6 @@ const useStyles = makeStyles(({ zIndex, shadows, spacing }) => ({
   },
   text: {
     padding: spacing(1),
-  },
-  button: {
-    textAlign: 'center',
   },
 }));
 
@@ -91,8 +89,6 @@ const CookieBanner = () => {
         <Container fixed margin={1}>
           <Grid
             container
-            direction="row"
-            justify="center"
             alignItems="center"
           >
             <Grid item xs={8}>
@@ -108,15 +104,22 @@ const CookieBanner = () => {
                 </a>
               </Typography>
             </Grid>
-            <Grid item xs={2} className={classes.button}>
-              <Button onClick={block} variant="contained">
-                {t('Deny')}
-              </Button>
-            </Grid>
-            <Grid item xs={2} className={classes.button}>
-              <Button onClick={handleClose} variant="contained" color="primary" autoFocus>
-                {t('Allow')}
-              </Button>
+            <Grid item xs={4}>
+              <Box
+                display="flex"
+                justifyContent="center"
+              >
+                <Box mx={1}>
+                  <HackButton onClick={block} variant="contained">
+                    {t('Deny')}
+                  </HackButton>
+                </Box>
+                <Box mx={1}>
+                  <MainButton onClick={handleClose} variant="contained" color="primary" autoFocus>
+                    {t('Allow')}
+                  </MainButton>
+                </Box>
+              </Box>
             </Grid>
           </Grid>
         </Container>
