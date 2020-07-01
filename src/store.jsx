@@ -25,6 +25,9 @@ const actions = {
       username,
     },
   }),
+  enableGoogleAnalytics: () => ({
+    type: 'GOOGLE-ANALYTICS-ENABLE',
+  }),
   sidePanelSetOpen: () => ({
     type: 'SIDE-PANEL-SET-OPEN',
   }),
@@ -111,6 +114,9 @@ function authReducer(state = {}, action) {
 
 function uiReducer(state = {}, action) {
   switch (action.type) {
+    case 'GOOGLE-ANALYTICS-ENABLE': {
+      return { ...state, googleAnalyticsEnabled: true };
+    }
     case 'SIDE-PANEL-SET-OPEN': {
       return { ...state, sidePanelOpen: true };
     }
@@ -190,6 +196,7 @@ const initialState = {
     username: null,
   },
   ui: {
+    googleAnalyticsEnabled: false,
     sidePanelOpen: false,
     cardSelected: {},
     inventory: false,

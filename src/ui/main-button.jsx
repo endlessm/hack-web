@@ -21,20 +21,25 @@ import {
 
 import AttractWrapper from './attract-wrapper';
 
-const MainButton = AttractWrapper(withStyles(({ palette, spacing }) => ({
+const HackButton = withStyles(({ spacing }) => ({
+  root: {
+    borderRadius: spacing(3),
+    whiteSpace: 'nowrap',
+  },
+  label: {
+    textTransform: 'none',
+  },
+}))(Button);
+
+const MainButton = AttractWrapper(withStyles(({ palette }) => ({
   root: {
     color: palette.primary.contrastText,
     background: palette.primary.main,
-    borderRadius: spacing(3),
-    whiteSpace: 'nowrap',
     '&:hover': {
       color: palette.secondary.contrastText,
       backgroundColor: palette.secondary.main,
     },
   },
-  label: {
-    textTransform: 'none',
-  },
-}))(Button));
+}))(HackButton));
 
-export default MainButton;
+export { MainButton as default, HackButton };

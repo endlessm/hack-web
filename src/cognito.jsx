@@ -133,7 +133,7 @@ async function login(username, password) {
 function logout() {
   const user = getUser();
   if (user) {
-    storage.setItem('currentUser', '');
+    storage.removeItem('currentUser');
     user.signOut();
   }
 }
