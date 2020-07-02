@@ -31,7 +31,7 @@ Sabía que te gustarían, Faber :D
 ¡Mantente alerta, {get_user_name()}! Los <i>bugbots</i> se mueven cuando tú lo haces, así que deberás planear tus movimientos con cuidado. # character: estelle
 Observa cómo los <i>bugbots</i> se mueven y en qué dirección. Y piensa en los espacios que dejan libres luego de moverse. # character: estelle
 -> mid_level_check(8) ->
-Estos <i>bugbots</i> <b>sólo se mueven hacia abajo</b>, nunca hacia la izquierda o derecha. Eso podría permitirte encontrar un... <i>bug</i> (error) en su comportamiento. ^_^ # character: estelle
+Estos <i>bugbots</i> <b>sólo se mueven hacia abajo</b>, nunca hacia la izquierda o derecha. Eso podría permitirte encontrar un... <i>bug</i> (error) en su comportamiento. ^_^
 Oh, claro. Cuando se salen del cuadro por abajo, ¡reaparecen por arriba! ¡Así que pon atención a eso!
 -> end_level_check(8) -> end_level_check(9) -> end_level_check(10) -> 10_to_14_es
 
@@ -75,7 +75,7 @@ Ey Riley, ¿cómo va tu laberinto? # character: faber
 -> mid_level_check(19) ->
 Es bastante... ¡asombroso! :D En serio {get_user_name()}, espero que te estés divirtiendo tanto como nosotros. ¡Es tan guay ver jugar a alguien a la cosa que ayudé a construir!
 -> mid_level_check(19) ->
-¡Aja! Mira a tus instrucciones cuidadosamente. Tienes un solo salto, así que úsalo bien. Podrías necesitar esquivar los hoyos de alguna otra forma. # character: ada
+Observa tus instrucciones cuidadosamente. Tienes un solo salto, así que úsalo bien. Podrías necesitar esquivar los hoyos de alguna otra forma. # character: ada
 -> end_level_check(19) ->
 Subamos la temperatura. Ahora tienes dos saltos.
 -> mid_level_check(20) ->
@@ -85,7 +85,7 @@ Diría que algo acerca de este nivel me <b>baja</b> el ánimo, ¡pero este juego
 -> end_level_check(21) ->
 Ya lo sabes, no es necesario que haya un hoyo frente a tí para usar la instrucción <b>salto</b>. ¿Tal vez podrías usar un <b>salto</b> para ir adelante? ¡Nunca se sabe cuándo esto puede ser útil! # character: ada
 -> end_level_check(22) ->
-Has navegado a lo largo de todos esos niveles. Por lo tanto, voy a darte una recompensa.
+Guau, ¡has hecho un trabajo fantástico! ¡Veintiún niveles superados! ¡Celebremos tu progreso con una medalla!
 ~ set_game_state("quest.Sidetrack1/complete", true)
 ~ set_game_state("quests.achievements/sidetrack1-complete", true)
 * ❯
