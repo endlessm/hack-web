@@ -69,7 +69,6 @@
 -> mid_level_check(8) -> level7_3
 
 === level7_3 ===
-# character: riley
 - These bugbots <b>only move down</b>, never left or right, so that might let you find a... bug... in their behavior. ^_^
 - Oh yeah, when they walk off the bottom, they reappear at the top! So, keep your eye out for that!
 -> end_level_check(8) -> level8

@@ -55,15 +55,15 @@
 
 
 === level23_5 ===
-~ attractFTH = 1
 - Exactly, Dr. Rowe! That's what the next step is - debug the broken code! Do you see that button on the <b>left side</b> of the screen, {get_user_name()}? That's the <b>Flip to Hack</b> button! You can use it to go behind the scenes and hack the game with the <b>Toolbox</b>. Let's go!
 {flipped: -> level23_8}
+~ attractFTH = 1
 * [(wait for: flipped)]  Flipped!
+~ attractFTH = 0
 -> level23_8
 
 
 === level23_8 ===
-~ attractFTH = 0
 ~ hasLockKey = 1
 - There's a lock here, but never fear, {get_user_name()}, here's the key! Click the lock to open it, and you'll be able to see the <b>Instructions</b>. They're the code version of the icons you dragged around on the front side of Sidetrack.
 * [(wait for: isLocked is 0)]  Unlocked!
@@ -98,37 +98,37 @@
 
 === level23_flip ===
 {not flipped: -> level23_play}
-~ attractFTH = 1
 - Now <b>flip</b> back to the front of Sidetrack.
+~ attractFTH = 1
 * [(wait for: flipped)]  Flipped back!
+~ attractFTH = 0
 -> level23_play
 * [(wait for: currentLevel is 24)] Level {currentLevel-1} Complete!
+~ attractFTH = 0
 -> level24
 
 === level23_play ===
-~ attractFTH = 0
 - Ok, press the <b>Play</b> button!
 * [(wait for: currentLevel is 24)] Level {currentLevel-1} Complete!
 -> level24
 
 === level24 ===
-~ attractFTH = 1
-# character: riley
+
 - I've been saving this badge for you, {get_user_name()} - You really know your way around Sidetrack now!
 ~ set_game_state("quests.achievements/sidetrack2-complete", true)
 - There are still plenty of challenges ahead, though. Let's keep going, <b>flip</b> the app and hack the <b>Instructions</b> again!
+~ attractFTH = 1
 * [(wait for: flipped)] Flipped!
+~ attractFTH = 0
 -> level24_3
-* [(wait for: currentLevel is 25)] #
+* [(wait for: currentLevel is 25)] Level {currentLevel-1} Complete!
+~ attractFTH = 0
 # character: saniel
 - Gibbering heffalumps! That's quite a gambit, {get_user_name()}! I think I might say... how does it go... that "you're the man now, dog!"
-# character: user
-- Level {currentLevel-1} Complete!
 -> level25
 
 
 === level24_3 ===
-~ attractFTH = 0
 - I think I can see the problem here!
 * [Hint] (Hint)
 -> level24_3_hints
@@ -140,15 +140,15 @@
 
 === level24_flip ===
 {not flipped: -> level24_play}
-~ attractFTH = 1
 # character: saniel
 - Good. You've corrected the errors, now <b>flip</b> back to the front of Sidetrack.
+~ attractFTH = 1
 * [(wait for: flipped)]  Flipped back!
+~ attractFTH = 0
 -> level24_play
 
 
 === level24_play ===
-~ attractFTH = 0
 # character: estelle
 - Ok, let's give it a shot. Press the <b>Play</b> button! If you don't make it through, you might need different instructions, or a different order of instructions.
 * [(wait for: currentLevel is 25)] Level {currentLevel-1} Complete!
@@ -187,7 +187,6 @@
 
 
 === level25 ===
-~ attractFTH = 0
 # character: estelle
 - Riley, did you remember to test your code? We've hit quite a lot of errors!
 * [(wait for: codeErrors is 0)] Fixed it!
@@ -208,6 +207,8 @@
 - I don't think these errors are a mistake! Every instruction in this set is wrong, and statistically, that's very unlikely.
 * ❯
 -> level26_2
+* [(wait for: flipped)] Flipped!
+-> level26_2
 * [(wait for: currentLevel is 27)] Level {currentLevel-1} Complete!
 -> level26_2
 
@@ -215,17 +216,9 @@
 === level26_2 ===
 - Yeah, almost like... it's intentional... :D
 # character: felix
-- <b><i>m*::>^_^<::&rr0w>!</i></b>
+- <b><i>m*:3:3&rr0w!</i></b>
 - You said it, Felix! Hey {get_user_name()}, you know the drill now! <b>Flip</b> and hack!
-{not flipped: -> level26_3}
-* [(wait for: flipped)] Flipped!
--> level26_3
-* [(wait for: currentLevel is 27)] Level {currentLevel-1} Complete!
--> level27
-
-
-=== level26_3 ===
-* [(wait for: codeErrors is 0)] Fixed it!
+* [(wait for: codeErrors is 0)] Fixed!
 -> level26_fix
 * [(wait for: currentLevel is 27)] Level {currentLevel-1} Complete!
 -> level27
