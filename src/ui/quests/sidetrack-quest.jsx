@@ -98,6 +98,7 @@ const SidetrackQuest = () => {
   // This is here to trigger a reload when the sidepanel changes so we can
   // focus the APP
   const open = useSelector((state) => state.ui.sidePanelOpen);
+  const { googleAnalyticsEnabled } = useSelector((state) => state.ui);
 
   const {
     quest, dialogue, choices, setCurrentChoice, hasEnded, restartQuest,
@@ -162,7 +163,7 @@ const SidetrackQuest = () => {
       // Only update quest if some variable changes, to avoid infinite loop
       if (questUpdated) {
         // Record the level completed event in metrics
-        if (!params.playing && params.success) {
+        if (googleAnalyticsEnabled && !params.playing && params.success) {
           ReactGA.event({
             category: 'User',
             action: 'Sidetrack level completed',
@@ -323,7 +324,7 @@ const SidetrackQuest = () => {
       // Reset hackableApp state on umount
       dispatch(actions.resetHackableApp());
     };
-  }, [dispatch, setCurrentChoice]);
+  }, [dispatch, setCurrentChoice, googleAnalyticsEnabled]);
 
   // Update the app when the quest changes some variable
   useEffect(() => {

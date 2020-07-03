@@ -413,7 +413,9 @@ function trackGameStateChanges(key) {
       return;
   }
 
-  ReactGA.event(ev);
+  if (store.getState().ui.googleAnalyticsEnabled) {
+    ReactGA.event(ev);
+  }
 }
 
 function setGameState(key, value) {
