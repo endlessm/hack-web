@@ -100,9 +100,9 @@ OK, presiona el botón <b><i>Play</i></b>.
   -> level24_es
 
 === level24_es ===
-Eh estado guardando esta medalla para tí, {get_user_name()} ¡Veo que tienes talento para hackear!
+He estado guardando esta medalla para ti, {get_user_name()} ¡Veo que tienes talento para hackear!
 ~ set_game_state("quests.achievements/sidetrack2-complete", true)
-Sin embargo, todavía hay muchos desafíos por delante. Continuemos. ¡<b>Voltea</b> la aplicación y volver a las <b>instrucciones</b>!
+Sin embargo, todavía hay muchos desafíos por delante. Continuemos. ¡<b>Voltea</b> la aplicación para volver a las <b>instrucciones</b>!
 ~ attractFTH = 1
 * [(wait for: flipped)] ¡Volteada!
   ~ attractFTH = 0
@@ -181,7 +181,7 @@ No creo que esos errores sean un problema. Cada instrucción en este conjunto es
 === level26_2_es ===
 Sí, casi como si fuera... intencional :D
 <b><i>m*:3:3&rr0w!</i></b> # character: felix
-Tu lo has dicho, Felix! Ey {get_user_name()}, ya conoces el camino. ¡<b>Voltea</b> para hackear!
+Tú lo has dicho, Felix! Ey {get_user_name()}, ya conoces el camino. ¡<b>Voltea</b> para hackear!
 * [(wait for: codeErrors is 0)] ¡Corregido!
   -> level26_fix_es
 * [(wait for: currentLevel is 27)] {say_level_complete()}
