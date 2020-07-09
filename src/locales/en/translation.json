@@ -60,6 +60,8 @@
   "Sidetrack": "",
   "Sidetrack Hacker": "",
   "Sidetrack Player": "",
+  "Sorry, we currently only support devices with a screen at least 960 pixels wide. To enjoy our content, please use a desktop or laptop computer, a tablet, or a phone with a larger screen.": "",
+  "Sorry, we currently only support devices with a screen at least {{minWidth}} pixels wide.": "",
   "Switch to Endless OS": "",
   "Take a break, and enjoy a game!": "",
   "Take your first steps into programming!": "",
@@ -70,6 +72,8 @@
   "The Passage": "",
   "The ultimate DIY Hacking solution!": "",
   "This will reset your progress in all quests, and erase all your achievements!": "",
+  "To enjoy our content, please rotate your device.": "",
+  "To enjoy our content, please use a desktop or laptop computer, a tablet, or a phone with a larger screen.": "",
   "Using the magic of CSS, hack your world into a unique burst of color and light revealing hidden objects and clues.": "",
   "We'd appreciate it if you let us use Google Analytics cookies on this site. These cookies help us see how this site is used. We collect this information so we can make better decisions about what content we make in the future, and who we make it for. You can read the Google Analytics privacy policy here:": "",
   "Web Crawler": "",
@@ -77,5 +81,6 @@
   "White House": "",
   "Windows": "",
   "Yes": "",
-  "You've landed on a mysterious planet with one mission; find the secret map to locate the hidden bunker. Hack the world to cross perilous lands and the obstacles within.": ""
+  "You've landed on a mysterious planet with one mission; find the secret map to locate the hidden bunker. Hack the world to cross perilous lands and the obstacles within.": "",
+  "Your device's screen is {{width}} × {{height}}.": ""
 }

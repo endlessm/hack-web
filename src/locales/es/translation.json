@@ -60,6 +60,7 @@
   "Sidetrack": "",
   "Sidetrack Hacker": "Hacker de Sidetrack",
   "Sidetrack Player": "Jugador de Sidetrack",
+  "Sorry, we currently only support devices with a screen at least {{minWidth}} pixels wide.": "Lo sentimos. Actualmente sólo se admiten dispositivos con una pantalla de al menos {{minWidth}} pixels de ancho.",
   "Switch to Endless OS": "Cambia a Endless OS",
   "Take a break, and enjoy a game!": "Toma un descanso, ¡y disfruta del juego!",
   "Take your first steps into programming!": "¡Da tus primeros pasos en programación!",
@@ -70,6 +71,8 @@
   "The Passage": "",
   "The ultimate DIY Hacking solution!": "¡Lo último en soluciones \"hazlo tu mismo\"!",
   "This will reset your progress in all quests, and erase all your achievements!": "Se reiniciará tu progreso en todos los desafíos, ¡y borrará tus medallas!",
+  "To enjoy our content, please rotate your device.": "Para disfrutar de nuestro contenido, por favor, rota tu dispositivo.",
+  "To enjoy our content, please use a desktop or laptop computer, a tablet, or a phone with a larger screen.": "Para disfrutar de nuestro contenido, por favor, usa un ordenador de escritorio o portátil, una tablet o un smartphone con una pantalla más grande.",
   "Using the magic of CSS, hack your world into a unique burst of color and light revealing hidden objects and clues.": "Usando la magia de CSS, hackea tu mundo en estallido de luces y colores que revelarán pistas y objetos ocultos.",
   "We'd appreciate it if you let us use Google Analytics cookies on this site. These cookies help us see how this site is used. We collect this information so we can make better decisions about what content we make in the future, and who we make it for. You can read the Google Analytics privacy policy here:": "Agradeceríamos que nos permitieras utilizar cookies de Google Analytics en este sitio. Estas cookies nos ayudan a ver cómo se usa el sitio. Recopilamos esta información para poder tomar mejores decisiones sobre el contenido que creamos en el futuro y para quién lo hacemos. Puedes leer la política de privacidad de Google Analytics aquí:",
   "Web Crawler": "Rastreador web",
@@ -77,5 +80,6 @@
   "White House": "",
   "Windows": "",
   "Yes": "Sí",
-  "You've landed on a mysterious planet with one mission; find the secret map to locate the hidden bunker. Hack the world to cross perilous lands and the obstacles within.": "Has aterrizado en un misterioso planeta con una misión: encontrar el mapa secreto para localizar el búnker secreto. Hackea el mundo para atravezar tierras peligrosas y sus obstáculos."
+  "You've landed on a mysterious planet with one mission; find the secret map to locate the hidden bunker. Hack the world to cross perilous lands and the obstacles within.": "Has aterrizado en un misterioso planeta con una misión: encontrar el mapa secreto para localizar el búnker secreto. Hackea el mundo para atravezar tierras peligrosas y sus obstáculos.",
+  "Your device's screen is {{width}} × {{height}}.": "La pantalla de tu dispositivo es de {{width}} × {{height}}"
 }
