@@ -26,6 +26,7 @@ import { useSelector } from 'react-redux';
 import 'typeface-roboto';
 
 import './app.css';
+import MinSize from './size-disclaimer';
 import theme from './theme';
 import CardSetView from './card-set-view';
 import Login, { RequireAuth } from './login';
@@ -47,52 +48,54 @@ const App = () => {
     <Suspense fallback="loading">
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <CookieBanner />
-        <Router>
-          <Switch>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/signup">
-              <SignUp />
-            </Route>
-            <Route path="/reset-password">
-              <ResetPassword />
-            </Route>
-            <Route path="/games">
-              <RequireAuth>
-                <GoogleAnalyticsWrapper><SidetrackQuest /></GoogleAnalyticsWrapper>
-              </RequireAuth>
-            </Route>
-            <Route path="/art">
-              <RequireAuth>
-                <GoogleAnalyticsWrapper><P5Quest /></GoogleAnalyticsWrapper>
-              </RequireAuth>
-            </Route>
-            <Route path="/web">
-              <RequireAuth>
-                <GoogleAnalyticsWrapper><HtmlQuest /></GoogleAnalyticsWrapper>
-              </RequireAuth>
-            </Route>
-            <Route path="/maker">
-              <RequireAuth>
-                <GoogleAnalyticsWrapper><PdfQuest /></GoogleAnalyticsWrapper>
-              </RequireAuth>
-            </Route>
-            {cardsets.map((p) => (
-              <Route key={p.slug} path={p.slug}>
+        <MinSize min="md">
+          <CookieBanner />
+          <Router>
+            <Switch>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/signup">
+                <SignUp />
+              </Route>
+              <Route path="/reset-password">
+                <ResetPassword />
+              </Route>
+              <Route path="/games">
                 <RequireAuth>
-                  <GoogleAnalyticsWrapper><CardSetView slug={p.slug} /></GoogleAnalyticsWrapper>
+                  <GoogleAnalyticsWrapper><SidetrackQuest /></GoogleAnalyticsWrapper>
                 </RequireAuth>
               </Route>
-            ))}
-            <Route path="/">
-              <RequireAuth>
-                <GoogleAnalyticsWrapper><CardSetView slug="/home" /></GoogleAnalyticsWrapper>
-              </RequireAuth>
-            </Route>
-          </Switch>
-        </Router>
+              <Route path="/art">
+                <RequireAuth>
+                  <GoogleAnalyticsWrapper><P5Quest /></GoogleAnalyticsWrapper>
+                </RequireAuth>
+              </Route>
+              <Route path="/web">
+                <RequireAuth>
+                  <GoogleAnalyticsWrapper><HtmlQuest /></GoogleAnalyticsWrapper>
+                </RequireAuth>
+              </Route>
+              <Route path="/maker">
+                <RequireAuth>
+                  <GoogleAnalyticsWrapper><PdfQuest /></GoogleAnalyticsWrapper>
+                </RequireAuth>
+              </Route>
+              {cardsets.map((p) => (
+                <Route key={p.slug} path={p.slug}>
+                  <RequireAuth>
+                    <GoogleAnalyticsWrapper><CardSetView slug={p.slug} /></GoogleAnalyticsWrapper>
+                  </RequireAuth>
+                </Route>
+              ))}
+              <Route path="/">
+                <RequireAuth>
+                  <GoogleAnalyticsWrapper><CardSetView slug="/home" /></GoogleAnalyticsWrapper>
+                </RequireAuth>
+              </Route>
+            </Switch>
+          </Router>
+        </MinSize>
       </ThemeProvider>
     </Suspense>
   );
