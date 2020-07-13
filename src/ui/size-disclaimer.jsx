@@ -75,7 +75,7 @@ const SizeDisclaimer = ({ min }) => {
   return (
     <Container className={classes.root}>
       <div className={classes.glitching} />
-      <Typography>
+      <Typography align="center">
         {text}
         &nbsp;
         {deviceText}
