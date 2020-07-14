@@ -65,7 +65,7 @@ const SizeDisclaimer = ({ min }) => {
   const { width, height } = window.screen;
   const pixelRatio = window.devicePixelRatio;
   const [deviceWidth, deviceHeight] = [width * pixelRatio, height * pixelRatio];
-  const text = t('Sorry, we currently only support devices with a screen at least {{minWidth}} pixels wide.', { minWidth });
+  const text = t('Sorry, we currently only support devices with a screen at least {{minWidth}} pixels wide.', { minWidth: minWidth * pixelRatio });
   const deviceText = t('Your device\'s screen is {{width}} × {{height}}.', { width: deviceWidth, height: deviceHeight });
   const smallScreen = t('To enjoy our content, please use a desktop or laptop computer, a tablet, or a phone with a larger screen.');
   const rotateScreen = t('To enjoy our content, please rotate your device.');
