@@ -224,7 +224,7 @@ export default class Quest {
       const { achievementsData } = store.getState();
       const achievementHeader = i18next.t('Badge Awarded');
       const text = achievementsData[achievement] || achievement;
-      const img = `/assets/badges/${achievement}.svg`;
+      const img = `assets/badges/${achievement}.svg`;
       const imgHtml = `<img src="${img}" alt="${achievement}"/>`;
       const html = `<p>${achievementHeader}: <b>${text}</b></p>${imgHtml}`;
 

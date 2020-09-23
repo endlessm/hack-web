@@ -23,7 +23,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 
-const ASSETS = '/assets/toolbox/lockscreen';
+const ASSETS = 'assets/toolbox/lockscreen';
 
 const useStyles = makeStyles(({ zIndex }) => ({
   base: {

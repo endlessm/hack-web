@@ -31,7 +31,7 @@ import { actions } from '../store';
 import { cardSetType, cardType } from './types';
 import GoButton from './go-button';
 
-const defaultImage = '/assets/cards/default-card.png';
+const defaultImage = 'assets/cards/default-card.png';
 
 const useStyles = makeStyles(({
   breakpoints, custom, palette, spacing, transitions,
@@ -84,7 +84,7 @@ const useStyles = makeStyles(({
   },
   backgroundBoxLoaded: {
     opacity: 1,
-    backgroundImage: ({ card }) => `url('/assets/cards/${card.slug.slice(1)}/side-panel.png')`,
+    backgroundImage: ({ card }) => `url('assets/cards/${card.slug.slice(1)}/side-panel.png')`,
   },
   titleLoading: {
     opacity: 0,
@@ -162,7 +162,7 @@ const HackCard = ({ card, cardset }) => {
 
   useEffect(() => {
     const image = new Image();
-    image.src = `/assets/cards/${card.slug.slice(1)}/side-panel.png`;
+    image.src = `assets/cards/${card.slug.slice(1)}/side-panel.png`;
     image.onload = () => {
       setLoaded(true);
     };
@@ -224,7 +224,7 @@ HackCard.defaultProps = {
 
 function useCard() {
   // eslint-disable-next-line no-restricted-globals
-  const slug = location.pathname;
+  const slug = location.hash.substring(1);
 
   return useSelector((state) => {
     const cardset = state.cardsets.find((cs) => cs.slug === '/home');

@@ -30,6 +30,10 @@ module.exports = {
       targets: {
         browsers: ['Firefox >= 52', 'Chrome >= 49', 'Edge >= 79', 'last 4 Opera versions'],
       },
+      font: {
+        name: '[name].[hash:8].[ext]',
+        publicPath: '../',
+      },
     }),
     jest(),
     copy({
@@ -79,6 +83,7 @@ module.exports = {
       ],
     }),
     (neutrino) => {
+      neutrino.config.output.publicPath('./');
       neutrino.config.module
               .rule('ink')
               .test(/\.ink$/)

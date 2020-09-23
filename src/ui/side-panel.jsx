@@ -29,7 +29,7 @@ import {
 
 import { cardType } from './types';
 
-const defaultImage = '/assets/cards/default-side-panel.png';
+const defaultImage = 'assets/cards/default-side-panel.png';
 
 const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
   offset: {
@@ -42,7 +42,7 @@ const useStyles = makeStyles(({ palette, spacing, transitions }) => ({
         return `url('${defaultImage}')`;
       }
       // FIXME add a fallback background:
-      return `url('/assets/cards/${card.slug.slice(1)}/side-panel.png')`;
+      return `url('assets/cards/${card.slug.slice(1)}/side-panel.png')`;
     },
     transition: transitions.create(['height'], {
       easing: transitions.easing.easeInOut,
@@ -101,12 +101,12 @@ const CardBadges = ({ card }) => {
   return (
     <Grid container direction="row" className={classes.badges}>
       <Grid item>
-        <img src={`/assets/avatars/${card.character}.svg`} alt={card.character} />
+        <img src={`assets/avatars/${card.character}.svg`} alt={card.character} />
       </Grid>
       { card.achievements.map((a) => (
         <Grid item key={a}>
           <img
-            src={`/assets/badges/${a}.svg`}
+            src={`assets/badges/${a}.svg`}
             alt={achievementsData[a]}
             className={clsx(classes.badge, { [classes.badgeReached]: achievements.includes(a) })}
           />

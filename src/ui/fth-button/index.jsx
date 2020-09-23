@@ -84,7 +84,7 @@ const useStyles = makeStyles(({ custom, transitions }) => ({
   },
 }));
 
-const SOUNDS = '/assets/sounds';
+const SOUNDS = 'assets/sounds';
 
 const FTHButton = ({
   className,

@@ -42,7 +42,7 @@ const useStyles = makeStyles(({ spacing }) => ({
     animationDuration: '1.3s',
     animationTimingFunction: 'steps(40, end)',
     animationIterationCount: 'infinite',
-    background: 'transparent url("/assets/avatars/glitching.png") no-repeat',
+    background: 'transparent url("assets/avatars/glitching.png") no-repeat',
     backgroundPosition: 'left',
     backgroundSize: 'cover',
   },

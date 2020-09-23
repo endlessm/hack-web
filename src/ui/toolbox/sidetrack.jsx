@@ -22,7 +22,7 @@ import {
 } from '@material-ui/icons';
 import DynToolbox from './dynamic';
 
-const ASSETS = '/assets/toolbox/sidetrack';
+const ASSETS = 'assets/toolbox/sidetrack';
 
 const ROBOTA = [
   { key: 'up', value: 'up', image: `${ASSETS}/robotAUp.png` },

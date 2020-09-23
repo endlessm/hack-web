@@ -36,6 +36,9 @@ i18n
       // not needed for react as it escapes by default
       escapeValue: false,
     },
+    backend: {
+      loadPath: `${window.location.pathname}locales/{{lng}}/{{ns}}.json`,
+    },
   })
   .then(initializeDefaultData);
 

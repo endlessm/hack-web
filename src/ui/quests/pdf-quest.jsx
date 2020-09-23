@@ -169,7 +169,7 @@ const PdfQuest = () => {
     <Box ref={ref} className={classes.documentContainer}>
       <Document
         loading={spinner}
-        file={`/assets/articles/${questName}.pdf`}
+        file={`assets/articles/${questName}.pdf`}
         onLoadSuccess={onDocumentLoadSuccess}
         externalLinkTarget="_blank"
       >

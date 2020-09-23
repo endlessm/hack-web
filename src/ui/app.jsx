@@ -18,7 +18,7 @@ import { hot } from 'react-hot-loader';
 import React, { Suspense } from 'react';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
@@ -29,9 +29,6 @@ import './app.css';
 import MinSize from './size-disclaimer';
 import theme from './theme';
 import CardSetView from './card-set-view';
-import Login, { RequireAuth } from './login';
-import SignUp from './signup';
-import ResetPassword from './reset';
 import GoogleAnalyticsWrapper from '../google-analytics';
 
 import CookieBanner from './cookie-banner';
@@ -52,46 +49,25 @@ const App = () => {
           <CookieBanner />
           <Router>
             <Switch>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/signup">
-                <SignUp />
-              </Route>
-              <Route path="/reset-password">
-                <ResetPassword />
-              </Route>
               <Route path="/games">
-                <RequireAuth>
-                  <GoogleAnalyticsWrapper><SidetrackQuest /></GoogleAnalyticsWrapper>
-                </RequireAuth>
+                <GoogleAnalyticsWrapper><SidetrackQuest /></GoogleAnalyticsWrapper>
               </Route>
               <Route path="/art">
-                <RequireAuth>
-                  <GoogleAnalyticsWrapper><P5Quest /></GoogleAnalyticsWrapper>
-                </RequireAuth>
+                <GoogleAnalyticsWrapper><P5Quest /></GoogleAnalyticsWrapper>
               </Route>
               <Route path="/web">
-                <RequireAuth>
-                  <GoogleAnalyticsWrapper><HtmlQuest /></GoogleAnalyticsWrapper>
-                </RequireAuth>
+                <GoogleAnalyticsWrapper><HtmlQuest /></GoogleAnalyticsWrapper>
               </Route>
               <Route path="/maker">
-                <RequireAuth>
-                  <GoogleAnalyticsWrapper><PdfQuest /></GoogleAnalyticsWrapper>
-                </RequireAuth>
+                <GoogleAnalyticsWrapper><PdfQuest /></GoogleAnalyticsWrapper>
               </Route>
               {cardsets.map((p) => (
                 <Route key={p.slug} path={p.slug}>
-                  <RequireAuth>
-                    <GoogleAnalyticsWrapper><CardSetView slug={p.slug} /></GoogleAnalyticsWrapper>
-                  </RequireAuth>
+                  <GoogleAnalyticsWrapper><CardSetView slug={p.slug} /></GoogleAnalyticsWrapper>
                 </Route>
               ))}
               <Route path="/">
-                <RequireAuth>
-                  <GoogleAnalyticsWrapper><CardSetView slug="/home" /></GoogleAnalyticsWrapper>
-                </RequireAuth>
+                <GoogleAnalyticsWrapper><CardSetView slug="/home" /></GoogleAnalyticsWrapper>
               </Route>
             </Switch>
           </Router>

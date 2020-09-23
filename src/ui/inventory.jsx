@@ -51,7 +51,7 @@ import MainIconButton from './main-icon-button';
 import ThumbsUpIcon from './icons/hack-thumbsup-symbolic.svg';
 import ThumbsDownIcon from './icons/hack-thumbsdown-symbolic.svg';
 
-const defaultBadge = '/assets/badges/default.svg';
+const defaultBadge = 'assets/badges/default.svg';
 
 const useStyles = makeStyles(({
   spacing,
@@ -89,7 +89,7 @@ const useStyles = makeStyles(({
     filter: 'grayscale(1) opacity(0.5)',
   },
   badge: {
-    backgroundImage: ({ achievement }) => `url('/assets/badges/${achievement}.svg'), url('${defaultBadge}')`,
+    backgroundImage: ({ achievement }) => `url('assets/badges/${achievement}.svg'), url('${defaultBadge}')`,
     backgroundSize: 'auto 100%',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',

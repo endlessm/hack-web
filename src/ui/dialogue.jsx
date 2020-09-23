@@ -155,7 +155,7 @@ const Dialogue = ({
     >
       <ChatMessage
         side={d.character === 'user' ? 'right' : 'left'}
-        avatar={`/assets/avatars/${d.character}.svg`}
+        avatar={`assets/avatars/${d.character}.svg`}
         messages={[d]}
         typing={d.character !== 'user' && i >= (bubbleAnimationCount - 1)}
       />

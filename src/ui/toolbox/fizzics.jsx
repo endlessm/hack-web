@@ -23,7 +23,7 @@ import {
 import DynToolbox from './dynamic';
 
 const SPECIES = 5;
-const ASSETS = '/assets/toolbox/fizzics';
+const ASSETS = 'assets/toolbox/fizzics';
 const BACKGROUNDS = [
   { key: '0', value: 'grid', image: `${ASSETS}/backgrounds/0.png` },
   { key: '1', value: 'space', image: `${ASSETS}/backgrounds/1.png` },
