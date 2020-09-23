@@ -116,3 +116,6 @@ build
 
 # Ink temp directory
 /temp/
+
+# HTML5Zip bundle
+/hack-labs.zip

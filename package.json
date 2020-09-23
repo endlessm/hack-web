@@ -13,7 +13,9 @@
     "test": "jest --rootDir test/",
     "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test webpack-loaders",
     "extract-translations": "babel 'src/**/*.{js,jsx,ts,tsx}'",
-    "deploy": "node tools/deploy.js"
+    "deploy": "node tools/deploy.js",
+    "build-zip": "yarn run build && yarn run zip",
+    "zip": "./tools/bundle_zip.py"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.2",

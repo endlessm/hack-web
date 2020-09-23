@@ -23,6 +23,16 @@ You can find the built app inside the `build/` folder. You can also
 call `yarn` in multiple ways while developing. See [the development
 doc](./HACKING.md#run-test-build) for the available options.
 
+### Build HTML5 ZIP bundle
+
+To create a ZIP bundle suitable for
+[Kolibri](https://learningequality.org/kolibri/), call:
+
+    yarn build-zip
+
+Then upload `hack-labs.zip` to [Kolibri
+Studio](https://studio.learningequality.org/).
+
 ## Project maintenance
 
 Sometimes you need to perform actions after you sync your checked-out
