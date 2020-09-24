@@ -29,9 +29,6 @@ import './app.css';
 import MinSize from './size-disclaimer';
 import theme from './theme';
 import CardSetView from './card-set-view';
-import GoogleAnalyticsWrapper from '../google-analytics';
-
-import CookieBanner from './cookie-banner';
 
 import { P5Quest } from './quests/p5-quest';
 import { HtmlQuest } from './quests/html-quest';
@@ -46,28 +43,27 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <MinSize min="md">
-          <CookieBanner />
           <Router>
             <Switch>
               <Route path="/games">
-                <GoogleAnalyticsWrapper><SidetrackQuest /></GoogleAnalyticsWrapper>
+                <SidetrackQuest />
               </Route>
               <Route path="/art">
-                <GoogleAnalyticsWrapper><P5Quest /></GoogleAnalyticsWrapper>
+                <P5Quest />
               </Route>
               <Route path="/web">
-                <GoogleAnalyticsWrapper><HtmlQuest /></GoogleAnalyticsWrapper>
+                <HtmlQuest />
               </Route>
               <Route path="/maker">
-                <GoogleAnalyticsWrapper><PdfQuest /></GoogleAnalyticsWrapper>
+                <PdfQuest />
               </Route>
               {cardsets.map((p) => (
                 <Route key={p.slug} path={p.slug}>
-                  <GoogleAnalyticsWrapper><CardSetView slug={p.slug} /></GoogleAnalyticsWrapper>
+                  <CardSetView slug={p.slug} />
                 </Route>
               ))}
               <Route path="/">
-                <GoogleAnalyticsWrapper><CardSetView slug="/home" /></GoogleAnalyticsWrapper>
+                <CardSetView slug="/home" />
               </Route>
             </Switch>
           </Router>
