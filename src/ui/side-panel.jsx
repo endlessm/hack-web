@@ -164,7 +164,6 @@ const SidePanel = ({
   );
 };
 
-
 SidePanel.propTypes = {
   content: PropTypes.element,
   buttons: PropTypes.element,

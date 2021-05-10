@@ -113,5 +113,4 @@ MinSize.defaultProps = {
   min: 'md',
 };
 
-
 export default MinSize;
