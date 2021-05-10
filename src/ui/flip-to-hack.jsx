@@ -81,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const FlipToHack = ({
   toolbox, canvas, attractFTH, onFlipped,
 }) => {

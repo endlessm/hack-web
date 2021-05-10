@@ -153,7 +153,6 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-
 const QuestFTHView = ({
   toolbox, canvas, sidebar, controls, onFlipped,
   sideBySide, hideControls, title, subtitle, isMainPage, attractFTH,

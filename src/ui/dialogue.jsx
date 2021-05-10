@@ -162,7 +162,6 @@ const Dialogue = ({
     </Fade>
   )).slice(0, bubbleAnimationCount);
 
-
   const content = (
     <>
       <div

@@ -92,7 +92,6 @@ const ResetPassword = () => {
         </Grid>
       </form>
 
-
     </Container>
   );
 };
